@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  devise_for :users
+  root 'homepage#index'
+
   namespace :api do
     namespace :v1 do
       get '/users/index', to: 'users#index'
@@ -6,13 +9,4 @@ Rails.application.routes.draw do
       get '/users/user_info', to: 'users#user_info'
     end
   end
-  devise_for :users
-  namespace :api do
-    namespace :v1 do
-
-    end
-  end
-
-  root 'homepage#index'
-  get '/*path' => 'homepage#index'
 end
