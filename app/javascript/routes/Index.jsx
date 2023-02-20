@@ -4,6 +4,7 @@ import Home from "../components/Home";
 import Nav from "../components/layouts/Nav";
 
 import UserContext from "../components/context/UserContext";
+import UserIndex from "../components/User/UserIndex";
 import UserShow from "../components/User/UserShow";
 
 const Index = () => { 
@@ -33,6 +34,7 @@ const Index = () => {
         <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/users/index" exact component={UserIndex} />
           <Route path="/users/show/:id" exact component={UserShow} />
         </Switch>
       </Router>
