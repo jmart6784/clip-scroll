@@ -8,6 +8,30 @@
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
+  <div class="field">
+    <%= f.label :username %><br />
+    <%= f.text_field :username, autofocus: true %>
+    <label class="forms-notes">4-16 characters long</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+    <label class="forms-notes">1-60 characters long</label>
+  </div>
+
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+    <label class="forms-notes">1-60 characters long</label>
+  </div>
+
+  <div class="edit-bio">
+    <%= f.label :bio %><br />
+    <%= f.text_area :bio %>
+    <label class="forms-notes">0-300 characters long</label>
+  </div>
+
   <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
     <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
