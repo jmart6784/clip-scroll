@@ -32,7 +32,7 @@ const UserShow = (props) => {
   return (
     <div>
       <h1>User Show</h1>
-      <p>{showUser.email}</p>
+      <p>{`${showUser.first_name} ${showUser.last_name}`}</p>
     </div>
   );
 }

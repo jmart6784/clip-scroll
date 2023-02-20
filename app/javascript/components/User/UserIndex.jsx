@@ -16,7 +16,7 @@ const UserIndex = () => {
       .catch(() => console.log("Error getting users index"));
   }, []);
 
-  let usersJsx = users.map(user => <div key={user.id}><Link to={`/users/show/${user.id}`}>{user.email}</Link></div>);
+  let usersJsx = users.map(user => <div key={user.id}><Link to={`/users/show/${user.id}`}>{`${user.first_name} ${user.last_name}`}</Link></div>);
 
   return (
     <div>
