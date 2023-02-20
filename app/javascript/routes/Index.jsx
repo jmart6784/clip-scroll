@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
 import Nav from "../components/layouts/Nav";
+
 import UserContext from "../components/context/UserContext";
+import UserShow from "../components/User/UserShow";
 
 const Index = () => { 
   const [user, setUser] = useState({});
@@ -31,6 +33,7 @@ const Index = () => {
         <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
+          <Route path="/users/show/:id" exact component={UserShow} />
         </Switch>
       </Router>
     </UserContext.Provider>

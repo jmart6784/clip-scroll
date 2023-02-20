@@ -9,6 +9,8 @@ const Nav = () => {
     return (
       <div>
         <Link to="/">Home</Link>
+        <Link to={`/users/show/${user.id}`}>Show Profile</Link>
+        <a href="/users/edit" >Edit profile</a>
         <a rel="nofollow" data-method="delete" href="/users/sign_out">Log out</a>
       </div>
     );
