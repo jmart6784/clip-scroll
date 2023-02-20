@@ -13,13 +13,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   def user_info
-    3.times {puts "#####################USER INFO####################"}
-    puts user_signed_in?
-    puts current_user.inspect
     if user_signed_in?
-      3.times {puts "@@@@@@@@@@@@@@@@@@@@"}
-      puts current_user.inspect
-      3.times {puts "@@@@@@@@@@@@@@@@@@@@"}
       render json: current_user
     else
       render json: {}, status: 401
