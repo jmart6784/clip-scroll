@@ -6,7 +6,7 @@ class UserSerializer < ActiveModel::Serializer
     if object.avatar.attached?
       # Development enviornment
       {
-        url: rails_blob_path(object.avatar, only_path: true)
+        url: rails_blob_path(object.avatar)
       }
 
       # Production
