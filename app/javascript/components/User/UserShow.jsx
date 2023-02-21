@@ -34,6 +34,7 @@ const UserShow = (props) => {
       <h1>User Show</h1>
       <img src={showUser.avatar.url} alt="user avatar" height="300" width="300" />
       <p>{`${showUser.first_name} ${showUser.last_name}`}</p>
+      <p>{showUser.bio}</p>
     </div>
   );
 }
