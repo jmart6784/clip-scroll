@@ -28,8 +28,6 @@ const Index = () => {
       .catch((error) => console.log(error));
   }, []);
 
-  useEffect(() => console.log(user), [user]);
-
   return (
     <UserContext.Provider value={[user, setUser]}>
       <Router>
