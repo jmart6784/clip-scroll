@@ -1,16 +1,18 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import UserContext from "../context/UserContext";
+import GlobalContext from "../context/GlobalContext";
 
 const Nav = () => {
-  const [user, setUser] = useContext(UserContext);
+  const [global, setGlobal] = useContext(GlobalContext);
+
+  useEffect(() => console.log(global), [global]);
   
-  if (user.id) {
+  if (global.user) {
     return (
       <div>
         <Link to="/">Home</Link>
         <Link to="/users/index">User Index</Link>
-        <Link to={`/users/show/${user.id}`}>Show Profile</Link>
+        <Link to={`/users/show/${global.user.id}`}>Show Profile</Link>
         <a href="/users/edit" >Edit profile</a>
         <a rel="nofollow" data-method="delete" href="/users/sign_out">Log out</a>
       </div>

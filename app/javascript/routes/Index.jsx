@@ -3,12 +3,12 @@ import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import Home from "../components/Home";
 import Nav from "../components/layouts/Nav";
 
-import UserContext from "../components/context/UserContext";
+import GlobalContext from "../components/context/GlobalContext";
 import UserIndex from "../components/User/UserIndex";
 import UserShow from "../components/User/UserShow";
 
 const Index = () => { 
-  const [user, setUser] = useState({});
+  const [global, setGlobal] = useState({});
 
   useEffect(() => {
     fetch("/api/v1/users/user_info", {
@@ -24,12 +24,12 @@ const Index = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setUser(response))
+      .then((response) => setGlobal({ user: { ...response } }))
       .catch((error) => console.log(error));
   }, []);
 
   return (
-    <UserContext.Provider value={[user, setUser]}>
+    <GlobalContext.Provider value={[global, setGlobal]}>
       <Router>
         <Nav />
         <Switch>
@@ -38,7 +38,7 @@ const Index = () => {
           <Route path="/users/show/:id" exact component={UserShow} />
         </Switch>
       </Router>
-    </UserContext.Provider>
+    </GlobalContext.Provider>
   );
 };
 
