@@ -1,11 +1,11 @@
 import React from "react";
-import YoutubeVideo from "./YouTube/YouTubeVideo";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
     <div>
       <h1>Home</h1>
-      <YoutubeVideo id="XYAe15w39LQ" />
+      <Link to="youtube/index">YouTube Index</Link>
     </div>
   );
 };

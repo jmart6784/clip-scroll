@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 const YoutubeVideo = (props) => { 
-
-  console.log("PROPS", props);
   const [video, setVideo] = useState({});
   
   useEffect(() => { 

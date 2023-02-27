@@ -7,6 +7,8 @@ import GlobalContext from "../components/context/GlobalContext";
 import UserIndex from "../components/User/UserIndex";
 import UserShow from "../components/User/UserShow";
 
+import YouTubeIndex from "../components/YouTube/YouTubeIndex";
+
 const Index = () => { 
   const [global, setGlobal] = useState({});
 
@@ -36,6 +38,8 @@ const Index = () => {
           <Route path="/" exact component={Home} />
           <Route path="/users/index" exact component={UserIndex} />
           <Route path="/users/show/:id" exact component={UserShow} />
+
+          <Route path="/youtube/index" exact component={YouTubeIndex} />
         </Switch>
       </Router>
     </GlobalContext.Provider>
