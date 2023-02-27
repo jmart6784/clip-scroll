@@ -81,6 +81,7 @@ ActiveRecord::Schema.define(version: 2023_02_27_041836) do
 
   create_table "youtube_videos", force: :cascade do |t|
     t.text "video_id", null: false
+    t.text "channel_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
