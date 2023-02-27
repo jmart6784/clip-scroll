@@ -4,8 +4,6 @@ import GlobalContext from "../context/GlobalContext";
 
 const Nav = () => {
   const [global, setGlobal] = useContext(GlobalContext);
-
-  useEffect(() => console.log(global), [global]);
   
   if (global.user) {
     return (
