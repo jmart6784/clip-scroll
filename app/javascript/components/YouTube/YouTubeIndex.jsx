@@ -14,16 +14,15 @@ const YouTubeIndex = () => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setVideos(response))
-      .catch(() => console.log("Error getting quiz index"));
+      .catch(() => console.log("Error getting data"));
   }, []);
 
-  // useEffect(() => console.log(videos), [videos]);
+  const nextVideo = () => setIndex(index + 1);
 
   let videosJsx = videos.slice(0, index + 1).map(video => { 
-    // console.log("LOOP V: ", video);
     return (
       <div key={video.video_id}>
-        <YoutubeVideo id={video.video_id} data={video} />
+        <YoutubeVideo id={video.video_id} />
       </div>
     );
   });
@@ -32,6 +31,7 @@ const YouTubeIndex = () => {
     <div>
       <h1>YouTube Index</h1>
       <div>{videosJsx}</div>
+      <button onClick={nextVideo}>Next</button>
     </div>
   );
 }
