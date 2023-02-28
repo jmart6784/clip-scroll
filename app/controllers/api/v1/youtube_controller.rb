@@ -1,6 +1,11 @@
 class Api::V1::YoutubeController < ApplicationController
   include HTTParty
 
+  def videos
+    videos = YoutubeVideo.all
+    render json: videos, status: 200
+  end
+
   def video
     # response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=#{params[:id]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
