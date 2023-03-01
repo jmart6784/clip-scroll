@@ -18,46 +18,28 @@ const YoutubeVideo = (props) => {
 
   const onReady = (event) => event.target.unMute();
 
+  let video_id = video.items ? video.items[0].id : "ofqIENNSx_0"
+
   return (
     <div>
       {
-        video.items ?
-          <YouTube
-            videoId={video.items[0].id}
-            id={"youtube-video-main"}
-            className={"youtube-video"}
-            opts={{
-              height: "500",
-              width: "300",
-              playerVars: {
-                autoplay: 1,
-                mute: 1,
-                loop: 1,
-                controls: 0,
-                enablejsapi: 1,
-                playlist: `${video.items[0].id}`,
-              },
-            }}                        
-            onReady={onReady}                    
-          />
-          : 
-          <YouTube
-            videoId="ofqIENNSx_0"
-            id={"youtube-video-main"}
-            className={"youtube-video"}
-            opts={{
-              height: "500",
-              width: "300",
-              playerVars: {
-                autoplay: 1,
-                mute: 1,
-                loop: 1,
-                controls: 0,
-                enablejsapi: 1,
-                playlist: 'ofqIENNSx_0'
-              },
-            }}                        
-            onReady={onReady}                    
+        <YouTube
+          videoId={video_id}
+          id={"youtube-video-main"}
+          className={"youtube-video"}
+          opts={{
+            height: "500",
+            width: "300",
+            playerVars: {
+              autoplay: 1,
+              mute: 1,
+              loop: 1,
+              controls: 0,
+              enablejsapi: 1,
+              playlist: `${video_id}`,
+            },
+          }}                        
+          onReady={onReady}                    
           />
       }
     </div>

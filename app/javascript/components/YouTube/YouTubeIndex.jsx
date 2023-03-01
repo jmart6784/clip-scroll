@@ -23,7 +23,7 @@ const YouTubeIndex = () => {
     }
   }
 
-  let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : <YoutubeVideo id="ofqIENNSx_0" />
+  let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
 
   return (
     <div>
