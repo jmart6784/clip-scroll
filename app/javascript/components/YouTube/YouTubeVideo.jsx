@@ -14,7 +14,7 @@ const YoutubeVideo = (props) => {
       })
       .then((response) => setVideo(response))
       .catch(() => console.log("Failed to get video"));
-  }, []);
+  }, [props.id]);
 
   const onReady = (event) => event.target.unMute();
 
@@ -22,6 +22,7 @@ const YoutubeVideo = (props) => {
 
   return (
     <div>
+      <p>{props.id}</p>
       {
         <YouTube
           videoId={video_id}
