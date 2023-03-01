@@ -2,8 +2,7 @@ class Api::V1::YoutubeController < ApplicationController
   include HTTParty
 
   def videos
-    videos = YoutubeVideo.all
-    # videos = YoutubeVideo.all.order(Arel.sql('RANDOM()'))
+    videos = YoutubeVideo.all.order(Arel.sql('RANDOM()'))
     render json: videos, status: 200
   end
 
