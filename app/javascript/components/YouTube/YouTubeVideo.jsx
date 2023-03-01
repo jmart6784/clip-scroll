@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import YouTube from 'react-youtube';
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
@@ -15,22 +16,49 @@ const YoutubeVideo = (props) => {
       .catch(() => console.log("Failed to get video"));
   }, []);
 
+  const onReady = (event) => event.target.unMute();
+
   return (
     <div>
-      <h1>Youtube Video</h1>
       {
         video.items ?
-          <iframe
-            className="youtube-video"
-            allow="autoplay"
-            title='Youtube player'
-            height="500"
-            idth="300"
-            sandbox='allow-same-origin allow-forms allow-popups allow-scripts allow-presentation'
-            src={`https://youtube.com/embed/${video.items[0].id}?autoplay=1&loop=1&mute=1&controls=0&playlist=${video.items[0].id}`}
-            allowFullScreen
-          ></iframe>
-        : "Loading..."
+          <YouTube
+            videoId={video.items[0].id}
+            id={"youtube-video-main"}
+            className={"youtube-video"}
+            opts={{
+              height: "500",
+              width: "300",
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+                loop: 1,
+                controls: 0,
+                enablejsapi: 1,
+                playlist: `${video.items[0].id}`,
+              },
+            }}                        
+            onReady={onReady}                    
+          />
+          : 
+          <YouTube
+            videoId="ofqIENNSx_0"
+            id={"youtube-video-main"}
+            className={"youtube-video"}
+            opts={{
+              height: "500",
+              width: "300",
+              playerVars: {
+                autoplay: 1,
+                mute: 1,
+                loop: 1,
+                controls: 0,
+                enablejsapi: 1,
+                playlist: 'ofqIENNSx_0'
+              },
+            }}                        
+            onReady={onReady}                    
+          />
       }
     </div>
   );

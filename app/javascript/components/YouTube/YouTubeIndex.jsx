@@ -17,20 +17,18 @@ const YouTubeIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  const nextVideo = () => setIndex(index + 1);
+  const nextVideo = () => {
+    if (index != videos.length - 1) {
+      setIndex(index + 1);
+    }
+  }
 
-  let videosJsx = videos.slice(0, index + 1).map(video => { 
-    return (
-      <div key={video.video_id}>
-        <YoutubeVideo id={video.video_id} />
-      </div>
-    );
-  });
+  let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : <YoutubeVideo id="ofqIENNSx_0" />
 
   return (
     <div>
       <h1>YouTube Index</h1>
-      <div>{videosJsx}</div>
+      {video}
       <button onClick={nextVideo}>Next</button>
     </div>
   );
