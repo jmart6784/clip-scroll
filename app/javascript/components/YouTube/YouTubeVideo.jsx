@@ -22,7 +22,6 @@ const YoutubeVideo = (props) => {
 
   return (
     <div>
-      <p>{props.id}</p>
       {
         <YouTube
           videoId={video_id}
