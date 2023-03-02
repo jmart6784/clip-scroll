@@ -17,11 +17,7 @@ const YouTubeIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  const nextVideo = () => {
-    if (index != videos.length - 1) {
-      setIndex(index + 1);
-    }
-  }
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : ""
 
   let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
 
