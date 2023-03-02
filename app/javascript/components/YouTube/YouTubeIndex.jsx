@@ -17,7 +17,8 @@ const YouTubeIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : ""
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
+  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
 
@@ -25,6 +26,7 @@ const YouTubeIndex = () => {
     <div>
       <h1>YouTube Index</h1>
       {video}
+      <button onClick={previousVideo}>Previous</button>
       <button onClick={nextVideo}>Next</button>
     </div>
   );
