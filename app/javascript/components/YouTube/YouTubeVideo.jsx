@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import YouTube from 'react-youtube';
+import YouTubeComments from "./YouTubeComments";
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
@@ -44,6 +45,7 @@ const YoutubeVideo = (props) => {
             onReady={onReady}                    
           />
           <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>
+          <YouTubeComments id={video_id} />
         </div>
       }
     </div>
