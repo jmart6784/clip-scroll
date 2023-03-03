@@ -19,6 +19,23 @@ const YouTubeComments = (props) => {
 
   let commentsJsx = comments.items.map(comment => { 
     let parentComment = comment.snippet.topLevelComment.snippet;
+    let replies = comment.replies ? comment.replies.comments : [];
+
+    replies = replies.map(reply => { 
+      let r = reply.snippet;
+
+      return (
+        <div key={reply.id}>
+          <p>
+            <a href={r.authorChannelUrl} target="_blank">
+              <img src={r.authorProfileImageUrl} alt="user avatar" />
+            </a> {r.authorDisplayName}
+          </p>
+          <p>{r.textDisplay}</p>
+          <p>Likes: {r.likeCount}</p>
+        </div>
+      );
+    });
 
     return (
       <div key={comment.id}>
@@ -32,6 +49,7 @@ const YouTubeComments = (props) => {
           Likes: {parentComment.likeCount}
           {comment.replies ? " Replies: " + comment.replies.comments.length : ""}
         </p>
+        {replies}
       </div>
     );
   });
