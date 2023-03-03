@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
-const YouTubeComments = (props) => { 
-  const [comments, setComments] = useState([]);
+const YouTubeComments = (props) => {
+  const [comments, setComments] = useState({items: []});
 
   useEffect(() => {
     fetch(`/api/v1/youtube/comments/${props.id}`)
@@ -17,7 +17,31 @@ const YouTubeComments = (props) => {
 
   useEffect(() => console.log(comments), [comments]);
 
-  return <div>Comments {props.id}</div>
+  let commentsJsx = comments.items.map(comment => { 
+    let parentComment = comment.snippet.topLevelComment.snippet;
+
+    return (
+      <div key={comment.id}>
+        <p>
+          <a href={parentComment.authorChannelUrl} target="_blank">
+            <img src={parentComment.authorProfileImageUrl} alt="user avatar" />
+          </a> {parentComment.authorDisplayName}
+        </p>
+        <p>{parentComment.textDisplay}</p>
+        <p>
+          Likes: {parentComment.likeCount}
+          {comment.replies ? " Replies: " + comment.replies.comments.length : ""}
+        </p>
+      </div>
+    );
+  });
+
+  return (
+    <div>
+      <h1>Comments:</h1>
+      {commentsJsx}
+    </div>
+  );
 }
 
 export default YouTubeComments;

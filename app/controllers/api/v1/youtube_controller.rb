@@ -17,7 +17,7 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def comments
-    # response = HTTParty.get("https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,id,replies&videoId=#{params[:video_id]}&maxResults=100&order=relevance&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+    # response = HTTParty.get("https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,id,replies&videoId=#{params[:video_id]}&maxResults=100&order=relevance&textFormat=plainText&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
     # puts JSON.parse(response.body).inspect
 
@@ -25,8 +25,8 @@ class Api::V1::YoutubeController < ApplicationController
 
     render json: {
     "kind": "youtube#commentThreadListResponse",
-    "etag": "c4L_FwzF-591ZaybBqv5_esiZx8",
-    "nextPageToken": "Z2V0X3JhbmtlZF9zdHJlYW1zLS1Db0VFQ0lBRUZSZTMwVGdhOWdNSzhRTUkyRjhRZ0FRWUJ5TG1BNnVTU05hMFRwdVFqamJRUUdtSEN0NHhwTEJsdXJnemxUcG9qUkdkeGVTcW1MaFdvVkE5RnRjWUdZR1dSaUpEMFRTSEc2LXpKM2xWOUZuVTV5YUtHb0ZDd1dBVW9DemkzT3l3MG1sU0VDZGlZdFJweEtFM2FUSzVJU0VXSWhDNk1peEFtYmhsam5DYUdwWkZiT0d3VjJaTUVDSl9OMWpkQlVJZ1N4bWlzWENLU3FLUm93R0tDT253dXRnM1VZTURoZGlkaEVISVlkallzRVoyS2Vpbm1QaTlZZkFQYUlBaGxNa2pCNUV1UmFRYTRXaFE0WTRqNU8ybGJ5V0xjNFhvRGM5cWRETy1ObXZiY1ZJSC14RWVOSVBRWlZUVkdtTHZCUzQwaWRpaU1GX1JXYjcyamtvV0hlR0hMaVlYZE1WMi1JT3plTnNKenYxWkZlOFlNbTZyNmFJaHFnbkpJR24xYkRISXV5WUpZMmtJOFoxeUFqWnFFcUVEcDNadWh4NDFFbG9UaEVTVHJySXNsTVowaERMS1NjdWhsNW5pY2hYak1vZkZYRHNoWS1nTXE1NUZvY2JVeWRJeEpsRHNwMC1rVFJ4a3ZleFFXZHpIYktOZkU2VW9RdlV4N0lRTVZJSGp3anFiMDVmMDdjWERoclkyYlRFYkNoT2Q4S1BkTkZIT2hYQ1lrRzR2UmxVYlNTTm9WQnl4U211WkY3cllIcVdNeTdKZlFvbFZMRHlMclVMREZLbFJTV0gwQW9XWnk5SmdZd09uT1Zxak5icnRTcWdhNUZIRGpFTU9HOVV4NXdTVmRvVVpLYTEzbkZoaHJNRXlTdGJVUUpRc1p0R1dDWWxOVkU5TVEtb2FBUkJrRWdVSWlTQVlBQklGQ0ljZ0dBQVNCd2lFSUJBdUdBRVNCd2lGSUJCQ0dBRVNCUWlJSUJnQUVnVUloaUFZQUJnQg==",
+    "etag": "LGe0ZTsp8N9UyKjBJQmfKnlqcNM",
+    "nextPageToken": "Z2V0X3JhbmtlZF9zdHJlYW1zLS1DdjhEQ0lBRUZSZTMwVGdhOUFNSzd3TUkyRjhRZ0FRWUJ5TGtBNnVTU05hMFRwdVFqamJRUUdtSEN0NHhwTEJsdXJnemxUcG9qUkdkeGVTcW1MaFdvZkFMY1kyUkVXaHB0S0ZvbXNPTjE5a1BxcUxQb2o0M1VkUUlGQW9Hb3dCbEVlZG1oNVZPazRMQW1CaDFHbkhvVFpwTWJraUloUWlFcmd3TFVDWnVXVWRUdzZaczRiQlhaa3dRSW44M1dOMEZRaUJMR2FLeGNJcEtvcEdqQVlvSTZmQzZ5TW9tYW5DZ0VCdDZDWU9RdzdDeFlZM3NVdEJQTWZGN3ctQWYwRUJZQ0dYeXlFRTBFNUZxaEtOQmhUdU9rTGVYdnZWeHJoQzlnU3lyMGMzNDJxeHR4MGtkN0VkNDBBeENsMUZWYTRpOUY3alFKR0tMd254RlpfbmFPeXBaZElRZnVwaGMwQlhiNFFfTzRtMG5PUGRubFd4MkRCbTMxWFRSRU5XRXBGVkp4ZlJzTWNpN0pnbGphUWp4blhJQ05tb1NvUU0zZGp2MHFKSFFtaUQwcEtzc3Mxb2EweEhLS0NjdGgxNW1pc3RWak1zY0ZuUHRhQXlkWWRVcGprS05xWk9sWTB5ZzJFLWZTQU1UQjFrdk8xUVc5ekhiNkt1UUtFVVJxbzloSjJTZ0Nod1gxdG1jdnFSdkx4NDJ0TFZwaTlsUW1PaUVILTJtaWVJaEhDYWsyNHVSaG0wa2phQlJjY1FxcldWZTZHSjdsREl1eTM0SkpWYXg4Q3kyQ2cxVHBFWWxoZEVMRkdZdVM0T05EWnptYUkzVzZMWXJvV3FRUncwekRqbHNWTWVjRTFUYUZXYWt0TjV4WWdVM1dFYkptaHFJa3NVczJqSWhzWW5xaVdsSVhTTVFaQklGQ0lnZ0dBQVNCd2lFSUJBdUdBRVNCUWlISUJnQUVnVUlpU0FZQUJJSENJVWdFRUlZQVJJRkNJWWdHQUFZQVE=",
     "pageInfo": {
         "totalResults": 99,
         "resultsPerPage": 100
@@ -34,13 +34,13 @@ class Api::V1::YoutubeController < ApplicationController
     "items": [
         {
             "kind": "youtube#commentThread",
-            "etag": "z4E5nAAKSjkLjjNW0i5-7nAkqQU",
+            "etag": "-8i7Pkk2hnG7foSKobzOSa7O-SQ",
             "id": "UgzOpS_RRFR0IsErbS54AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "d1ddmESt5oB49VTPxPjUhh3PJvA",
+                    "etag": "G4egwOVUtRL6jTWy6o6CXvJ-AIg",
                     "id": "UgzOpS_RRFR0IsErbS54AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -54,7 +54,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 20600,
+                        "likeCount": 20945,
                         "publishedAt": "2023-02-24T22:36:48Z",
                         "updatedAt": "2023-02-24T22:36:48Z"
                     }
@@ -133,11 +133,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "7UfJz9AMOwp5h6IKztrB5rGxlXI",
+                        "etag": "kWcsGjWHpH9fb3UgSBPrRu05jbg",
                         "id": "UgzOpS_RRFR0IsErbS54AaABAg.9mXUPHCOyA_9mlvfFo6iHx",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Employee: &quot;I found your address.&quot;",
+                            "textDisplay": "Employee: \"I found your address.\"",
                             "textOriginal": "Employee: \"I found your address.\"",
                             "parentId": "UgzOpS_RRFR0IsErbS54AaABAg",
                             "authorDisplayName": "Crazy Contraptions",
@@ -180,13 +180,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "Ev3J35DIVZ5M1aH2FHXY-XyL1_Q",
+            "etag": "kzcyP6ShXeaMSuupq-vxf2BAkFw",
             "id": "UgyFTdzijAlJfO5ZusZ4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "EPFUa9A1-Ih6-2El0uzvFXxT_Rc",
+                    "etag": "8_dnPRQEq9IYYe7wrwjoECyU334",
                     "id": "UgyFTdzijAlJfO5ZusZ4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -200,125 +200,103 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 883,
+                        "likeCount": 1057,
                         "publishedAt": "2023-02-27T21:38:21Z",
                         "updatedAt": "2023-02-27T21:38:21Z"
                     }
                 },
                 "canReply": true,
-                "totalReplyCount": 10,
+                "totalReplyCount": 16,
                 "isPublic": true
             },
             "replies": {
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "h2szsWcFC3Ox-7TaukbJW7oKF4Y",
-                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmHV2boZf1",
+                        "etag": "VzahAr-tDtKpkbmCSSps31b1cyI",
+                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmSXMCCQS4",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I feel you Xaos, the clean up is traumatising. Have to keep then safe no matter what, if you smell it, it&#39;s clean up time...",
-                            "textOriginal": "I feel you Xaos, the clean up is traumatising. Have to keep then safe no matter what, if you smell it, it's clean up time...",
+                            "textDisplay": "So you never tried old milk like 2-3 months old milk.",
+                            "textOriginal": "So you never tried old milk like 2-3 months old milk.",
                             "parentId": "UgyFTdzijAlJfO5ZusZ4AaABAg",
-                            "authorDisplayName": "An_Internet_User",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/w_JwUL_KsmGYFogHdSVgHXFuiFsSrUWZrOui9DR4WHxvkGOc0b1JpYBwpk21t2Se1NpTkJsDnQ=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCbbk0BNg-Tfl5uF0DosgCiA",
+                            "authorDisplayName": "mtkl23",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXzqRIKODPYHl4NUxfotXXjIgZW_Jo29ijUz1AJ=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCg0uigBLmLzuuRPvo4-9FMA",
                             "authorChannelId": {
-                                "value": "UCbbk0BNg-Tfl5uF0DosgCiA"
+                                "value": "UCg0uigBLmLzuuRPvo4-9FMA"
                             },
                             "canRate": true,
                             "viewerRating": "none",
                             "likeCount": 0,
-                            "publishedAt": "2023-03-03T01:51:50Z",
-                            "updatedAt": "2023-03-03T01:51:50Z"
+                            "publishedAt": "2023-03-03T03:28:16Z",
+                            "updatedAt": "2023-03-03T03:28:16Z"
                         }
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "chT30ZNw3gvLRhvEyjWko_UboEE",
-                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmC3IC5pR3",
+                        "etag": "cN0sokLgTVxuuIvhy2RSbFlYeqA",
+                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmSD_fjQJo",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Not quite; several crates of rotten cucumber is worse. It has all the stench of the melon and then a little bit extra.",
-                            "textOriginal": "Not quite; several crates of rotten cucumber is worse. It has all the stench of the melon and then a little bit extra.",
+                            "textDisplay": "Been there.  We had to clean all of the hood melons.  Worst smelling thing I’ve have ever smelt.",
+                            "textOriginal": "Been there.  We had to clean all of the hood melons.  Worst smelling thing I’ve have ever smelt.",
                             "parentId": "UgyFTdzijAlJfO5ZusZ4AaABAg",
-                            "authorDisplayName": "Thierry",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXqKK35xhrPIHnBcYSbN_0cf3AQfpiN4pcT7g=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCfvohf8fThzPK2pzvixq5bQ",
+                            "authorDisplayName": "PyrexPopp",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/nWRx6HC6gdNn3AGK9Jo-tjcUPh__uLdyPbanLj75TQxBLVphVO5YriAsfqs-Lxh35pJo8AJ_1g=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCf_6vLAAITWJllOubVb83Rg",
                             "authorChannelId": {
-                                "value": "UCfvohf8fThzPK2pzvixq5bQ"
+                                "value": "UCf_6vLAAITWJllOubVb83Rg"
                             },
                             "canRate": true,
                             "viewerRating": "none",
                             "likeCount": 0,
-                            "publishedAt": "2023-03-03T01:04:21Z",
-                            "updatedAt": "2023-03-03T01:04:21Z"
+                            "publishedAt": "2023-03-03T03:25:34Z",
+                            "updatedAt": "2023-03-03T03:25:34Z"
                         }
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "b2bSk3I6_R_UgyNCBlxwwnrN2T0",
-                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmBg3kmGLt",
+                        "etag": "0poMeESQf9AxJdOna1i13Z7uW9s",
+                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmRdsJLUHE",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I actually know how horrifying the smell of a rotten watermelon is, as i once cut open a watermelon that started to rot from the inside, i can only imagine how much worse the stench of a fully rotten watermelon is",
-                            "textOriginal": "I actually know how horrifying the smell of a rotten watermelon is, as i once cut open a watermelon that started to rot from the inside, i can only imagine how much worse the stench of a fully rotten watermelon is",
+                            "textDisplay": "YES and then you have the damn rotten bean sprouts, cantaloupe, and onions. Accompanied by the seasonal swarm of fruit flies all over the place",
+                            "textOriginal": "YES and then you have the damn rotten bean sprouts, cantaloupe, and onions. Accompanied by the seasonal swarm of fruit flies all over the place",
                             "parentId": "UgyFTdzijAlJfO5ZusZ4AaABAg",
-                            "authorDisplayName": "BonePoint Riverstone",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJU-gJyF_eF3lFBQgbMMUdphMJ1gWfaS49gevJt88vc=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCQ6KQ-Ir72BuTDnhWdJ8TYg",
+                            "authorDisplayName": "Dillpickle",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/kC2BdOZMJu06nJa4tZ003eRY80Tv-77rux9bxnYThNXvQr0kHGb9Kv9cGiAuPtYwYgYW-SHK9Nc=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCSXQuRQdofmKUzRAnUgcp2w",
                             "authorChannelId": {
-                                "value": "UCQ6KQ-Ir72BuTDnhWdJ8TYg"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 1,
-                            "publishedAt": "2023-03-03T01:01:03Z",
-                            "updatedAt": "2023-03-03T01:01:03Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "zau_E89S8VABd2pNQByvS6yUBFU",
-                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mm6LxswqAy",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Santibag no, no, no way<br><br>people before us left potatoes in a drawer in our air bnb and oh my god<br><br>the house smelled horrible, we just went out to eat instead while someone came to clean it up",
-                            "textOriginal": "@Santibag no, no, no way\n\npeople before us left potatoes in a drawer in our air bnb and oh my god\n\nthe house smelled horrible, we just went out to eat instead while someone came to clean it up",
-                            "parentId": "UgyFTdzijAlJfO5ZusZ4AaABAg",
-                            "authorDisplayName": "EveningJaguar",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/gkj5rpwYO2ozvL8ITGRNCjMZaeb2A6EWGfiBrzfiWamTafuD1AibYZurURhjT4dMD4TmgSR9JA=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UC3igO20p7bk7V_NXjWXMtlg",
-                            "authorChannelId": {
-                                "value": "UC3igO20p7bk7V_NXjWXMtlg"
+                                "value": "UCSXQuRQdofmKUzRAnUgcp2w"
                             },
                             "canRate": true,
                             "viewerRating": "none",
                             "likeCount": 0,
-                            "publishedAt": "2023-03-03T00:14:29Z",
-                            "updatedAt": "2023-03-03T00:14:29Z"
+                            "publishedAt": "2023-03-03T03:20:34Z",
+                            "updatedAt": "2023-03-03T03:20:34Z"
                         }
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "3z_e25uhkUgi-L4H0aT6579oI6s",
-                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mm2PVEElnL",
+                        "etag": "JBl8XOQJDgwYeG1XTAuswkNvZ_4",
+                        "id": "UgyFTdzijAlJfO5ZusZ4AaABAg.9me65kKq0CZ9mmQwm9nQzQ",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@Santibag arent those poisonous af?",
-                            "textOriginal": "​@Santibag arent those poisonous af?",
+                            "textDisplay": "Sunflowers rot????",
+                            "textOriginal": "Sunflowers rot????",
                             "parentId": "UgyFTdzijAlJfO5ZusZ4AaABAg",
-                            "authorDisplayName": "Chonflis",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/jmPgPFSNh229B9KfZMI1aMISrArGIGeT9Yj4vgQaH3-CayxbghNHQZFfoRqu7W0pi2r3aNMXpXg=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCqz2JOosoxT89S4tTsM1VkA",
+                            "authorDisplayName": "Columbus Astrid Avenue",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWxJrrRzYqEAaDmIYv1zEEykAwdS_Br7noNjO-l6fM=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCoxXiQbwlEtXwJA7u7lXJmw",
                             "authorChannelId": {
-                                "value": "UCqz2JOosoxT89S4tTsM1VkA"
+                                "value": "UCoxXiQbwlEtXwJA7u7lXJmw"
                             },
                             "canRate": true,
                             "viewerRating": "none",
                             "likeCount": 0,
-                            "publishedAt": "2023-03-02T23:40:00Z",
-                            "updatedAt": "2023-03-02T23:40:00Z"
+                            "publishedAt": "2023-03-03T03:14:24Z",
+                            "updatedAt": "2023-03-03T03:14:24Z"
                         }
                     }
                 ]
@@ -326,13 +304,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "7heuaeNiXgnrS4V7ghzeexvwlYw",
+            "etag": "UUpcz5m1ygcJEaNPb_2vyosDCLM",
             "id": "UgzUM18ypqQy7M6qRRF4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "f1GcV0H8a7OldGa8rPqPVKN4ULw",
+                    "etag": "MLUgzGkpllXL1CDB1MEYW10KM2g",
                     "id": "UgzUM18ypqQy7M6qRRF4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -346,7 +324,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 252,
+                        "likeCount": 340,
                         "publishedAt": "2023-02-28T20:47:27Z",
                         "updatedAt": "2023-02-28T20:47:27Z"
                     }
@@ -358,17 +336,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "TDZFFHl2MgAjwMDGxVNBKhBqIz0",
+            "etag": "VEyTkaSAgoGDFx4t1SMXEaCv1CM",
             "id": "UgyCsMwaV00ei3zmxU94AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "M_XVvZFe8ZzzKXcAZu178CNRBg4",
+                    "etag": "FFdfj3_Cu7QNqSz7YlU_YkVuJI4",
                     "id": "UgyCsMwaV00ei3zmxU94AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Humans are 70% water . . . I&#39;m just glad this doesn&#39;t happen to humans!",
+                        "textDisplay": "Humans are 70% water . . . I'm just glad this doesn't happen to humans!",
                         "textOriginal": "Humans are 70% water . . . I'm just glad this doesn't happen to humans!",
                         "authorDisplayName": "Painting Winter — Music ",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/A_-W4FaTz5-rD__Qgnvgzn78OJP6337Gw2S7dygMCUIrf78IdhjIuz3hcoovBsrut2MYHZ1Tug=s48-c-k-c0x00ffffff-no-rj",
@@ -378,24 +356,90 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 8732,
+                        "likeCount": 8835,
                         "publishedAt": "2023-02-24T22:30:17Z",
                         "updatedAt": "2023-02-24T22:30:17Z"
                     }
                 },
                 "canReply": true,
-                "totalReplyCount": 122,
+                "totalReplyCount": 126,
                 "isPublic": true
             },
             "replies": {
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "vOGxyWoIMxGqSlla_o1tObor2G0",
+                        "etag": "wQBkKKwWKT3lP8zu-BqvQZi0ejs",
+                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mmUQhS2ZTK",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "@Venobit what are the heck",
+                            "textOriginal": "@Venobit what are the heck",
+                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
+                            "authorDisplayName": "cool",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/GFG6X_040mK4hTcAWkCJn1447B1-ujlYckwqTIjZe58S3o05SqUnsb5x9JLW6oonxnGLFlp7=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCPkBCtuwu64sbck2xcdLWTg",
+                            "authorChannelId": {
+                                "value": "UCPkBCtuwu64sbck2xcdLWTg"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:44:50Z",
+                            "updatedAt": "2023-03-03T03:44:50Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "92L3LjqJ6Wx-wB5z9S6WXr2MKvk",
+                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mmULOM6X-m",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "uhm ackthually, humans are 60% water☝️🤓",
+                            "textOriginal": "uhm ackthually, humans are 60% water☝️🤓",
+                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
+                            "authorDisplayName": "cool",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/GFG6X_040mK4hTcAWkCJn1447B1-ujlYckwqTIjZe58S3o05SqUnsb5x9JLW6oonxnGLFlp7=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCPkBCtuwu64sbck2xcdLWTg",
+                            "authorChannelId": {
+                                "value": "UCPkBCtuwu64sbck2xcdLWTg"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:44:07Z",
+                            "updatedAt": "2023-03-03T03:44:07Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "rDBp4CizNwLxdjrOsvlxh6zH0yE",
+                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mmQ_QABJPE",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "Thats when they vomit 🤢",
+                            "textOriginal": "Thats when they vomit 🤢",
+                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
+                            "authorDisplayName": "Bilal Azizi",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/Z9tQro2plPcRxQfG3_UIA4iG49vKKkv0FVCvPG8hlhlD41qjT0S4jZaZsVywF8v7d4AgQCFLBQ=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCGO0WBhA7fPinxdk6zQ4I2w",
+                            "authorChannelId": {
+                                "value": "UCGO0WBhA7fPinxdk6zQ4I2w"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:11:13Z",
+                            "updatedAt": "2023-03-03T03:11:13Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "lYxjppP6LNBSmBYoGdgHTIIJT6w",
                         "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mmNFbjC3Vi",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@Venobit You&#39;re wild",
+                            "textDisplay": "​@Venobit You're wild",
                             "textOriginal": "​@Venobit You're wild",
                             "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
                             "authorDisplayName": "NULL 𝓂𝒶𝓉𝓉𝑒𝓇",
@@ -410,107 +454,19 @@ class Api::V1::YoutubeController < ApplicationController
                             "publishedAt": "2023-03-03T02:42:09Z",
                             "updatedAt": "2023-03-03T02:42:09Z"
                         }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "1JVYXTeFxGG8CgcHnXdSReY7IIQ",
-                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mmHItMvw9H",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Next Video, I found a human without the human, just the water.",
-                            "textOriginal": "Next Video, I found a human without the human, just the water.",
-                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
-                            "authorDisplayName": "An_Internet_User",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/w_JwUL_KsmGYFogHdSVgHXFuiFsSrUWZrOui9DR4WHxvkGOc0b1JpYBwpk21t2Se1NpTkJsDnQ=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCbbk0BNg-Tfl5uF0DosgCiA",
-                            "authorChannelId": {
-                                "value": "UCbbk0BNg-Tfl5uF0DosgCiA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-03T01:50:11Z",
-                            "updatedAt": "2023-03-03T01:50:11Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "eu6hrZVXUpUsp-n-6Q0oFLhOt8w",
-                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mm9rSL95P9",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Lol it does in the decomposition process but instead of just water it’s worse. It’s all the body juices and gas.",
-                            "textOriginal": "Lol it does in the decomposition process but instead of just water it’s worse. It’s all the body juices and gas.",
-                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
-                            "authorDisplayName": "Cat strain",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWuCjXvKIJ3RGmiXPy_DP9p1KlikJVWq7S-0lUoWA=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UC1m9C2C-TnnPBzeMGtbV6AA",
-                            "authorChannelId": {
-                                "value": "UC1m9C2C-TnnPBzeMGtbV6AA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-03T00:45:08Z",
-                            "updatedAt": "2023-03-03T00:45:08Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "mMjbDRe9PKuT5J8qEbgaJvtZVFk",
-                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mm5H_pY7cV",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I got some bad news for you…",
-                            "textOriginal": "I got some bad news for you…",
-                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
-                            "authorDisplayName": "Andrew Tsuchiya",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJV-q_-WVvsQPx1Poy5NYl22Y6oRrS4156Fj=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCP-Qem1IwjRGkHaZaqDF0lA",
-                            "authorChannelId": {
-                                "value": "UCP-Qem1IwjRGkHaZaqDF0lA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-03T00:05:08Z",
-                            "updatedAt": "2023-03-03T00:05:08Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "-Jv8pRbJ07aajE6vUsJkVcTo_ko",
-                        "id": "UgyCsMwaV00ei3zmxU94AaABAg.9mXTeTLJcLm9mm4tkjc3gU",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Um, actually….",
-                            "textOriginal": "Um, actually….",
-                            "parentId": "UgyCsMwaV00ei3zmxU94AaABAg",
-                            "authorDisplayName": "Minecraftmom 86",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVchu8bGx6MNq3ZXVYjq0F8jQWn_oaggv5mEvfCn7o=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCR37WEvwsSQNFEqYCwOu4rw",
-                            "authorChannelId": {
-                                "value": "UCR37WEvwsSQNFEqYCwOu4rw"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-03T00:01:45Z",
-                            "updatedAt": "2023-03-03T00:01:45Z"
-                        }
                     }
                 ]
             }
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "j7yciod5YmGxp02laiyrezY8tgs",
+            "etag": "NKaaOqLPJ0ZeH0G6K2M03F93drE",
             "id": "UgyW8bHYBL-vSzHKRct4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "mZ45bLxO-zhlG5O4J-lpyPFUkgw",
+                    "etag": "fDyUD5Gs-nGHXehKg9zm2xuVfgA",
                     "id": "UgyW8bHYBL-vSzHKRct4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -524,7 +480,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 134,
+                        "likeCount": 166,
                         "publishedAt": "2023-02-27T23:31:05Z",
                         "updatedAt": "2023-02-27T23:31:05Z"
                     }
@@ -536,17 +492,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "ZGc8pwqiHc6pxfYG2L8x3YiExrM",
+            "etag": "xAGCeIizA1txVvmezLLGGtfCt_0",
             "id": "Ugyxbi2UwsTfHZ5LD0l4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "TyAaVNG3wEbhIKLCfxedOjesC1k",
+                    "etag": "z10z5OUg6PR2UVw4M_nv_1hwgbY",
                     "id": "Ugyxbi2UwsTfHZ5LD0l4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I work in a grocery store’s produce department<br><br>That is tied to be the single most stinkiest thing I have encountered. Second is rotten chopped up onions and 20 pounds of banana sweating in plastic.",
+                        "textDisplay": "I work in a grocery store’s produce department\n\nThat is tied to be the single most stinkiest thing I have encountered. Second is rotten chopped up onions and 20 pounds of banana sweating in plastic.",
                         "textOriginal": "I work in a grocery store’s produce department\n\nThat is tied to be the single most stinkiest thing I have encountered. Second is rotten chopped up onions and 20 pounds of banana sweating in plastic.",
                         "authorDisplayName": "InterAC",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVLw1Zjn61raoIG1eEn5-i0u-F1tU7nYZD1FDEfzYFmeZE223w6RS8fR6BOS3M7=s48-c-k-c0x00ffffff-no-rj",
@@ -556,7 +512,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 41,
+                        "likeCount": 55,
                         "publishedAt": "2023-02-28T02:29:15Z",
                         "updatedAt": "2023-02-28T02:29:15Z"
                     }
@@ -568,17 +524,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "o_KZTpYzYvrPmYWf6J6zDqyi9GE",
+            "etag": "oSpVp21lGFg55OoU6l9yWfbxGZY",
             "id": "UgwuSzQuXD7vQWlK5b54AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "H_NVlDmWIrkrAGzecQiqaxLHTjo",
+                    "etag": "ukushmM-fUL6O2SPrJsLf8Vbftk",
                     "id": "UgwuSzQuXD7vQWlK5b54AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Nope, that&#39;s rotten. You&#39;re gonna clear out half a store with that",
+                        "textDisplay": "Nope, that's rotten. You're gonna clear out half a store with that",
                         "textOriginal": "Nope, that's rotten. You're gonna clear out half a store with that",
                         "authorDisplayName": "Elijah Jarman",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/rrBdp-J8n0BlWiUCCOSDn72sseUp65Zvvgg8zrp1gOToahRDJKOSwdj644aheLXz0IthoNNooC8=s48-c-k-c0x00ffffff-no-rj",
@@ -588,7 +544,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 4745,
+                        "likeCount": 4785,
                         "publishedAt": "2023-02-24T23:29:36Z",
                         "updatedAt": "2023-02-24T23:29:36Z"
                     }
@@ -623,11 +579,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "2bBcKbyrsF-3l39f2mcO9pyb_kU",
+                        "etag": "5KEfRqBMoGPwOgUI3CfwQQcB7ZI",
                         "id": "UgwuSzQuXD7vQWlK5b54AaABAg.9mX_RzzdSnC9mkygQ5mjnn",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@Jimmy the Shadow Leviathan And the bin is literally half empty, meaning that it was at the bottom previously. How do <b>you</b> not notice that?",
+                            "textDisplay": "​@Jimmy the Shadow Leviathan And the bin is literally half empty, meaning that it was at the bottom previously. How do *you* not notice that?",
                             "textOriginal": "​@Jimmy the Shadow Leviathan And the bin is literally half empty, meaning that it was at the bottom previously. How do *you* not notice that?",
                             "parentId": "UgwuSzQuXD7vQWlK5b54AaABAg",
                             "authorDisplayName": "SoulOfFlame",
@@ -667,11 +623,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "1gAfsjeQvXZ1sw1moHro8vPT2Xg",
+                        "etag": "OWHqvZaZ_HP6N6LVW50Ud9gi1t8",
                         "id": "UgwuSzQuXD7vQWlK5b54AaABAg.9mX_RzzdSnC9mjSOCEragx",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@P look at the surroundings and the bg sounds, it looks like a warehouse or storage area not a storefront so it&#39;s probably an employee that did it, the title is probably just for views I doubt ddoi himself went and did it",
+                            "textDisplay": "​@P look at the surroundings and the bg sounds, it looks like a warehouse or storage area not a storefront so it's probably an employee that did it, the title is probably just for views I doubt ddoi himself went and did it",
                             "textOriginal": "​@P look at the surroundings and the bg sounds, it looks like a warehouse or storage area not a storefront so it's probably an employee that did it, the title is probably just for views I doubt ddoi himself went and did it",
                             "parentId": "UgwuSzQuXD7vQWlK5b54AaABAg",
                             "authorDisplayName": "jimtsap04",
@@ -692,13 +648,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "hkkWTj5Moi1BfkoisxXg4mVlC58",
+            "etag": "JwzrG5V4O-h25YMQX0kp4XMCvl8",
             "id": "UgychXgSBqTssHGnFyF4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "hbxtDOl50nuTdCVs4ei4ztdCe0U",
+                    "etag": "3KU2rqPTBqcRw3mPJZEOCqS7XPg",
                     "id": "UgychXgSBqTssHGnFyF4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -712,7 +668,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 17,
+                        "likeCount": 32,
                         "publishedAt": "2023-03-02T18:40:29Z",
                         "updatedAt": "2023-03-02T18:40:29Z"
                     }
@@ -724,13 +680,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "WCeDnmZBZkJ4oT5V9LdXPCFsc4w",
+            "etag": "oH5dicef5bawkmihylnEftsjn94",
             "id": "UgxJCbACyT3LAzKUdb14AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "VsGmRGcyS_Oe5nJ2tz6foPfj22c",
+                    "etag": "h8bXYbLn7VdKdQETC0GlWQDPQFI",
                     "id": "UgxJCbACyT3LAzKUdb14AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -744,7 +700,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 9,
+                        "likeCount": 13,
                         "publishedAt": "2023-03-02T15:08:56Z",
                         "updatedAt": "2023-03-02T15:08:56Z"
                     }
@@ -782,13 +738,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "scCVMl2IbtLG9_oWr8VrV0R0g58",
+            "etag": "yKOXvtEIyRJ2wle9r-zNqT43iaM",
             "id": "Ugw2rUm-0myg9AKqHDl4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "o__j0Jc4CPHDlhRU6eKzmH1P5nM",
+                    "etag": "aQmZgRZ1RpfJb55ce7ZUWZlo9Vw",
                     "id": "Ugw2rUm-0myg9AKqHDl4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -802,7 +758,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 8075,
+                        "likeCount": 8086,
                         "publishedAt": "2023-02-24T23:41:17Z",
                         "updatedAt": "2023-02-24T23:41:17Z"
                     }
@@ -928,13 +884,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "9Xa3YxzKEYVzzUyEVcJXizs3Bgw",
+            "etag": "FEB83Y_pdx53RJe_cCAYXZPl_v8",
             "id": "UgxaaO_XgKUB_I6XbXV4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "wO1oDkzCpvj7lx0LYaZ8ecmyi1k",
+                    "etag": "RgyD2KB9eQo2Su14D2w44cR2p-o",
                     "id": "UgxaaO_XgKUB_I6XbXV4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -948,7 +904,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 6,
+                        "likeCount": 9,
                         "publishedAt": "2023-03-03T01:18:19Z",
                         "updatedAt": "2023-03-03T01:18:19Z"
                     }
@@ -986,227 +942,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "h4g65HQGFYcH3_dh78VPUbylJHM",
-            "id": "Ugy56DYyBZLbn9r0BUN4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "wyBtSVXpeGEQwhD6NIibM6841Yc",
-                    "id": "Ugy56DYyBZLbn9r0BUN4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Man, that watermelon is blowing some epic chunks!",
-                        "textOriginal": "Man, that watermelon is blowing some epic chunks!",
-                        "authorDisplayName": "Dean Gulston",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUplOsN5BylLy8423MCkiGFOnyQIQ0sN_0SHCYJIw=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCxlfp-qCmqV0OdVJzSujiEQ",
-                        "authorChannelId": {
-                            "value": "UCxlfp-qCmqV0OdVJzSujiEQ"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 4,
-                        "publishedAt": "2023-02-28T08:55:17Z",
-                        "updatedAt": "2023-02-28T08:55:17Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "JwmfXvyp-mCQM5hw-37eVRurlBw",
-            "id": "UgySBS-mNFqpXhWohQN4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "nzskVaIIE0HuZw5ifWRcHhStfos",
-                    "id": "UgySBS-mNFqpXhWohQN4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "The poor employee outside of the frame watching you is priceless.",
-                        "textOriginal": "The poor employee outside of the frame watching you is priceless.",
-                        "authorDisplayName": "Gawni",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUdILzpLnw28pwoQmFP0CdvlXoan36t3QTD5mZkjvl1lfkVnuLtj2LiAa5SKAe8=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCp9oB1PCEzKBGwbTIPSM8TA",
-                        "authorChannelId": {
-                            "value": "UCp9oB1PCEzKBGwbTIPSM8TA"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 2360,
-                        "publishedAt": "2023-02-25T03:48:56Z",
-                        "updatedAt": "2023-02-25T03:48:56Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 13,
-                "isPublic": true
-            },
-            "replies": {
-                "comments": [
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "eHEi4iB7ULIel8GkccvSbt1K9wY",
-                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mlE4ywlb-3",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@dibby xan yeah i just dont see the appeal of it, they literally dont have the ability to care, it&#39;s like talking to a wall",
-                            "textOriginal": "@dibby xan yeah i just dont see the appeal of it, they literally dont have the ability to care, it's like talking to a wall",
-                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
-                            "authorDisplayName": "there is an insecure person above this comment",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ikPvgO2F68trWYckiIMkft01QfE7QcCNSJlP3FTLC8me_qPFMS1QgXI_33kNCi06xSZjd_6e=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCxC_A_lbaTeKGbOkApRXJYA",
-                            "authorChannelId": {
-                                "value": "UCxC_A_lbaTeKGbOkApRXJYA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-02T16:02:49Z",
-                            "updatedAt": "2023-03-02T16:02:49Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "a5iAqx2Sv0LPBsSf32c80fXkGdo",
-                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9ml2hK-Piq-",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I mean I&#39;m pretty sure it&#39;s not his footage, I&#39;ve been seeing this for years now",
-                            "textOriginal": "I mean I'm pretty sure it's not his footage, I've been seeing this for years now",
-                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
-                            "authorDisplayName": "Rishabh Vailaya",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXumKivY48w3-SufQr-0vwaY5Cjo8HUcRzOF8s4Zg=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCJGszSheILjKR77P3Jlr3XQ",
-                            "authorChannelId": {
-                                "value": "UCJGszSheILjKR77P3Jlr3XQ"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-02T14:23:20Z",
-                            "updatedAt": "2023-03-02T14:23:20Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "20GCpraT4UJIYxyBY54XnF5ThoM",
-                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mklCfWj46g",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@there is an insecure person above this comment it&#39;s not like calling him a loser or something gives him more subscriber counts lol",
-                            "textOriginal": "​@there is an insecure person above this comment it's not like calling him a loser or something gives him more subscriber counts lol",
-                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
-                            "authorDisplayName": "dibby xan",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/uFeBwD-9qzdoHHnfQrmJ1_dHqXCIPaa1oiB0nmWYI1d_ibatlmSgKOF4bPhuOyiJ37gH-Mdpb-w=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCizJ34RCc0UssGYTWJgPPsQ",
-                            "authorChannelId": {
-                                "value": "UCizJ34RCc0UssGYTWJgPPsQ"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-02T11:41:44Z",
-                            "updatedAt": "2023-03-02T11:41:44Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "uhrQcOgaWKU0f7TsGa861qhTiks",
-                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mkJANYdcgV",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I didn&#39;t notice him on the frame",
-                            "textOriginal": "I didn't notice him on the frame",
-                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
-                            "authorDisplayName": "Boleslav Black",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/2R4KkbKoyVEDiDCCu6uY8ShTMU1xVYF4LUeXhD7ovkU-gA-c_9ptuYOu6LfteO1e-M8RPxSPBg=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCoi2wRr6hpK6hV5qrSC1WZA",
-                            "authorChannelId": {
-                                "value": "UCoi2wRr6hpK6hV5qrSC1WZA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-02T07:28:00Z",
-                            "updatedAt": "2023-03-02T07:28:00Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "5TsBVqRLQLZatKf6B3LKOm32cJg",
-                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mjhl1te0PH",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@there is an insecure person above this commentI don’t see why not",
-                            "textOriginal": "@there is an insecure person above this commentI don’t see why not",
-                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
-                            "authorDisplayName": "Taco",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/w_HZyG_FcDb5jIoXJbhgnStJFwXtz_ayztm-GYTgSuOZ7CaSJYpswQtixEhElLWlgEhv5PyKSQ=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCHIuOKV6G4gy3kzYbqF2RJw",
-                            "authorChannelId": {
-                                "value": "UCHIuOKV6G4gy3kzYbqF2RJw"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 0,
-                            "publishedAt": "2023-03-02T01:52:22Z",
-                            "updatedAt": "2023-03-02T01:52:22Z"
-                        }
-                    }
-                ]
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "Z0GsxY4wg2CKv1JYyEiegQ7hSKE",
-            "id": "UgxAwNXQgVtsVhlJ-cF4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "-bbWja7udispRdSS_HPUNFDPnjc",
-                    "id": "UgxAwNXQgVtsVhlJ-cF4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "as a produce stocker at walmart i can smell this video",
-                        "textOriginal": "as a produce stocker at walmart i can smell this video",
-                        "authorDisplayName": "ItsBungybooce",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVvQmEpv8W_wq8t2KwhxCHd8zxyhUn2BuD3PGHRXA=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCzlFJUqw-6i2Mu7LPmr_ebg",
-                        "authorChannelId": {
-                            "value": "UCzlFJUqw-6i2Mu7LPmr_ebg"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 4,
-                        "publishedAt": "2023-03-02T13:29:44Z",
-                        "updatedAt": "2023-03-02T13:29:44Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "RPyogHHCAk0HlVG8zcObjF_GLfQ",
+            "etag": "s8MC84xtPZulyKZpWkA3LlgxhGo",
             "id": "UgypxLFQM2eBpN_VXXN4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "3qNr8F4Aj8te7jCVKbCOwXWq46k",
+                    "etag": "URxj5KnqWbt6XLfKphgHfVV1XU0",
                     "id": "UgypxLFQM2eBpN_VXXN4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "the melon ain&#39;t meloning💀",
+                        "textDisplay": "the melon ain't meloning💀",
                         "textOriginal": "the melon ain't meloning💀",
                         "authorDisplayName": "CakeyShowdown",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/HKe5uu2GXyUF6cRs4n6KG3B-Z8Q7zuVDvMcmufQZAtyAnJ-v9N2PFVbQM7g4RbzN8qMykraS=s48-c-k-c0x00ffffff-no-rj",
@@ -1216,7 +962,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 9,
+                        "likeCount": 12,
                         "publishedAt": "2023-02-28T12:11:05Z",
                         "updatedAt": "2023-02-28T12:11:05Z"
                     }
@@ -1228,13 +974,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "jU5hV_4geYkTDYAMJyaTIB01Btw",
+            "etag": "KESEAKaBkJasQyogLrYI2OiitDg",
             "id": "UgyiyUa2GqHrOO7GxZt4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "LIrk1GL4iiKQhdwVy5qnoc_0tVI",
+                    "etag": "G1SsJleO7mi8pGfyGEm-0X0Npew",
                     "id": "UgyiyUa2GqHrOO7GxZt4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -1248,7 +994,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 4347,
+                        "likeCount": 4351,
                         "publishedAt": "2023-02-24T22:46:54Z",
                         "updatedAt": "2023-02-24T22:46:54Z"
                     }
@@ -1305,11 +1051,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "6bKPuDKyQGcxrZ40NISFFwSOMiY",
+                        "etag": "7_gS-GDUkXXNGWgjsvfWTjHqGDE",
                         "id": "UgyiyUa2GqHrOO7GxZt4AaABAg.9mXVZErKLt-9mhkTpDAPpE",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "<b><del>SPLØSH</del></b>",
+                            "textDisplay": "*-SPLØSH-*",
                             "textOriginal": "*-SPLØSH-*",
                             "parentId": "UgyiyUa2GqHrOO7GxZt4AaABAg",
                             "authorDisplayName": "Generic Protagonist",
@@ -1330,7 +1076,217 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "_YFRJqPPRWwiiAU2nM8bkbjWlQU",
+            "etag": "OixI0Na3IcLzQ4eF0VJl5LdP254",
+            "id": "UgxAwNXQgVtsVhlJ-cF4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "Xix-cfrxl8oF78i3qnX0dJ454no",
+                    "id": "UgxAwNXQgVtsVhlJ-cF4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "as a produce stocker at walmart i can smell this video",
+                        "textOriginal": "as a produce stocker at walmart i can smell this video",
+                        "authorDisplayName": "ItsBungybooce",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVvQmEpv8W_wq8t2KwhxCHd8zxyhUn2BuD3PGHRXA=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCzlFJUqw-6i2Mu7LPmr_ebg",
+                        "authorChannelId": {
+                            "value": "UCzlFJUqw-6i2Mu7LPmr_ebg"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 6,
+                        "publishedAt": "2023-03-02T13:29:44Z",
+                        "updatedAt": "2023-03-02T13:29:44Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "2eMBk2CiwCL9pRnHYbA4qP2Q15M",
+            "id": "Ugy56DYyBZLbn9r0BUN4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "U0uJejM7QraqwIaXqmTj55JCaZQ",
+                    "id": "Ugy56DYyBZLbn9r0BUN4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Man, that watermelon is blowing some epic chunks!",
+                        "textOriginal": "Man, that watermelon is blowing some epic chunks!",
+                        "authorDisplayName": "Dean Gulston",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUplOsN5BylLy8423MCkiGFOnyQIQ0sN_0SHCYJIw=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCxlfp-qCmqV0OdVJzSujiEQ",
+                        "authorChannelId": {
+                            "value": "UCxlfp-qCmqV0OdVJzSujiEQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 5,
+                        "publishedAt": "2023-02-28T08:55:17Z",
+                        "updatedAt": "2023-02-28T08:55:17Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "3LsduKrrSzTUPJTWvJogXWRGpDc",
+            "id": "UgySBS-mNFqpXhWohQN4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "SIVS2E6eXWqplrnxK3QRP74_2pU",
+                    "id": "UgySBS-mNFqpXhWohQN4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "The poor employee outside of the frame watching you is priceless.",
+                        "textOriginal": "The poor employee outside of the frame watching you is priceless.",
+                        "authorDisplayName": "Gawni",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUdILzpLnw28pwoQmFP0CdvlXoan36t3QTD5mZkjvl1lfkVnuLtj2LiAa5SKAe8=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCp9oB1PCEzKBGwbTIPSM8TA",
+                        "authorChannelId": {
+                            "value": "UCp9oB1PCEzKBGwbTIPSM8TA"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 2364,
+                        "publishedAt": "2023-02-25T03:48:56Z",
+                        "updatedAt": "2023-02-25T03:48:56Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 14,
+                "isPublic": true
+            },
+            "replies": {
+                "comments": [
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "ttssIdb4FbIz2yfCPVY02tMx2Bs",
+                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mmSCjv6-Ff",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "@there is an insecure person above this comment I don't think that there is an appeal to it nor any negative outcome it's the equivalent of someone talking to themselves which I a lot of people do so whatever",
+                            "textOriginal": "@there is an insecure person above this comment I don't think that there is an appeal to it nor any negative outcome it's the equivalent of someone talking to themselves which I a lot of people do so whatever",
+                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
+                            "authorDisplayName": "dibby xan",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/uFeBwD-9qzdoHHnfQrmJ1_dHqXCIPaa1oiB0nmWYI1d_ibatlmSgKOF4bPhuOyiJ37gH-Mdpb-w=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCizJ34RCc0UssGYTWJgPPsQ",
+                            "authorChannelId": {
+                                "value": "UCizJ34RCc0UssGYTWJgPPsQ"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:25:27Z",
+                            "updatedAt": "2023-03-03T03:25:27Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "AXTxqqFc93fyoFUC6DuNLjRWKQs",
+                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mlE4ywlb-3",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "@dibby xan yeah i just dont see the appeal of it, they literally dont have the ability to care, it's like talking to a wall",
+                            "textOriginal": "@dibby xan yeah i just dont see the appeal of it, they literally dont have the ability to care, it's like talking to a wall",
+                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
+                            "authorDisplayName": "there is an insecure person above this comment",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/ikPvgO2F68trWYckiIMkft01QfE7QcCNSJlP3FTLC8me_qPFMS1QgXI_33kNCi06xSZjd_6e=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCxC_A_lbaTeKGbOkApRXJYA",
+                            "authorChannelId": {
+                                "value": "UCxC_A_lbaTeKGbOkApRXJYA"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-02T16:02:49Z",
+                            "updatedAt": "2023-03-02T16:02:49Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "LwtK9E-FRw5ZL2Mr2vyY89cXU9E",
+                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9ml2hK-Piq-",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "I mean I'm pretty sure it's not his footage, I've been seeing this for years now",
+                            "textOriginal": "I mean I'm pretty sure it's not his footage, I've been seeing this for years now",
+                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
+                            "authorDisplayName": "Rishabh Vailaya",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXumKivY48w3-SufQr-0vwaY5Cjo8HUcRzOF8s4Zg=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCJGszSheILjKR77P3Jlr3XQ",
+                            "authorChannelId": {
+                                "value": "UCJGszSheILjKR77P3Jlr3XQ"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-02T14:23:20Z",
+                            "updatedAt": "2023-03-02T14:23:20Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "VSS3SqAgZw6OkTaec5Sl6GMSzVU",
+                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mklCfWj46g",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "​@there is an insecure person above this comment it's not like calling him a loser or something gives him more subscriber counts lol",
+                            "textOriginal": "​@there is an insecure person above this comment it's not like calling him a loser or something gives him more subscriber counts lol",
+                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
+                            "authorDisplayName": "dibby xan",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/uFeBwD-9qzdoHHnfQrmJ1_dHqXCIPaa1oiB0nmWYI1d_ibatlmSgKOF4bPhuOyiJ37gH-Mdpb-w=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCizJ34RCc0UssGYTWJgPPsQ",
+                            "authorChannelId": {
+                                "value": "UCizJ34RCc0UssGYTWJgPPsQ"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-02T11:41:44Z",
+                            "updatedAt": "2023-03-02T11:41:44Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "Qi99-bxmKtn4lXeY7-c4Tsyaatg",
+                        "id": "UgySBS-mNFqpXhWohQN4AaABAg.9mY27Q3KxJO9mkJANYdcgV",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "I didn't notice him on the frame",
+                            "textOriginal": "I didn't notice him on the frame",
+                            "parentId": "UgySBS-mNFqpXhWohQN4AaABAg",
+                            "authorDisplayName": "Boleslav Black",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/2R4KkbKoyVEDiDCCu6uY8ShTMU1xVYF4LUeXhD7ovkU-gA-c_9ptuYOu6LfteO1e-M8RPxSPBg=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCoi2wRr6hpK6hV5qrSC1WZA",
+                            "authorChannelId": {
+                                "value": "UCoi2wRr6hpK6hV5qrSC1WZA"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-02T07:28:00Z",
+                            "updatedAt": "2023-03-02T07:28:00Z"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "cf3u9LXxffhJWtZJzFd-CRVLh4Q",
             "id": "UgwCoAEfjS0ZVvFHwox4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -1363,11 +1319,11 @@ class Api::V1::YoutubeController < ApplicationController
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "qi33vKZFBP63wMDBkW0XoROI1xM",
+                        "etag": "L5G-CxerV-jvtQh97MNNHt-694I",
                         "id": "UgwCoAEfjS0ZVvFHwox4AaABAg.9mfJyP7sv4v9mmI2-JAlfa",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "What sense does that make? 🤔 🤨 The janitor is the one that has to clean up that mess that he just made.....why would he &quot;like&quot; this video?",
+                            "textDisplay": "What sense does that make? 🤔 🤨 The janitor is the one that has to clean up that mess that he just made.....why would he \"like\" this video?",
                             "textOriginal": "What sense does that make? 🤔 🤨 The janitor is the one that has to clean up that mess that he just made.....why would he \"like\" this video?",
                             "parentId": "UgwCoAEfjS0ZVvFHwox4AaABAg",
                             "authorDisplayName": "Cass Thompson",
@@ -1420,17 +1376,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "GuBHHa27XR7N1HDhOxY4L1bDiMA",
+            "etag": "WPTYsbruHrs8lfLG7FYz_Qq85Xk",
             "id": "UgxJ4TcNMuuXUXO3kGN4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "Etf1cHZD-2aQHI_BbAIC52GvYSA",
+                    "etag": "2xFLPOwmmzdsQvuX_nYybpigmEE",
                     "id": "UgxJ4TcNMuuXUXO3kGN4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "&quot;you know what? screw you&quot;<br><b>unmelons your watermelon</b>",
+                        "textDisplay": "\"you know what? screw you\"\n*unmelons your watermelon*",
                         "textOriginal": "\"you know what? screw you\"\n*unmelons your watermelon*",
                         "authorDisplayName": "Mike Oxmall",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/iDt_-DDPFF7kVahXITDSToWaXGlL2Z0WbRLyo8-v8cq1Eif8XAnabpfeUj7YURwyjaTdjpGjKT0=s48-c-k-c0x00ffffff-no-rj",
@@ -1440,7 +1396,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 2417,
+                        "likeCount": 2421,
                         "publishedAt": "2023-02-26T02:26:30Z",
                         "updatedAt": "2023-02-26T02:26:30Z"
                     }
@@ -1453,11 +1409,11 @@ class Api::V1::YoutubeController < ApplicationController
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "WgnrG9PvIYm1djsamORUOJqt9hc",
+                        "etag": "HI0v3LNFd7Op7cEadPRBVLZ1anI",
                         "id": "UgxJ4TcNMuuXUXO3kGN4AaABAg.9m_TUST1Ox59mlq6E858D-",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Actually.. <br>They unwatered the melon 🤯🤯🤯",
+                            "textDisplay": "Actually.. \nThey unwatered the melon 🤯🤯🤯",
                             "textOriginal": "Actually.. \nThey unwatered the melon 🤯🤯🤯",
                             "parentId": "UgxJ4TcNMuuXUXO3kGN4AaABAg",
                             "authorDisplayName": "🍵[Bxchie] 🍵",
@@ -1519,11 +1475,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "ioCmJw83TgRbUx3TPeMZT--UXOg",
+                        "etag": "hkTb1dt2CAqrZRI44umyW1Uvdi4",
                         "id": "UgxJ4TcNMuuXUXO3kGN4AaABAg.9m_TUST1Ox59ml8GDosGPE",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@that one screeming cat go REEE  <b>&lt;vividly imagining the opening sequence from Avatar, but they&#39;re bending watermelons&gt;</b>",
+                            "textDisplay": "@that one screeming cat go REEE  *<vividly imagining the opening sequence from Avatar, but they're bending watermelons>*",
                             "textOriginal": "@that one screeming cat go REEE  *<vividly imagining the opening sequence from Avatar, but they're bending watermelons>*",
                             "parentId": "UgxJ4TcNMuuXUXO3kGN4AaABAg",
                             "authorDisplayName": "Freelance Philosopher",
@@ -1566,17 +1522,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "A3JVyyKsc7pQe-kIuVsgnHihwVA",
+            "etag": "m6lTIjNUDWChJvFuc_jp7xwKBIA",
             "id": "UgzgrmGiViUoOLny5CN4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "LTNBAB-cacufarTzTDwYunTgQVE",
+                    "etag": "-ZPPPXepONHGk4wquIhYyoS5TxY",
                     "id": "UgzgrmGiViUoOLny5CN4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I once had a rotten watermelon in the back of the fridge. the moldy greenish pulp and smell made me gag so much that I dropped it on the floor and was cleaning it up for the best part of an hour before deciding that the smell was there to stay. It was honestly awful and I don&#39;t think I&#39;ve ever smelt anything worse in my life (unless it was an intentionally bad smell)",
+                        "textDisplay": "I once had a rotten watermelon in the back of the fridge. the moldy greenish pulp and smell made me gag so much that I dropped it on the floor and was cleaning it up for the best part of an hour before deciding that the smell was there to stay. It was honestly awful and I don't think I've ever smelt anything worse in my life (unless it was an intentionally bad smell)",
                         "textOriginal": "I once had a rotten watermelon in the back of the fridge. the moldy greenish pulp and smell made me gag so much that I dropped it on the floor and was cleaning it up for the best part of an hour before deciding that the smell was there to stay. It was honestly awful and I don't think I've ever smelt anything worse in my life (unless it was an intentionally bad smell)",
                         "authorDisplayName": "Acc3",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUTTG8aBCh3nmnxB25ZBxWkZrSHknZvbmp1jfnS=s48-c-k-c0x00ffffff-no-rj",
@@ -1630,13 +1586,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "DzEaNF2QeLDJ6miSFpu3aUYiwSw",
+            "etag": "YXJ_if5k3CPV37oLkV2IMNjqx3w",
             "id": "UgyRGlJ1x9bJp7lw8aZ4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "rlVzdALqjzD-D0XBkWZyUxkL-4I",
+                    "etag": "X4c_3vBdwlBMMLKpy7GDxthYtUw",
                     "id": "UgyRGlJ1x9bJp7lw8aZ4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -1650,7 +1606,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 1349,
+                        "likeCount": 1351,
                         "publishedAt": "2023-02-25T03:01:25Z",
                         "updatedAt": "2023-02-25T03:01:25Z"
                     }
@@ -1707,11 +1663,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "ULEZH85TvO7KitqNPmVHYtAEqsM",
+                        "etag": "7EoxofJ8bPSXpTvrUfOt0ghbM-c",
                         "id": "UgyRGlJ1x9bJp7lw8aZ4AaABAg.9mXxgKzJt--9mk9aWBNFig",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Maddie&#39;s Menagerie Yeast infection doesnt have a bad fishy smell that would be something else. That&#39;s my point.",
+                            "textDisplay": "@Maddie's Menagerie Yeast infection doesnt have a bad fishy smell that would be something else. That's my point.",
                             "textOriginal": "@Maddie's Menagerie Yeast infection doesnt have a bad fishy smell that would be something else. That's my point.",
                             "parentId": "UgyRGlJ1x9bJp7lw8aZ4AaABAg",
                             "authorDisplayName": "Ms. Valdez",
@@ -1818,7 +1774,7 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "Gmto9PRNzKObL5Ci5R9QpSNWu8w",
+            "etag": "viOTxkRkIAa9ocx742uZQjJ0xVM",
             "id": "Ugw5MJl8_QXLZw9YEr14AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -1873,11 +1829,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "gK0qXtBWTRt_T-7WpCOEhiRtX8Q",
+                        "etag": "CMye4oiH_ZxA1xKNACdM02vh5Zc",
                         "id": "Ugw5MJl8_QXLZw9YEr14AaABAg.9mazmTeUYKH9mlyEl4hKd7",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@ExpressionalGecko I&#39;ve never felt such stench in my life lol",
+                            "textDisplay": "@ExpressionalGecko I've never felt such stench in my life lol",
                             "textOriginal": "@ExpressionalGecko I've never felt such stench in my life lol",
                             "parentId": "Ugw5MJl8_QXLZw9YEr14AaABAg",
                             "authorDisplayName": "speedsolver_xd",
@@ -1964,17 +1920,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "3_P0_c9RgiHyBiBdUjbKgAsfmW0",
+            "etag": "Pa5FoHtrPYJcfG5GXEKBtRkzh7Q",
             "id": "UgxQjnAvNx_g-f-2sKt4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "D6CeHViDg6NeD158XqpR7pYR9TI",
+                    "etag": "-e7rfvY7AeVXb7ebOQJctAnGfCU",
                     "id": "UgxQjnAvNx_g-f-2sKt4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "&quot;Sir, are you gonna pay for that?&quot;",
+                        "textDisplay": "\"Sir, are you gonna pay for that?\"",
                         "textOriginal": "\"Sir, are you gonna pay for that?\"",
                         "authorDisplayName": "VitoX",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/PQUZE_I-ihYyeYF8xTYdSKwXUYigsO0-WSiaGbB_c_u6MFRXFVAvDQKSL7a3J0kvsRIoq5i15w=s48-c-k-c0x00ffffff-no-rj",
@@ -2028,7 +1984,7 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "v1rXKqWoHZ9l5iZUFPXWL_b7pMk",
+            "etag": "sjAUcP9im-8RzkC2rMSgepAH6yk",
             "id": "Ugx8-dbF3fneTx0qIgB4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -2061,11 +2017,11 @@ class Api::V1::YoutubeController < ApplicationController
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "hcJTzFdKppWQhaxYXQw21w_dj54",
+                        "etag": "lVWaLoHx9VoSiKdCpLCUz2C4tno",
                         "id": "Ugx8-dbF3fneTx0qIgB4AaABAg.9mXTTBvEe6a9mlAz_DgPDV",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Noone might have been able to make it a lot less messy by trying to scoop it into a bucket or just letting it leak into the bucket. They probably had to get rid of all of those melons because of the ungodly smell a rotten one has lol.<br><br>It&#39;s not like I care now but if I worked there I wouldn&#39;t have allowed him to pop it like that.",
+                            "textDisplay": "@Noone might have been able to make it a lot less messy by trying to scoop it into a bucket or just letting it leak into the bucket. They probably had to get rid of all of those melons because of the ungodly smell a rotten one has lol.\n\nIt's not like I care now but if I worked there I wouldn't have allowed him to pop it like that.",
                             "textOriginal": "@Noone might have been able to make it a lot less messy by trying to scoop it into a bucket or just letting it leak into the bucket. They probably had to get rid of all of those melons because of the ungodly smell a rotten one has lol.\n\nIt's not like I care now but if I worked there I wouldn't have allowed him to pop it like that.",
                             "parentId": "Ugx8-dbF3fneTx0qIgB4AaABAg",
                             "authorDisplayName": "Rafox66",
@@ -2083,11 +2039,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "xOgdYw6PyMtMEmZz0SzeE-aU4ek",
+                        "etag": "1pY12tU5SuvZ6pVOkv3p_kpFDQQ",
                         "id": "Ugx8-dbF3fneTx0qIgB4AaABAg.9mXTTBvEe6a9ml2dllRGTB",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Rafox66 I mean even if employees had to deal with it , I don&#39;t think there is much u can do, it would spill anyways...",
+                            "textDisplay": "@Rafox66 I mean even if employees had to deal with it , I don't think there is much u can do, it would spill anyways...",
                             "textOriginal": "@Rafox66 I mean even if employees had to deal with it , I don't think there is much u can do, it would spill anyways...",
                             "parentId": "Ugx8-dbF3fneTx0qIgB4AaABAg",
                             "authorDisplayName": "Noone",
@@ -2105,11 +2061,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "oGwKMTI1Zz8qckWCEWqOrRIR_co",
+                        "etag": "OT9C9PQoThar82X_YBY220Iamck",
                         "id": "Ugx8-dbF3fneTx0qIgB4AaABAg.9mXTTBvEe6a9mieK02NK5M",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "​@KittycatRittycatALT 1- cardboard does not contain water<br>2- those giant produce boxes do not have a solid bottom, they are stapled to a wooden palette.",
+                            "textDisplay": "​@KittycatRittycatALT 1- cardboard does not contain water\n2- those giant produce boxes do not have a solid bottom, they are stapled to a wooden palette.",
                             "textOriginal": "​@KittycatRittycatALT 1- cardboard does not contain water\n2- those giant produce boxes do not have a solid bottom, they are stapled to a wooden palette.",
                             "parentId": "Ugx8-dbF3fneTx0qIgB4AaABAg",
                             "authorDisplayName": "Kip",
@@ -2149,11 +2105,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "JnyZFd1rjMDgC8EVLo13vpXM5WU",
+                        "etag": "nrfNpREHuECJM0ZBHDMUorwpbKQ",
                         "id": "Ugx8-dbF3fneTx0qIgB4AaABAg.9mXTTBvEe6a9mh6C5eM0jB",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "The person recording didn’t leave out expired produce. ? <br>This was bound to happen with that store not maintaining its stock. <br>I’d assume watermelons don’t turn into THAT in a matter of a day without someone being aware?<br>(This is assuming the camera person is NOT an employee)",
+                            "textDisplay": "The person recording didn’t leave out expired produce. ? \nThis was bound to happen with that store not maintaining its stock. \nI’d assume watermelons don’t turn into THAT in a matter of a day without someone being aware?\n(This is assuming the camera person is NOT an employee)",
                             "textOriginal": "The person recording didn’t leave out expired produce. ? \nThis was bound to happen with that store not maintaining its stock. \nI’d assume watermelons don’t turn into THAT in a matter of a day without someone being aware?\n(This is assuming the camera person is NOT an employee)",
                             "parentId": "Ugx8-dbF3fneTx0qIgB4AaABAg",
                             "authorDisplayName": "Minty",
@@ -2238,17 +2194,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "ZnZwdE9FS34KBz7TQgscAi9gyiM",
+            "etag": "nV_EV-BEV4k7t8X0-GRPC6VpDd0",
             "id": "UgwfFdZ-6Fv6xiwqvDd4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "-cTjcq_EojORLep9LDMTsGaqcOM",
+                    "etag": "GcpwWnjvr9uAtN1eKqwspUktaj8",
                     "id": "UgwfFdZ-6Fv6xiwqvDd4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "As someone who has worked in the produce section of a grocery store I know exactly how that would smell. I&#39;m sorry for everyone within a mile of that place.",
+                        "textDisplay": "As someone who has worked in the produce section of a grocery store I know exactly how that would smell. I'm sorry for everyone within a mile of that place.",
                         "textOriginal": "As someone who has worked in the produce section of a grocery store I know exactly how that would smell. I'm sorry for everyone within a mile of that place.",
                         "authorDisplayName": "Crazyknight3847",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUS-VQZ7I4oEkepoqkbgBcp0hObHdfztjSo2IHblQ=s48-c-k-c0x00ffffff-no-rj",
@@ -2258,7 +2214,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 1520,
+                        "likeCount": 1521,
                         "publishedAt": "2023-02-27T15:05:35Z",
                         "updatedAt": "2023-02-27T15:05:35Z"
                     }
@@ -2315,11 +2271,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "sA543xOGqVHCue3lpEkq5Emk0l4",
+                        "etag": "k_Ne48t9D__KwS3vGQE6xI4kesM",
                         "id": "UgwfFdZ-6Fv6xiwqvDd4AaABAg.9mdP92EawH59mmD9z0_2im",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "That&#39;s what I was gonna say",
+                            "textDisplay": "That's what I was gonna say",
                             "textOriginal": "That's what I was gonna say",
                             "parentId": "UgwfFdZ-6Fv6xiwqvDd4AaABAg",
                             "authorDisplayName": "Mellifluous",
@@ -2337,11 +2293,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "XDewqW2SRpE1Sm0jlFlqYzl-jw4",
+                        "etag": "QCh9gXysXOhDcxeTusp6S-NXjmk",
                         "id": "UgwfFdZ-6Fv6xiwqvDd4AaABAg.9mdP92EawH59mm76kib1dL",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I worked in produce too when I was younger. It&#39;s not a typical shht or onion/cheese stink instead it has a weird chemical funk+mildew smell. Very discomforting.",
+                            "textDisplay": "I worked in produce too when I was younger. It's not a typical shht or onion/cheese stink instead it has a weird chemical funk+mildew smell. Very discomforting.",
                             "textOriginal": "I worked in produce too when I was younger. It's not a typical shht or onion/cheese stink instead it has a weird chemical funk+mildew smell. Very discomforting.",
                             "parentId": "UgwfFdZ-6Fv6xiwqvDd4AaABAg",
                             "authorDisplayName": "Sean Gonzalez",
@@ -2384,17 +2340,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "tKh94XlRC86NpMvBfp7LHE3KFMA",
+            "etag": "ZUpvKdUKG44NqyR7e3xIk9u4t7I",
             "id": "UgzRyMhuOmQU5hNgKt94AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "5I6yKxPaqE8e8zu1Fe_Y7B8TJbA",
+                    "etag": "5hdbDGsqqZ_X81mc5hQvOdgSBys",
                     "id": "UgzRyMhuOmQU5hNgKt94AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I&#39;m pretty sure the janitor quit",
+                        "textDisplay": "I'm pretty sure the janitor quit",
                         "textOriginal": "I'm pretty sure the janitor quit",
                         "authorDisplayName": "꧁T̷h̷e̷_̷G̷r̷e̷a̷t̷ ̷A̷p̷p̷l̷e̷꧂",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/4jLPpYNGvmi-kqn9Yl21nS06qXpCuv-5IQoipjnNS3nRqN0Z2sQ7jh8Ne3yHuHyMcKoc1bUJ8Q=s48-c-k-c0x00ffffff-no-rj",
@@ -2416,17 +2372,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "oGqzoB5lO7aIsXh2MABfUbS2U2M",
+            "etag": "hq26OW_k3oJHHf1Dwa0s8hbYCjI",
             "id": "UgyvR5yvh_fZXAoTRZt4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "zT1wSmXJMEz8dL2uQtrobTPXYM0",
+                    "etag": "X6m86_XwIPCp1vVDwm7NF5zujsE",
                     "id": "UgyvR5yvh_fZXAoTRZt4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "i work in produce, i would be so done that someone squeezed a rotten watermelon all in the bin, also trying to rip the bin from the pallet is like lifting thor&#39;s hammer, those staples be strong",
+                        "textDisplay": "i work in produce, i would be so done that someone squeezed a rotten watermelon all in the bin, also trying to rip the bin from the pallet is like lifting thor's hammer, those staples be strong",
                         "textOriginal": "i work in produce, i would be so done that someone squeezed a rotten watermelon all in the bin, also trying to rip the bin from the pallet is like lifting thor's hammer, those staples be strong",
                         "authorDisplayName": "Ballz",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUn5TJFMtg1ix080vfCrmGcbDI4nhEch4YcsA=s48-c-k-c0x00ffffff-no-rj",
@@ -2448,7 +2404,7 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "-ohmvb2OhhFFjD1R7akB4EP3BHA",
+            "etag": "3d_5MF_oo4rSQPPurvkSuPeIvwQ",
             "id": "UgxhfZlkCoqSt0f6Epp4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -2503,11 +2459,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "62tTouGk2WA8nKqgA9h-tEhQU88",
+                        "etag": "WzQo3vUxhmd7YESQdMwGhthpSeg",
                         "id": "UgxhfZlkCoqSt0f6Epp4AaABAg.9mXXdb1tfQy9miiaY8_5Tu",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@DinoSword1 bro said probably 💀💀 yes the reason rotten fruit stinks is because it&#39;s rotten on the inside",
+                            "textDisplay": "@DinoSword1 bro said probably 💀💀 yes the reason rotten fruit stinks is because it's rotten on the inside",
                             "textOriginal": "@DinoSword1 bro said probably 💀💀 yes the reason rotten fruit stinks is because it's rotten on the inside",
                             "parentId": "UgxhfZlkCoqSt0f6Epp4AaABAg",
                             "authorDisplayName": "w SoaR w",
@@ -2525,11 +2481,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "knHw7zWdTkhSHhuEE4_T9Y--fsE",
+                        "etag": "TwS3RSOZcKBVkdAoY2Az_LjSuik",
                         "id": "UgxhfZlkCoqSt0f6Epp4AaABAg.9mXXdb1tfQy9mZQv3J7XbH",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "yeah rotten melon just that bad. worst part is it&#39;s smell linger around for while",
+                            "textDisplay": "yeah rotten melon just that bad. worst part is it's smell linger around for while",
                             "textOriginal": "yeah rotten melon just that bad. worst part is it's smell linger around for while",
                             "parentId": "UgxhfZlkCoqSt0f6Epp4AaABAg",
                             "authorDisplayName": "PO1995",
@@ -2658,17 +2614,139 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "hgLCijE13TGrW0Oo3hX53dvN9JU",
+            "etag": "WsINUibukvdteRVb2sClt36IMvI",
+            "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "hJm0CVbyxuD1oThWTxqcL3dwXLg",
+                    "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "I once had a whole bin of those. It flooded the store backroom. My god the stench.",
+                        "textOriginal": "I once had a whole bin of those. It flooded the store backroom. My god the stench.",
+                        "authorDisplayName": "AzureKaioshin",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWi1CytBF-q68-ks5gCRfIna6POPDQwFiataNKK=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCuFJocSUPOKfeTPWdzlVKdw",
+                        "authorChannelId": {
+                            "value": "UCuFJocSUPOKfeTPWdzlVKdw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 96,
+                        "publishedAt": "2023-02-25T20:28:43Z",
+                        "updatedAt": "2023-02-25T20:28:43Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 1,
+                "isPublic": true
+            },
+            "replies": {
+                "comments": [
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "f_OCVkqjXxtkaJ6nY15YW1trKQE",
+                        "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg.9mZpY4GL2d29ml2vPSIDYK",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "Bro I wouldn't know where to start",
+                            "textOriginal": "Bro I wouldn't know where to start",
+                            "parentId": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
+                            "authorDisplayName": "Joshua Rayfield",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUQzWWZtXDJ3gsCU3G-c5Psy7s_8mdG36TNhw=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCLclkxJwFhRhztpm77zfhaA",
+                            "authorChannelId": {
+                                "value": "UCLclkxJwFhRhztpm77zfhaA"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 4,
+                            "publishedAt": "2023-03-02T14:25:16Z",
+                            "updatedAt": "2023-03-02T14:25:16Z"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "NQum-gT4sTbo1nqxtnw32yHNXVs",
+            "id": "UgzymUoZ0iXKBGR7Mtd4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "ENlVqG7t0nN-vzeOj3c25sjIR2o",
+                    "id": "UgzymUoZ0iXKBGR7Mtd4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Me in the morning after I drank a whole bottle of water before bed.",
+                        "textOriginal": "Me in the morning after I drank a whole bottle of water before bed.",
+                        "authorDisplayName": "PurpleDevil R",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/lZ21KAIbmSLmX-tL4MMxs242W60FEGQAJsff90k7hsj-A-rNUollV9d70blS6DgM81xNAunU=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCD_VkzUK5o4H3_t7ODBuaUQ",
+                        "authorChannelId": {
+                            "value": "UCD_VkzUK5o4H3_t7ODBuaUQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 1,
+                        "publishedAt": "2023-03-02T20:19:11Z",
+                        "updatedAt": "2023-03-02T20:19:11Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "NV9vO4BIhMkp2n1g6_dEONm-aoY",
+            "id": "UgzqmiUZOUcbPQFDnsB4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "xXk1yQGFzmFfXgDw05SXmYxuy4M",
+                    "id": "UgzqmiUZOUcbPQFDnsB4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "when she says she's on her period but u a menace!",
+                        "textOriginal": "when she says she's on her period but u a menace!",
+                        "authorDisplayName": "Cá se vai andando!",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXnFKe4aTcdBRMGnM28PlU_XrFqhAtbZZ5BjGOhPQ=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCZ5MRyXrrCtsyDiUnhmZRmw",
+                        "authorChannelId": {
+                            "value": "UCZ5MRyXrrCtsyDiUnhmZRmw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 2,
+                        "publishedAt": "2023-03-01T04:26:34Z",
+                        "updatedAt": "2023-03-01T04:26:34Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "O49gnQ7xnJ-XjSQyAeTox2vetn8",
             "id": "UgyHlFWQruB7SsyZoe94AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "rXGRTfyOXEz5YncRHyTJOwCZZx8",
+                    "etag": "Nd9pkR2drJ8TRvZl7Im1R7sI-LE",
                     "id": "UgyHlFWQruB7SsyZoe94AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "That&#39;s not a watermelon, that&#39;s a water 💀",
+                        "textDisplay": "That's not a watermelon, that's a water 💀",
                         "textOriginal": "That's not a watermelon, that's a water 💀",
                         "authorDisplayName": "Tigers4Life",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/Pu4ECXA20rPDbFN0uuwV5FnLvsj3hyvF4dqG2SSJBTL8FNaYyA1-FIuBVtwHnpCiknm3sujfKg=s48-c-k-c0x00ffffff-no-rj",
@@ -2678,17 +2756,61 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 207,
+                        "likeCount": 208,
                         "publishedAt": "2023-02-25T06:04:53Z",
                         "updatedAt": "2023-02-25T06:04:53Z"
                     }
                 },
                 "canReply": true,
-                "totalReplyCount": 6,
+                "totalReplyCount": 8,
                 "isPublic": true
             },
             "replies": {
                 "comments": [
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "HGWOnMlNdXTa291_JL5YL9RflA0",
+                        "id": "UgyHlFWQruB7SsyZoe94AaABAg.9mYHg4MdIMo9mmTAlb3QhU",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "@Bot The Skitarii peasant I like my water with the organs still intact. Eating Bone water is for cavemen. *_I am a Trojan Warrior excuse me_*",
+                            "textOriginal": "@Bot The Skitarii peasant I like my water with the organs still intact. Eating Bone water is for cavemen. *_I am a Trojan Warrior excuse me_*",
+                            "parentId": "UgyHlFWQruB7SsyZoe94AaABAg",
+                            "authorDisplayName": "that one screeming cat go REEE",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/cCWTk-2VxDJRLITwPBqTmO4eObLT7AXeb2FphDCs97nOlcs1w-4FVx6ad2Up_XmrwQGC4ky6Ng=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UCOurSARfd5OgApO_y7yZKUA",
+                            "authorChannelId": {
+                                "value": "UCOurSARfd5OgApO_y7yZKUA"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:33:55Z",
+                            "updatedAt": "2023-03-03T03:34:15Z"
+                        }
+                    },
+                    {
+                        "kind": "youtube#comment",
+                        "etag": "3CBly_3LlwqRDj4x3rixh9RvpA0",
+                        "id": "UgyHlFWQruB7SsyZoe94AaABAg.9mYHg4MdIMo9mmSG7D2q75",
+                        "snippet": {
+                            "videoId": "XYAe15w39LQ",
+                            "textDisplay": "​@that one screeming cat go REEEI like my water  with the bones",
+                            "textOriginal": "​@that one screeming cat go REEEI like my water  with the bones",
+                            "parentId": "UgyHlFWQruB7SsyZoe94AaABAg",
+                            "authorDisplayName": "Bot The Skitarii",
+                            "authorProfileImageUrl": "https://yt3.ggpht.com/pb7pirAg5AdehYHVRhoedjrwg_J0_H4JyRZyXSC09Gy0E4GlYyu1239Oo8U5vGEOgRtYahH4Wg=s48-c-k-c0x00ffffff-no-rj",
+                            "authorChannelUrl": "http://www.youtube.com/channel/UC7USHWcn4xIQt81X9-gEf7w",
+                            "authorChannelId": {
+                                "value": "UC7USHWcn4xIQt81X9-gEf7w"
+                            },
+                            "canRate": true,
+                            "viewerRating": "none",
+                            "likeCount": 0,
+                            "publishedAt": "2023-03-03T03:25:55Z",
+                            "updatedAt": "2023-03-03T03:25:55Z"
+                        }
+                    },
                     {
                         "kind": "youtube#comment",
                         "etag": "-RSQL6_Xf5ThREMSCfYTgit73Sg",
@@ -2735,11 +2857,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "E5-stOsA_YL0KUbPz-tLmzJlhuc",
+                        "etag": "QT3F6pI9nXh3oDLQ7vph0ZOJmPI",
                         "id": "UgyHlFWQruB7SsyZoe94AaABAg.9mYHg4MdIMo9mhWDJ9-_Tw",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Cinema <b><i>hMmMmmMMm strange, I thought you said you liked your water deep-fried like breaded crispy rotisserie chicken, but moist?</i></b>",
+                            "textDisplay": "@Cinema *_hMmMmmMMm strange, I thought you said you liked your water deep-fried like breaded crispy rotisserie chicken, but moist?_*",
                             "textOriginal": "@Cinema *_hMmMmmMMm strange, I thought you said you liked your water deep-fried like breaded crispy rotisserie chicken, but moist?_*",
                             "parentId": "UgyHlFWQruB7SsyZoe94AaABAg",
                             "authorDisplayName": "that one screeming cat go REEE",
@@ -2754,99 +2876,23 @@ class Api::V1::YoutubeController < ApplicationController
                             "publishedAt": "2023-03-01T05:24:17Z",
                             "updatedAt": "2023-03-01T05:24:17Z"
                         }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "N30BpFEA4ESkrv5A2Z4HJ58wBnU",
-                        "id": "UgyHlFWQruB7SsyZoe94AaABAg.9mYHg4MdIMo9mhVFRYiqm1",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@that one screeming cat go REEE i prefer my water peeled",
-                            "textOriginal": "@that one screeming cat go REEE i prefer my water peeled",
-                            "parentId": "UgyHlFWQruB7SsyZoe94AaABAg",
-                            "authorDisplayName": "Cinema",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/lH91_icTfQA4wSZEXWlVh2eLzaWw1SSYU1oHGUMOS_B5W_s48eX4bPZgiwyWiIxDQ9ajf5_Zkg=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCMkzigIv1oRh4tZSYDerkIA",
-                            "authorChannelId": {
-                                "value": "UCMkzigIv1oRh4tZSYDerkIA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 3,
-                            "publishedAt": "2023-03-01T05:15:50Z",
-                            "updatedAt": "2023-03-01T05:15:50Z"
-                        }
-                    },
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "3_l_Li3zOOJnpU6BMPhZXKiKc2Q",
-                        "id": "UgyHlFWQruB7SsyZoe94AaABAg.9mYHg4MdIMo9mh8UNqYXvf",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Ararahahahrararahahahrararahahah",
-                            "textOriginal": "Ararahahahrararahahahrararahahah",
-                            "parentId": "UgyHlFWQruB7SsyZoe94AaABAg",
-                            "authorDisplayName": "V",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/vMMFAFcjv0tFW3k2LOMCefRReayoaZkAYDq4wb9E1dkSD2ImK7L2Wv5kA-rx_2ixZZG1huRNGg=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCp5dYxEJxwDLhHN0JZ7Q8DQ",
-                            "authorChannelId": {
-                                "value": "UCp5dYxEJxwDLhHN0JZ7Q8DQ"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 3,
-                            "publishedAt": "2023-03-01T01:56:54Z",
-                            "updatedAt": "2023-03-01T01:56:54Z"
-                        }
                     }
                 ]
             }
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "NQum-gT4sTbo1nqxtnw32yHNXVs",
-            "id": "UgzymUoZ0iXKBGR7Mtd4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "ENlVqG7t0nN-vzeOj3c25sjIR2o",
-                    "id": "UgzymUoZ0iXKBGR7Mtd4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Me in the morning after I drank a whole bottle of water before bed.",
-                        "textOriginal": "Me in the morning after I drank a whole bottle of water before bed.",
-                        "authorDisplayName": "PurpleDevil R",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/lZ21KAIbmSLmX-tL4MMxs242W60FEGQAJsff90k7hsj-A-rNUollV9d70blS6DgM81xNAunU=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCD_VkzUK5o4H3_t7ODBuaUQ",
-                        "authorChannelId": {
-                            "value": "UCD_VkzUK5o4H3_t7ODBuaUQ"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-03-02T20:19:11Z",
-                        "updatedAt": "2023-03-02T20:19:11Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "knTsl9Uge_7097Hbv1IrpREYkvM",
+            "etag": "2EYOoi5FK3lACLt3ILHtLIqtMHU",
             "id": "UgxxOkY61zxi_haJSj54AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "hS7PhiGwP-oOh_JNKkSqBYx5biA",
+                    "etag": "6EOCagntv-6mhll6o89_9N5ditE",
                     "id": "UgxxOkY61zxi_haJSj54AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I really hope that you went and got an employee and helped to clean it up because otherwise that&#39;s not cool bro squeezing all the water out of that watermelon onto the floor.",
+                        "textDisplay": "I really hope that you went and got an employee and helped to clean it up because otherwise that's not cool bro squeezing all the water out of that watermelon onto the floor.",
                         "textOriginal": "I really hope that you went and got an employee and helped to clean it up because otherwise that's not cool bro squeezing all the water out of that watermelon onto the floor.",
                         "authorDisplayName": "First Name Last Name",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXHLRxmLqr6poE1a3xQ420Y6TNSw5XzlP9HOA=s48-c-k-c0x00ffffff-no-rj",
@@ -2864,64 +2910,6 @@ class Api::V1::YoutubeController < ApplicationController
                 "canReply": true,
                 "totalReplyCount": 0,
                 "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "ztOwz4GxCfMAkHkkfogHJNepxm0",
-            "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "hJm0CVbyxuD1oThWTxqcL3dwXLg",
-                    "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I once had a whole bin of those. It flooded the store backroom. My god the stench.",
-                        "textOriginal": "I once had a whole bin of those. It flooded the store backroom. My god the stench.",
-                        "authorDisplayName": "AzureKaioshin",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWi1CytBF-q68-ks5gCRfIna6POPDQwFiataNKK=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCuFJocSUPOKfeTPWdzlVKdw",
-                        "authorChannelId": {
-                            "value": "UCuFJocSUPOKfeTPWdzlVKdw"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 96,
-                        "publishedAt": "2023-02-25T20:28:43Z",
-                        "updatedAt": "2023-02-25T20:28:43Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 1,
-                "isPublic": true
-            },
-            "replies": {
-                "comments": [
-                    {
-                        "kind": "youtube#comment",
-                        "etag": "FWMwfGjQNOCabfFkKryJ9edKa9Q",
-                        "id": "Ugzt1ZEFJxLvmItcTrV4AaABAg.9mZpY4GL2d29ml2vPSIDYK",
-                        "snippet": {
-                            "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Bro I wouldn&#39;t know where to start",
-                            "textOriginal": "Bro I wouldn't know where to start",
-                            "parentId": "Ugzt1ZEFJxLvmItcTrV4AaABAg",
-                            "authorDisplayName": "Joshua Rayfield",
-                            "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUQzWWZtXDJ3gsCU3G-c5Psy7s_8mdG36TNhw=s48-c-k-c0x00ffffff-no-rj",
-                            "authorChannelUrl": "http://www.youtube.com/channel/UCLclkxJwFhRhztpm77zfhaA",
-                            "authorChannelId": {
-                                "value": "UCLclkxJwFhRhztpm77zfhaA"
-                            },
-                            "canRate": true,
-                            "viewerRating": "none",
-                            "likeCount": 4,
-                            "publishedAt": "2023-03-02T14:25:16Z",
-                            "updatedAt": "2023-03-02T14:25:16Z"
-                        }
-                    }
-                ]
             }
         },
         {
@@ -2958,49 +2946,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "QpK-QKBVF8jwEbBtaMxqTN9X1k4",
-            "id": "UgwuYJg6RSWmMuM-9tR4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "Ydn-d0vcxytVbJ08sMwOqmdC7fQ",
-                    "id": "UgwuYJg6RSWmMuM-9tR4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "POV: every toilet in that one gas station bathroom:",
-                        "textOriginal": "POV: every toilet in that one gas station bathroom:",
-                        "authorDisplayName": "BlitzTF",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/wy8Pu8XGRrg3ZFr31tpqBKcDjKm4L6F7MQoqH8UfusxTbc1i4RXRzZlxD-OC0Xeh3RrOy1mB=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCLFpSTlB1s6aRI3R2g5oW_Q",
-                        "authorChannelId": {
-                            "value": "UCLFpSTlB1s6aRI3R2g5oW_Q"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-02-28T14:44:27Z",
-                        "updatedAt": "2023-02-28T14:44:27Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "qiPKw_uffbQ0k_93Str7Zrg7VYw",
+            "etag": "upkWsP8N1PZI-ywFU0ZxVqZa6Ts",
             "id": "UgzTy3vsd47igUri09V4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "dJdiKOKBR8dJ5dKnXhnVB8C7HgE",
+                    "etag": "l_GiG071sPaF1LWksvdGk-VIWGw",
                     "id": "UgzTy3vsd47igUri09V4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I had this happen to a watermelon I bought once. We didn&#39;t cut into it before it went bad, which is what happened here. The smell is unbelievable",
+                        "textDisplay": "I had this happen to a watermelon I bought once. We didn't cut into it before it went bad, which is what happened here. The smell is unbelievable",
                         "textOriginal": "I had this happen to a watermelon I bought once. We didn't cut into it before it went bad, which is what happened here. The smell is unbelievable",
                         "authorDisplayName": "Rich2300",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVSO34feOg6unKpuC2xCNITHVQRv2JkWZTJnsg2WIBhHj7A2sR1X2_RaIugByJs=s48-c-k-c0x00ffffff-no-rj",
@@ -3023,11 +2979,11 @@ class Api::V1::YoutubeController < ApplicationController
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "gcJY6B1XugHI-g6Z2dRmjbbRfqo",
+                        "etag": "7cEYZLo7UAWqtq09MChkHlh8t0w",
                         "id": "UgzTy3vsd47igUri09V4AaABAg.9mXRsMqsQNo9m_I_rKnBK2",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "@Invasion Animation One of the worst things I&#39;ve ever experienced",
+                            "textDisplay": "@Invasion Animation One of the worst things I've ever experienced",
                             "textOriginal": "@Invasion Animation One of the worst things I've ever experienced",
                             "parentId": "UgzTy3vsd47igUri09V4AaABAg",
                             "authorDisplayName": "Rich2300",
@@ -3114,17 +3070,49 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "5shwqDOpJDiWhRmKJP14Kw1DQ8w",
+            "etag": "QpK-QKBVF8jwEbBtaMxqTN9X1k4",
+            "id": "UgwuYJg6RSWmMuM-9tR4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "Ydn-d0vcxytVbJ08sMwOqmdC7fQ",
+                    "id": "UgwuYJg6RSWmMuM-9tR4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "POV: every toilet in that one gas station bathroom:",
+                        "textOriginal": "POV: every toilet in that one gas station bathroom:",
+                        "authorDisplayName": "BlitzTF",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/wy8Pu8XGRrg3ZFr31tpqBKcDjKm4L6F7MQoqH8UfusxTbc1i4RXRzZlxD-OC0Xeh3RrOy1mB=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCLFpSTlB1s6aRI3R2g5oW_Q",
+                        "authorChannelId": {
+                            "value": "UCLFpSTlB1s6aRI3R2g5oW_Q"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 1,
+                        "publishedAt": "2023-02-28T14:44:27Z",
+                        "updatedAt": "2023-02-28T14:44:27Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "gCU6fOMouSsNrXif9Uq5JOsYNNk",
             "id": "Ugz2MsqsWyT3QAT5YEB4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "TQyj5lcyzdCUcLxd3Rpq72R8oZA",
+                    "etag": "kWO9zOspmFlZekhijHAXEYoXsNI",
                     "id": "Ugz2MsqsWyT3QAT5YEB4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "when Jacob started drawing the missiles I legit almost screamed. You can&#39;t just DO that, Jacob Drawfee. Smh.",
+                        "textDisplay": "when Jacob started drawing the missiles I legit almost screamed. You can't just DO that, Jacob Drawfee. Smh.",
                         "textOriginal": "when Jacob started drawing the missiles I legit almost screamed. You can't just DO that, Jacob Drawfee. Smh.",
                         "authorDisplayName": "FreshCupOfAngst",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/zXhIhX7BxdqdN3qUoL1K_jYH-Jx2gd25mOeprk1fZqaxA28fQOrF3ygBuAMVfghF1GJg6wG0kbk=s48-c-k-c0x00ffffff-no-rj",
@@ -3146,45 +3134,13 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "f9yt5mFthhC6JQlmE_A5JfT7Kaw",
-            "id": "UgyxOob-VkTiKzRdDJl4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "7AJz9CFkTbORX3wmf3fJqCCBmPM",
-                    "id": "UgyxOob-VkTiKzRdDJl4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Now that is a true Walla melon",
-                        "textOriginal": "Now that is a true Walla melon",
-                        "authorDisplayName": "Storm trooper",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/DwQaHSmOjRa9O2GjZ9g7lX21yW-s8MqAC6OnVYe5mA63ALJbP1IGwp7n8TDMKXqD9nzoMSnAhg=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCmGGfh9jlls3jdKFThefmYg",
-                        "authorChannelId": {
-                            "value": "UCmGGfh9jlls3jdKFThefmYg"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-02-27T19:27:52Z",
-                        "updatedAt": "2023-02-27T19:27:52Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "nQqABD3b1uJJWyadvtBeKmBZF_g",
+            "etag": "2HIsKxhsjiMhaAU702NqVGpTl0A",
             "id": "UgxZmbh7NcF3wT6VwP94AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "FQ1-ngaYdeu60fmLPqCtu6c9T1U",
+                    "etag": "BtSEp6NWuWRG9UWs1mOUhp_PnpA",
                     "id": "UgxZmbh7NcF3wT6VwP94AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
@@ -3198,7 +3154,7 @@ class Api::V1::YoutubeController < ApplicationController
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 133,
+                        "likeCount": 134,
                         "publishedAt": "2023-02-24T22:02:06Z",
                         "updatedAt": "2023-02-24T22:02:06Z"
                     }
@@ -3233,11 +3189,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "QizEzf43AZOUku4hKG8gMHvxaDo",
+                        "etag": "OBYNK6k9t1uMo75U_8Kfjclze4I",
                         "id": "UgxZmbh7NcF3wT6VwP94AaABAg.9mXQR9Llsco9mhzsI6BFW_",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "It tastes and smells like death<br><br>I&#39;m not lying",
+                            "textDisplay": "It tastes and smells like death\n\nI'm not lying",
                             "textOriginal": "It tastes and smells like death\n\nI'm not lying",
                             "parentId": "UgxZmbh7NcF3wT6VwP94AaABAg",
                             "authorDisplayName": "Masao Kakihara",
@@ -3255,11 +3211,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "A3p34YAz__843LkTYARmobgBi5w",
+                        "etag": "SIBuahJm3hXiT3rEHMsoYTGjAbo",
                         "id": "UgxZmbh7NcF3wT6VwP94AaABAg.9mXQR9Llsco9mh_AOk98LM",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "I imagine it&#39;s a lot more like garbage flavored water",
+                            "textDisplay": "I imagine it's a lot more like garbage flavored water",
                             "textOriginal": "I imagine it's a lot more like garbage flavored water",
                             "parentId": "UgxZmbh7NcF3wT6VwP94AaABAg",
                             "authorDisplayName": "kiraPh1234k",
@@ -3356,29 +3312,29 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "ZiqKQQIycRtoYryye1pLTtvO55c",
-            "id": "UgxX7NdYiIZkCDg8GIx4AaABAg",
+            "etag": "f9yt5mFthhC6JQlmE_A5JfT7Kaw",
+            "id": "UgyxOob-VkTiKzRdDJl4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "SO3N5Fl-UzPwRdVBjAbJ5b8QDvw",
-                    "id": "UgxX7NdYiIZkCDg8GIx4AaABAg",
+                    "etag": "7AJz9CFkTbORX3wmf3fJqCCBmPM",
+                    "id": "UgyxOob-VkTiKzRdDJl4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I remember when I was younger I accidentally toppled a whole pyramid of watermelons over and ran away from the aisle 😅",
-                        "textOriginal": "I remember when I was younger I accidentally toppled a whole pyramid of watermelons over and ran away from the aisle 😅",
-                        "authorDisplayName": "Shark",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUol_DWdUBc8YxupRCgjpNSOlw2akgWQLSm68Bt=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCAB8p5Wm6KHsfgGw2ItqzcQ",
+                        "textDisplay": "Now that is a true Walla melon",
+                        "textOriginal": "Now that is a true Walla melon",
+                        "authorDisplayName": "Storm trooper",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/DwQaHSmOjRa9O2GjZ9g7lX21yW-s8MqAC6OnVYe5mA63ALJbP1IGwp7n8TDMKXqD9nzoMSnAhg=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCmGGfh9jlls3jdKFThefmYg",
                         "authorChannelId": {
-                            "value": "UCAB8p5Wm6KHsfgGw2ItqzcQ"
+                            "value": "UCmGGfh9jlls3jdKFThefmYg"
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-03T02:25:17Z",
-                        "updatedAt": "2023-03-03T02:25:17Z"
+                        "likeCount": 1,
+                        "publishedAt": "2023-02-27T19:27:52Z",
+                        "updatedAt": "2023-02-27T19:27:52Z"
                     }
                 },
                 "canReply": true,
@@ -3388,17 +3344,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "S9ltY-uPZ1M71CBW6Luy3HbHzkU",
+            "etag": "lck9BvF5MHvNjrSLweghdTx5-uE",
             "id": "Ugzo4yyFc2SfsWCvuct4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "IUN3qRLNMX5VARCOstj0bM63ZCM",
+                    "etag": "Jme3ekj-FiD7k9Fqb9EsJggU2W8",
                     "id": "Ugzo4yyFc2SfsWCvuct4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "<b>watermelon with diarrhea be like</b>",
+                        "textDisplay": "*watermelon with diarrhea be like*",
                         "textOriginal": "*watermelon with diarrhea be like*",
                         "authorDisplayName": "EasyKidsReading 读书乐",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/tN1Qp1446ho2j3xJi3art9jqS6b0iY4ju02w0b8FRVAxKdt15phucNNunpj4spDJmMKx-rbpZZc=s48-c-k-c0x00ffffff-no-rj",
@@ -3446,17 +3402,49 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "fPUXmnHwUOj-7_4_nWZ6ORMUMvY",
+            "etag": "ZiqKQQIycRtoYryye1pLTtvO55c",
+            "id": "UgxX7NdYiIZkCDg8GIx4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "SO3N5Fl-UzPwRdVBjAbJ5b8QDvw",
+                    "id": "UgxX7NdYiIZkCDg8GIx4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "I remember when I was younger I accidentally toppled a whole pyramid of watermelons over and ran away from the aisle 😅",
+                        "textOriginal": "I remember when I was younger I accidentally toppled a whole pyramid of watermelons over and ran away from the aisle 😅",
+                        "authorDisplayName": "Shark",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUol_DWdUBc8YxupRCgjpNSOlw2akgWQLSm68Bt=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCAB8p5Wm6KHsfgGw2ItqzcQ",
+                        "authorChannelId": {
+                            "value": "UCAB8p5Wm6KHsfgGw2ItqzcQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-03T02:25:17Z",
+                        "updatedAt": "2023-03-03T02:25:17Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "ej-sdtSB2zPAiAxaYIDPs6W4FRQ",
             "id": "UgwQOSFVKwZ71IubQ9h4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "g_XjqTmommrjZhOGByXNY0lcwUQ",
+                    "etag": "khTikCeLXndg3GwBlT-FdyEeSRU",
                     "id": "UgwQOSFVKwZ71IubQ9h4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Yeah that&#39;s just the smell of pure mildew and mold released into a nice perfume for you to enjoy store wide 😂",
+                        "textDisplay": "Yeah that's just the smell of pure mildew and mold released into a nice perfume for you to enjoy store wide 😂",
                         "textOriginal": "Yeah that's just the smell of pure mildew and mold released into a nice perfume for you to enjoy store wide 😂",
                         "authorDisplayName": "Mellifluous",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUejL671X6nF1vgQLz8eQJd6aYks9qk0SO3yyDM_w=s48-c-k-c0x00ffffff-no-rj",
@@ -3478,49 +3466,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "ug4X4fIWctJtRM1CI5L3RYvXBIk",
-            "id": "UgzJ81tltc9aIGQJJTZ4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "OBAs5STRa6Lv0FJyojklRw6PZRA",
-                    "id": "UgzJ81tltc9aIGQJJTZ4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "it looks like the water melon is taking a sheeett💀",
-                        "textOriginal": "it looks like the water melon is taking a sheeett💀",
-                        "authorDisplayName": "muzairy muhammad",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJX3zGCGamY5abD_xYhetzqXnmM50Je1ZPVvHbsVrQ=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCGPL5XqGagAip2nh6CDemSA",
-                        "authorChannelId": {
-                            "value": "UCGPL5XqGagAip2nh6CDemSA"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-03-02T05:46:15Z",
-                        "updatedAt": "2023-03-02T05:46:15Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "kSDVvgnPrdZyMC-nnmckg5g_Pks",
+            "etag": "eoBX6wFQ-gtPhSfbWk2S8foOXm8",
             "id": "UgxNFFltMYqIbtDjjBJ4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "_eJdUgE9EibEOjIFwtrheGbps2U",
+                    "etag": "UiPsnnkA99uc0rtcJk9Xu_P0Vl4",
                     "id": "UgxNFFltMYqIbtDjjBJ4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "&quot;Dude, really?&quot; - Store employee",
+                        "textDisplay": "\"Dude, really?\" - Store employee",
                         "textOriginal": "\"Dude, really?\" - Store employee",
                         "authorDisplayName": "Jason Wall",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUIfTN-7afSGZpT3mBBrO4g0NvzN3xnjAOcciAolw=s48-c-k-c0x00ffffff-no-rj",
@@ -3568,17 +3524,49 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "2yFEq2aIGvuHDjq1W3cq9PQyY2M",
+            "etag": "ug4X4fIWctJtRM1CI5L3RYvXBIk",
+            "id": "UgzJ81tltc9aIGQJJTZ4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "OBAs5STRa6Lv0FJyojklRw6PZRA",
+                    "id": "UgzJ81tltc9aIGQJJTZ4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "it looks like the water melon is taking a sheeett💀",
+                        "textOriginal": "it looks like the water melon is taking a sheeett💀",
+                        "authorDisplayName": "muzairy muhammad",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJX3zGCGamY5abD_xYhetzqXnmM50Je1ZPVvHbsVrQ=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCGPL5XqGagAip2nh6CDemSA",
+                        "authorChannelId": {
+                            "value": "UCGPL5XqGagAip2nh6CDemSA"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 1,
+                        "publishedAt": "2023-03-02T05:46:15Z",
+                        "updatedAt": "2023-03-02T05:46:15Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "RysolKFNLRSJaI5NyqRwfN8tJt4",
             "id": "UgxSCHozo6IvC53rEK94AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "7gjH8v6GVqKuKAMZe2VLohx94-0",
+                    "etag": "skbsY_wrqgmaS3Hh8PdB3Qdi0bQ",
                     "id": "UgxSCHozo6IvC53rEK94AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "And now I know what happens to watermelon when it rots.<br><br><br>I wouldn&#39;t even know how to get that thing out without it popping-",
+                        "textDisplay": "And now I know what happens to watermelon when it rots.\n\n\nI wouldn't even know how to get that thing out without it popping-",
                         "textOriginal": "And now I know what happens to watermelon when it rots.\n\n\nI wouldn't even know how to get that thing out without it popping-",
                         "authorDisplayName": "CarlytheWolf23",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/dWyn9vwyvtKdeHEoae7HuZnM_Ji06WGDxFh3XkePg0ZtWHGJ-f1uwga5vlKHepvj6533-rVxag=s48-c-k-c0x00ffffff-no-rj",
@@ -3591,38 +3579,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T16:13:53Z",
                         "updatedAt": "2023-03-02T16:14:51Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "_aECqN2Yv2vV6YreMnwQkMxt5xg",
-            "id": "UgyUQ_keYIiBOAQojoZ4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "L27bXkyHiBPNz-rOGY4SJTX_0AM",
-                    "id": "UgyUQ_keYIiBOAQojoZ4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I&#39;ve seen something like that once at Aldi. I will admit Aldis produce quality has gotten a little better.",
-                        "textOriginal": "I've seen something like that once at Aldi. I will admit Aldis produce quality has gotten a little better.",
-                        "authorDisplayName": "Shekhar Moona",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUPGCztJlLFCINn5sIGmIy-n6mvAjOU_HYs-GMgKg=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCifjR-8cwNYkEaSB-MDtqGg",
-                        "authorChannelId": {
-                            "value": "UCifjR-8cwNYkEaSB-MDtqGg"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-02T22:15:06Z",
-                        "updatedAt": "2023-03-02T22:15:06Z"
                     }
                 },
                 "canReply": true,
@@ -3664,29 +3620,29 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "tAfXuwzmpSXZnYZyuSxXpnw2mfo",
-            "id": "Ugz_OPR4AgNObmBHq4t4AaABAg",
+            "etag": "fcgJNVD0_oPNX5sN2SBVsPPhc2Q",
+            "id": "UgyUQ_keYIiBOAQojoZ4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "HTmARE3ElW_sb5DHWeMZZ4OCD54",
-                    "id": "Ugz_OPR4AgNObmBHq4t4AaABAg",
+                    "etag": "xS6tNshDl2GC__QDJlr57keGYZc",
+                    "id": "UgyUQ_keYIiBOAQojoZ4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Now that’s what I call, a -water-melon",
-                        "textOriginal": "Now that’s what I call, a -water-melon",
-                        "authorDisplayName": "JASONIC15",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/5X6BL4FQWK3dzlsE1pKt3kXCiq-rkQ102-7-I8B2UE-BO-nWUMK7HP19a-zfuuCp-MA9t7mnVg=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCJINq_ohXSZm4Ztyf1C2Kow",
+                        "textDisplay": "I've seen something like that once at Aldi. I will admit Aldis produce quality has gotten a little better.",
+                        "textOriginal": "I've seen something like that once at Aldi. I will admit Aldis produce quality has gotten a little better.",
+                        "authorDisplayName": "Shekhar Moona",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUPGCztJlLFCINn5sIGmIy-n6mvAjOU_HYs-GMgKg=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCifjR-8cwNYkEaSB-MDtqGg",
                         "authorChannelId": {
-                            "value": "UCJINq_ohXSZm4Ztyf1C2Kow"
+                            "value": "UCifjR-8cwNYkEaSB-MDtqGg"
                         },
                         "canRate": true,
                         "viewerRating": "none",
                         "likeCount": 0,
-                        "publishedAt": "2023-03-02T13:00:18Z",
-                        "updatedAt": "2023-03-02T13:00:18Z"
+                        "publishedAt": "2023-03-02T22:15:06Z",
+                        "updatedAt": "2023-03-02T22:15:06Z"
                     }
                 },
                 "canReply": true,
@@ -3696,29 +3652,29 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "RWacDE11OHtCyQnxKsSDnTT_pL8",
-            "id": "UgzqmiUZOUcbPQFDnsB4AaABAg",
+            "etag": "W6YMF68qlcdFzVy4hFjd3CMAo1U",
+            "id": "UgxA47--lLaxF99fP794AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "mB5CdA_2ytfGtsRqIWQYJAnXMiM",
-                    "id": "UgzqmiUZOUcbPQFDnsB4AaABAg",
+                    "etag": "SQeyW1axc8wLYsp28-WlyJUdayU",
+                    "id": "UgxA47--lLaxF99fP794AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "when she says she&#39;s on her period but u a menace!",
-                        "textOriginal": "when she says she's on her period but u a menace!",
-                        "authorDisplayName": "Cá se vai andando!",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXnFKe4aTcdBRMGnM28PlU_XrFqhAtbZZ5BjGOhPQ=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCZ5MRyXrrCtsyDiUnhmZRmw",
+                        "textDisplay": "Reminds me of when my son was born.😂 I looked ready to have twins and just had one 6lb baby.. and lots of water😂",
+                        "textOriginal": "Reminds me of when my son was born.😂 I looked ready to have twins and just had one 6lb baby.. and lots of water😂",
+                        "authorDisplayName": "Mercedes Marie",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWzuFU-HED-NH9HGAU2i41yIGs7KsyRcZkW51e_7w=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCGmQFssWETiJOuzILUuua2w",
                         "authorChannelId": {
-                            "value": "UCZ5MRyXrrCtsyDiUnhmZRmw"
+                            "value": "UCGmQFssWETiJOuzILUuua2w"
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-03-01T04:26:34Z",
-                        "updatedAt": "2023-03-01T04:26:34Z"
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-03T03:13:21Z",
+                        "updatedAt": "2023-03-03T03:13:21Z"
                     }
                 },
                 "canReply": true,
@@ -3728,7 +3684,7 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "jwXw7tukgYEoL1rgJs7OsOE5YSA",
+            "etag": "UBPl7__7i9vFgu2pARZ-4WowkqE",
             "id": "UgwqTf9Z7cc3rRDPM4l4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -3805,11 +3761,11 @@ class Api::V1::YoutubeController < ApplicationController
                     },
                     {
                         "kind": "youtube#comment",
-                        "etag": "AlB7Pmt9f56hGoVjNrEceqCkcVs",
+                        "etag": "-eTPoL5saj-a-1oSxiRkgVh_DJY",
                         "id": "UgwqTf9Z7cc3rRDPM4l4AaABAg.9mXYQvWggSh9mhVNmL6e4C",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Only in Ohio, New York, Detroit, Florida, Wyoming<br><br><br><br>People really like making states memes",
+                            "textDisplay": "Only in Ohio, New York, Detroit, Florida, Wyoming\n\n\n\nPeople really like making states memes",
                             "textOriginal": "Only in Ohio, New York, Detroit, Florida, Wyoming\n\n\n\nPeople really like making states memes",
                             "parentId": "UgwqTf9Z7cc3rRDPM4l4AaABAg",
                             "authorDisplayName": "Cinema",
@@ -3852,17 +3808,49 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "zUWoUb36yvUaYvNZPy8xQ2cFl04",
+            "etag": "tAfXuwzmpSXZnYZyuSxXpnw2mfo",
+            "id": "Ugz_OPR4AgNObmBHq4t4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "HTmARE3ElW_sb5DHWeMZZ4OCD54",
+                    "id": "Ugz_OPR4AgNObmBHq4t4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Now that’s what I call, a -water-melon",
+                        "textOriginal": "Now that’s what I call, a -water-melon",
+                        "authorDisplayName": "JASONIC15",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/5X6BL4FQWK3dzlsE1pKt3kXCiq-rkQ102-7-I8B2UE-BO-nWUMK7HP19a-zfuuCp-MA9t7mnVg=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCJINq_ohXSZm4Ztyf1C2Kow",
+                        "authorChannelId": {
+                            "value": "UCJINq_ohXSZm4Ztyf1C2Kow"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-02T13:00:18Z",
+                        "updatedAt": "2023-03-02T13:00:18Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "lXt02sQcGmUNbWluCYo0Vf6H3XA",
             "id": "UgyNci0G-8_AKGYhkk14AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "BWwR1IHyddKfX6J9q2nmCrS0urg",
+                    "etag": "RUig4qAspNRQoDqg89jfWeWRymE",
                     "id": "UgyNci0G-8_AKGYhkk14AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Everyone talking about the rotten watermelon smell being the worst. I can&#39;t imagine how that smells then, because worse I could handle was dipping the top of my tongue into slightly rotten coconut, and it was the taste of death to me.",
+                        "textDisplay": "Everyone talking about the rotten watermelon smell being the worst. I can't imagine how that smells then, because worse I could handle was dipping the top of my tongue into slightly rotten coconut, and it was the taste of death to me.",
                         "textOriginal": "Everyone talking about the rotten watermelon smell being the worst. I can't imagine how that smells then, because worse I could handle was dipping the top of my tongue into slightly rotten coconut, and it was the taste of death to me.",
                         "authorDisplayName": "nowonmetube",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJWNWeHdGTDvq3kyxE7F-0JzNT3Mbn6-lydccdIO=s48-c-k-c0x00ffffff-no-rj",
@@ -3875,6 +3863,38 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T19:20:41Z",
                         "updatedAt": "2023-03-02T19:20:41Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "k0Sax5CspZ4r1oydej8fOcBmG8Y",
+            "id": "UgzL79nocel7mzIxWtF4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "vRYsxO1oB673R-rdZudSX9etFDU",
+                    "id": "UgzL79nocel7mzIxWtF4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "He's amazed that he found a rotten watermelon 🤣.",
+                        "textOriginal": "He's amazed that he found a rotten watermelon 🤣.",
+                        "authorDisplayName": "Jose",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJW6bgLOwelsRuiDxHqUhV6XDMzvcnHmlEVRD7AG9jRn2wrz0NkqFqmrnEsm8kfE=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCNI81JBHwmBHhRYv8eHwj-A",
+                        "authorChannelId": {
+                            "value": "UCNI81JBHwmBHhRYv8eHwj-A"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 31,
+                        "publishedAt": "2023-02-25T06:33:59Z",
+                        "updatedAt": "2023-02-25T06:33:59Z"
                     }
                 },
                 "canReply": true,
@@ -3916,38 +3936,6 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "IxD8wBTUc_ex-cXb7x5N2TaQ9sk",
-            "id": "UgzL79nocel7mzIxWtF4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "nXJ0_yViPIJkTS8EbcNKz_JnfTE",
-                    "id": "UgzL79nocel7mzIxWtF4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "He&#39;s amazed that he found a rotten watermelon 🤣.",
-                        "textOriginal": "He's amazed that he found a rotten watermelon 🤣.",
-                        "authorDisplayName": "Jose",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJW6bgLOwelsRuiDxHqUhV6XDMzvcnHmlEVRD7AG9jRn2wrz0NkqFqmrnEsm8kfE=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCNI81JBHwmBHhRYv8eHwj-A",
-                        "authorChannelId": {
-                            "value": "UCNI81JBHwmBHhRYv8eHwj-A"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 31,
-                        "publishedAt": "2023-02-25T06:33:59Z",
-                        "updatedAt": "2023-02-25T06:33:59Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
             "etag": "GLHnHKj4yiE0CY6eOz-BaWveXzc",
             "id": "UgyyF0K6etgbK3k9HfF4AaABAg",
             "snippet": {
@@ -3971,38 +3959,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-01T23:53:11Z",
                         "updatedAt": "2023-03-01T23:53:11Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "790zF_5WZY5W7rf6QUGESJ3IQZA",
-            "id": "UgxHNcJZaulmRHODd3p4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "9cpfJjMz_8eG00DPkmgRpq2kjwA",
-                    "id": "UgxHNcJZaulmRHODd3p4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Plot twist: he’s just super strong and crushed the life water out of it.",
-                        "textOriginal": "Plot twist: he’s just super strong and crushed the life water out of it.",
-                        "authorDisplayName": "OFFPLAYSRBX",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/PgtuKmOIEsWi8JqrOqHWIFS7CoYE3KkwbUYts-wpEhgkduO3NnK9k0j1fj4e-mFabgDgNM37=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UC1O4KT2pKcQIgJpxDvwwKYw",
-                        "authorChannelId": {
-                            "value": "UC1O4KT2pKcQIgJpxDvwwKYw"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-01T20:45:53Z",
-                        "updatedAt": "2023-03-01T20:45:53Z"
                     }
                 },
                 "canReply": true,
@@ -4044,6 +4000,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "790zF_5WZY5W7rf6QUGESJ3IQZA",
+            "id": "UgxHNcJZaulmRHODd3p4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "9cpfJjMz_8eG00DPkmgRpq2kjwA",
+                    "id": "UgxHNcJZaulmRHODd3p4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Plot twist: he’s just super strong and crushed the life water out of it.",
+                        "textOriginal": "Plot twist: he’s just super strong and crushed the life water out of it.",
+                        "authorDisplayName": "OFFPLAYSRBX",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/PgtuKmOIEsWi8JqrOqHWIFS7CoYE3KkwbUYts-wpEhgkduO3NnK9k0j1fj4e-mFabgDgNM37=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UC1O4KT2pKcQIgJpxDvwwKYw",
+                        "authorChannelId": {
+                            "value": "UC1O4KT2pKcQIgJpxDvwwKYw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-01T20:45:53Z",
+                        "updatedAt": "2023-03-01T20:45:53Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "2Oj-CCTeCFD5tSnTptN0m8yrbgQ",
             "id": "UgzSGq6SH0JetJiDkYl4AaABAg",
             "snippet": {
@@ -4067,38 +4055,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T04:12:47Z",
                         "updatedAt": "2023-03-02T04:12:47Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "fKmJEpykdt0PGSpgb62_A9zpnF4",
-            "id": "UgxIxcyg4sSiRtjbCIB4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "ZBX-D3vSa3hSu0PJPcY5gibfTLk",
-                    "id": "UgxIxcyg4sSiRtjbCIB4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I imagine that daily dose just barges into places and starts rummaging around until he can find something to make a video about",
-                        "textOriginal": "I imagine that daily dose just barges into places and starts rummaging around until he can find something to make a video about",
-                        "authorDisplayName": "Milobusterz",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ta8inWu9faz1qijxepbKDTxe3bGafqhfWqlY2PtMpvm7oIMpemwbRM_gyZJVDvXKTG-q0Rwp58s=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCJZcc9gT-yBo-fuiRPcI1kA",
-                        "authorChannelId": {
-                            "value": "UCJZcc9gT-yBo-fuiRPcI1kA"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-02T01:48:39Z",
-                        "updatedAt": "2023-03-02T01:48:39Z"
                     }
                 },
                 "canReply": true,
@@ -4140,6 +4096,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "fKmJEpykdt0PGSpgb62_A9zpnF4",
+            "id": "UgxIxcyg4sSiRtjbCIB4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "ZBX-D3vSa3hSu0PJPcY5gibfTLk",
+                    "id": "UgxIxcyg4sSiRtjbCIB4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "I imagine that daily dose just barges into places and starts rummaging around until he can find something to make a video about",
+                        "textOriginal": "I imagine that daily dose just barges into places and starts rummaging around until he can find something to make a video about",
+                        "authorDisplayName": "Milobusterz",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ta8inWu9faz1qijxepbKDTxe3bGafqhfWqlY2PtMpvm7oIMpemwbRM_gyZJVDvXKTG-q0Rwp58s=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCJZcc9gT-yBo-fuiRPcI1kA",
+                        "authorChannelId": {
+                            "value": "UCJZcc9gT-yBo-fuiRPcI1kA"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-02T01:48:39Z",
+                        "updatedAt": "2023-03-02T01:48:39Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "-q1HRq7lZiw_8td6v8CPkLYs5kE",
             "id": "Ugyd23Ab_3z2IAYBwH14AaABAg",
             "snippet": {
@@ -4163,38 +4151,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T18:15:29Z",
                         "updatedAt": "2023-03-02T18:15:29Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "MPNPpsWkgaK54rvxyt_49DN-W94",
-            "id": "UgyUoTYOizgHdZ5kJ6R4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "eDTDitfGS2TVoFGR_mtYjv0tFHM",
-                    "id": "UgyUoTYOizgHdZ5kJ6R4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Normal watermelon in kentucky💀💀💀💀",
-                        "textOriginal": "Normal watermelon in kentucky💀💀💀💀",
-                        "authorDisplayName": "Toniro01",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/XxcEQQTjBujwX971kKmw3cQqu-8m_SEI9s8tkAeHcOr-dmXbRpzbh5tGfZZ3mdCtNjrsMtw69A=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCHb7AE1HisJ6ueIEDThHzVw",
-                        "authorChannelId": {
-                            "value": "UCHb7AE1HisJ6ueIEDThHzVw"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-03-01T18:51:45Z",
-                        "updatedAt": "2023-03-01T18:51:45Z"
                     }
                 },
                 "canReply": true,
@@ -4236,6 +4192,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "MPNPpsWkgaK54rvxyt_49DN-W94",
+            "id": "UgyUoTYOizgHdZ5kJ6R4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "eDTDitfGS2TVoFGR_mtYjv0tFHM",
+                    "id": "UgyUoTYOizgHdZ5kJ6R4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Normal watermelon in kentucky💀💀💀💀",
+                        "textOriginal": "Normal watermelon in kentucky💀💀💀💀",
+                        "authorDisplayName": "Toniro01",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/XxcEQQTjBujwX971kKmw3cQqu-8m_SEI9s8tkAeHcOr-dmXbRpzbh5tGfZZ3mdCtNjrsMtw69A=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCHb7AE1HisJ6ueIEDThHzVw",
+                        "authorChannelId": {
+                            "value": "UCHb7AE1HisJ6ueIEDThHzVw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 1,
+                        "publishedAt": "2023-03-01T18:51:45Z",
+                        "updatedAt": "2023-03-01T18:51:45Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "CqlZwgAgnzrzCP8VBnJ_oczgt9Q",
             "id": "UgzSsBTOWxF7xNzAoNd4AaABAg",
             "snippet": {
@@ -4259,6 +4247,38 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T05:21:10Z",
                         "updatedAt": "2023-03-02T05:22:00Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "Ty2pUsiR1CKO78JNXA_qGZHdkZs",
+            "id": "UgzOu9vZ2Z2CnAQmjwV4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "Y7ePlyIpDoS_zRXd1JJDXGmtcgg",
+                    "id": "UgzOu9vZ2Z2CnAQmjwV4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "\"No, I will NOT hear you out.\"",
+                        "textOriginal": "\"No, I will NOT hear you out.\"",
+                        "authorDisplayName": "KarpL1keK0rn",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/IeDbjP8ymEhiOOTYKCE80alL4sFSlHhjV4QysF_L_Ec3mgDj7AKpFQmyoVIu7MJCXI9-xfWoiw=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCx5eFLTXcAZb0CdeF__pBXQ",
+                        "authorChannelId": {
+                            "value": "UCx5eFLTXcAZb0CdeF__pBXQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 5,
+                        "publishedAt": "2023-02-25T01:28:22Z",
+                        "updatedAt": "2023-02-25T01:28:22Z"
                     }
                 },
                 "canReply": true,
@@ -4300,70 +4320,6 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "zRWLv1IyCBsCCzllEZJvUixvQv4",
-            "id": "UgzOu9vZ2Z2CnAQmjwV4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "tQI7lTqBQGro09jwkKeGM0cQwy0",
-                    "id": "UgzOu9vZ2Z2CnAQmjwV4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "&quot;No, I will NOT hear you out.&quot;",
-                        "textOriginal": "\"No, I will NOT hear you out.\"",
-                        "authorDisplayName": "KarpL1keK0rn",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/IeDbjP8ymEhiOOTYKCE80alL4sFSlHhjV4QysF_L_Ec3mgDj7AKpFQmyoVIu7MJCXI9-xfWoiw=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCx5eFLTXcAZb0CdeF__pBXQ",
-                        "authorChannelId": {
-                            "value": "UCx5eFLTXcAZb0CdeF__pBXQ"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 5,
-                        "publishedAt": "2023-02-25T01:28:22Z",
-                        "updatedAt": "2023-02-25T01:28:22Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "4M8zHkvaL_HOap--NYT0cpFfV7A",
-            "id": "UgznypOpDHEWdUu5Dud4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "vj7KwqorgENCGJ4XGH_r9g50R3M",
-                    "id": "UgznypOpDHEWdUu5Dud4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "And kids that&#39;s what happens when a pregnant woman&#39;s water breaks.",
-                        "textOriginal": "And kids that's what happens when a pregnant woman's water breaks.",
-                        "authorDisplayName": "jpablo",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/qi3mt34SyPY2SRJHUaDitXeGYuz1Q7J-u-Uouqr8-Col2p_chVjHSa4gT8aDg-GAD1dWvniD=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCYqIGinY3d-a3VY_dysM3IA",
-                        "authorChannelId": {
-                            "value": "UCYqIGinY3d-a3VY_dysM3IA"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-01T12:49:55Z",
-                        "updatedAt": "2023-03-01T12:49:55Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
             "etag": "P2Lg8yWc8zy6Btu74jwyj2vh8AE",
             "id": "UgyD12wdSquV5b5fEh14AaABAg",
             "snippet": {
@@ -4387,6 +4343,38 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 8,
                         "publishedAt": "2023-02-25T06:38:31Z",
                         "updatedAt": "2023-02-25T06:38:31Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "TP-_AEj6DkeBDSxAQezA9QEUcGM",
+            "id": "UgznypOpDHEWdUu5Dud4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "pyC-zdkU01QMNzPGrTPoe9SuEZU",
+                    "id": "UgznypOpDHEWdUu5Dud4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "And kids that's what happens when a pregnant woman's water breaks.",
+                        "textOriginal": "And kids that's what happens when a pregnant woman's water breaks.",
+                        "authorDisplayName": "jpablo",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/qi3mt34SyPY2SRJHUaDitXeGYuz1Q7J-u-Uouqr8-Col2p_chVjHSa4gT8aDg-GAD1dWvniD=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCYqIGinY3d-a3VY_dysM3IA",
+                        "authorChannelId": {
+                            "value": "UCYqIGinY3d-a3VY_dysM3IA"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-01T12:49:55Z",
+                        "updatedAt": "2023-03-01T12:49:55Z"
                     }
                 },
                 "canReply": true,
@@ -4428,6 +4416,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "4R2Hf4K4Tk7z2bxl_eSVLyhXtnw",
+            "id": "UgwmlfT1DThdNao5eFJ4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "tHSMunsaIWfKOpQCTnchVAXzeqA",
+                    "id": "UgwmlfT1DThdNao5eFJ4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Everyone getting angry at him, this isn't him in the video. He literally credits someone else in the description.",
+                        "textOriginal": "Everyone getting angry at him, this isn't him in the video. He literally credits someone else in the description.",
+                        "authorDisplayName": "Audrey Graham",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUMTb8IlkofH3mWw0j8yK5_V3vx_EBILdAwxfnZnBk=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCIPNJktteBBdXWmFbF4_jYQ",
+                        "authorChannelId": {
+                            "value": "UCIPNJktteBBdXWmFbF4_jYQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 4,
+                        "publishedAt": "2023-02-26T19:14:01Z",
+                        "updatedAt": "2023-02-26T19:14:01Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "3ycbWfpREEeM9U09y7ctkisdQdY",
             "id": "Ugy-jUMFW4zvpaP3h5Z4AaABAg",
             "snippet": {
@@ -4460,49 +4480,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "LXeZrjYPxth34cFbf1nzjSW7AEY",
-            "id": "UgwmlfT1DThdNao5eFJ4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "BT8nKRU7zfigjwt4YU5_LS2OcPo",
-                    "id": "UgwmlfT1DThdNao5eFJ4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Everyone getting angry at him, this isn&#39;t him in the video. He literally credits someone else in the description.",
-                        "textOriginal": "Everyone getting angry at him, this isn't him in the video. He literally credits someone else in the description.",
-                        "authorDisplayName": "Audrey Graham",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUMTb8IlkofH3mWw0j8yK5_V3vx_EBILdAwxfnZnBk=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCIPNJktteBBdXWmFbF4_jYQ",
-                        "authorChannelId": {
-                            "value": "UCIPNJktteBBdXWmFbF4_jYQ"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 4,
-                        "publishedAt": "2023-02-26T19:14:01Z",
-                        "updatedAt": "2023-02-26T19:14:01Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "qPqyvE9SxOx6jxBSobDfoaxTbU0",
+            "etag": "FXHWDS7jLRZlRgtdMLArFPTU3UM",
             "id": "UgwefzyKey5YkaCQJNB4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "nNjNnzQ8T1HGD1UW-5YkZsy9cn4",
+                    "etag": "ZhptcErRlD8pUptFVYQjX6M1WIA",
                     "id": "UgwefzyKey5YkaCQJNB4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "The color of the water tells you all you need to know about the smell lol<br>definitely not the worst smell, but far from a pleasant one XD",
+                        "textDisplay": "The color of the water tells you all you need to know about the smell lol\ndefinitely not the worst smell, but far from a pleasant one XD",
                         "textOriginal": "The color of the water tells you all you need to know about the smell lol\ndefinitely not the worst smell, but far from a pleasant one XD",
                         "authorDisplayName": "LilithTheLizard",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/OePxKgCDeP8l93M-dfcsQiIMm6IPoIreB-7yRxomzOHTdozoaM-ozdSs0DRtUXki1dVyGJW1kw=s48-c-k-c0x00ffffff-no-rj",
@@ -4515,38 +4503,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-02-27T23:07:57Z",
                         "updatedAt": "2023-02-27T23:07:57Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "ps_YLpZK7HfhCgA-upTJTt6usiQ",
-            "id": "UgzX00ZqjcfBXz_tJ7p4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "vroR_oaREt87sQx0Dmn6ksMfSlg",
-                    "id": "UgzX00ZqjcfBXz_tJ7p4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Behold the <b>✨w  a t e r✨</b>",
-                        "textOriginal": "Behold the *✨w  a t e r✨*",
-                        "authorDisplayName": "serviceable guy",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/1e3Ko_JrhcpLGeAV7Y_Ktq_wKIFLaLmPKG9QR3lYHHd9Zowqutg9IrX9W3fbQO9XByN_X1b6SQ=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCtbfLpGHgLmtLR9aD8ajlhg",
-                        "authorChannelId": {
-                            "value": "UCtbfLpGHgLmtLR9aD8ajlhg"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-01T16:09:35Z",
-                        "updatedAt": "2023-03-01T16:09:35Z"
                     }
                 },
                 "canReply": true,
@@ -4588,17 +4544,49 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "opE-hEatGjv02HYj0bC-YTXcAoA",
+            "etag": "_yVSQg4RE8RMXLnCbq9i71boF8Q",
+            "id": "UgzX00ZqjcfBXz_tJ7p4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "ZGYrJhIPJRhfBbuu7dS9EfQWsIg",
+                    "id": "UgzX00ZqjcfBXz_tJ7p4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Behold the *✨w  a t e r✨*",
+                        "textOriginal": "Behold the *✨w  a t e r✨*",
+                        "authorDisplayName": "serviceable guy",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/1e3Ko_JrhcpLGeAV7Y_Ktq_wKIFLaLmPKG9QR3lYHHd9Zowqutg9IrX9W3fbQO9XByN_X1b6SQ=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCtbfLpGHgLmtLR9aD8ajlhg",
+                        "authorChannelId": {
+                            "value": "UCtbfLpGHgLmtLR9aD8ajlhg"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-01T16:09:35Z",
+                        "updatedAt": "2023-03-01T16:09:35Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "4eg6gfIiCeI0d6hJz8-qZmHnsl8",
             "id": "Ugyjafq4jXTkPb1z8oV4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "poB3jCssKnDQimGGmoaSQDJVU1w",
+                    "etag": "XtFOEVlZ15T3HBUF0o5L71uVmbs",
                     "id": "Ugyjafq4jXTkPb1z8oV4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "I was almost choking in disgust through the screen, really need a warning for that lol, that&#39;s just super rotten watermelon<br><br>* Also, this might be an employee, I don&#39;t know if there&#39;s a way to get rid of it without it popping open",
+                        "textDisplay": "I was almost choking in disgust through the screen, really need a warning for that lol, that's just super rotten watermelon\n\n* Also, this might be an employee, I don't know if there's a way to get rid of it without it popping open",
                         "textOriginal": "I was almost choking in disgust through the screen, really need a warning for that lol, that's just super rotten watermelon\n\n* Also, this might be an employee, I don't know if there's a way to get rid of it without it popping open",
                         "authorDisplayName": "Literary Landslide",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/DS6GkoQecQ4Xpvhhie-QiixkKpGXWFQhIPXyO_DlG9xwIo16u34qKkW5gyXMPsGXRoCMOOSiqw=s48-c-k-c0x00ffffff-no-rj",
@@ -4620,39 +4608,7 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "j8OwNRv4Fr9VCRbeSdxYGQPaq6Y",
-            "id": "Ugw4SJAu4qj2MI_uLXl4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "kec5BzF_ObQpKultF5kzxFN_cvk",
-                    "id": "Ugw4SJAu4qj2MI_uLXl4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "my grandma telling me that this food isn&#39;t expired",
-                        "textOriginal": "my grandma telling me that this food isn't expired",
-                        "authorDisplayName": "Oreni",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/eM1bW-5ftHlrhJ1t_AgzvYal3zK_qXLtVDhEVwarRszWKS7-bzd5BLpjsL9i20uncSM2VWKCvw=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCh69hKCWCwtyKkNoJo7PPGA",
-                        "authorChannelId": {
-                            "value": "UCh69hKCWCwtyKkNoJo7PPGA"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-02-28T20:32:11Z",
-                        "updatedAt": "2023-02-28T20:32:11Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "8kq8tklBDA49bGp6PHHQY7wo43Q",
+            "etag": "-AWuma3jC_82RlpPg6Iqs6QlMO8",
             "id": "UgzOBMP1d3vr5EKKYxN4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
@@ -4685,11 +4641,11 @@ class Api::V1::YoutubeController < ApplicationController
                 "comments": [
                     {
                         "kind": "youtube#comment",
-                        "etag": "X6bRsibMALj1U6HVJA1meySCsY8",
+                        "etag": "PumtiYXmcYsESoKk4tpuLCSLgmA",
                         "id": "UgzOBMP1d3vr5EKKYxN4AaABAg.9mXSq_R-ftG9mioM3iCNr9",
                         "snippet": {
                             "videoId": "XYAe15w39LQ",
-                            "textDisplay": "Thank god I&#39;m not the only perv",
+                            "textDisplay": "Thank god I'm not the only perv",
                             "textOriginal": "Thank god I'm not the only perv",
                             "parentId": "UgzOBMP1d3vr5EKKYxN4AaABAg",
                             "authorDisplayName": "Garli Cohen",
@@ -4732,29 +4688,29 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "D4s-eDInCGnHON2qWPWqKwRZnT4",
-            "id": "UgyKZo0kT07K9ztUSCV4AaABAg",
+            "etag": "ReQVohywl1faD9s2zFH7jc6EviI",
+            "id": "UgyZ2CJCZhHRakxqgPl4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "PAxU7_Nbuc88E-eoFqY35ZgmVoI",
-                    "id": "UgyKZo0kT07K9ztUSCV4AaABAg",
+                    "etag": "ymIXgTYsQRdC9CaCKvhNqqIYzSQ",
+                    "id": "UgyZ2CJCZhHRakxqgPl4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "A literal WATER melon",
-                        "textOriginal": "A literal WATER melon",
-                        "authorDisplayName": "Celeste Rodriguez",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUE6KVeYQibtHjbn7Hz1D2oppARx8XXjbmDLAkD-sc=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCmthbs9EdQUzHQSsi87zhxg",
+                        "textDisplay": "When a kid spits out their orange juice because they thought there was a seed  or hair in it:",
+                        "textOriginal": "When a kid spits out their orange juice because they thought there was a seed  or hair in it:",
+                        "authorDisplayName": "Sylveon!",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/mB6SLJcdLqTH5SZ4v4fnrIItkaLCV0M9bXrVAPZRmfM543ZXbmQ9zY5u4EkmOP-KOmu9ttVRFQ=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCb_ZPKxv6owt480-wwBqFPQ",
                         "authorChannelId": {
-                            "value": "UCmthbs9EdQUzHQSsi87zhxg"
+                            "value": "UCb_ZPKxv6owt480-wwBqFPQ"
                         },
                         "canRate": true,
                         "viewerRating": "none",
-                        "likeCount": 1,
-                        "publishedAt": "2023-03-02T02:46:49Z",
-                        "updatedAt": "2023-03-02T02:46:49Z"
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-03T03:42:05Z",
+                        "updatedAt": "2023-03-03T03:42:05Z"
                     }
                 },
                 "canReply": true,
@@ -4764,29 +4720,29 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "gyUPBZAwoFu8DEg9O4VtpAq_GaE",
-            "id": "Ugy6gXAdAJJ1SUft90J4AaABAg",
+            "etag": "BuNSz0l0fcCtjhKhoeRB--HpSLM",
+            "id": "Ugw4SJAu4qj2MI_uLXl4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "4kb6kf6jyYTokHobGo9YBYq0iJo",
-                    "id": "Ugy6gXAdAJJ1SUft90J4AaABAg",
+                    "etag": "U7fRC_xs8hygZjnlnFV7npNZaAo",
+                    "id": "Ugw4SJAu4qj2MI_uLXl4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "The last one I bought was solid. I got it home, carried it with one hand and put it in the fridge. The next day, when I went to get it, it was as soft and squishy as this one looks. I threw it in the garbage.",
-                        "textOriginal": "The last one I bought was solid. I got it home, carried it with one hand and put it in the fridge. The next day, when I went to get it, it was as soft and squishy as this one looks. I threw it in the garbage.",
-                        "authorDisplayName": "Joe Silva",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVp-VRMCmNsCBLKhlg5-pDRi9467xHM2ZRk9-BQxA=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCfoeCUn2f8Ul-q3zIMAF-ww",
+                        "textDisplay": "my grandma telling me that this food isn't expired",
+                        "textOriginal": "my grandma telling me that this food isn't expired",
+                        "authorDisplayName": "Oreni",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/eM1bW-5ftHlrhJ1t_AgzvYal3zK_qXLtVDhEVwarRszWKS7-bzd5BLpjsL9i20uncSM2VWKCvw=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCh69hKCWCwtyKkNoJo7PPGA",
                         "authorChannelId": {
-                            "value": "UCfoeCUn2f8Ul-q3zIMAF-ww"
+                            "value": "UCh69hKCWCwtyKkNoJo7PPGA"
                         },
                         "canRate": true,
                         "viewerRating": "none",
                         "likeCount": 0,
-                        "publishedAt": "2023-02-27T16:29:36Z",
-                        "updatedAt": "2023-02-27T16:29:36Z"
+                        "publishedAt": "2023-02-28T20:32:11Z",
+                        "updatedAt": "2023-02-28T20:32:11Z"
                     }
                 },
                 "canReply": true,
@@ -4828,6 +4784,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "D4s-eDInCGnHON2qWPWqKwRZnT4",
+            "id": "UgyKZo0kT07K9ztUSCV4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "PAxU7_Nbuc88E-eoFqY35ZgmVoI",
+                    "id": "UgyKZo0kT07K9ztUSCV4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "A literal WATER melon",
+                        "textOriginal": "A literal WATER melon",
+                        "authorDisplayName": "Celeste Rodriguez",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJUE6KVeYQibtHjbn7Hz1D2oppARx8XXjbmDLAkD-sc=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCmthbs9EdQUzHQSsi87zhxg",
+                        "authorChannelId": {
+                            "value": "UCmthbs9EdQUzHQSsi87zhxg"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 1,
+                        "publishedAt": "2023-03-02T02:46:49Z",
+                        "updatedAt": "2023-03-02T02:46:49Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "EOzL6ishvWHlxY8iMG9-U4LiiMI",
             "id": "Ugzkd3vhrUwYsgae_ZN4AaABAg",
             "snippet": {
@@ -4860,49 +4848,17 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
-            "etag": "fKQtv-HJzTsdnBvsl_zoskugQbI",
-            "id": "UgznJ3-LAxSKowbKu4R4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "sF6VtSeLQCc_fNONOBYinnKTG74",
-                    "id": "UgznJ3-LAxSKowbKu4R4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "When you&#39;re poking at a pimple but didn&#39;t mean to...<br><br><br><br>Pop it, lock it, oop!",
-                        "textOriginal": "When you're poking at a pimple but didn't mean to...\n\n\n\nPop it, lock it, oop!",
-                        "authorDisplayName": "Pemy",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/jgh7gO1_f2CuAhbP8S0DM23UkXvXPL_66JVi5J3o2G8KrIZk4bGnYH7xCjM5LCdydiqOKMil=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCcMOH6c51waTddMVFDHfUHw",
-                        "authorChannelId": {
-                            "value": "UCcMOH6c51waTddMVFDHfUHw"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-01T11:55:34Z",
-                        "updatedAt": "2023-03-01T11:55:34Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "VAo70R6KnOVQ5VJIIsOth1BTEQ8",
+            "etag": "OW-17EV3cb-r4Kr6l98_kqYZaEs",
             "id": "UgwW_9uaqzs5Lqt_ujJ4AaABAg",
             "snippet": {
                 "videoId": "XYAe15w39LQ",
                 "topLevelComment": {
                     "kind": "youtube#comment",
-                    "etag": "yc7HmODBaNaasoAtY8WXMTgbyE8",
+                    "etag": "k2E6Z_zOQ_-CrT3yCdc-ly9Cj-Y",
                     "id": "UgwW_9uaqzs5Lqt_ujJ4AaABAg",
                     "snippet": {
                         "videoId": "XYAe15w39LQ",
-                        "textDisplay": "&quot;He lived up to his name&quot; 😭",
+                        "textDisplay": "\"He lived up to his name\" 😭",
                         "textOriginal": "\"He lived up to his name\" 😭",
                         "authorDisplayName": "Light Ahead!",
                         "authorProfileImageUrl": "https://yt3.ggpht.com/II25Qnh1Z7xjRwSymC3w0uII2r6CjY_A0UBy4yRTTfxAVBVwGs3GbNMDNvZfJaHR-38a5tDw=s48-c-k-c0x00ffffff-no-rj",
@@ -4915,6 +4871,38 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 7,
                         "publishedAt": "2023-02-25T15:38:55Z",
                         "updatedAt": "2023-02-25T15:38:55Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
+            "etag": "YJ3QxXPoO6UtW-iJJNSvqThwSEU",
+            "id": "UgznJ3-LAxSKowbKu4R4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "W1TtyS0oqcMg0GucTBv0lzXuP2s",
+                    "id": "UgznJ3-LAxSKowbKu4R4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "When you're poking at a pimple but didn't mean to...\n\n\n\nPop it, lock it, oop!",
+                        "textOriginal": "When you're poking at a pimple but didn't mean to...\n\n\n\nPop it, lock it, oop!",
+                        "authorDisplayName": "Pemy",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/jgh7gO1_f2CuAhbP8S0DM23UkXvXPL_66JVi5J3o2G8KrIZk4bGnYH7xCjM5LCdydiqOKMil=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCcMOH6c51waTddMVFDHfUHw",
+                        "authorChannelId": {
+                            "value": "UCcMOH6c51waTddMVFDHfUHw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-01T11:55:34Z",
+                        "updatedAt": "2023-03-01T11:55:34Z"
                     }
                 },
                 "canReply": true,
@@ -4947,38 +4935,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-03-02T03:18:05Z",
                         "updatedAt": "2023-03-02T03:18:05Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "g2NIZoGciwbg74QXoy2czreRV5U",
-            "id": "UgxDZq2r9V0tRAp301F4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "BgUUXjI40R_EwIiQ47A8CQOBbJI",
-                    "id": "UgxDZq2r9V0tRAp301F4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "Bro said &quot;if there&#39;s a hole&quot; 💀💀💀💀",
-                        "textOriginal": "Bro said \"if there's a hole\" 💀💀💀💀",
-                        "authorDisplayName": "Toaster Dio.",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/x5VmB1j_uZjHtmQPnC7Lk0Gjd4YZx87zskWs7Bmv2oVVEHaokJMxxu7MU6xGSCXzrL7gMqAsyg=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UC2tTc6bbBMXsuxh3c2eZOFQ",
-                        "authorChannelId": {
-                            "value": "UC2tTc6bbBMXsuxh3c2eZOFQ"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-02T12:39:32Z",
-                        "updatedAt": "2023-03-02T12:39:32Z"
                     }
                 },
                 "canReply": true,
@@ -5090,6 +5046,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "wovTuoo-MQo9Hzr35Cm8g8CNn2Q",
+            "id": "UgxDZq2r9V0tRAp301F4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "ewjBHzZjaRiWRrEV7nt3rBtY9So",
+                    "id": "UgxDZq2r9V0tRAp301F4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "Bro said \"if there's a hole\" 💀💀💀💀",
+                        "textOriginal": "Bro said \"if there's a hole\" 💀💀💀💀",
+                        "authorDisplayName": "Toaster Dio.",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/x5VmB1j_uZjHtmQPnC7Lk0Gjd4YZx87zskWs7Bmv2oVVEHaokJMxxu7MU6xGSCXzrL7gMqAsyg=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UC2tTc6bbBMXsuxh3c2eZOFQ",
+                        "authorChannelId": {
+                            "value": "UC2tTc6bbBMXsuxh3c2eZOFQ"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-02T12:39:32Z",
+                        "updatedAt": "2023-03-02T12:39:32Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "QTqZT8jYNXSR-MNIkG908U3UcQA",
             "id": "Ugzj-Bp1_QDX4p5vFjF4AaABAg",
             "snippet": {
@@ -5113,38 +5101,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 0,
                         "publishedAt": "2023-02-28T08:32:49Z",
                         "updatedAt": "2023-02-28T08:32:49Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "oNu4S_2VPFTQCEWUKglFsF7_KBo",
-            "id": "UgxeHbtGiOnCBSUZrvZ4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "xBV4jf-f0aJhlVinh8jOQIoqssY",
-                    "id": "UgxeHbtGiOnCBSUZrvZ4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "The moan he makes right before it breaks makes me feel weird lol",
-                        "textOriginal": "The moan he makes right before it breaks makes me feel weird lol",
-                        "authorDisplayName": "Syphex",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVbV5BioeosNxiHefEMdYc8pMByZrS5kD95qMFv=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCId_MJgiNNIsKrjDFphvXjw",
-                        "authorChannelId": {
-                            "value": "UCId_MJgiNNIsKrjDFphvXjw"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-03-02T17:52:47Z",
-                        "updatedAt": "2023-03-02T17:52:47Z"
                     }
                 },
                 "canReply": true,
@@ -5186,6 +5142,38 @@ class Api::V1::YoutubeController < ApplicationController
         },
         {
             "kind": "youtube#commentThread",
+            "etag": "oNu4S_2VPFTQCEWUKglFsF7_KBo",
+            "id": "UgxeHbtGiOnCBSUZrvZ4AaABAg",
+            "snippet": {
+                "videoId": "XYAe15w39LQ",
+                "topLevelComment": {
+                    "kind": "youtube#comment",
+                    "etag": "xBV4jf-f0aJhlVinh8jOQIoqssY",
+                    "id": "UgxeHbtGiOnCBSUZrvZ4AaABAg",
+                    "snippet": {
+                        "videoId": "XYAe15w39LQ",
+                        "textDisplay": "The moan he makes right before it breaks makes me feel weird lol",
+                        "textOriginal": "The moan he makes right before it breaks makes me feel weird lol",
+                        "authorDisplayName": "Syphex",
+                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJVbV5BioeosNxiHefEMdYc8pMByZrS5kD95qMFv=s48-c-k-c0x00ffffff-no-rj",
+                        "authorChannelUrl": "http://www.youtube.com/channel/UCId_MJgiNNIsKrjDFphvXjw",
+                        "authorChannelId": {
+                            "value": "UCId_MJgiNNIsKrjDFphvXjw"
+                        },
+                        "canRate": true,
+                        "viewerRating": "none",
+                        "likeCount": 0,
+                        "publishedAt": "2023-03-02T17:52:47Z",
+                        "updatedAt": "2023-03-02T17:52:47Z"
+                    }
+                },
+                "canReply": true,
+                "totalReplyCount": 0,
+                "isPublic": true
+            }
+        },
+        {
+            "kind": "youtube#commentThread",
             "etag": "Zi3YoFGmnj9bWMII6kXik9COWxQ",
             "id": "UgwsNt3o3x61rp2Wz3d4AaABAg",
             "snippet": {
@@ -5209,38 +5197,6 @@ class Api::V1::YoutubeController < ApplicationController
                         "likeCount": 1,
                         "publishedAt": "2023-03-01T23:43:36Z",
                         "updatedAt": "2023-03-01T23:43:36Z"
-                    }
-                },
-                "canReply": true,
-                "totalReplyCount": 0,
-                "isPublic": true
-            }
-        },
-        {
-            "kind": "youtube#commentThread",
-            "etag": "0BhNjz0UoI05cXFDAb9k_8QUKE4",
-            "id": "Ugx3nc0NMwQ58ra9Ush4AaABAg",
-            "snippet": {
-                "videoId": "XYAe15w39LQ",
-                "topLevelComment": {
-                    "kind": "youtube#comment",
-                    "etag": "Jr18RTj_4gjKu0OVpxXyz9AAwbU",
-                    "id": "Ugx3nc0NMwQ58ra9Ush4AaABAg",
-                    "snippet": {
-                        "videoId": "XYAe15w39LQ",
-                        "textDisplay": "This me. I&#39;m lactose and gluten intolerant. I still don&#39;t have a diet which pleases my bowels.",
-                        "textOriginal": "This me. I'm lactose and gluten intolerant. I still don't have a diet which pleases my bowels.",
-                        "authorDisplayName": "Blu",
-                        "authorProfileImageUrl": "https://yt3.ggpht.com/ytc/AL5GRJXlIlfKMsK3G39Wx3Csh4GflEWpGfr2065v96nz=s48-c-k-c0x00ffffff-no-rj",
-                        "authorChannelUrl": "http://www.youtube.com/channel/UCqV_Ge3Hht7d3gud_2Scb8g",
-                        "authorChannelId": {
-                            "value": "UCqV_Ge3Hht7d3gud_2Scb8g"
-                        },
-                        "canRate": true,
-                        "viewerRating": "none",
-                        "likeCount": 0,
-                        "publishedAt": "2023-02-28T16:07:50Z",
-                        "updatedAt": "2023-02-28T16:07:50Z"
                     }
                 },
                 "canReply": true,
