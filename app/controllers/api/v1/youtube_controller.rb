@@ -17,7 +17,11 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def search
-    render json: {search: params[:search]}    
+    response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=50&q=#{params[:search]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+
+    puts JSON.parse(response.body).inspect
+
+    render json: JSON.parse(response.body)  
   end
 
   def comments
