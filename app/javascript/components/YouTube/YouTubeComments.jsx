@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 
 const YouTubeComments = (props) => {
-  const [comments, setComments] = useState({items: []});
+  const [comments, setComments] = useState({ items: [] });
 
+  // Get comments and reply thread
   useEffect(() => {
     fetch(`/api/v1/youtube/comments/${props.id}`)
       .then((response) => {
@@ -15,8 +16,7 @@ const YouTubeComments = (props) => {
       .catch(() => console.log("Failed to get video"));
   }, [props.id]);
 
-  useEffect(() => console.log(comments), [comments]);
-
+  // Generate logic to display comments and replies
   let commentsJsx = comments.items.map(comment => { 
     let parentComment = comment.snippet.topLevelComment.snippet;
     let replies = comment.replies ? comment.replies.comments : [];
@@ -47,9 +47,25 @@ const YouTubeComments = (props) => {
         <p>{parentComment.textDisplay}</p>
         <p>
           Likes: {parentComment.likeCount}
-          {comment.replies ? " Replies: " + comment.replies.comments.length : ""}
+          {
+            // Hide replies if clicked
+            comment.replies ?
+              <button onClick={() => {
+                let repliesContainer = document.getElementById(comment.snippet.topLevelComment.id)
+
+                repliesContainer.style.display == "block" ?
+                  repliesContainer.style.display = "none"
+                :
+                  repliesContainer.style.display = "block"
+              }}>
+                {comment.replies.comments.length} replies
+              </button>
+            : ""
+          }
         </p>
-        {replies}
+        <div id={comment.snippet.topLevelComment.id} style={{display: "none"}}>
+          {replies}
+        </div>
       </div>
     );
   });
