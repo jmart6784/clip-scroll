@@ -17,11 +17,1424 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def search
-    response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=50&q=#{params[:search]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+    # response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=50&q=#{params[:search]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
-    puts JSON.parse(response.body).inspect
+    # puts JSON.parse(response.body).inspect
 
-    render json: JSON.parse(response.body)  
+    # render json: JSON.parse(response.body)  
+
+    render json: {
+    "kind": "youtube#searchListResponse",
+    "etag": "V7hnizIh5R_0nTcrkAkJNbzKb2M",
+    "nextPageToken": "CDIQAA",
+    "regionCode": "US",
+    "pageInfo": {
+        "totalResults": 11890,
+        "resultsPerPage": 50
+    },
+    "items": [
+        {
+            "kind": "youtube#searchResult",
+            "etag": "0-DxqfX3uwRFii85NvmEBFvsQJM",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCvK4bOhULCpmLabd2pDMtnA"
+            },
+            "snippet": {
+                "publishedAt": "2014-01-13T16:59:30Z",
+                "channelId": "UCvK4bOhULCpmLabd2pDMtnA",
+                "title": "Yes Theory",
+                "description": "We believe that life's greatest moments and deepest connections exist outside your comfort zone. Brand Partnerships: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/vVNRN2owIpF1EKhfENoMhDRwNNXHDjL1o_6oG3K13aMlu3dyl4DZuWkq_oAv8an-B1D5Mzbn_UM=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/vVNRN2owIpF1EKhfENoMhDRwNNXHDjL1o_6oG3K13aMlu3dyl4DZuWkq_oAv8an-B1D5Mzbn_UM=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/vVNRN2owIpF1EKhfENoMhDRwNNXHDjL1o_6oG3K13aMlu3dyl4DZuWkq_oAv8an-B1D5Mzbn_UM=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory",
+                "liveBroadcastContent": "upcoming",
+                "publishTime": "2014-01-13T16:59:30Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "8jhNidrOzLuxIVOp7M2Dwdsx6qQ",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCTd7KzdwnFE3lm6LCfYDmUQ"
+            },
+            "snippet": {
+                "publishedAt": "2020-04-09T19:55:33Z",
+                "channelId": "UCTd7KzdwnFE3lm6LCfYDmUQ",
+                "title": "Seek Discomfort",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/oeJE-e7YBvhODlDLkP7t7H-k7B0M8qBhaOmfCeMEd3dHE3HXtNXtezt7gx8tR8HvPdRWdoZ0Wjg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/oeJE-e7YBvhODlDLkP7t7H-k7B0M8qBhaOmfCeMEd3dHE3HXtNXtezt7gx8tR8HvPdRWdoZ0Wjg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/oeJE-e7YBvhODlDLkP7t7H-k7B0M8qBhaOmfCeMEd3dHE3HXtNXtezt7gx8tR8HvPdRWdoZ0Wjg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Seek Discomfort",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-04-09T19:55:33Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "4YcPW4j482Tqnovk_8kbJUSlbG0",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCSZ3GYzaZlMNNxFsIslehoQ"
+            },
+            "snippet": {
+                "publishedAt": "2021-09-26T11:41:21Z",
+                "channelId": "UCSZ3GYzaZlMNNxFsIslehoQ",
+                "title": "The Yes Theory Podcast",
+                "description": "Welcome to The Yes Theory Podcast Channel! This is where we will be sharing clips, special moments, and full length video ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/TVi9uLf0Hiknf6HOF8DqKwXVpLv-hN-BeDOdJQ9R88xjrmGVDK1cgn3zVqRLdTokGsqiZn60=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/TVi9uLf0Hiknf6HOF8DqKwXVpLv-hN-BeDOdJQ9R88xjrmGVDK1cgn3zVqRLdTokGsqiZn60=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/TVi9uLf0Hiknf6HOF8DqKwXVpLv-hN-BeDOdJQ9R88xjrmGVDK1cgn3zVqRLdTokGsqiZn60=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "The Yes Theory Podcast",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-09-26T11:41:21Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "d1M2DeNozpCWMlrp4QJHWd-hjXI",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCcIc2xUPXcbB02oiTIfU4xQ"
+            },
+            "snippet": {
+                "publishedAt": "2018-09-02T20:49:08Z",
+                "channelId": "UCcIc2xUPXcbB02oiTIfU4xQ",
+                "title": "Yes Theory",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWVQ0l4j3K1Ww2QWTvNkfLytUdhdQsict34iO5I=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWVQ0l4j3K1Ww2QWTvNkfLytUdhdQsict34iO5I=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWVQ0l4j3K1Ww2QWTvNkfLytUdhdQsict34iO5I=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2018-09-02T20:49:08Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "3nCvNh1WmoaBpyOIPFo31qEw0BE",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCWoEpiHaC7LOQhaHFT8Rx7A"
+            },
+            "snippet": {
+                "publishedAt": "2017-11-23T02:04:30Z",
+                "channelId": "UCWoEpiHaC7LOQhaHFT8Rx7A",
+                "title": "Lexie Limitless",
+                "description": "Lexie recently shattered the \"Guinness World Record for the Youngest Person to Travel to Every Country.\" She traveled to all 196 ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUY5Dzl8UQvE9su4muRVu2dnaKm1Bort9yRDI_jdA=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUY5Dzl8UQvE9su4muRVu2dnaKm1Bort9yRDI_jdA=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUY5Dzl8UQvE9su4muRVu2dnaKm1Bort9yRDI_jdA=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Lexie Limitless",
+                "liveBroadcastContent": "none",
+                "publishTime": "2017-11-23T02:04:30Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "33yW5YTAfo3S9kC_tIHs2noyjtQ",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCakmCJOK1gJFZS-lUF6xEiQ"
+            },
+            "snippet": {
+                "publishedAt": "2016-11-23T19:31:24Z",
+                "channelId": "UCakmCJOK1gJFZS-lUF6xEiQ",
+                "title": "Sky Life",
+                "description": "My name is Sky and I share stories about wellness, spirituality, and alternative lifestyle with the intention to inspire personal ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUCEIkyQlJ-0pUm8oCD3RTT91nibPOHb2pF1j8XWpQ=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUCEIkyQlJ-0pUm8oCD3RTT91nibPOHb2pF1j8XWpQ=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUCEIkyQlJ-0pUm8oCD3RTT91nibPOHb2pF1j8XWpQ=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Sky Life",
+                "liveBroadcastContent": "none",
+                "publishTime": "2016-11-23T19:31:24Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "rVaj3aFELkG79Z2K1jFnnHAxwYQ",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC-nhLOLf7GVWxN2ntqJscmA"
+            },
+            "snippet": {
+                "publishedAt": "2022-05-12T13:31:52Z",
+                "channelId": "UC-nhLOLf7GVWxN2ntqJscmA",
+                "title": "Yes Theory Shorts",
+                "description": "Get to know our channels: Yes Theory - https://www.youtube.com/c/YesTheory Seek Discomfort ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/jBPnQ0GSLAg0_aA4jqLP8R2OAC9B6N4r3PTxVmK3SUUU4tku6QlD4l3q8I26ph2wgpe-P_z3Sg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/jBPnQ0GSLAg0_aA4jqLP8R2OAC9B6N4r3PTxVmK3SUUU4tku6QlD4l3q8I26ph2wgpe-P_z3Sg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/jBPnQ0GSLAg0_aA4jqLP8R2OAC9B6N4r3PTxVmK3SUUU4tku6QlD4l3q8I26ph2wgpe-P_z3Sg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Shorts",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-05-12T13:31:52Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "mKv0yeICM0Jtc8Vjd7XEmY2Ov5s",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC1E5Ti2P70zZxA4osS2MhiA"
+            },
+            "snippet": {
+                "publishedAt": "2018-05-11T20:03:43Z",
+                "channelId": "UC1E5Ti2P70zZxA4osS2MhiA",
+                "title": "Conor Castle",
+                "description": "You only get one shot. So do it all. Challenging myself to live a more interesting life. And documenting the journey. If you feel like ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXW3QWK8C-TRDcYDHbu9pvjT_fztU3B8Kw03SKR6Q=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXW3QWK8C-TRDcYDHbu9pvjT_fztU3B8Kw03SKR6Q=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXW3QWK8C-TRDcYDHbu9pvjT_fztU3B8Kw03SKR6Q=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Conor Castle",
+                "liveBroadcastContent": "upcoming",
+                "publishTime": "2018-05-11T20:03:43Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "-qYNHCx4_qL7f-JKSka7-4AITS4",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCyi_6vNS4wH5Wo_H1L2sx1Q"
+            },
+            "snippet": {
+                "publishedAt": "2020-03-09T07:49:17Z",
+                "channelId": "UCyi_6vNS4wH5Wo_H1L2sx1Q",
+                "title": "YES Theory",
+                "description": "Education,fun and many more things in the channel See all aviation related stories in the channel first . Thankyou for your support ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXUBDhpOwon41QHH_GOTB_Z1fNYaiCF-8YSU8kN=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXUBDhpOwon41QHH_GOTB_Z1fNYaiCF-8YSU8kN=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXUBDhpOwon41QHH_GOTB_Z1fNYaiCF-8YSU8kN=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "YES Theory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-03-09T07:49:17Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "bxfH7Qd7AJPC8fnr_fRJxcgwZmw",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UClKwidAS9e0Tcyt4_-Flxww"
+            },
+            "snippet": {
+                "publishedAt": "2019-12-24T14:49:27Z",
+                "channelId": "UClKwidAS9e0Tcyt4_-Flxww",
+                "title": "yes theory",
+                "description": "this is best moments of yes theory and deleted content.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVx8150X3ysBjgsqblQb-O2GUxN44UI8nqS7_Oo=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVx8150X3ysBjgsqblQb-O2GUxN44UI8nqS7_Oo=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVx8150X3ysBjgsqblQb-O2GUxN44UI8nqS7_Oo=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "yes theory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-12-24T14:49:27Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "kXTUHRu4a-VJEwTra4KcAErbl8E",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCYXhaLEoRfUc34MPSx4HpDw"
+            },
+            "snippet": {
+                "publishedAt": "2019-12-17T20:37:10Z",
+                "channelId": "UCYXhaLEoRfUc34MPSx4HpDw",
+                "title": "Eric Tabach",
+                "description": "I'm a real actor with an IMDb. NEW VIDEOS every Wednesday & Sunday! Business/collabs: erictabachbiz@gmail.com ERIC ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWafxx_iie21Z3r2BK0_zsOTywGzETmzkJYcsg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWafxx_iie21Z3r2BK0_zsOTywGzETmzkJYcsg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWafxx_iie21Z3r2BK0_zsOTywGzETmzkJYcsg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Eric Tabach",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-12-17T20:37:10Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "9wK2bQKM4thDowzB8xwLXfsLvJ4",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCNCcq_2gDATS2GPvMdeBHjg"
+            },
+            "snippet": {
+                "publishedAt": "2020-10-03T10:28:15Z",
+                "channelId": "UCNCcq_2gDATS2GPvMdeBHjg",
+                "title": "IE Yes Theory Club IE University",
+                "description": "This YouTube channel is dedicated to the IE Yes Theory Club, run by IE University students. It aims to help people overcome their ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUROLUyfId4ZpzVP95laoixy65i8U6XwwdVM1_3=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUROLUyfId4ZpzVP95laoixy65i8U6XwwdVM1_3=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUROLUyfId4ZpzVP95laoixy65i8U6XwwdVM1_3=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "IE Yes Theory Club IE University",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-10-03T10:28:15Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "r7apRJvuzU4msBSu4w16OiVBK_Q",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCFdJjD2oyI-H68pmQowySZg"
+            },
+            "snippet": {
+                "publishedAt": "2020-09-18T15:19:44Z",
+                "channelId": "UCFdJjD2oyI-H68pmQowySZg",
+                "title": "Meaningful Podcasts",
+                "description": "Seek Discomfort! The Yes Theory Podcast P.S. This channel is simply an attempt to get Yes Theory's attention. I need their help in ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUB6og_IgPZjgL1a34dEejmUBhoECFw9e0yctIB=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUB6og_IgPZjgL1a34dEejmUBhoECFw9e0yctIB=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUB6og_IgPZjgL1a34dEejmUBhoECFw9e0yctIB=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Meaningful Podcasts",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-09-18T15:19:44Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "WlmvFQ-fDPj7YZ2AcGaYxuefw9A",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCOv3shFSw6M18yBA9N7IkzQ"
+            },
+            "snippet": {
+                "publishedAt": "2020-11-27T12:34:38Z",
+                "channelId": "UCOv3shFSw6M18yBA9N7IkzQ",
+                "title": "Yes Theory Logic",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUH5WHy9-1p1ieXTUQPqg88wkNjsHLjwvLpPqMQ=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUH5WHy9-1p1ieXTUQPqg88wkNjsHLjwvLpPqMQ=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUH5WHy9-1p1ieXTUQPqg88wkNjsHLjwvLpPqMQ=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Logic",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-11-27T12:34:38Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "Rdb_fLkIliuRHFLqLojgxDEVEMo",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCQEyZy5UuAZFKmdYZ_V4XzA"
+            },
+            "snippet": {
+                "publishedAt": "2018-06-13T09:10:46Z",
+                "channelId": "UCQEyZy5UuAZFKmdYZ_V4XzA",
+                "title": "Yes Theory Ng",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUet4mjhwUlKc7mpMqFtfA-CWwh5HmdTS_XRpV_=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUet4mjhwUlKc7mpMqFtfA-CWwh5HmdTS_XRpV_=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUet4mjhwUlKc7mpMqFtfA-CWwh5HmdTS_XRpV_=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Ng",
+                "liveBroadcastContent": "none",
+                "publishTime": "2018-06-13T09:10:46Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "F8TYSYeLVysC6HtoTGsf02o6ADs",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC5mTF0ZMT9wGRo0YNmYBv4A"
+            },
+            "snippet": {
+                "publishedAt": "2020-05-15T01:06:19Z",
+                "channelId": "UC5mTF0ZMT9wGRo0YNmYBv4A",
+                "title": "Yes Theory PLUS",
+                "description": "We believe that life's greatest moments and deepest connections exist outside your comfort zone. Business Inquiries: ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJU7w94Fsw8VcDeg_MNgiDPD8DDIEF9pSm_kd7NuEw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJU7w94Fsw8VcDeg_MNgiDPD8DDIEF9pSm_kd7NuEw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJU7w94Fsw8VcDeg_MNgiDPD8DDIEF9pSm_kd7NuEw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory PLUS",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-05-15T01:06:19Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "mSRE-8JF9H1QRtiq8XjyG6dAd7w",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCgc0nXsSZktNfXr4jj0ldPw"
+            },
+            "snippet": {
+                "publishedAt": "2019-01-09T06:00:34Z",
+                "channelId": "UCgc0nXsSZktNfXr4jj0ldPw",
+                "title": "Yes theory",
+                "description": "Everything in one second.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWbAkf-SlpN0Y2CtROAnUMuxVKGEtbiM_WdgWt3mg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWbAkf-SlpN0Y2CtROAnUMuxVKGEtbiM_WdgWt3mg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWbAkf-SlpN0Y2CtROAnUMuxVKGEtbiM_WdgWt3mg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes theory",
+                "liveBroadcastContent": "upcoming",
+                "publishTime": "2019-01-09T06:00:34Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "cJxaXgZpX3AyzncUhcGYmuiw6s0",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCru6-7TTYvpeORvRFCaox9w"
+            },
+            "snippet": {
+                "publishedAt": "2020-09-10T22:04:32Z",
+                "channelId": "UCru6-7TTYvpeORvRFCaox9w",
+                "title": "Yes Theory Podcast Highlights",
+                "description": "THIS IS A FAN ACCOUNT - It has no affiliation with Yes Theory, any of its members, or the podcast. Yes Theory Official Channel ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWfvEMpP16Tlly3sfcxXHhcMMGSt2midIp39wm_=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWfvEMpP16Tlly3sfcxXHhcMMGSt2midIp39wm_=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWfvEMpP16Tlly3sfcxXHhcMMGSt2midIp39wm_=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Podcast Highlights",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-09-10T22:04:32Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "fNBlzoEnPayQ12vxpdYI3YPTcvc",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCp3oSacwOk4mBopyJjg8jbg"
+            },
+            "snippet": {
+                "publishedAt": "2022-06-07T18:13:35Z",
+                "channelId": "UCp3oSacwOk4mBopyJjg8jbg",
+                "title": "Yes Theory Shorts Fam",
+                "description": "This is the fan account Get to know our channels: Yes Theory - https://www.youtube.com/c/YesTheory Seek Discomfort ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/Hfmcad6B1l9_RUg9rwtGoA1jarWoGmDsdyRZCpA3h-RJ-VPS_E8YERZxLUufud250HOo4zmbjg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/Hfmcad6B1l9_RUg9rwtGoA1jarWoGmDsdyRZCpA3h-RJ-VPS_E8YERZxLUufud250HOo4zmbjg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/Hfmcad6B1l9_RUg9rwtGoA1jarWoGmDsdyRZCpA3h-RJ-VPS_E8YERZxLUufud250HOo4zmbjg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Shorts Fam",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-06-07T18:13:35Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "yo2F6eMPapLYo8snUpTsKaFBqAE",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCVz7aWPae0WPJqP08M1lZMg"
+            },
+            "snippet": {
+                "publishedAt": "2017-07-11T18:54:57Z",
+                "channelId": "UCVz7aWPae0WPJqP08M1lZMg",
+                "title": "Yes Theory Newsletter",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJW2Y8YpvOXOrlpXkp5V49GPYxPgWat5YVb1cPya=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJW2Y8YpvOXOrlpXkp5V49GPYxPgWat5YVb1cPya=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJW2Y8YpvOXOrlpXkp5V49GPYxPgWat5YVb1cPya=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Newsletter",
+                "liveBroadcastContent": "none",
+                "publishTime": "2017-07-11T18:54:57Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "NgmyRWS6OyqxzkBozLkiEg9pBbo",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCxldHXtWKRdPheV2ORkHG5Q"
+            },
+            "snippet": {
+                "publishedAt": "2022-02-14T07:58:51Z",
+                "channelId": "UCxldHXtWKRdPheV2ORkHG5Q",
+                "title": "Yes Theory vlogs",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/dZTYspzyxfOJa1saTrGZYqKeSM6aQvmtAQPpp67wmQPNPgijAhOR6zJhN1_uAmHnhTJiIJxpZA=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/dZTYspzyxfOJa1saTrGZYqKeSM6aQvmtAQPpp67wmQPNPgijAhOR6zJhN1_uAmHnhTJiIJxpZA=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/dZTYspzyxfOJa1saTrGZYqKeSM6aQvmtAQPpp67wmQPNPgijAhOR6zJhN1_uAmHnhTJiIJxpZA=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory vlogs",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-02-14T07:58:51Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "WL3WEbeGo8j0d57UrDltx2bfsYU",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC-6pzTm76m3RQIBTqAq97fw"
+            },
+            "snippet": {
+                "publishedAt": "2021-07-26T20:07:20Z",
+                "channelId": "UC-6pzTm76m3RQIBTqAq97fw",
+                "title": "Yes theory clips ",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/aqqwLLmdKlYYlVOhen6lIi_KLNe9e3vXgMykV78_jR9ST81SOpb4fqfLO-sGWykRArKQUKS_=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/aqqwLLmdKlYYlVOhen6lIi_KLNe9e3vXgMykV78_jR9ST81SOpb4fqfLO-sGWykRArKQUKS_=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/aqqwLLmdKlYYlVOhen6lIi_KLNe9e3vXgMykV78_jR9ST81SOpb4fqfLO-sGWykRArKQUKS_=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes theory clips ",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-07-26T20:07:20Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "vdHJP0lgCOE2yF4lSdj4C8s0px4",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCTiVnDrcUjNoY3wZyEs5lKA"
+            },
+            "snippet": {
+                "publishedAt": "2011-06-11T14:53:53Z",
+                "channelId": "UCTiVnDrcUjNoY3wZyEs5lKA",
+                "title": "Staffan Taylor",
+                "description": "Hey you! :) My name is Staffan Taylor and I call myself a professional dreamer! After thinking about it for many years I got the ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXwsl7tF7vBv90c5RY5EgQMJnFO1O5LdvJI4pv8sw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXwsl7tF7vBv90c5RY5EgQMJnFO1O5LdvJI4pv8sw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXwsl7tF7vBv90c5RY5EgQMJnFO1O5LdvJI4pv8sw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Staffan Taylor",
+                "liveBroadcastContent": "none",
+                "publishTime": "2011-06-11T14:53:53Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "1Vh8BJ_kQSERG6YN-OiCjOQFT98",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCJwGrIhKZPSPICAXZwZDpig"
+            },
+            "snippet": {
+                "publishedAt": "2019-08-12T08:33:12Z",
+                "channelId": "UCJwGrIhKZPSPICAXZwZDpig",
+                "title": "Yes Theory Uploads",
+                "description": "Premium Yes Theory Uploads.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXVDtIQ8ctjAkqdG9PWJDQ7_3AqYjUWqsqqhm6Y=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXVDtIQ8ctjAkqdG9PWJDQ7_3AqYjUWqsqqhm6Y=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXVDtIQ8ctjAkqdG9PWJDQ7_3AqYjUWqsqqhm6Y=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Uploads",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-08-12T08:33:12Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "VMrn2otcypvKpZPbNzP3_8t9Y-4",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCaI6YDZFpCig3JUugIhNDMA"
+            },
+            "snippet": {
+                "publishedAt": "2018-08-19T02:24:53Z",
+                "channelId": "UCaI6YDZFpCig3JUugIhNDMA",
+                "title": "The Yes Theory Family",
+                "description": "Hi there. This is the official announcement of an idea I've been sitting on for a while, and if you are a true member of this family, ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUzCxDJS5nZOBAeHym-Nr9syMxuIIInXIOmtPKd=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUzCxDJS5nZOBAeHym-Nr9syMxuIIInXIOmtPKd=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUzCxDJS5nZOBAeHym-Nr9syMxuIIInXIOmtPKd=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "The Yes Theory Family",
+                "liveBroadcastContent": "none",
+                "publishTime": "2018-08-19T02:24:53Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "-GpmpWKBG_0EfwdVkIOiXFmbQ9M",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCczkQ3ljD6Gfs9NXDJmoqQQ"
+            },
+            "snippet": {
+                "publishedAt": "2019-03-07T14:09:36Z",
+                "channelId": "UCczkQ3ljD6Gfs9NXDJmoqQQ",
+                "title": "Yes Theory На Русском",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVDU7fAGKVhWNwYgNCoBOZzSLKPoqijuNTFWwro=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVDU7fAGKVhWNwYgNCoBOZzSLKPoqijuNTFWwro=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVDU7fAGKVhWNwYgNCoBOZzSLKPoqijuNTFWwro=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory На Русском",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-03-07T14:09:36Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "to26vOzogGG8Lrr8VwIZUDA51Lo",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCe6YoTvLvNLjLAscMFHYvTQ"
+            },
+            "snippet": {
+                "publishedAt": "2022-01-14T07:05:03Z",
+                "channelId": "UCe6YoTvLvNLjLAscMFHYvTQ",
+                "title": "Yes Theory 日本語字幕チャンネル",
+                "description": "Yes Theory 日本語字幕チャンネルへようこそ！ このチャンネルでは、アメリカの大人気Youtuber YES THEORY の動画に日本語 ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/V21ORCKcSsmntym2S7Xu0N3ZkueInvd_fyxn0nnylxxWUql4kzNJgeGFag0RIfZ7KZOYR1mSHg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/V21ORCKcSsmntym2S7Xu0N3ZkueInvd_fyxn0nnylxxWUql4kzNJgeGFag0RIfZ7KZOYR1mSHg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/V21ORCKcSsmntym2S7Xu0N3ZkueInvd_fyxn0nnylxxWUql4kzNJgeGFag0RIfZ7KZOYR1mSHg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory 日本語字幕チャンネル",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-01-14T07:05:03Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "3R4GyaHtR7u-8lRE-r2gg9MsZCM",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCX-2bAelMKnFKH1PNlHqAoQ"
+            },
+            "snippet": {
+                "publishedAt": "2019-04-07T04:45:24Z",
+                "channelId": "UCX-2bAelMKnFKH1PNlHqAoQ",
+                "title": "Yes Theory Deleted",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVfyGROerDI3q_N9Wo5OkgoIrNeNW-C5oUMb0jW=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVfyGROerDI3q_N9Wo5OkgoIrNeNW-C5oUMb0jW=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVfyGROerDI3q_N9Wo5OkgoIrNeNW-C5oUMb0jW=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Deleted",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-04-07T04:45:24Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "qc2vlUyuaro74JvHLJPvODbkSXY",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCDOGramu2-YPLYMFmMu6aBw"
+            },
+            "snippet": {
+                "publishedAt": "2023-01-02T15:22:34Z",
+                "channelId": "UCDOGramu2-YPLYMFmMu6aBw",
+                "title": "YES THEORY (বাংলা)",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/mmE7akzJ_Ev3Fhbk72LmNW3RKw7TLZ4JI4ly-uDUB11RLeojg_cpL9VTW3FM0vR_MQRfUTZdrJc=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/mmE7akzJ_Ev3Fhbk72LmNW3RKw7TLZ4JI4ly-uDUB11RLeojg_cpL9VTW3FM0vR_MQRfUTZdrJc=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/mmE7akzJ_Ev3Fhbk72LmNW3RKw7TLZ4JI4ly-uDUB11RLeojg_cpL9VTW3FM0vR_MQRfUTZdrJc=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "YES THEORY (বাংলা)",
+                "liveBroadcastContent": "none",
+                "publishTime": "2023-01-02T15:22:34Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "IoMo_jjec8i2qeamncMvKDA3vx4",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC2AF9q-_Zc5TY7t_cKy0BNg"
+            },
+            "snippet": {
+                "publishedAt": "2022-09-09T10:55:29Z",
+                "channelId": "UC2AF9q-_Zc5TY7t_cKy0BNg",
+                "title": "Yes Theory (For You Always)",
+                "description": "I am just trying to fuel the flame and keep engine going. Don't stop if you have failed, going through tough times, sad about ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/eX4SSNERwkT1qYYa5Tuqd78ESypV5nwPvDC3PtICYL5SJn7zs-G1S99jlzehr6WtS7q2w7Ce=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/eX4SSNERwkT1qYYa5Tuqd78ESypV5nwPvDC3PtICYL5SJn7zs-G1S99jlzehr6WtS7q2w7Ce=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/eX4SSNERwkT1qYYa5Tuqd78ESypV5nwPvDC3PtICYL5SJn7zs-G1S99jlzehr6WtS7q2w7Ce=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory (For You Always)",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-09-09T10:55:29Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "03EA7diGKTZ68N6_BC0ChzuMMW8",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCmcjAwGBvNdvCm96QI8LnQA"
+            },
+            "snippet": {
+                "publishedAt": "2018-09-13T16:44:11Z",
+                "channelId": "UCmcjAwGBvNdvCm96QI8LnQA",
+                "title": "yes theory gaming",
+                "description": "hi i am mohamud plz follow my channel and like also plz use code.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWFqizef0jrp__4N9XKYgBqJUsiJ5DuRChQcQqO=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWFqizef0jrp__4N9XKYgBqJUsiJ5DuRChQcQqO=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWFqizef0jrp__4N9XKYgBqJUsiJ5DuRChQcQqO=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "yes theory gaming",
+                "liveBroadcastContent": "none",
+                "publishTime": "2018-09-13T16:44:11Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "o0VaYm0bi157IVOX0uivkrlF1Dc",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCvDOo4CyafVlSQCBmHdDdJg"
+            },
+            "snippet": {
+                "publishedAt": "2020-08-21T16:55:05Z",
+                "channelId": "UCvDOo4CyafVlSQCBmHdDdJg",
+                "title": "Yes Theory IU",
+                "description": "Seeking Discomfort at Indiana University.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWKyiLmgI5P_200g6deWY2kc01mm7lG6VzkFHkz=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWKyiLmgI5P_200g6deWY2kc01mm7lG6VzkFHkz=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWKyiLmgI5P_200g6deWY2kc01mm7lG6VzkFHkz=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory IU",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-08-21T16:55:05Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "Xx_0m-HmurSjqFFRYNzAnGP9nzk",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCJoPJVKFJfEVCiEgMZbxkxQ"
+            },
+            "snippet": {
+                "publishedAt": "2013-08-26T21:47:47Z",
+                "channelId": "UCJoPJVKFJfEVCiEgMZbxkxQ",
+                "title": "Yes Theory Fans",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWxGg4w2xp3U7-oBHmQP1q_1Lroo1Uk_o9Xv19t=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWxGg4w2xp3U7-oBHmQP1q_1Lroo1Uk_o9Xv19t=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWxGg4w2xp3U7-oBHmQP1q_1Lroo1Uk_o9Xv19t=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory Fans",
+                "liveBroadcastContent": "none",
+                "publishTime": "2013-08-26T21:47:47Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "tQGJRyokcRPvAlZoatnNmrJxU_A",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCHNOiP-8RfNBXAOhzGluoTw"
+            },
+            "snippet": {
+                "publishedAt": "2021-05-15T10:14:40Z",
+                "channelId": "UCHNOiP-8RfNBXAOhzGluoTw",
+                "title": "YES THEORY PROJECT",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/9WeFGf3jPnwiA1LcTrO-4aFvngTNMRIHMGji8O7-Nm7AQXojyI0gY0NF0GnyRs0mgyAaPkp0yAw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/9WeFGf3jPnwiA1LcTrO-4aFvngTNMRIHMGji8O7-Nm7AQXojyI0gY0NF0GnyRs0mgyAaPkp0yAw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/9WeFGf3jPnwiA1LcTrO-4aFvngTNMRIHMGji8O7-Nm7AQXojyI0gY0NF0GnyRs0mgyAaPkp0yAw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "YES THEORY PROJECT",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-05-15T10:14:40Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "ZEVPDRRGNB8Nyt46mcAVHwSMBng",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCz7t5Vqed6h3Xojwfx5ydwQ"
+            },
+            "snippet": {
+                "publishedAt": "2019-04-26T21:35:11Z",
+                "channelId": "UCz7t5Vqed6h3Xojwfx5ydwQ",
+                "title": "Yes Theory x Penn State",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJX7pYVTJM40LfjHfg_tKAKLeuAN_YzC6N8JAq54=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJX7pYVTJM40LfjHfg_tKAKLeuAN_YzC6N8JAq54=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJX7pYVTJM40LfjHfg_tKAKLeuAN_YzC6N8JAq54=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory x Penn State",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-04-26T21:35:11Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "7ND8PIhrVbQLb-s4-zVZndDL6Wc",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCpY2b3Fb9XxjzYYKIbRO0Gw"
+            },
+            "snippet": {
+                "publishedAt": "2022-01-30T08:50:22Z",
+                "channelId": "UCpY2b3Fb9XxjzYYKIbRO0Gw",
+                "title": "YES Theory bd",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/QQRq-tKmvwKGc7fZtK0F7sT3Pjp-oe1bl3DbKRr80_7CaR28z-c5zpZ1EmmTttp5pDcig2dG=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/QQRq-tKmvwKGc7fZtK0F7sT3Pjp-oe1bl3DbKRr80_7CaR28z-c5zpZ1EmmTttp5pDcig2dG=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/QQRq-tKmvwKGc7fZtK0F7sT3Pjp-oe1bl3DbKRr80_7CaR28z-c5zpZ1EmmTttp5pDcig2dG=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "YES Theory bd",
+                "liveBroadcastContent": "none",
+                "publishTime": "2022-01-30T08:50:22Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "C48yYiOW4pXfFbuDggwOkiAhep8",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCyUEsn1N5GHe5V2N3RtAnuw"
+            },
+            "snippet": {
+                "publishedAt": "2019-11-08T00:53:28Z",
+                "channelId": "UCyUEsn1N5GHe5V2N3RtAnuw",
+                "title": "Yes Theory",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWZ7awTgO__Z9X6uGxKGn5og6-T2gVcsQRvRw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWZ7awTgO__Z9X6uGxKGn5og6-T2gVcsQRvRw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWZ7awTgO__Z9X6uGxKGn5og6-T2gVcsQRvRw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2019-11-08T00:53:28Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "3kmHEI3cCQ75s_cxn0WpmmcBZfE",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCxOILyM6WpRL3FNUhgBpq4g"
+            },
+            "snippet": {
+                "publishedAt": "2010-05-13T19:42:57Z",
+                "channelId": "UCxOILyM6WpRL3FNUhgBpq4g",
+                "title": "yestheory",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/_BvZ1AAqUfDpYWz7odN-ibh_GAAbcWdOiQyzHVZIjiy6BkcBlVLxV2RPa3Suh6WE173tvoR8mg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/_BvZ1AAqUfDpYWz7odN-ibh_GAAbcWdOiQyzHVZIjiy6BkcBlVLxV2RPa3Suh6WE173tvoR8mg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/_BvZ1AAqUfDpYWz7odN-ibh_GAAbcWdOiQyzHVZIjiy6BkcBlVLxV2RPa3Suh6WE173tvoR8mg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "yestheory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2010-05-13T19:42:57Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "gm55OwkCXV35PH3h5VrXm18Zn5w",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCPArHjc2xRcBk5BNHvcd6lw"
+            },
+            "snippet": {
+                "publishedAt": "2023-01-18T03:37:26Z",
+                "channelId": "UCPArHjc2xRcBk5BNHvcd6lw",
+                "title": "yes theory bangla",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/N5_9H-rLNpKfWQYcHw0okvyi3CRxKM6P53Xu5vsScKpUQXuLmRJRtTW2BKSOBWOjv5qafLIi4K8=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/N5_9H-rLNpKfWQYcHw0okvyi3CRxKM6P53Xu5vsScKpUQXuLmRJRtTW2BKSOBWOjv5qafLIi4K8=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/N5_9H-rLNpKfWQYcHw0okvyi3CRxKM6P53Xu5vsScKpUQXuLmRJRtTW2BKSOBWOjv5qafLIi4K8=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "yes theory bangla",
+                "liveBroadcastContent": "none",
+                "publishTime": "2023-01-18T03:37:26Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "K-J916z06ufOf8zQ2TGomR9lWks",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC2ms6n5dXoJ4yxrB7VqF15Q"
+            },
+            "snippet": {
+                "publishedAt": "2013-02-06T16:30:28Z",
+                "channelId": "UC2ms6n5dXoJ4yxrB7VqF15Q",
+                "title": "Yes Theory На Русском",
+                "description": "Буду всегда рад помочь вам с переводом новых зарубежных видео.",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXWX97JHx3DhtlAWDU_vLvr1zt0UZh_RTuSIiRzjw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXWX97JHx3DhtlAWDU_vLvr1zt0UZh_RTuSIiRzjw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXWX97JHx3DhtlAWDU_vLvr1zt0UZh_RTuSIiRzjw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Yes Theory На Русском",
+                "liveBroadcastContent": "none",
+                "publishTime": "2013-02-06T16:30:28Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "h_gyAiwZqJrR4UaSukcTsvLs_5k",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCFpkjtssQpOh0VXcpq1KceQ"
+            },
+            "snippet": {
+                "publishedAt": "2017-04-22T01:12:42Z",
+                "channelId": "UCFpkjtssQpOh0VXcpq1KceQ",
+                "title": "Hennessy’s yes theory",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/q-i6trUHh3QgXzlUQ_dDHTe5zX9O3-95gKjzwbxAIi6HPx5LfCdV6_Yp8HOpcL7CoxqWOej6LIg=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/q-i6trUHh3QgXzlUQ_dDHTe5zX9O3-95gKjzwbxAIi6HPx5LfCdV6_Yp8HOpcL7CoxqWOej6LIg=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/q-i6trUHh3QgXzlUQ_dDHTe5zX9O3-95gKjzwbxAIi6HPx5LfCdV6_Yp8HOpcL7CoxqWOej6LIg=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Hennessy’s yes theory",
+                "liveBroadcastContent": "none",
+                "publishTime": "2017-04-22T01:12:42Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "oU6nqdvafP29p4E8CmGc6N3sGrg",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UC8-1md0Bg2cbsrVE_TOKvvQ"
+            },
+            "snippet": {
+                "publishedAt": "2016-05-19T01:52:29Z",
+                "channelId": "UC8-1md0Bg2cbsrVE_TOKvvQ",
+                "title": "Cynical Duchess",
+                "description": "Cynical Duchess is a fashion & lifestyle channel dedicated to embracing your misfit. I love trying fashion trends from all over the ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWgjRXJ2_SkBH56Km2K4pLChiTO1X97dVNIO-dmWQ=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWgjRXJ2_SkBH56Km2K4pLChiTO1X97dVNIO-dmWQ=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJWgjRXJ2_SkBH56Km2K4pLChiTO1X97dVNIO-dmWQ=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Cynical Duchess",
+                "liveBroadcastContent": "none",
+                "publishTime": "2016-05-19T01:52:29Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "VKy9dQVIV9buyLiT0_rpzDXwz8k",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCsoYQCXaLgrKsqis6EjYL8g"
+            },
+            "snippet": {
+                "publishedAt": "2021-04-12T11:54:44Z",
+                "channelId": "UCsoYQCXaLgrKsqis6EjYL8g",
+                "title": "Harrison @ The Oddity Forge",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/HoE-MXewHN3NOw3WWRAXsDSdU0v7xTpekEB6htE8usERFS0BZWQ-KlquxOKROY9YhqY7iWTq=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/HoE-MXewHN3NOw3WWRAXsDSdU0v7xTpekEB6htE8usERFS0BZWQ-KlquxOKROY9YhqY7iWTq=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/HoE-MXewHN3NOw3WWRAXsDSdU0v7xTpekEB6htE8usERFS0BZWQ-KlquxOKROY9YhqY7iWTq=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Harrison @ The Oddity Forge",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-04-12T11:54:44Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "S__aDrMilhs-E8-KPbK13BaTIpQ",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCemJygrPb53JW2uU9JsbrVA"
+            },
+            "snippet": {
+                "publishedAt": "2014-12-16T17:05:53Z",
+                "channelId": "UCemJygrPb53JW2uU9JsbrVA",
+                "title": "Cory S Martin",
+                "description": "For the past 7 years I've been a freelancer filmmaker focusing on travel and lifestyle content. I've worked alongside companies ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/oDt6yz1eL69xRURi2wyK-kiXR3IKrmMgLAdzcLIhe0KwNX5wljU9oR9T3J28LWx14bof7EEvNGk=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/oDt6yz1eL69xRURi2wyK-kiXR3IKrmMgLAdzcLIhe0KwNX5wljU9oR9T3J28LWx14bof7EEvNGk=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/oDt6yz1eL69xRURi2wyK-kiXR3IKrmMgLAdzcLIhe0KwNX5wljU9oR9T3J28LWx14bof7EEvNGk=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Cory S Martin",
+                "liveBroadcastContent": "none",
+                "publishTime": "2014-12-16T17:05:53Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "FsT4Pd6oxV_cFrag9_4npEjbi_0",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCgVjaXUO1ZVuL8xxCoR3Mhw"
+            },
+            "snippet": {
+                "publishedAt": "2012-12-11T12:42:40Z",
+                "channelId": "UCgVjaXUO1ZVuL8xxCoR3Mhw",
+                "title": "Aleksa Camur",
+                "description": "A channel about living life to the fullest, traveling, and friendship, and as yes theory would say \"seeking discomfort\".",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUhvkj3UhnP_2_z3ocPLt005EvAjDzXc_c027qx2g=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUhvkj3UhnP_2_z3ocPLt005EvAjDzXc_c027qx2g=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUhvkj3UhnP_2_z3ocPLt005EvAjDzXc_c027qx2g=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Aleksa Camur",
+                "liveBroadcastContent": "none",
+                "publishTime": "2012-12-11T12:42:40Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "YfrsnUJKO1O6gE1RU-dHxDS2cDQ",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCQeBNkfmc-OTMPNggmBLB9w"
+            },
+            "snippet": {
+                "publishedAt": "2017-07-05T18:08:55Z",
+                "channelId": "UCQeBNkfmc-OTMPNggmBLB9w",
+                "title": "Logical Lamont",
+                "description": "Started learning vlogs, didn't work. Started trying something new, now making skits. Going back to vlog format one day  ‍   Social ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/QSXWpAq2M08AFRxdW20vUgz2eNM2IClcgI-EnjpYW1Qiku4PfFJmqnWkqLCS8Cl60szByjlwEw=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/QSXWpAq2M08AFRxdW20vUgz2eNM2IClcgI-EnjpYW1Qiku4PfFJmqnWkqLCS8Cl60szByjlwEw=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/QSXWpAq2M08AFRxdW20vUgz2eNM2IClcgI-EnjpYW1Qiku4PfFJmqnWkqLCS8Cl60szByjlwEw=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Logical Lamont",
+                "liveBroadcastContent": "upcoming",
+                "publishTime": "2017-07-05T18:08:55Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "3wlJR5u2TpyqrdPFjF_6a9PBK1Y",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCX8f2cg3wNNTqLJiNZ22nsg"
+            },
+            "snippet": {
+                "publishedAt": "2021-01-20T05:30:32Z",
+                "channelId": "UCX8f2cg3wNNTqLJiNZ22nsg",
+                "title": "GEN Y",
+                "description": "WE are the GENERATION \"YES\" YES THEORY Inspired We take pleasure *SEEKING DISCOMFORT*",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/vt_4i8xwsEmKjFDgCZT-8OxVpAjZ3w4QESB37ErD74ysb7Dhrr_q63cYV7aGXrt9LRj2kUv0=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/vt_4i8xwsEmKjFDgCZT-8OxVpAjZ3w4QESB37ErD74ysb7Dhrr_q63cYV7aGXrt9LRj2kUv0=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/vt_4i8xwsEmKjFDgCZT-8OxVpAjZ3w4QESB37ErD74ysb7Dhrr_q63cYV7aGXrt9LRj2kUv0=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "GEN Y",
+                "liveBroadcastContent": "none",
+                "publishTime": "2021-01-20T05:30:32Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "WXfiiu-qMDuTRI7Gt-_E9tYYseo",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCcg-esxCzfSKhhJl1-5Gb1A"
+            },
+            "snippet": {
+                "publishedAt": "2020-02-12T00:35:05Z",
+                "channelId": "UCcg-esxCzfSKhhJl1-5Gb1A",
+                "title": "Ivan Ye",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUIHJ1QUTL1tisMQgJDutbMlIZZx6ua8-5OOBIq=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUIHJ1QUTL1tisMQgJDutbMlIZZx6ua8-5OOBIq=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJUIHJ1QUTL1tisMQgJDutbMlIZZx6ua8-5OOBIq=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Ivan Ye",
+                "liveBroadcastContent": "upcoming",
+                "publishTime": "2020-02-12T00:35:05Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "ECz9ZauYGj741G2cHJeoNS_s1V8",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCQAde-Kd0k41wIU9hM6r_7A"
+            },
+            "snippet": {
+                "publishedAt": "2020-01-15T23:06:06Z",
+                "channelId": "UCQAde-Kd0k41wIU9hM6r_7A",
+                "title": "STOKED",
+                "description": "Welcome to STOKED. This is an 8 part documentary series dives into the process of building community. We live in a society that ...",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXX6BXCB1SPol_t4IDLIjOyKJ0FRU7XpdWap65p=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXX6BXCB1SPol_t4IDLIjOyKJ0FRU7XpdWap65p=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJXX6BXCB1SPol_t4IDLIjOyKJ0FRU7XpdWap65p=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "STOKED",
+                "liveBroadcastContent": "none",
+                "publishTime": "2020-01-15T23:06:06Z"
+            }
+        },
+        {
+            "kind": "youtube#searchResult",
+            "etag": "XkDfKEJsyRmMgM6gBoiuoqtDckc",
+            "id": {
+                "kind": "youtube#channel",
+                "channelId": "UCjNTROEFX2TtvH4iSG9F6qA"
+            },
+            "snippet": {
+                "publishedAt": "2014-12-27T15:16:22Z",
+                "channelId": "UCjNTROEFX2TtvH4iSG9F6qA",
+                "title": "Ray Guzzone",
+                "description": "",
+                "thumbnails": {
+                    "default": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVqJLG2bdcTcnSKgmLhBSIQmPo7wkgDYdRroSLmFP4=s88-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "medium": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVqJLG2bdcTcnSKgmLhBSIQmPo7wkgDYdRroSLmFP4=s240-c-k-c0xffffffff-no-rj-mo"
+                    },
+                    "high": {
+                        "url": "https://yt3.ggpht.com/ytc/AL5GRJVqJLG2bdcTcnSKgmLhBSIQmPo7wkgDYdRroSLmFP4=s800-c-k-c0xffffffff-no-rj-mo"
+                    }
+                },
+                "channelTitle": "Ray Guzzone",
+                "liveBroadcastContent": "none",
+                "publishTime": "2014-12-27T15:16:22Z"
+            }
+        }
+    ]
+}
   end
 
   def comments
