@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import YoutubeVideo from "./YouTubeVideo";
 
 const YouTubeIndex = () => { 
@@ -24,6 +25,7 @@ const YouTubeIndex = () => {
 
   return (
     <div>
+      <Link to="/youtube/search">Search</Link>
       <h1>YouTube Index</h1>
       {video}
       <button onClick={previousVideo}>Previous</button>
