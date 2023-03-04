@@ -17,7 +17,7 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def search
-        
+    render json: {search: params[:search]}    
   end
 
   def comments
