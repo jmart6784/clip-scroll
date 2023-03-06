@@ -1463,6 +1463,10 @@ class Api::V1::YoutubeController < ApplicationController
     render json: YoutubeVideo.where(channel_id: params[:channel_id])
   end
 
+  def channels
+    
+  end
+
   def comments
     # response = HTTParty.get("https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,id,replies&videoId=#{params[:video_id]}&maxResults=100&order=relevance&textFormat=plainText&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
