@@ -1437,6 +1437,19 @@ class Api::V1::YoutubeController < ApplicationController
 }
   end
 
+  def add_shorts
+    response = HTTParty.get("https://yt.lemnoslife.com/channels?part=shorts&id=#{params[:channel_id]}")
+    
+    shorts = JSON.parse(response.body)["items"][0]["shorts"]
+
+
+    shorts.each do |short|
+        if YoutubeVideo.find_by(video_id: short["videoId"]).nil?
+        YoutubeVideo.create!(channel_id: channel[:id], video_id: short["videoId"])
+        end
+    end
+  end
+
   def comments
     # response = HTTParty.get("https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,id,replies&videoId=#{params[:video_id]}&maxResults=100&order=relevance&textFormat=plainText&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
