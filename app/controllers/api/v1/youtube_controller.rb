@@ -1439,15 +1439,18 @@ class Api::V1::YoutubeController < ApplicationController
 
   def add_shorts
     response = HTTParty.get("https://yt.lemnoslife.com/channels?part=shorts&id=#{params[:channel_id]}")
+
+    puts JSON.parse(response.body).inspect
     
     shorts = JSON.parse(response.body)["items"][0]["shorts"]
-
 
     shorts.each do |short|
         if YoutubeVideo.find_by(video_id: short["videoId"]).nil?
         YoutubeVideo.create!(channel_id: channel[:id], video_id: short["videoId"])
         end
     end
+
+    render json: YoutubeVideo.where(channel_id: params[:channel_id])
   end
 
   def comments
