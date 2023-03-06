@@ -29,9 +29,10 @@ const YouTubeChannels = () => {
           <span>{channel.title}</span>
         </a>
         <p>Description: {channel.description}</p>
-        <p>Subscribers: {stats.subscribersCount}</p>
+        <p>Subscribers: {stats.subscriberCount}</p>
         <p>Video Count: {stats.videoCount}</p>
         <p>Total Views Count: {stats.viewCount}</p>
+        <p>Joined: {channel.publishedAt}</p>
       </div>
     );
   });
