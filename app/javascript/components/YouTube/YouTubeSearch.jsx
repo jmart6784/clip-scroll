@@ -6,6 +6,15 @@ const YouTubeSearch = () => {
 
   const addShorts = (channelId) => { 
     console.log("Add shorts", channelId);
+    fetch(`/api/v1/youtube/add_shorts/${channelId}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => console.log("RESPONSE: ", response))
+      .catch(() => console.log("Error getting shorts data"));
   }
 
   const searchChannels = () => {
