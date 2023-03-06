@@ -17,7 +17,7 @@ const YouTubeSearch = () => {
         if (typeof response == "object") {
           e.target.disabled = true;
           if (response.length == 0) {
-            e.target.textContent = "Channel doesn't have shorts";
+            e.target.textContent = "No shorts found";
           } else { 
             e.target.textContent = "Added Shorts";
           }
@@ -46,6 +46,8 @@ const YouTubeSearch = () => {
       <div key={channel.channelId}>
         <img src={channel.thumbnails.default.url} alt="channel avatar" />
         <span>{channel.title}</span>
+        <p>Description: {channel.description}</p>
+        <p>Joined: {channel.publishedAt}</p>
         <button onClick={(e) => addShorts(e, channel.channelId)}>Add Shorts</button>
       </div>
     );
