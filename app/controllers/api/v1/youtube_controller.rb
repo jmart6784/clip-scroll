@@ -1464,7 +1464,8 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def channels
-    
+    channels = YoutubeChannel.all
+    render json: channels
   end
 
   def comments
