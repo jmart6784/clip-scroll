@@ -31,7 +31,7 @@ const YouTubeChannels = () => {
         <p>Description: {channel.description}</p>
         <p>Subscribers: {stats.subscriberCount}</p>
         <p>Video Count: {stats.videoCount}</p>
-        <p>Total Views Count: {stats.viewCount}</p>
+        <p>Total View Count: {stats.viewCount}</p>
         <p>Joined: {channel.publishedAt}</p>
       </div>
     );
