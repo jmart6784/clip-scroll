@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
-  const [search, setSearch] = useState("Yes Theory");
+  const [search, setSearch] = useState("");
 
   const addShorts = (e, channelId) => { 
     fetch(`/api/v1/youtube/add_shorts/${channelId}`)
@@ -37,8 +37,6 @@ const YouTubeSearch = () => {
       .then((response) => setResults(response))
       .catch(() => console.log("Error getting data"));
   }
-
-  useEffect(() => console.log(results), [results]);
 
   let resultsJsx = results.items.map(result => {
     let channel = result.snippet;
