@@ -3,9 +3,9 @@ import React, { useEffect, useState } from "react";
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
   const [search, setSearch] = useState("Yes Theory");
+  const [shortsResult, setshortsResults] = [];
 
-  const addShorts = (channelId) => { 
-    console.log("Add shorts", channelId);
+  const addShorts = (e, channelId) => { 
     fetch(`/api/v1/youtube/add_shorts/${channelId}`)
       .then((response) => {
         if (response.ok) {
@@ -13,7 +13,17 @@ const YouTubeSearch = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => console.log("RESPONSE: ", response))
+      .then((response) => {
+        if (typeof response == "object") {
+          e.target.disabled = true;
+          if (response.length == 0) {
+            e.target.textContent = "Channel doesn't have shorts";
+          } else { 
+            e.target.textContent = "Added Shorts";
+          }
+        }
+        setShortsResults(response);
+      })
       .catch(() => console.log("Error getting shorts data"));
   }
 
@@ -37,7 +47,7 @@ const YouTubeSearch = () => {
       <div key={channel.channelId}>
         <img src={channel.thumbnails.default.url} alt="channel avatar" />
         <span>{channel.title}</span>
-        <button onClick={() => addShorts(channel.channelId)}>Add Shorts</button>
+        <button onClick={(e) => addShorts(e, channel.channelId)}>Add Shorts</button>
       </div>
     );
   });
