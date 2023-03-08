@@ -4,4 +4,14 @@ class AddedChannel < ApplicationRecord
 
   validates :channel_id, presence: true
   validates :user_id, presence: true
+
+  validate :duplicate_channels
+
+  def duplicate_channels
+    existing_addition = AddedChannel.find_by(user_id: user_id, channel_id: channel_id)
+
+    unless existing_addition.nil?
+      errors.add(:channel_id, "has already been added")
+    end
+  end
 end
