@@ -32,6 +32,17 @@ const YouTubeChannels = () => {
     let channel = c.items[0].snippet;
     let stats = c.items[0].statistics;
     let channelId = c.items[0].id;
+    let btn = <button>Add Channel</button>;
+
+    // Changes button depending if user is subscribed to the channel.
+    for (let i = 0; i < addedChannels.length; i++) {
+      let channel = addedChannels[i];
+      channel["channel_id"] == channelId ?
+        btn = <button disabled={true}>Added</button>
+      :
+        btn; 
+    }
+
 
     return (
       <div key={channelId}>
@@ -44,6 +55,7 @@ const YouTubeChannels = () => {
         <p>Video Count: {stats.videoCount}</p>
         <p>Total View Count: {stats.viewCount}</p>
         <p>Joined: {channel.publishedAt}</p>
+        {btn}
       </div>
     );
   });
