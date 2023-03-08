@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_one_attached :avatar, dependent: :destroy
   validate :avatar_type
   after_create :set_default_avatar
+  has_many :added_channels
 
   def set_default_avatar
     unless self.avatar.attached?
