@@ -1478,7 +1478,7 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def added_channels
-    
+    render json: current_user.added_channels
   end
 
   def comments
