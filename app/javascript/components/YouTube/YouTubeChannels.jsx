@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 
 const YouTubeChannels = () => { 
   const [channels, setChannels] = useState([]);
+  const [addedChannels, setAddedChannels] = useState([]);
 
   useEffect(() => { 
     fetch(`/api/v1/youtube/channels`)
@@ -13,9 +14,19 @@ const YouTubeChannels = () => {
       })
       .then((response) => setChannels(response))
       .catch(() => console.log("Error getting data"));
+    
+    fetch(`/api/v1/youtube/added_channels`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setAddedChannels(response))
+      .catch(() => console.log("Error getting data"));
   }, []);
 
-  useEffect(() => console.log(channels), [channels]);
+  useEffect(() => console.log("Channels", channels), console.log("Added channels", addedChannels), [channels, addedChannels]);
 
   let channelsJsx = channels.map(c => { 
     let channel = c.items[0].snippet;
