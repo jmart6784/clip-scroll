@@ -46,7 +46,7 @@ const YouTubeSearch = () => {
         <span>{channel.title}</span>
         <p>Description: {channel.description}</p>
         <p>Joined: {channel.publishedAt}</p>
-        <button onClick={(e) => addShorts(e, channel.channelId)}>Add Shorts</button>
+        <button onClick={(e) => addShorts(e, channel.channelId)}>Add Channel</button>
       </div>
     );
   });
