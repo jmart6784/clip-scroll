@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       get '/youtube/comments/:video_id', to: 'youtube#comments'
       get '/youtube/search/:search', to: 'youtube#search'
       post '/youtube/add_shorts/:channel_id', to: 'youtube#add_shorts'
+      delete '/youtube/remove_shorts/:channel_id', to: 'youtube#remove_shorts'
       get '/youtube/channels', to: 'youtube#channels'
       get '/youtube/added_channels', to: 'youtube#added_channels'
     end
