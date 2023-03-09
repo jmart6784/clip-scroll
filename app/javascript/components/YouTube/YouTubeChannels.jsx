@@ -41,32 +41,64 @@ const YouTubeChannels = () => {
       })
       .then((response) => {
         if (typeof response == "object") {
-          e.target.disabled = true;
+          // e.target.disabled = true;
           if (response.length == 0) {
             e.target.textContent = "No shorts found";
+            e.target.disabled = true;
           } else { 
-            e.target.textContent = "Added";
+            // Toggle button visibility
+            document.getElementById(`remove-btn-${channelId}`).style.display = "block";
+            document.getElementById(`add-btn-${channelId}`).style.display = "none";
           }
         }
       })
       .catch(() => console.log("Error getting shorts data"));
   }
 
-  useEffect(() => console.log("Channels", channels), console.log("Added channels", addedChannels), [channels, addedChannels]);
+  const removeShorts = (e, channelId) => { 
+    fetch(`/api/v1/youtube/remove_shorts/${channelId}`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        if (response.message === 'Channel removed') {
+          // Toggle button visibility
+          document.getElementById(`add-btn-${channelId}`).style.display = "block";
+          document.getElementById(`remove-btn-${channelId}`).style.display = "none";
+        }
+      })
+      .catch(() => console.log("Error deleting shorts data"));
+  }
 
-  let channelsJsx = channels.map(c => { 
+  // useEffect(() => console.log("Channels", channels), console.log("Added channels", addedChannels), [channels, addedChannels]);
+
+  let channelsJsx = channels.map(c => {
     let channel = c.items[0].snippet;
     let stats = c.items[0].statistics;
     let channelId = c.items[0].id;
-    let btn = <button onClick={(e) => addShorts(e, channelId)}>Add Channel</button>;
+    let addBtn = <button onClick={(e) => addShorts(e, channelId)} id={`add-btn-${channelId}`}>Add Channel</button>;
+    let removeBtn = <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`}>Remove</button>
 
     // Changes button depending if user is subscribed to the channel.
     for (let i = 0; i < addedChannels.length; i++) {
       let channel = addedChannels[i];
-      channel["channel_id"] == channelId ?
-        btn = <button disabled={true}>Added</button>
-      :
-        btn; 
+      if (channel["channel_id"] == channelId) {
+        addBtn = <button onClick={(e) => addShorts(e, channelId)} id={`add-btn-${channelId}`} style={{ display: "none" }}>Add Channel</button>;
+        
+        removeBtn = <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`} style={{ display: "block" }}>Remove</button>
+      } else { 
+        addBtn = <button onClick={(e) => addShorts(e, channelId)} id={`add-btn-${channelId}`} style={{ display: "block" }}>Add Channel</button>;
+        
+        removeBtn = <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`} style={{ display: "none" }}>Remove</button>
+      }
     }
 
 
@@ -81,7 +113,8 @@ const YouTubeChannels = () => {
         <p>Video Count: {stats.videoCount}</p>
         <p>Total View Count: {stats.viewCount}</p>
         <p>Joined: {channel.publishedAt}</p>
-        {btn}
+        {addBtn}
+        {removeBtn}
       </div>
     );
   });

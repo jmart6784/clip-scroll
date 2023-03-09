@@ -1471,7 +1471,7 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def remove_shorts
-    AddedChannel.find_by(user_id: current_user.id, channel_id: params[:channel_id]).destroy
+    AddedChannel.find_by(user_id: current_user.id, channel_id: params[:channel_id])&.destroy
     render json: { message: 'Channel removed' }
   end
 
