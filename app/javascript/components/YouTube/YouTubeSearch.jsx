@@ -6,7 +6,12 @@ const YouTubeSearch = () => {
   const [search, setSearch] = useState("");
 
   const addShorts = (e, channelId) => { 
-    fetch(`/api/v1/youtube/add_shorts/${channelId}`)
+    fetch(`/api/v1/youtube/add_shorts/${channelId}`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      }
+    })
       .then((response) => {
         if (response.ok) {
           return response.json();
