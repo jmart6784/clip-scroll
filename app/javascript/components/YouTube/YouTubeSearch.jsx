@@ -24,7 +24,7 @@ const YouTubeSearch = () => {
           if (response.length == 0) {
             e.target.textContent = "No shorts found";
           } else { 
-            e.target.textContent = "Added Shorts";
+            e.target.textContent = "Added";
           }
         }
       })
