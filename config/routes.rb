@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       get '/youtube/add_shorts/:channel_id', to: 'youtube#add_shorts'
       get '/youtube/channels', to: 'youtube#channels'
       get '/youtube/added_channels', to: 'youtube#added_channels'
+      get '/youtube/add_channel', to: 'youtube#add_channel'
     end
   end
 end
