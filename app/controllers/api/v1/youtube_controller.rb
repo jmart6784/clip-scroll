@@ -1470,6 +1470,10 @@ class Api::V1::YoutubeController < ApplicationController
     render json: YoutubeVideo.where(channel_id: params[:channel_id])
   end
 
+  def remove_shorts
+        
+  end
+
   def channels
     # channels = []
 
