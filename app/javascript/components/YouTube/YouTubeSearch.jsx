@@ -83,18 +83,18 @@ const YouTubeSearch = () => {
 
   let resultsJsx = results.items.map(result => {
     let channel = result.snippet;
-    let addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`}>Add Channel</button>;
+    let addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`}>Add</button>;
     let removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`}>Remove</button>;
 
     // Changes button depending if user is subscribed to the channel.
     for (let i = 0; i < addedChannels.length; i++) {
       let aChannel = addedChannels[i];
       if (aChannel["channel_id"] == channel.channelId) {
-        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "none" }}>Add Channel</button>;
+        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "none" }}>Add</button>;
         
         removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`} style={{ display: "block" }}>Remove</button>
       } else { 
-        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "block" }}>Add Channel</button>;
+        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "block" }}>Add</button>;
         
         removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`} style={{ display: "none" }}>Remove</button>
       }
