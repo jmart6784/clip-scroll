@@ -41,7 +41,6 @@ const YouTubeChannels = () => {
       })
       .then((response) => {
         if (typeof response == "object") {
-          // e.target.disabled = true;
           if (response.length == 0) {
             e.target.textContent = "No shorts found";
             e.target.disabled = true;
@@ -78,14 +77,12 @@ const YouTubeChannels = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
-  // useEffect(() => console.log("Channels", channels), console.log("Added channels", addedChannels), [channels, addedChannels]);
-
   let channelsJsx = channels.map(c => {
     let channel = c.items[0].snippet;
     let stats = c.items[0].statistics;
     let channelId = c.items[0].id;
     let addBtn = <button onClick={(e) => addShorts(e, channelId)} id={`add-btn-${channelId}`}>Add Channel</button>;
-    let removeBtn = <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`}>Remove</button>
+    let removeBtn = <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`}>Remove</button>;
 
     // Changes button depending if user is subscribed to the channel.
     for (let i = 0; i < addedChannels.length; i++) {

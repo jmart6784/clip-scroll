@@ -1439,7 +1439,9 @@ class Api::V1::YoutubeController < ApplicationController
 
   def add_shorts
     response = HTTParty.get("https://yt.lemnoslife.com/channels?part=shorts&id=#{params[:channel_id]}")
-    
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
+    puts JSON.parse(response.body).inspect
+    puts "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
     shorts = JSON.parse(response.body)["items"][0]["shorts"]
 
     # Create channel if shorts exist
