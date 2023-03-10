@@ -112,8 +112,6 @@ const YouTubeSearch = () => {
     );
   });
 
-  useEffect(() => console.log("Results", results), [results]);
-
   return (
     <div>
       <h1>YouTube Search</h1>
