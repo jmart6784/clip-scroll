@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const MyChannels = () => { 
   const [channels, setChannels] = useState([]);
@@ -19,6 +20,7 @@ const MyChannels = () => {
   
   return (
     <div>
+      <Link to="/youtube/channels">More Channels</Link>
       <h1>My Channels</h1>
     </div>
   );
