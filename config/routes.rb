@@ -19,6 +19,12 @@ Rails.application.routes.draw do
       get '/youtube/channels', to: 'youtube#channels'
       get '/youtube/added_channels', to: 'youtube#added_channels'
       get '/youtube/my_channels', to: 'youtube#my_channels'
+
+      get '/playlist/index', to: 'playlist#index'
+      post '/playlist/create', to: 'playlist#create'
+      get '/playlist/show/:id', to: 'playlist#show'
+      delete '/playlist/destroy/:id', to: 'playlist#destroy'
+      put '/playlist/update/:id', to: 'playlist#update'
     end
   end
 end
