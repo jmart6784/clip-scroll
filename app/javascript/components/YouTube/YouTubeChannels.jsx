@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import ChannelTile from "./ChannelTile";
 
 const YouTubeChannels = () => { 
   const [channels, setChannels] = useState([]);
@@ -75,39 +76,15 @@ const YouTubeChannels = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
-  let channelsJsx = channels.map(c => {
-    let channel = c.items[0].snippet;
-    let stats = c.items[0].statistics;
-    let channelId = c.items[0].id;
-    let addBtn = true;
-    // Changes button depending if user is subscribed to the channel.
-    for (let i = 0; i < addedChannels.length; i++) {
-      if (addedChannels[i]["channel_id"] == channelId) {
-        addBtn = false;
-      } 
-    }
-
-    return (
-      <div key={channelId}>
-        <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
-          <img src={channel.thumbnails.default.url} alt="channel avatar" />
-          <span>{channel.title}</span>
-        </a>
-        <p>Description: {channel.description}</p>
-        <p>Subscribers count: {stats.subscriberCount}</p>
-        <p>Video Count: {stats.videoCount}</p>
-        <p>Total View Count: {stats.viewCount}</p>
-        <p>Joined: {channel.publishedAt}</p>
-
-        {
-          addBtn ? 
-            <button onClick={(e) => addShorts(e, channelId)}>Add</button>
-          : 
-            <button onClick={(e) => removeShorts(e, channelId)}>Remove</button>
-        }
-      </div>
-    );
-  });
+  let channelsJsx = channels.map(c =>
+    <ChannelTile
+      key={c.items[0].id}
+      channel={c}
+      addShorts={addShorts}
+      removeShorts={removeShorts}
+      addedChannels={addedChannels} 
+    />
+  );
 
   return (
     <div>
