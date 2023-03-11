@@ -15,8 +15,6 @@ const PlaylistIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  useEffect(() => console.log(playlists), [playlists]);
-
   let playListJsx = playlists.map(playlist => { 
 
     return (
