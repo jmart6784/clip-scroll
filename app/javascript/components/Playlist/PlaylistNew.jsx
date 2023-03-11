@@ -8,7 +8,24 @@ const PlaylistNew = () => {
   });
 
   const onSubmit = () => { 
+    event.preventDefault();
 
+    fetch("/api/v1/playlist/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(forms),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => props.history.push(`/playlist/show/${response.id}`))
+      .catch((error) => console.log(error.message));
   }
 
   const onChange = (event) => {
@@ -52,7 +69,8 @@ const PlaylistNew = () => {
             {forms["private"] ? "Playlist is private" : "Playlist is public"}
             <input name="private" type="checkbox" checked={forms["private"]} onChange={onCheck} />
           </label>
-          
+
+          <button type="submit">Create</button>
         </form>
       </div>
     </div>
