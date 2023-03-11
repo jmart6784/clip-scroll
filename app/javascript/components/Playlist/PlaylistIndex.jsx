@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -19,7 +20,7 @@ const PlaylistIndex = () => {
 
     return (
       <div key={playlist.id}>
-        <strong>{playlist.name}</strong>
+        <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
         <p>{playlist.private}</p>
       </div>
     );
