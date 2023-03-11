@@ -4,6 +4,7 @@ class CreatePlaylists < ActiveRecord::Migration[6.1]
       t.text :name, null: false
       t.text :type, null: false
       t.boolean :private, null: false
+      t.integer :user_id
 
       t.timestamps
     end
