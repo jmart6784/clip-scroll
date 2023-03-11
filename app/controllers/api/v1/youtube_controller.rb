@@ -1492,6 +1492,18 @@ class Api::V1::YoutubeController < ApplicationController
     render json: current_user.added_channels
   end
 
+  def my_channels
+    channels = []
+
+    current_user.added_channels.order("name").each do |channel|
+        response = HTTParty.get("https://www.googleapis.com/youtube/v3/channels?part=snippet,statistics&id=#{channel.channel_id}&maxResults=1&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+    
+        channels << JSON.parse(response.body)
+    end
+    
+    render json: channels
+  end
+
   def comments
     # response = HTTParty.get("https://www.googleapis.com/youtube/v3/commentThreads?part=snippet,id,replies&videoId=#{params[:video_id]}&maxResults=100&order=relevance&textFormat=plainText&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
