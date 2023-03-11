@@ -21,6 +21,11 @@ class Api::V1::PlaylistsController < ApplicationController
     end
   end
 
+  def update
+    playlist.update!(playlist_params)
+    render json: playlist
+  end
+
   def destroy
     playlist&.destroy
     render json: { message: 'playlist deleted!' }
