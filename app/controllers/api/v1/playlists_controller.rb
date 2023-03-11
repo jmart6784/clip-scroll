@@ -5,8 +5,9 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def create
-    playlist = Playlist.create!(playlist_params)
-    if playlist
+    playlist = Playlist.new(playlist_params)
+    playlist.user_id = current_user.id
+    if playlist.save
       render json: playlist
     else
       render json: playlist.errors
