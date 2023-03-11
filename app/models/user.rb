@@ -15,6 +15,7 @@ class User < ApplicationRecord
   validate :avatar_type
   after_create :set_default_avatar
   has_many :added_channels
+  has_many :playlists
 
   def set_default_avatar
     unless self.avatar.attached?
