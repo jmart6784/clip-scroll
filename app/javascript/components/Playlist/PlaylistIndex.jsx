@@ -17,9 +17,20 @@ const PlaylistIndex = () => {
 
   useEffect(() => console.log(playlists), [playlists]);
 
+  let playListJsx = playlists.map(playlist => { 
+
+    return (
+      <div key={playlist.id}>
+        <strong>{playlist.name}</strong>
+        <p>{playlist.private}</p>
+      </div>
+    );
+  });
+
   return (
     <div>
       <h1>Playlist Index</h1>
+      {playListJsx}
     </div>
   );
 }
