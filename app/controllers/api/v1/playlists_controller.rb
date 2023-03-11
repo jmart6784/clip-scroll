@@ -22,8 +22,11 @@ class Api::V1::PlaylistsController < ApplicationController
   end
 
   def update
-    playlist.update!(playlist_params)
-    render json: playlist
+    if playlist.update(playlist_params)
+      render json: playlist
+    else
+      render json: playlist.errors
+    end
   end
 
   def destroy
