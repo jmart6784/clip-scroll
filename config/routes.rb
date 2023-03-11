@@ -18,6 +18,7 @@ Rails.application.routes.draw do
       delete '/youtube/remove_shorts/:channel_id', to: 'youtube#remove_shorts'
       get '/youtube/channels', to: 'youtube#channels'
       get '/youtube/added_channels', to: 'youtube#added_channels'
+      get '/youtube/my_channels', to: 'youtube#my_channels'
     end
   end
 end
