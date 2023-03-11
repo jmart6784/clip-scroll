@@ -13,6 +13,7 @@ import YouTubeChannels from "../components/YouTube/YouTubeChannels";
 import MyChannels from "../components/YouTube/MyChannels";
 
 import PlaylistIndex from "../components/Playlist/PlaylistIndex";
+import PlaylistShow from "../components/Playlist/PlaylistShow";
 
 const Index = () => { 
   const [global, setGlobal] = useState({});
@@ -50,6 +51,7 @@ const Index = () => {
           <Route path="/youtube/my_channels" exact component={MyChannels} />
           
           <Route path="/playlist/index" exact component={PlaylistIndex} />
+          <Route path="/playlist/show/:id" exact component={PlaylistShow} />
         </Switch>
       </Router>
     </GlobalContext.Provider>
