@@ -1,4 +1,6 @@
 class Playlist < ApplicationRecord
   belongs_to :user
-  validates :name, :source, :private, :user_id, presence: true
+  validates :name, :source, :user_id, presence: true
+  validates :private, inclusion: { in: [ true, false ] }
+  validates :source, inclusion: { in: [ "youtube", "reddit", "mix" ] }
 end
