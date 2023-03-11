@@ -37,9 +37,7 @@ const YouTubeSearch = () => {
           if (response.length == 0) {
             e.target.textContent = "No shorts found";
           } else { 
-            // Toggle button visibility
-            document.getElementById(`remove-btn-${channelId}`).style.display = "block";
-            document.getElementById(`add-btn-${channelId}`).style.display = "none";
+            e.target.textContent = "Added";
           }
         }
       })
@@ -61,9 +59,8 @@ const YouTubeSearch = () => {
       })
       .then((response) => {
         if (response.message === 'Channel removed') {
-          // Toggle button visibility
-          document.getElementById(`add-btn-${channelId}`).style.display = "block";
-          document.getElementById(`remove-btn-${channelId}`).style.display = "none";
+          e.target.disabled = true;
+          e.target.textContent = "Removed";
         }
       })
       .catch(() => console.log("Error deleting shorts data"));
@@ -83,21 +80,12 @@ const YouTubeSearch = () => {
 
   let resultsJsx = results.items.map(result => {
     let channel = result.snippet;
-    let addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`}>Add</button>;
-    let removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`}>Remove</button>;
-
+    let addBtn = true;
     // Changes button depending if user is subscribed to the channel.
     for (let i = 0; i < addedChannels.length; i++) {
-      let aChannel = addedChannels[i];
-      if (aChannel["channel_id"] == channel.channelId) {
-        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "none" }}>Add</button>;
-        
-        removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`} style={{ display: "block" }}>Remove</button>
-      } else { 
-        addBtn = <button onClick={(e) => addShorts(e, channel.channelId)} id={`add-btn-${channel.channelId}`} style={{ display: "block" }}>Add</button>;
-        
-        removeBtn = <button onClick={(e) => removeShorts(e, channel.channelId)} id={`remove-btn-${channel.channelId}`} style={{ display: "none" }}>Remove</button>
-      }
+      if (addedChannels[i]["channel_id"] == channel.channelId) {
+        addBtn = false;
+      } 
     }
 
     return (
@@ -106,8 +94,12 @@ const YouTubeSearch = () => {
         <span>{channel.title}</span>
         <p>Description: {channel.description}</p>
         <p>Joined: {channel.publishedAt}</p>
-        {addBtn}
-        {removeBtn}
+        {
+          addBtn ? 
+            <button onClick={(e) => addShorts(e, channel.channelId)}>Add</button>
+          : 
+            <button onClick={(e) => removeShorts(e, channel.channelId)}>Remove</button>
+        }
       </div>
     );
   });

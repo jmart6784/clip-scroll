@@ -78,9 +78,8 @@ const YouTubeChannels = () => {
     let channel = c.items[0].snippet;
     let stats = c.items[0].statistics;
     let channelId = c.items[0].id;
-
     let addBtn = true;
-
+    // Changes button depending if user is subscribed to the channel.
     for (let i = 0; i < addedChannels.length; i++) {
       if (addedChannels[i]["channel_id"] == channelId) {
         addBtn = false;
@@ -101,9 +100,9 @@ const YouTubeChannels = () => {
 
         {
           addBtn ? 
-            <button onClick={(e) => addShorts(e, channelId)} id={`add-btn-${channelId}`}>Add</button>
+            <button onClick={(e) => addShorts(e, channelId)}>Add</button>
           : 
-            <button onClick={(e) => removeShorts(e, channelId)} id={`remove-btn-${channelId}`}>Remove</button>
+            <button onClick={(e) => removeShorts(e, channelId)}>Remove</button>
         }
       </div>
     );
