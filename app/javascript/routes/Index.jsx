@@ -12,6 +12,8 @@ import YouTubeSearch from "../components/YouTube/YouTubeSearch";
 import YouTubeChannels from "../components/YouTube/YouTubeChannels";
 import MyChannels from "../components/YouTube/MyChannels";
 
+import PlaylistIndex from "../components/Playlist/PlaylistIndex";
+
 const Index = () => { 
   const [global, setGlobal] = useState({});
 
@@ -46,6 +48,8 @@ const Index = () => {
           <Route path="/youtube/search" exact component={YouTubeSearch} />
           <Route path="/youtube/channels" exact component={YouTubeChannels} />
           <Route path="/youtube/my_channels" exact component={MyChannels} />
+          
+          <Route path="/playlist/index" exact component={PlaylistIndex} />
         </Switch>
       </Router>
     </GlobalContext.Provider>
