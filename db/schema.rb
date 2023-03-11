@@ -53,7 +53,7 @@ ActiveRecord::Schema.define(version: 2023_03_11_054134) do
 
   create_table "playlists", force: :cascade do |t|
     t.text "name", null: false
-    t.text "type", null: false
+    t.text "source", null: false
     t.boolean "private", null: false
     t.integer "user_id"
     t.datetime "created_at", precision: 6, null: false
