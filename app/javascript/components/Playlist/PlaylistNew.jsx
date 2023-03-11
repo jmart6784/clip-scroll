@@ -40,6 +40,7 @@ const PlaylistNew = () => {
           </label>
 
           <label>
+            Type:
             <select onChange={onChange} name="source">
               {["mix", "youtube","reddit"].map((option, index) =>
                 <option key={index} >{option}</option>
