@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
 
-const MyChannels = () => { 
+const MyChannels = () => {
   const [channels, setChannels] = useState([]);
   const [addedChannels, setAddedChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-  useEffect(() => { 
+  useEffect(() => {
     fetch(`/api/v1/youtube/my_channels`)
       .then((response) => {
         if (response.ok) {
@@ -14,7 +15,7 @@ const MyChannels = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setChannels(response))
+      .then((response) => setChannels(response), setLoading(false))
       .catch(() => console.log("Error getting data"));
     
     fetch(`/api/v1/youtube/added_channels`)
@@ -46,7 +47,7 @@ const MyChannels = () => {
           e.target.disabled = true;
           if (response.length == 0) {
             e.target.textContent = "No shorts found";
-          } else { 
+          } else {
             e.target.textContent = "Added";
           }
         }
@@ -54,7 +55,7 @@ const MyChannels = () => {
       .catch(() => console.log("Error getting shorts data"));
   }
 
-  const removeShorts = (e, channelId) => { 
+  const removeShorts = (e, channelId) => {
     fetch(`/api/v1/youtube/remove_shorts/${channelId}`, {
       method: "DELETE",
       headers: {
@@ -82,17 +83,23 @@ const MyChannels = () => {
       channel={c}
       addShorts={addShorts}
       removeShorts={removeShorts}
-      addedChannels={addedChannels} 
+      addedChannels={addedChannels}
     />
   );
-  
-  return (
-    <div>
+
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && channels.length > 0) {
+    mainJsx = <div>
       <Link to="/youtube/channels">More Channels</Link>
       <h1>My Channels</h1>
       {channelsJsx}
     </div>
-  );
+  } else if (loading === false && channels.length === 0) { 
+    mainJsx = <div>No Channels added find more <Link to="/youtube/channels">here!</Link></div>;
+  }
+  
+  return mainJsx;
 }
 
 export default MyChannels;
