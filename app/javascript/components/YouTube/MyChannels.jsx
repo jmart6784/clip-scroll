@@ -85,8 +85,6 @@ const MyChannels = () => {
       addedChannels={addedChannels} 
     />
   );
-
-  useEffect(() => console.log(channels), [channels]);
   
   return (
     <div>
