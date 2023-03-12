@@ -1,6 +1,15 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 const Form = (props) => {
+  const [options, setOptions] = useState(["mix", "youtube", "reddit"]);
+
+  // Set the default option as the one that is being edited
+  useEffect(() => { 
+    let tempOptions = options;
+    tempOptions.unshift(props.forms["source"]);
+    setOptions([...new Set(tempOptions)]);
+  }, [props]);
+
   return (
     <div>
       <form onSubmit={props.onSubmit}>
@@ -9,6 +18,7 @@ const Form = (props) => {
           <input
             type="text"
             name="name"
+            value={props.forms["name"]}
             required
             onChange={props.onChange}
           />
@@ -17,7 +27,7 @@ const Form = (props) => {
         <label>
           Type:
           <select onChange={props.onChange} name="source">
-            {["mix", "youtube","reddit"].map((option, index) =>
+            {options.map((option, index) =>
               <option key={index} >{option}</option>
             )}
           </select>
@@ -28,7 +38,7 @@ const Form = (props) => {
           <input name="private" type="checkbox" checked={props.forms["private"]} onChange={props.onCheck} />
         </label>
 
-        <button type="submit">Create</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
