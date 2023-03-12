@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PlaylistShow = (props) => { 
   const [playlist, setPlaylist] = useState({
@@ -29,6 +30,7 @@ const PlaylistShow = (props) => {
       <p>name: {playlist.name}</p>
       <p>Private: {playlist.private.toString()}</p>
       <p>Source: {playlist.source}</p>
+      <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
     </div>
   );
 }

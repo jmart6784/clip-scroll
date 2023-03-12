@@ -21,7 +21,7 @@ const PlaylistIndex = () => {
     return (
       <div key={playlist.id}>
         <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
-        <p>{playlist.private}</p>
+        <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
       </div>
     );
   });
