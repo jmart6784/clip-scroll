@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Form from "./Form";
 
 const PlaylistNew = (props) => { 
   const [forms, setForms] = useState({
@@ -38,41 +39,10 @@ const PlaylistNew = (props) => {
     setForms({...forms, [name]: checked});
   }
 
-  // useEffect(() => console.log(forms), [forms]);
-
   return (
     <div>
       <h1>Playlist New</h1>
-
-      <div>
-        <form onSubmit={onSubmit}>
-          <label>
-            <span>Playlist name: </span>
-            <input
-              type="text"
-              name="name"
-              required
-              onChange={onChange}
-            />
-          </label>
-
-          <label>
-            Type:
-            <select onChange={onChange} name="source">
-              {["mix", "youtube","reddit"].map((option, index) =>
-                <option key={index} >{option}</option>
-              )}
-            </select>
-          </label>
-          
-          <label>
-            {forms["private"] ? "Playlist is private" : "Playlist is public"}
-            <input name="private" type="checkbox" checked={forms["private"]} onChange={onCheck} />
-          </label>
-
-          <button type="submit">Create</button>
-        </form>
-      </div>
+      <Form forms={forms} onChange={onChange} onCheck={onCheck} onSubmit={onSubmit} />
     </div>
   );
 }
