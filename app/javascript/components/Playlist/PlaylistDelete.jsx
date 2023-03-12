@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 
 const PlaylistDelete = (props) => {
+  const [prompt, setPrompt] = useState(false);
+
   const deletePlaylist = () => { 
     fetch(`/api/v1/playlist/destroy/${props.id}`, {
       method: "DELETE",
@@ -25,9 +27,21 @@ const PlaylistDelete = (props) => {
       .catch((error) => console.log(error.message));
   }
 
+  let delJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
+  
+  if (prompt) {
+    delJsx = <div>
+      <p>Are you sure you would like to delete this playlist?</p>
+      <button onClick={deletePlaylist} type="button">Delete</button>
+      <button onClick={() => setPrompt(false)} type="button">Cancel</button>
+    </div>
+  } else { 
+    delJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>
+  }
+
   return (
     <div>
-      <button onClick={deletePlaylist} type="button">Delete</button>
+      {delJsx}
     </div>
   );
 };
