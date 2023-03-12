@@ -14,6 +14,8 @@ const PlaylistShow = (props) => {
     user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: ""} }
   });
 
+  const [videos, setVideos] = useState([]);
+
   useEffect(() => { 
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
       .then((response) => {
@@ -23,6 +25,16 @@ const PlaylistShow = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setPlaylist(response))
+      .catch(() => console.log("Error getting data"));
+    
+    fetch(`/api/v1/playlist_videos/videos/${props.match.params.id}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setVideos(response))
       .catch(() => console.log("Error getting data"));
   }, []);
 
