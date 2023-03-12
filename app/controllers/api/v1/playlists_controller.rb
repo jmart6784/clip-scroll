@@ -1,4 +1,6 @@
 class Api::V1::PlaylistsController < ApplicationController
+  before_action :set_playlist, only: [:update, :destroy]
+
   def index
     playlist = Playlist.all.order(created_at: :desc)
     render json: playlist
@@ -43,5 +45,11 @@ class Api::V1::PlaylistsController < ApplicationController
 
   def playlist
     @playlist ||= Playlist.find(params[:id])
+  end
+
+  def set_playlist
+    unless playlist.user === current_user
+      render json: {}, status: 401
+    end
   end
 end
