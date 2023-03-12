@@ -16,6 +16,7 @@ class User < ApplicationRecord
   after_create :set_default_avatar
   has_many :added_channels, dependent: :destroy
   has_many :playlists, dependent: :destroy
+  has_many :playlist_videos, dependent: :destroy
 
   def set_default_avatar
     unless self.avatar.attached?
