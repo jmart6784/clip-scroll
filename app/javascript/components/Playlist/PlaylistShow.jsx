@@ -41,9 +41,9 @@ const PlaylistShow = (props) => {
   }, []);
 
   let videosJsx = videos.map(v => { 
-    let video = v["items"][0]["snippet"];
-    let videoId = v["items"][0]["id"];
-    let stats = v["items"][0]["statistics"];
+    let video = v["video"]["items"][0]["snippet"];
+    let videoId = v["video"]["items"][0]["id"];
+    let stats = v["video"]["items"][0]["statistics"];
 
     return (
       <div key={videoId}>
@@ -60,7 +60,7 @@ const PlaylistShow = (props) => {
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  let video = videos[index] ? <YoutubeVideo id={videos[index]["items"][0]["id"]} /> : "Loading..."
+  let video = videos[index] ? <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} /> : "Loading..."
 
   return (
     <div>
