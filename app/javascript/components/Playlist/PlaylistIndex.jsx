@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import PlaylistDelete from "./PlaylistDelete";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -22,6 +23,7 @@ const PlaylistIndex = () => {
       <div key={playlist.id}>
         <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
         <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
+        <PlaylistDelete id={playlist.id} />
       </div>
     );
   });
