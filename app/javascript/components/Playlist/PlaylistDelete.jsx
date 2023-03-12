@@ -27,7 +27,7 @@ const PlaylistDelete = (props) => {
       .catch((error) => console.log(error.message));
   }
 
-  let delJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
+  let delJsx = <button type="button" onClick={() => setPrompt(true)}>Delete</button>;
   
   if (prompt) {
     delJsx = <div>
@@ -36,7 +36,7 @@ const PlaylistDelete = (props) => {
       <button onClick={() => setPrompt(false)} type="button">Cancel</button>
     </div>
   } else { 
-    delJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>
+    delJsx = <button type="button" onClick={() => setPrompt(true)}>Delete</button>
   }
 
   return (
