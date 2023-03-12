@@ -15,7 +15,13 @@ const PlaylistDelete = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => props.history.push(`/playlist/index`))
+      .then((response) => {
+        if (props.location == "index") {
+          document.getElementById(`playlist-${props.id}`).style.display = "none";
+        } else { 
+          props.history.push(`/playlist/index`)
+        }
+      })
       .catch((error) => console.log(error.message));
   }
 

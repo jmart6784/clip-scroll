@@ -20,10 +20,10 @@ const PlaylistIndex = () => {
   let playListJsx = playlists.map(playlist => { 
 
     return (
-      <div key={playlist.id}>
+      <div id={`playlist-${playlist.id}`} key={playlist.id}>
         <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
         <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
-        <PlaylistDelete id={playlist.id} />
+        <PlaylistDelete id={playlist.id} location="index" />
       </div>
     );
   });
