@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
+import YoutubeVideo from "../YouTube/YouTubeVideo";
 
 const PlaylistShow = (props) => { 
   const [playlist, setPlaylist] = useState({
@@ -13,6 +14,7 @@ const PlaylistShow = (props) => {
     updated_at: '',
     user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: ""} }
   });
+  const [index, setIndex] = useState(0);
 
   const [videos, setVideos] = useState([]);
 
@@ -55,6 +57,11 @@ const PlaylistShow = (props) => {
 
   useEffect(() => console.log(videos), [videos]);
 
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
+  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+
+  let video = videos[index] ? <YoutubeVideo id={videos[index]["items"][0]["id"]} /> : "Loading..."
+
   return (
     <div>
       <h1>Playlist Show</h1>
@@ -68,6 +75,9 @@ const PlaylistShow = (props) => {
         <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
         <span>{playlist.user.username}</span>
       </Link>
+      <button onClick={previousVideo}>Previous</button>
+      <button onClick={nextVideo}>Next</button>
+      {video}
       {videosJsx}
     </div>
   );
