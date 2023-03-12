@@ -55,8 +55,8 @@ ActiveRecord::Schema.define(version: 2023_03_12_062723) do
     t.text "source", null: false
     t.integer "user_id", null: false
     t.integer "playlist_id", null: false
-    t.integer "video_id", null: false
-    t.integer "parent_source_id", null: false
+    t.text "video_id", null: false
+    t.text "parent_source_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
