@@ -35,8 +35,25 @@ const PlaylistShow = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setVideos(response))
-      .catch(() => console.log("Error getting data"));
+      .catch(() => console.log("Error getting playlist video data"));
   }, []);
+
+  let videosJsx = videos.map(v => { 
+    let video = v["items"][0]["snippet"];
+    let videoId = v["items"][0]["id"];
+    let stats = v["items"][0]["statistics"];
+
+    return (
+      <div key={videoId}>
+        <img src={video.thumbnails.default.url} alt="video thumbnail" />
+        <p>{video.title}</p>
+        <p>{video.channelTitle}</p>
+        <p>{stats.viewCount}</p>
+      </div>
+    );
+  });
+
+  useEffect(() => console.log(videos), [videos]);
 
   return (
     <div>
@@ -51,6 +68,7 @@ const PlaylistShow = (props) => {
         <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
         <span>{playlist.user.username}</span>
       </Link>
+      {videosJsx}
     </div>
   );
 }
