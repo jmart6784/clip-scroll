@@ -18,15 +18,21 @@ const PlaylistIndex = () => {
   }, []);
 
   let playListJsx = playlists.map(playlist => { 
-
+    let user = playlist.user;
     return (
       <div id={`playlist-${playlist.id}`} key={playlist.id}>
         <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
         <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
         <PlaylistDelete id={playlist.id} location="index" />
+        <Link to={`/users/show/${user.id}`}>
+          <img src={user.avatar.url} height="50" width="50" alt="user avatar" />
+          <span>{user.username}</span>
+        </Link>
       </div>
     );
   });
+
+  useEffect(() => console.log(playlists), [playlists]);
 
   return (
     <div>
