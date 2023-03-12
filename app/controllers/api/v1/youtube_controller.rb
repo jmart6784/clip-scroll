@@ -6729,4 +6729,8 @@ class Api::V1::YoutubeController < ApplicationController
   end
 end
 
+private
 
+def playlist_params
+  params.permit(:id, :video_id, :search, :channel_id)
+end
