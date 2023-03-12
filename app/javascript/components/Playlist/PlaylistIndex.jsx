@@ -32,8 +32,6 @@ const PlaylistIndex = () => {
     );
   });
 
-  useEffect(() => console.log(playlists), [playlists]);
-
   return (
     <div>
       <h1>Playlist Index</h1>

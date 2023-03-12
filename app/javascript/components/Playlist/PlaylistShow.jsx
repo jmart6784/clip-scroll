@@ -10,7 +10,8 @@ const PlaylistShow = (props) => {
     private: false,
     user_id: 0,
     created_at: '',
-    updated_at: ''
+    updated_at: '',
+    user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: ""} }
   });
 
   useEffect(() => { 
@@ -33,6 +34,11 @@ const PlaylistShow = (props) => {
       <p>Source: {playlist.source}</p>
       <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
       <PlaylistDelete id={playlist.id} />
+      <p>{playlist.user.username}</p>
+      <Link to={`/users/show/${playlist.user.id}`}>
+        <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
+        <span>{playlist.user.username}</span>
+      </Link>
     </div>
   );
 }
