@@ -1,7 +1,9 @@
 import React, { useState } from "react";
+import { useHistory } from 'react-router-dom';
 
 const PlaylistDelete = (props) => {
   const [prompt, setPrompt] = useState(false);
+  let history = useHistory();
 
   const deletePlaylist = () => { 
     fetch(`/api/v1/playlist/destroy/${props.id}`, {
@@ -21,7 +23,7 @@ const PlaylistDelete = (props) => {
         if (props.location == "index") {
           document.getElementById(`playlist-${props.id}`).style.display = "none";
         } else { 
-          props.history.push(`/playlist/index`)
+          history.push(`/playlist/index`)
         }
       })
       .catch((error) => console.log(error.message));
