@@ -21,6 +21,3 @@ class PlaylistVideo < ApplicationRecord
     end
   end
 end
-# p = PlaylistVideo.new(source: "youtube", user_id: 12, playlist_id: 10, video_id: "VXl1s5gqFhM", parent_source_id: "UCdC0An4ZPNr_YiFiYoVbwaw")
-
-# p = PlaylistVideo.create(source: "youtube", user_id: 12, playlist_id: 10, video_id: "VXl1s5gqFhM", parent_source_id: "UCdC0An4ZPNr_YiFiYoVbwaw")
