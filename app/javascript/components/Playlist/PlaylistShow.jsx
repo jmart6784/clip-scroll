@@ -40,13 +40,22 @@ const PlaylistShow = (props) => {
       .catch(() => console.log("Error getting playlist video data"));
   }, []);
 
+  const selectVideo = (videoId) => { 
+    let index = videos.findIndex(x => x.video_id === videoId);
+    index != -1 ? setIndex(index) : ""
+  }
+
+  let i = -1;
+
   let videosJsx = videos.map(v => { 
     let video = v["video"]["items"][0]["snippet"];
     let videoId = v["video"]["items"][0]["id"];
     let stats = v["video"]["items"][0]["statistics"];
+    i += 1;
+    let selectedStyle = index == i ? { border: "1px solid black" } : {};
 
     return (
-      <div key={videoId}>
+      <div key={videoId} onClick={() => selectVideo(videoId)} style={{ ...selectedStyle, cursor: "pointer" }}>
         <img src={video.thumbnails.default.url} alt="video thumbnail" />
         <p>{video.title}</p>
         <p>{video.channelTitle}</p>
@@ -54,8 +63,6 @@ const PlaylistShow = (props) => {
       </div>
     );
   });
-
-  useEffect(() => console.log(videos), [videos]);
 
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
