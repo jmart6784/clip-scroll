@@ -36,6 +36,10 @@ class Api::V1::PlaylistsController < ApplicationController
     playlist&.destroy
     render json: { message: 'playlist deleted!' }
   end
+  
+  def mine
+    render json: current_user.playlists
+  end
 
   private
 
