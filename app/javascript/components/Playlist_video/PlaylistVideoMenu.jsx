@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-const PlaylistVideoMenu = () => { 
+const PlaylistVideoMenu = (props) => { 
   const [playlists, setPlaylists] = useState([]);
   const [prompt, setPrompt] = useState(false);
 
   useEffect(() => { 
-    fetch("/api/v1/playlist/mine")
+    fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -14,20 +14,23 @@ const PlaylistVideoMenu = () => {
       })
       .then((response) => setPlaylists(response))
       .catch(() => console.log("Error getting playlist data"));
-  }, []);
+  }, [props]);
 
   useEffect(() => console.log(playlists), [playlists]);
 
-  let playlistJsx = playlists.map(pl => { 
+  const onCheck = (event) => { 
+    const { name, checked } = event.target;
+    setForms({...forms, [name]: checked});
+  }
 
-    return (
-      <div key={pl.id}>
-        <p>{pl.name}</p>
-        <p>Private {pl.private.toString()}</p>
-        <i>source: {pl.source}</i>
-      </div>
-    );
-  });
+  let playlistJsx = playlists.map(pl =>
+    <div key={pl.id}>
+      <input name={pl.id} type="checkbox" checked={pl.added} onChange={onCheck} />
+      <p>{pl.name}</p>
+      <p>Private {pl.private.toString()}</p>
+      <i>source: {pl.source}</i>
+    </div>
+  );
 
   let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
 

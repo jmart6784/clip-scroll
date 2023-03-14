@@ -38,7 +38,25 @@ class Api::V1::PlaylistsController < ApplicationController
   end
   
   def mine
-    render json: current_user.playlists
+    playlists = current_user.playlists
+    if params[:video_id]
+      playlist_ary = []
+
+      playlists.each do |pl|
+        pl = pl.as_json
+        # Detect if video has already been added
+        pl["added"] = !(PlaylistVideo.find_by(
+          video_id: params[:video_id],
+          source: pl["source"],
+          user_id: current_user.id,
+          playlist_id: pl["id"]
+        ).nil?)
+        playlist_ary << pl
+      end
+      render json: playlist_ary
+    else
+      render json: playlists
+    end
   end
 
   private
