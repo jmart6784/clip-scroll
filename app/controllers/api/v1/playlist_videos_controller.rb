@@ -16,12 +16,21 @@ class Api::V1::PlaylistVideosController < ApplicationController
   end
 
   def create
-    
+    duplicate = PlaylistVideo.find_by(playlist_video_params, user_id: current_user.id)
+    if duplicate.nil?
+      playlist_video = PlaylistVideo.new(playlist_video_params)
+      playlist_video.user_id = current_user.id
+      if playlist_video.save
+        render json: playlist_video
+      else
+        render json: playlist_video.errors
+      end
+    end
   end
 
   private
 
-  def playlist_params
-    params.require(:playlist_video).permit(:video_id, :playlist_id, :source)
+  def playlist_video_params
+    params.require(:playlist_video).permit(:video_id, :playlist_id, :source, :parent_source_id)
   end
 end

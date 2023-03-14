@@ -5,7 +5,7 @@ const PlaylistVideoMenu = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   useEffect(() => { 
-    fetch(`/api/v1/playlist/mine?video_id=XYAe15w39LQ`)
+    fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -16,17 +16,46 @@ const PlaylistVideoMenu = (props) => {
       .catch(() => console.log("Error getting playlist data"));
   }, [props]);
 
-  // useEffect(() => console.log(playlists), [playlists]);
+  const addToPlaylist = (index, playlistId) => { 
+    let pvParams = {
+      "source": props.source,
+      "video_id": props.videoId,
+      "playlist_id": playlistId,
+      "parent_source_id": props.parentSourceId
+    }
 
-  const onCheck = (videoId, playlistId, parentSourceId) => { 
-    let pls = playlists
-    let indexOfMatch = pls.findIndex(pl => pl.id === playlistId);
+    fetch("/api/v1/playlist_videos/create", {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pvParams),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        // If records creates successfully change "added" which changes checkbox
+        let pls = [...playlists];
+        pls[index]["added"] = !pls[index]["added"];
+        setPlaylists([...playlists ]);
+      })
+      .catch((error) => console.log(error.message));
+  }
+
+  const onCheck = (playlistId) => { 
+    let indexOfMatch = playlists.findIndex(pl => pl.id === playlistId);
 
     // If there is a match by playlist ID toggle checkbox and added value.
     if (indexOfMatch != -1) {
-      
-      // pls[indexOfMatch]["added"] = !pls[indexOfMatch]["added"];
-      setPlaylists([...pls ]);
+      playlists[indexOfMatch]["added"] ?
+        console.log("already added")
+      :
+        addToPlaylist(indexOfMatch, playlistId);
     }
   }
 
@@ -35,7 +64,7 @@ const PlaylistVideoMenu = (props) => {
       <input
         type="checkbox"
         checked={pl.added}
-        onClick={() => onCheck(props.videoId, pl.id, props.parentSourceId)} 
+        onClick={() => onCheck(pl.id)} 
       />
       <p>{pl.name}</p>
       <p>Private {pl.private.toString()}</p>
