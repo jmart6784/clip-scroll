@@ -28,6 +28,7 @@ Rails.application.routes.draw do
       get '/playlist/mine', to: 'playlists#mine'
 
       get '/playlist_videos/videos/:playlist_id', to: 'playlist_videos#videos'
+      post '/playlist_videos/create', to: 'playlist_videos#create'
     end
   end
 end
