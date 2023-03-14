@@ -18,24 +18,25 @@ const PlaylistVideoMenu = (props) => {
 
   // useEffect(() => console.log(playlists), [playlists]);
 
-  const onCheck = (videoId, playlistId) => { 
+  const onCheck = (videoId, playlistId, parentSourceId) => { 
     let pls = playlists
     let indexOfMatch = pls.findIndex(pl => pl.id === playlistId);
 
     // If there is a match by playlist ID toggle checkbox and added value.
     if (indexOfMatch != -1) {
-      pls[indexOfMatch]["added"] = !pls[indexOfMatch]["added"];
-    } else { 
-      console.log("Playlist not found");
+      
+      // pls[indexOfMatch]["added"] = !pls[indexOfMatch]["added"];
+      setPlaylists([...pls ]);
     }
-
-    setPlaylists([...pls ]);
-    // console.log(videoId, playlistId);
   }
 
   let playlistJsx = playlists.map(pl =>
     <div key={pl.id}>
-      <input type="checkbox" checked={pl.added} onClick={() => onCheck(props.videoId, pl.id)} />
+      <input
+        type="checkbox"
+        checked={pl.added}
+        onClick={() => onCheck(props.videoId, pl.id, props.parentSourceId)} 
+      />
       <p>{pl.name}</p>
       <p>Private {pl.private.toString()}</p>
       <i>source: {pl.source}</i>

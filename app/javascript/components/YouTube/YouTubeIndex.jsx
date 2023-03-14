@@ -28,7 +28,10 @@ const YouTubeIndex = () => {
     <div>
       <Link to="/youtube/search">Search</Link>
       <Link to="/youtube/channels">Channels</Link>
-      <PlaylistVideoMenu videoId={videos[index] ? videos[index].video_id : ""} />
+      <PlaylistVideoMenu
+        videoId={videos[index] ? videos[index].video_id : ""}
+        parentSourceId={videos[index] ? videos[index].channel_id : ""}
+      />
       <h1>YouTube Index</h1>
       <button onClick={previousVideo}>Previous</button>
       <button onClick={nextVideo}>Next</button>
