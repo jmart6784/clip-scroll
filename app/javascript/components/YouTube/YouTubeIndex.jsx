@@ -30,9 +30,9 @@ const YouTubeIndex = () => {
       <Link to="/youtube/channels">Channels</Link>
       <PlaylistVideoMenu />
       <h1>YouTube Index</h1>
-      {video}
       <button onClick={previousVideo}>Previous</button>
       <button onClick={nextVideo}>Next</button>
+      {video}
     </div>
   );
 }
