@@ -14,4 +14,8 @@ class Api::V1::PlaylistVideosController < ApplicationController
     end
     render json: videos
   end
+
+  def create
+    
+  end
 end
