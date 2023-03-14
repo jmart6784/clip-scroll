@@ -18,12 +18,24 @@ const PlaylistVideoMenu = () => {
 
   useEffect(() => console.log(playlists), [playlists]);
 
+  let playlistJsx = playlists.map(pl => { 
+
+    return (
+      <div key={pl.id}>
+        <p>{pl.name}</p>
+        <p>Private {pl.private.toString()}</p>
+        <i>source: {pl.source}</i>
+      </div>
+    );
+  });
+
   let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
 
   if (prompt) {
     menuJsx = (
       <div>
         <button type="button" onClick={() => setPrompt(false)}>Close</button>
+        {playlistJsx}
       </div>
     );
   }
