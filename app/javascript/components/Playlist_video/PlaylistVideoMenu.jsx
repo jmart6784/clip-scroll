@@ -3,7 +3,7 @@ import React from "react";
 const PlaylistVideoMenu = () => { 
   return (
     <div>
-      <h1>PlalistMenu</h1>
+      <h1>PlaylistMenu</h1>
     </div>
   );
 }

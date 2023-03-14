@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import YoutubeVideo from "./YouTubeVideo";
+import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const YouTubeIndex = () => { 
   const [videos, setVideos] = useState([]);
@@ -27,6 +28,7 @@ const YouTubeIndex = () => {
     <div>
       <Link to="/youtube/search">Search</Link>
       <Link to="/youtube/channels">Channels</Link>
+      <PlaylistVideoMenu />
       <h1>YouTube Index</h1>
       {video}
       <button onClick={previousVideo}>Previous</button>
