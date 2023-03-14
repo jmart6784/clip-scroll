@@ -25,6 +25,7 @@ Rails.application.routes.draw do
       get '/playlist/show/:id', to: 'playlists#show'
       delete '/playlist/destroy/:id', to: 'playlists#destroy'
       put '/playlist/update/:id', to: 'playlists#update'
+      get '/playlist/mine', to: 'playlists#mine'
 
       get '/playlist_videos/videos/:playlist_id', to: 'playlist_videos#videos'
     end
