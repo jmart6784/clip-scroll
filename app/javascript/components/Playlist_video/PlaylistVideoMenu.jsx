@@ -5,8 +5,7 @@ const PlaylistVideoMenu = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   useEffect(() => { 
-    //fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
-    fetch(`/api/v1/playlist/mine?video_id=XYAe15w39LQ`)
+    fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -48,13 +47,44 @@ const PlaylistVideoMenu = (props) => {
       .catch((error) => console.log(error.message));
   }
 
+  const removeFromPlaylist = (index, playlistId) => { 
+    let pvParams = {
+      "source": props.source,
+      "video_id": props.videoId,
+      "playlist_id": playlistId,
+      "parent_source_id": props.parentSourceId
+    }
+
+    fetch(`/api/v1/playlist_videos/destroy_from_playlist`, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(pvParams),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        // If records creates successfully change "added" which changes checkbox
+        let pls = [...playlists];
+        pls[index]["added"] = !pls[index]["added"];
+        setPlaylists([...playlists ]);
+      })
+      .catch((error) => console.log(error.message));
+  }
+
   const onCheck = (playlistId) => { 
     let indexOfMatch = playlists.findIndex(pl => pl.id === playlistId);
 
     // If there is a match, determine function to run
     if (indexOfMatch != -1) {
       playlists[indexOfMatch]["added"] ?
-        console.log("already added")
+        removeFromPlaylist(indexOfMatch, playlistId)
       :
         addToPlaylist(indexOfMatch, playlistId);
     }
