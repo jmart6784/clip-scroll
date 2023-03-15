@@ -27,7 +27,7 @@ class Api::V1::PlaylistVideosController < ApplicationController
   end
 
   def destroy_from_playlist
-    playlist_video = PlaylistVideo.new(playlist_video_params)
+    playlist_video = PlaylistVideo.find_by(playlist_video_params)
     playlist_video&.destroy
     render json: { message: 'playlist deleted!' }
   end
