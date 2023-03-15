@@ -1,4 +1,5 @@
 class Api::V1::PlaylistVideosController < ApplicationController
+  before_action :authenticate_user!
   include HTTParty
 
   def videos

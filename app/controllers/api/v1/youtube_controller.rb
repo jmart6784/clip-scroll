@@ -1,4 +1,5 @@
 class Api::V1::YoutubeController < ApplicationController
+  before_action :authenticate_user!
   include HTTParty
 
   def videos
