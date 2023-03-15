@@ -90,18 +90,22 @@ const PlaylistVideoMenu = (props) => {
     }
   }
 
-  let playlistJsx = playlists.map(pl =>
-    <div key={pl.id}>
-      <input
-        type="checkbox"
-        checked={pl.added}
-        onClick={() => onCheck(pl.id)} 
-      />
-      <p>{pl.name}</p>
-      <p>Private {pl.private.toString()}</p>
-      <i>source: {pl.source}</i>
-    </div>
-  );
+  let playlistJsx = playlists.map(pl => {
+    if (pl.source == props.source || pl.source == 'mix') { 
+      return (
+        <div key={pl.id}>
+          <input
+            type="checkbox"
+            checked={pl.added}
+            onClick={() => onCheck(pl.id)} 
+          />
+          <p>{pl.name}</p>
+          <p>Private {pl.private.toString()}</p>
+          <i>source: {pl.source}</i>
+        </div>
+      );
+    }
+  });
 
   let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
 
