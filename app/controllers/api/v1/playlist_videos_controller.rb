@@ -26,9 +26,15 @@ class Api::V1::PlaylistVideosController < ApplicationController
       end
   end
 
+  def destroy
+    playlist_video = PlaylistVideo.find(playlist_video_params[:id])
+    playlist_video&.destroy
+    render json: { message: 'playlist deleted!' }
+  end
+
   private
 
   def playlist_video_params
-    params.require(:playlist_video).permit(:video_id, :playlist_id, :source, :parent_source_id)
+    params.require(:playlist_video).permit(:video_id, :playlist_id, :source, :parent_source_id, :id)
   end
 end
