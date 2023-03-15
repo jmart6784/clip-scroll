@@ -16,16 +16,14 @@ class Api::V1::PlaylistVideosController < ApplicationController
   end
 
   def create
-    duplicate = PlaylistVideo.find_by(playlist_video_params, user_id: current_user.id)
-    if duplicate.nil?
       playlist_video = PlaylistVideo.new(playlist_video_params)
       playlist_video.user_id = current_user.id
+      
       if playlist_video.save
         render json: playlist_video
       else
-        render json: playlist_video.errors
+        render json: playlist_video.errors, status: 422
       end
-    end
   end
 
   private
