@@ -5,7 +5,8 @@ const PlaylistVideoMenu = (props) => {
   const [prompt, setPrompt] = useState(false);
 
   useEffect(() => { 
-    fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
+    //fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
+    fetch(`/api/v1/playlist/mine?video_id=XYAe15w39LQ`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -50,7 +51,7 @@ const PlaylistVideoMenu = (props) => {
   const onCheck = (playlistId) => { 
     let indexOfMatch = playlists.findIndex(pl => pl.id === playlistId);
 
-    // If there is a match by playlist ID toggle checkbox and added value.
+    // If there is a match, determine function to run
     if (indexOfMatch != -1) {
       playlists[indexOfMatch]["added"] ?
         console.log("already added")
