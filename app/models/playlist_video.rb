@@ -6,6 +6,7 @@ class PlaylistVideo < ApplicationRecord
   validates :source, inclusion: { in: [ "youtube", "reddit", "mix" ] }
   
   validate :duplicate_videos
+  validate :verify_sources
 
   def duplicate_videos
     existing_video = PlaylistVideo.find_by(
@@ -18,6 +19,14 @@ class PlaylistVideo < ApplicationRecord
 
     unless existing_video.nil?
       errors.add(:video_id, "has already been added")
+    end
+  end
+
+  def verify_sources
+    playlist = Playlist.find(playlist_id)
+
+    unless playlist.source == source || playlist.source == "mix"
+      errors.add(:source, "is not supported")
     end
   end
 end
