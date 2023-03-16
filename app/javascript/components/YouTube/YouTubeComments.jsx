@@ -74,7 +74,7 @@ const YouTubeComments = (props) => {
   });
 
 
-  let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Show Comments</button>;
+  let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Show Comments ({props.commentCount})</button>;
 
   if (prompt) {
     menuJsx = (
