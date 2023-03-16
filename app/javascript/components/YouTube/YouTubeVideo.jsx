@@ -45,7 +45,10 @@ const YoutubeVideo = (props) => {
             onReady={onReady}                    
           />
           <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>
-          <YouTubeComments id={video_id} />
+          <YouTubeComments
+            id={video_id}
+            commentCount={video.items ? video.items[0].statistics.commentCount : ""} 
+          />
         </div>
       }
     </div>
