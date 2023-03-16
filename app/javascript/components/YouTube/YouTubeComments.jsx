@@ -2,19 +2,22 @@ import React, { useEffect, useState } from "react";
 
 const YouTubeComments = (props) => {
   const [comments, setComments] = useState({ items: [] });
+  const [prompt, setPrompt] = useState(false);
 
   // Get comments and reply thread
   useEffect(() => {
-    fetch(`/api/v1/youtube/comments/${props.id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setComments(response))
-      .catch(() => console.log("Failed to get video"));
-  }, [props.id]);
+    if (prompt) {
+      fetch(`/api/v1/youtube/comments/${props.id}`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((response) => setComments(response))
+        .catch(() => console.log("Failed to get video"));
+    }
+  }, [props.id, prompt]);
 
   // Generate logic to display comments and replies
   let commentsJsx = comments.items.map(comment => { 
@@ -70,12 +73,20 @@ const YouTubeComments = (props) => {
     );
   });
 
-  return (
-    <div>
-      <h1>Comments:</h1>
-      {commentsJsx}
-    </div>
-  );
+
+  let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Show Comments</button>;
+
+  if (prompt) {
+    menuJsx = (
+      <div>
+        <button type="button" onClick={() => setPrompt(false)}>Hide Comments</button>
+        <h1>Comments:</h1>
+        {commentsJsx}
+      </div>
+    );
+  }
+
+  return menuJsx;
 }
 
 export default YouTubeComments;
