@@ -12,6 +12,8 @@ import YouTubeSearch from "../components/YouTube/YouTubeSearch";
 import YouTubeChannels from "../components/YouTube/YouTubeChannels";
 import MyChannels from "../components/YouTube/MyChannels";
 
+import RedditIndex from "../components/Reddit/RedditIndex";
+
 import PlaylistIndex from "../components/Playlist/PlaylistIndex";
 import PlaylistShow from "../components/Playlist/PlaylistShow";
 import PlaylistNew from "../components/Playlist/PlaylistNew";
@@ -51,6 +53,8 @@ const Index = () => {
           <Route path="/youtube/search" exact component={YouTubeSearch} />
           <Route path="/youtube/channels" exact component={YouTubeChannels} />
           <Route path="/youtube/my_channels" exact component={MyChannels} />
+
+          <Route path="/reddit/index" exact component={RedditIndex} />
           
           <Route path="/playlist/index" exact component={PlaylistIndex} />
           <Route path="/playlist/show/:id" exact component={PlaylistShow} />
