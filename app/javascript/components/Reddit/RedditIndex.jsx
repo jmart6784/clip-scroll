@@ -3,8 +3,16 @@ import React, { useEffect, useState } from "react";
 const RedditIndex = () => {
   const [posts, setPosts] = useState({});
 
-  useEffect(() => { 
-    fetch("https://www.reddit.com/r/interestingasfuck.json")
+  useEffect(() => more("initial"), []);
+
+  const more = (type) => {
+    let url = "https://www.reddit.com/r/interestingasfuck.json?limit=100&raw_json=1";
+
+    if (type == "page") {
+      url = `https://www.reddit.com/r/interestingasfuck.json?limit=100&raw_json=1&count=100&after=${posts['data']['after']}`;
+    } 
+    console.log("URL ", type, url);
+    fetch(url)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -13,7 +21,7 @@ const RedditIndex = () => {
       })
       .then((response) => setPosts(response))
       .catch(() => console.log("Error getting posts data"));
-  }, []);
+  }
 
   useEffect(() => console.log(posts), [posts]);
 
@@ -38,6 +46,7 @@ const RedditIndex = () => {
     <div>
       <h1>Reddit Index</h1>
       {videosJsx}
+      <button onClick={() => more("page")}>More</button>
     </div>
   );
 }
