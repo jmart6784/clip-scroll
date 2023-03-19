@@ -36,8 +36,8 @@ const RedditIndex = () => {
           // Cache past posts and save the new ones
           setPosts({
             ...res,
-            ['after']: res['data']['after'],
             ['data']: {
+              ...res['data'],
               ['children']: [
                 ...posts['data']['children'],
                 ...res['data']['children']
