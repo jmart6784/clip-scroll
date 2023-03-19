@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 
 const RedditIndex = () => {
   const [posts, setPosts] = useState({});
+  const [index, setIndex] = useState(0);
 
   useEffect(() => more("initial"), []);
 
