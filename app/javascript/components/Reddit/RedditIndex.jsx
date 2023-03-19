@@ -57,6 +57,10 @@ const RedditIndex = () => {
     videosJsx = posts['data']['children'].map(post => { 
       if (post['data']['media']) {
         let postId = post['data']['id']
+        
+        let awards = 0;
+
+        post['data']['all_awardings'].forEach(award => awards += award['count']);
 
         return (
           <div key={postId}>
@@ -65,7 +69,7 @@ const RedditIndex = () => {
             <p>{post['data']['title']}</p>
             <p>{post['data']['score']}</p>
             <p>Posted by {post['data']['author']}</p>
-            <p>All awardings: {post['data']['all_awardings'].length}</p>
+            <p>All awardings: {awards}</p>
             <video src={post['data']['media']['reddit_video']['fallback_url']} width="300" height="500" controls></video>
           </div>
         ); 
