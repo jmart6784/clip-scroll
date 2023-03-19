@@ -65,6 +65,7 @@ const RedditIndex = () => {
             <p>{post['data']['title']}</p>
             <p>{post['data']['score']}</p>
             <p>Posted by {post['data']['author']}</p>
+            <p>All awardings: {post['data']['all_awardings'].length}</p>
             <video src={post['data']['media']['reddit_video']['fallback_url']} width="300" height="500" controls></video>
           </div>
         ); 
