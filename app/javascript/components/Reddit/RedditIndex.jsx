@@ -61,6 +61,10 @@ const RedditIndex = () => {
         return (
           <div key={postId}>
             <p>{postId}</p>
+            <p>{post['data']['subreddit_name_prefixed']}</p>
+            <p>{post['data']['title']}</p>
+            <p>{post['data']['score']}</p>
+            <p>Posted by {post['data']['author']}</p>
             <video src={post['data']['media']['reddit_video']['fallback_url']} width="300" height="500" controls></video>
           </div>
         ); 
