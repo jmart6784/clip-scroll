@@ -22,7 +22,10 @@ const RedditComments = (props) => {
 
     return (
       <div key={comment['id']}>
+        <p>{comment['author']}</p>
         <p><strong>BODY: </strong> {comment['body']}</p>
+        <p>{comment['score']}</p>
+        <p>Created UTC: {comment['created_utc']}</p>
       </div>
     );
   });
