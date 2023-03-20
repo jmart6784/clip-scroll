@@ -29,7 +29,10 @@ const RedditIndex = () => {
           let post = res['data']['children'][i];
           // push to array if reddit video is detected.
           if (post['data']['media'] != null) {
-            tempAry.push(post);
+            let height = post['data']['media']['reddit_video']['height']; 
+            let width = post['data']['media']['reddit_video']['width']; 
+
+            height > width ? tempAry.push(post) : "";
           }
         }
         res['data']['children'] = tempAry;
@@ -58,15 +61,7 @@ const RedditIndex = () => {
 
   let videoJsx = <h1>...Loading</h1>;
 
-  if (posts['data']) {
-    let currentPost = posts['data']['children'][index];
-    let height = currentPost['data']['media']['reddit_video']['height']; 
-    let width = currentPost['data']['media']['reddit_video']['width']; 
-
-    if (height > width) {
-      videoJsx = <RedditVideo post={currentPost} />;
-    } else {nextVideo()}
-  }
+  posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : ""
 
   return (
     <div>
