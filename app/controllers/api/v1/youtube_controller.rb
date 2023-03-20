@@ -88,10 +88,10 @@ class Api::V1::YoutubeController < ApplicationController
 
     render json: JSON.parse(response.body)
   end
-end
 
-private
+  private
 
-def playlist_params
-  params.permit(:id, :video_id, :search, :channel_id)
+  def playlist_params
+    params.permit(:id, :video_id, :search, :channel_id)
+  end
 end
