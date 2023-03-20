@@ -42,7 +42,6 @@ const RedditComments = (props) => {
       // If there are replies render the hide/show comments button
       if (comment['replies'] != "" && comment['replies']['data']) { 
         if (comment['replies']['data']['children'][0]['kind'] != 'more') {
-          console.log("button: ", comment['replies']['data']['children'][0]['kind'] != 'more')
           repliesBtn = (
             <button onClick={() => {
               let repliesContainer = document.getElementById(comment['id']);
