@@ -30,7 +30,7 @@ const RedditVideo = (props) => {
       <p>Comments: {post['data']['num_comments']}</p>
       <video id="reddit-video" src={post['data']['media']['reddit_video']['fallback_url']} onTimeUpdate={(e) => synchronize(e)} width="300" height="500" controls autoPlay></video>
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
-      <RedditComments postId={postId} />
+      <RedditComments postId={postId} subreddit={post['data']['subreddit']} />
     </div>
   );
 }

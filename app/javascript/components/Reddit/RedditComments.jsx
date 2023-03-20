@@ -4,8 +4,7 @@ const RedditComments = (props) => {
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    console.log(props.postId);
-    fetch(`https://www.reddit.com/r/interestingasfuck/comments/${props.postId}.json?raw_json=1`)
+    fetch(`https://www.reddit.com/r/${props.subreddit}/comments/${props.postId}.json?raw_json=1`)
       .then((response) => {
         if (response.ok) {
           return response.json();
