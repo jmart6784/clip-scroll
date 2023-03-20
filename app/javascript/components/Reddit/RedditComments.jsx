@@ -38,6 +38,25 @@ const RedditComments = (props) => {
           }
         });
       }
+      let repliesBtn = "";
+      // If there are replies render the hide/show comments button
+      if (comment['replies'] != "" && comment['replies']['data']) { 
+        if (comment['replies']['data']['children'][0]['kind'] != 'more') {
+          console.log("button: ", comment['replies']['data']['children'][0]['kind'] != 'more')
+          repliesBtn = (
+            <button onClick={() => {
+              let repliesContainer = document.getElementById(comment['id']);
+
+              repliesContainer.style.display == "block" ?
+                repliesContainer.style.display = "none"
+                :
+                repliesContainer.style.display = "block"
+            }}>
+              {comment['replies']['data']['children'].length} replies
+            </button>
+          ); 
+        }
+      }
 
       return (
         <div key={comment['id']}>
@@ -45,7 +64,12 @@ const RedditComments = (props) => {
           <p><strong>BODY: </strong> {comment['body']}</p>
           <p>{comment['score']}</p>
           <p>Created UTC: {comment['created_utc']}</p>
-          {replies}
+
+          {repliesBtn}
+
+          <div id={comment['id']} style={{ display: "none" }}>
+            {replies}
+          </div>
         </div>
       );
     }
