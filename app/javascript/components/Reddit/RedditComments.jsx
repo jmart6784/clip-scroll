@@ -23,15 +23,20 @@ const RedditComments = (props) => {
       let replies = <div></div>;
 
       if (comment['replies'] != "" && comment['replies']['data']) {
-        replies = comment['replies']['data']['children'].map(reply => { 
+        replies = comment['replies']['data']['children'].map(reply => {
           reply = reply['data'];
 
-          return (
-            <div key={reply['id']} style={{backgroundColor: "grey"}}>
-              <p>reply: </p>
-            </div>
-          );
-        }); 
+          if (reply['body']) {
+            return (
+              <div key={reply['id']} style={{backgroundColor: "grey"}}>
+                <p>{reply['author']}</p>
+                <p><strong>BODY: </strong> {reply['body']}</p>
+                <p>{reply['score']}</p>
+                <p>Created UTC: {reply['created_utc']}</p>
+              </div>
+            ); 
+          }
+        });
       }
 
       return (
@@ -43,7 +48,7 @@ const RedditComments = (props) => {
           {replies}
         </div>
       );
-    } else { return <div></div> }
+    }
   });
 
   return (
