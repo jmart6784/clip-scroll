@@ -51,6 +51,8 @@ const RedditIndex = () => {
       .catch(() => console.log("Error getting posts data"));
   }
 
+  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+
   useEffect(() => console.log(posts), [posts]);
 
   let videosJsx = <h1>...Loading</h1>;
@@ -68,7 +70,7 @@ const RedditIndex = () => {
       <h1>Reddit Index</h1>
       {videosJsx}
       <button onClick={() => more("page")}>More</button>
-      <button type="button">Previous</button>
+      <button type="button" onClick={previousVideo}>Previous</button>
       <button type="button">Next</button>
     </div>
   );
