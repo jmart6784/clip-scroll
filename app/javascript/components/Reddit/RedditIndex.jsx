@@ -68,8 +68,6 @@ const RedditIndex = () => {
     } else {nextVideo()}
   }
 
-  console.log("VID JSX", videoJsx);
-
   return (
     <div>
       <h1>Reddit Index</h1>
