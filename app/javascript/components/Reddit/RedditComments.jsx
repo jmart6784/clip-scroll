@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 const RedditComments = (props) => { 
-  const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([{}, { data: {children: []} }]);
 
   useEffect(() => {
     fetch(`https://www.reddit.com/r/${props.subreddit}/comments/${props.postId}.json?raw_json=1`)
@@ -17,9 +17,20 @@ const RedditComments = (props) => {
 
   useEffect(() => console.log(comments), [comments]);
 
+  let commentsJsx = comments[1]['data']['children'].map(comment => { 
+    comment = comment['data'];
+
+    return (
+      <div key={comment['id']}>
+        <p><strong>BODY: </strong> {comment['body']}</p>
+      </div>
+    );
+  });
+
   return (
     <div>
-      <h1>Reddit Comments</h1>
+      <h1>Reddit Comments:</h1>
+      {commentsJsx}
     </div>
   );
 }
