@@ -9,6 +9,15 @@ const RedditVideo = (props) => {
 
   post['data']['all_awardings'].forEach(award => awards += award['count']);
 
+  // Synchronize video and audio data
+  const synchronize = (e) => { 
+    let video = e.target;
+    let audio = document.getElementById("reddit-audio");
+    audio.currentTime = video.currentTime;
+    video.paused ? audio.pause() : "";
+    !video.paused ? audio.play() : "";
+  }
+
   return (
     <div key={postId}>
       <p>{postId}</p>
@@ -18,8 +27,8 @@ const RedditVideo = (props) => {
       <p>Posted by {post['data']['author']}</p>
       <p>All awardings: {awards}</p>
       <p>Comments: {post['data']['num_comments']}</p>
-      <video src={post['data']['media']['reddit_video']['fallback_url']} width="300" height="500" controls autoPlay></video>
-      <audio src={audioUrl} controls autoPlay/>
+      <video id="reddit-video" src={post['data']['media']['reddit_video']['fallback_url']} onTimeUpdate={(e) => synchronize(e)} width="300" height="500" controls autoPlay></video>
+      <audio id="reddit-audio" src={audioUrl} controls autoPlay/>
     </div>
   );
 }
