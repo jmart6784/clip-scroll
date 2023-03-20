@@ -57,8 +57,6 @@ const RedditIndex = () => {
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
   const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : "";
 
-  useEffect(() => console.log(index, posts), [posts, index]);
-
   let videoJsx = <h1>...Loading</h1>;
 
   posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
