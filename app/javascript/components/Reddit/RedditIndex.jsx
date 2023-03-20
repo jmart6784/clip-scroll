@@ -54,22 +54,26 @@ const RedditIndex = () => {
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
   const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : "";
 
-  useEffect(() => console.log(posts), [posts]);
+  useEffect(() => console.log(index, posts), [posts, index]);
 
-  let videosJsx = <h1>...Loading</h1>;
+  let videoJsx = <h1>...Loading</h1>;
 
   if (posts['data']) {
-    videosJsx = posts['data']['children'].map(post => { 
-      if (post['data']['media']) {
-        return <RedditVideo key={post['data']['id']} post={post} />;
-      }
-    });
+    let currentPost = posts['data']['children'][index];
+    let height = currentPost['data']['media']['reddit_video']['height']; 
+    let width = currentPost['data']['media']['reddit_video']['width']; 
+
+    if (height > width) {
+      videoJsx = <RedditVideo post={currentPost} />;
+    } else {nextVideo()}
   }
+
+  console.log("VID JSX", videoJsx);
 
   return (
     <div>
       <h1>Reddit Index</h1>
-      {videosJsx}
+      {videoJsx}
       <button onClick={() => more("page")}>More</button>
       <button type="button" onClick={previousVideo}>Previous</button>
       <button type="button" onClick={nextVideo}>Next</button>
