@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-const RedditComments = () => { 
+const RedditComments = (props) => { 
   const [comments, setComments] = useState([]);
 
   useEffect(() => {
-    console.log(props.post['data']['id']);
-    fetch(`https://www.reddit.com/r/interestingasfuck/comments/${props.post['data']['id']}.json?raw_json=1`)
+    console.log(props.postId);
+    fetch(`https://www.reddit.com/r/interestingasfuck/comments/${props.postId}.json?raw_json=1`)
       .then((response) => {
         if (response.ok) {
           return response.json();
@@ -17,7 +17,7 @@ const RedditComments = () => {
   }, [props]);
 
   useEffect(() => console.log(comments), [comments]);
-  
+
   return (
     <div>
       <h1>Reddit Comments</h1>

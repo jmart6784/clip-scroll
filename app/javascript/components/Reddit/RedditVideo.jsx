@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
+import RedditComments from "./RedditComments";
 
 const RedditVideo = (props) => {
   let post = props.post;
@@ -28,7 +29,8 @@ const RedditVideo = (props) => {
       <p>All awardings: {awards}</p>
       <p>Comments: {post['data']['num_comments']}</p>
       <video id="reddit-video" src={post['data']['media']['reddit_video']['fallback_url']} onTimeUpdate={(e) => synchronize(e)} width="300" height="500" controls autoPlay></video>
-      <audio id="reddit-audio" src={audioUrl} controls autoPlay/>
+      <audio id="reddit-audio" src={audioUrl} controls autoPlay />
+      <RedditComments postId={postId} />
     </div>
   );
 }
