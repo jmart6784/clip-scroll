@@ -49,13 +49,15 @@ const RedditIndex = () => {
               ]
             }
           });
+          // If more posts exist then increase index by 1 on paginated response
+          tempAry.length > 0 ? setIndex(index + 1) : "";
         } else { setPosts(res) }
       })
       .catch(() => console.log("Error getting posts data"));
   }
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
-  const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : "";
+  const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : more("page");
 
   let videoJsx = <h1>...Loading</h1>;
 
