@@ -68,6 +68,7 @@ const RedditIndex = () => {
       <h1>Reddit Index</h1>
       {videosJsx}
       <button onClick={() => more("page")}>More</button>
+      <button type="button">Previous</button>
     </div>
   );
 }
