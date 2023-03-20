@@ -23,7 +23,7 @@ const RedditVideo = (props) => {
       <p>{postId}</p>
       <p>{post['data']['subreddit_name_prefixed']}</p>
       <p>{post['data']['title']}</p>
-      <p>{post['data']['score']}</p>
+      <p>Upvotes {post['data']['score']}</p>
       <p>Posted by {post['data']['author']}</p>
       <p>All awardings: {awards}</p>
       <p>Comments: {post['data']['num_comments']}</p>
