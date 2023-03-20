@@ -31,7 +31,7 @@ const RedditIndex = () => {
           if (post['data']['media'] != null) {
             let height = post['data']['media']['reddit_video']['height']; 
             let width = post['data']['media']['reddit_video']['width']; 
-
+            // Include vertical videos only
             height > width ? tempAry.push(post) : "";
           }
         }
@@ -61,7 +61,7 @@ const RedditIndex = () => {
 
   let videoJsx = <h1>...Loading</h1>;
 
-  posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : ""
+  posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
 
   return (
     <div>
