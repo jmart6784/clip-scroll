@@ -52,6 +52,7 @@ const RedditIndex = () => {
   }
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+  const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : "";
 
   useEffect(() => console.log(posts), [posts]);
 
@@ -71,7 +72,7 @@ const RedditIndex = () => {
       {videosJsx}
       <button onClick={() => more("page")}>More</button>
       <button type="button" onClick={previousVideo}>Previous</button>
-      <button type="button">Next</button>
+      <button type="button" onClick={nextVideo}>Next</button>
     </div>
   );
 }
