@@ -18,16 +18,32 @@ const RedditComments = (props) => {
   useEffect(() => console.log(comments), [comments]);
 
   let commentsJsx = comments[1]['data']['children'].map(comment => { 
-    comment = comment['data'];
+    if (comment['kind'] != 'more') {
+      comment = comment['data'];
+      let replies = <div></div>;
 
-    return (
-      <div key={comment['id']}>
-        <p>{comment['author']}</p>
-        <p><strong>BODY: </strong> {comment['body']}</p>
-        <p>{comment['score']}</p>
-        <p>Created UTC: {comment['created_utc']}</p>
-      </div>
-    );
+      if (comment['replies'] != "" && comment['replies']['data']) {
+        replies = comment['replies']['data']['children'].map(reply => { 
+          reply = reply['data'];
+
+          return (
+            <div key={reply['id']} style={{backgroundColor: "grey"}}>
+              <p>reply: </p>
+            </div>
+          );
+        }); 
+      }
+
+      return (
+        <div key={comment['id']}>
+          <p>{comment['author']}</p>
+          <p><strong>BODY: </strong> {comment['body']}</p>
+          <p>{comment['score']}</p>
+          <p>Created UTC: {comment['created_utc']}</p>
+          {replies}
+        </div>
+      );
+    } else { return <div></div> }
   });
 
   return (
