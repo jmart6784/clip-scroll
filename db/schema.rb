@@ -98,14 +98,6 @@ ActiveRecord::Schema.define(version: 2023_03_12_062723) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "youtube_sessions", force: :cascade do |t|
-    t.string "session_token", null: false
-    t.json "credentials"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["session_token"], name: "index_youtube_sessions_on_session_token"
-  end
-
   create_table "youtube_videos", force: :cascade do |t|
     t.text "video_id", null: false
     t.text "channel_id", null: false

@@ -53,7 +53,7 @@ const RedditIndex = () => {
           tempAry.length > 0 ? setIndex(index + 1) : "";
         } else { setPosts(res) }
       })
-      .catch(() => console.log("Error getting posts data"));
+      // .catch(() => console.log("Error getting posts data"));
   }
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
