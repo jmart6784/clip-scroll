@@ -29,10 +29,12 @@ const RedditIndex = () => {
           let post = res['data']['children'][i];
           // push to array if reddit video is detected.
           if (post['data']['media'] != null) {
-            let height = post['data']['media']['reddit_video']['height']; 
-            let width = post['data']['media']['reddit_video']['width']; 
-            // Include vertical videos only
-            height > width ? tempAry.push(post) : "";
+            if (post['data']['media']['reddit_video']) {
+              let height = post['data']['media']['reddit_video']['height']; 
+              let width = post['data']['media']['reddit_video']['width']; 
+              // Include vertical videos only
+              height > width ? tempAry.push(post) : "";
+            }
           }
         }
         res['data']['children'] = tempAry;
