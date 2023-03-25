@@ -50,3 +50,19 @@ ytChannels.each do |channel|
     end
   end
 end
+
+subreddits = [
+  'AbruptChaos',
+  '11foot8',
+  'interestingasfuck',
+  '21stCenturyHumour',
+  '3Dprinting',
+  'absoluteunit',
+  'AbsoluteUnits',
+  'AccidentalShoeLoss',
+  'accidentalwrestling',
+  'ActualPublicFreakouts',
+  'ActLikeYouBelong',
+  'adorableoldpeople',
+  'AdultsAreFuckinStupid'
+]
