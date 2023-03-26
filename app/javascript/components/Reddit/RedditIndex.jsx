@@ -4,6 +4,7 @@ import RedditVideo from "./RedditVideo";
 const RedditIndex = () => {
   const [posts, setPosts] = useState({});
   const [index, setIndex] = useState(0);
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => more("initial"), []);
 
@@ -37,33 +38,44 @@ const RedditIndex = () => {
             }
           }
         }
-        res['data']['children'] = tempAry;
+        
+        if (tempAry.length > 0) {
+          res['data']['children'] = tempAry;
 
-        if (type == "page") {
-          // Cache past posts and save the new ones
-          setPosts({
-            ...res,
-            ['data']: {
-              ...res['data'],
-              ['children']: [
-                ...posts['data']['children'],
-                ...res['data']['children']
-              ]
-            }
-          });
-          // If more posts exist then increase index by 1 on paginated response
-          tempAry.length > 0 ? setIndex(index + 1) : "";
-        } else { setPosts(res) }
+          if (type == "page") {
+            // Cache past posts and save the new ones
+            setPosts({
+              ...res,
+              ['data']: {
+                ...res['data'],
+                ['children']: [
+                  ...posts['data']['children'],
+                  ...res['data']['children']
+                ]
+              }
+            });
+            // If more posts exist then increase index by 1 on paginated response
+            tempAry.length > 0 ? setIndex(index + 1) : "";
+          } else { setPosts(res) } 
+        } else { 
+          setNoResults(true);
+        }
       })
-      // .catch(() => console.log("Error getting posts data"));
+      .catch(() => console.log("Error getting posts data"));
   }
+
+  // useEffect(() => console.log(posts['data']), [posts]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
   const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : more("page");
 
   let videoJsx = <h1>...Loading</h1>;
 
-  posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
+  if (noResults) {
+    videoJsx = <h1>No Results</h1>
+  } else { 
+    posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
+  }
 
   return (
     <div>
@@ -71,7 +83,7 @@ const RedditIndex = () => {
       {videoJsx}
       <button onClick={() => more("page")}>More</button>
       <button type="button" onClick={previousVideo}>Previous</button>
-      <button type="button" onClick={nextVideo}>Next</button>
+      <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
     </div>
   );
 }

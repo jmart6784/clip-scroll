@@ -64,5 +64,8 @@ subreddits = [
   'ActualPublicFreakouts',
   'ActLikeYouBelong',
   'adorableoldpeople',
-  'AdultsAreFuckinStupid'
+  'AdultsAreFuckinStupid',
+  'AllCombatSports',
+  'amazingmemes',
+  ''
 ]
