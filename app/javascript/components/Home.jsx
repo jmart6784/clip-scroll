@@ -7,6 +7,7 @@ const Home = () => {
       <h1>Home</h1>
       <Link to="/youtube/index">YouTube Index</Link>
       <Link to="/reddit/index">Reddit Index</Link>
+      <Link to="/subreddit/index">Reddit Index</Link>
       <Link to="/playlist/index">Playlist Index</Link>
     </div>
   );
