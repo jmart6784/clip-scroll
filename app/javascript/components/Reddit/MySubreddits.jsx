@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import SubredditItem from "./SubredditItem";
 
 const MySubreddits = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -17,13 +18,7 @@ const MySubreddits = () => {
 
   let subredditsJsx = <div>Loading...</div>;
 
-  subredditsJsx = subreddits.map(subreddit => 
-    <div key={subreddit.id}>
-      <Link to={`/reddit/show/${subreddit.subreddit}`}>
-        <p>{subreddit.subreddit}</p>
-      </Link>
-    </div>  
-  );
+  subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} />);
 
   return (
     <div>
