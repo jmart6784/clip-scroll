@@ -34,6 +34,7 @@ Rails.application.routes.draw do
       get '/subreddit/index', to: 'subreddits#index'
 
       get '/addedsubreddit/mine', to: 'added_subreddits#mine'
+      post '/addedsubreddit/create', to: 'added_subreddits#create'
     end
   end
 end
