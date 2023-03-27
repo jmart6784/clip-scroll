@@ -33,7 +33,7 @@ Rails.application.routes.draw do
 
       get '/subreddit/index', to: 'subreddits#index'
 
-      get '/addedsubreddit/mine', to: 'addedsubreddits#mine'
+      get '/addedsubreddit/mine', to: 'added_subreddits#mine'
     end
   end
 end
