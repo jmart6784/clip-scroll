@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -19,7 +20,9 @@ const SubredditIndex = () => {
 
   subredditsJsx = subreddits.map(subreddit => 
     <div key={subreddit.id}>
-      <p>{subreddit.subreddit}</p>
+      <Link to={`/reddit/show/${subreddit.subreddit}`}>
+        <p>{subreddit.subreddit}</p>
+      </Link>
     </div>  
   );
 
