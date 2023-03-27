@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import SubredditItem from "./SubredditItem";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -18,13 +18,7 @@ const SubredditIndex = () => {
 
   let subredditsJsx = <div>Loading...</div>;
 
-  subredditsJsx = subreddits.map(subreddit => 
-    <div key={subreddit.id}>
-      <Link to={`/reddit/show/${subreddit.subreddit}`}>
-        <p>{subreddit.subreddit}</p>
-      </Link>
-    </div>  
-  );
+  subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} />);
 
   return (
     <div>
