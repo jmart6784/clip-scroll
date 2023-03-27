@@ -32,6 +32,8 @@ Rails.application.routes.draw do
       delete '/playlist_videos/destroy_from_playlist', to: 'playlist_videos#destroy_from_playlist'
 
       get '/subreddit/index', to: 'subreddits#index'
+
+      get '/addedsubreddit/mine', to: 'addedsubreddits#mine'
     end
   end
 end
