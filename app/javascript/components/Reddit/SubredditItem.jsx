@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 const SubredditItem = (props) => {
-  const [subbed, setSubbed] = useState(false);
+  const [subbed, setSubbed] = useState(props.subbed);
   let subreddit = props.subreddit;
 
   const handleForm = (subreddit) => { 

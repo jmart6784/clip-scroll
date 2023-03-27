@@ -18,7 +18,7 @@ const MySubreddits = () => {
 
   let subredditsJsx = <div>Loading...</div>;
 
-  subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} />);
+  subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} subbed={true} />);
 
   return (
     <div>
