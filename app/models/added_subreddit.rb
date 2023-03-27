@@ -1,0 +1,2 @@
+class AddedSubreddit < ApplicationRecord
+end
