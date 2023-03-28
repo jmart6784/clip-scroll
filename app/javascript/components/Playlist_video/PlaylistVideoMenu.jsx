@@ -97,7 +97,7 @@ const PlaylistVideoMenu = (props) => {
           <input
             type="checkbox"
             checked={pl.added}
-            onClick={() => onCheck(pl.id)} 
+            onChange={() => onCheck(pl.id)} 
           />
           <p>{pl.name}</p>
           <p>Private {pl.private.toString()}</p>
