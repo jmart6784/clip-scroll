@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
+import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const RedditShow = (props) => {
   const [posts, setPosts] = useState({});
@@ -79,6 +80,11 @@ const RedditShow = (props) => {
 
   return (
     <div>
+      <PlaylistVideoMenu
+        videoId={posts['data'] ? posts['data']['children'][index]['data']['id'] : ""}
+        parentSourceId={posts['data'] ? posts['data']['children'][index]['data']['subreddit'] : ""}
+        source="reddit"
+      />
       <h1>Reddit Show</h1>
       {videoJsx}
       <button onClick={() => more("page")}>More</button>
