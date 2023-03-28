@@ -3,22 +3,22 @@ import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
 import YoutubeVideo from "../YouTube/YouTubeVideo";
 
-const PlaylistShow = (props) => { 
+const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
     id: 0,
     name: '',
-    source: 'youtube',
+    source: 'mix',
     private: false,
     user_id: 0,
     created_at: '',
     updated_at: '',
-    user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: ""} }
+    user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: "" } }
   });
   const [index, setIndex] = useState(0);
 
   const [videos, setVideos] = useState([]);
 
-  useEffect(() => { 
+  useEffect(() => {
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
       .then((response) => {
         if (response.ok) {
@@ -37,37 +37,51 @@ const PlaylistShow = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setVideos(response))
-      .catch(() => console.log("Error getting playlist video data"));
+    .catch(() => console.log("Error getting playlist video data"));
   }, []);
 
   const selectVideo = (videoId) => { 
-    let index = videos.findIndex(x => x.video_id === videoId);
+    let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
   }
 
   let i = -1;
 
   let videosJsx = videos.map(v => { 
-    let video = v["video"]["items"][0]["snippet"];
-    let videoId = v["video"]["items"][0]["id"];
-    let stats = v["video"]["items"][0]["statistics"];
-    i += 1;
-    let selectedStyle = index == i ? { border: "1px solid black" } : {};
+    if (v['source'] == 'youtube') {
+      let video = v["video"]["items"][0]["snippet"];
+      let videoId = v["video"]["items"][0]["id"];
+      let stats = v["video"]["items"][0]["statistics"];
+      i += 1;
+      let selectedStyle = index == i ? { border: "1px solid black" } : {};
 
-    return (
-      <div key={videoId} onClick={() => selectVideo(videoId)} style={{ ...selectedStyle, cursor: "pointer" }}>
-        <img src={video.thumbnails.default.url} alt="video thumbnail" />
-        <p>{video.title}</p>
-        <p>{video.channelTitle}</p>
-        <p>{stats.viewCount}</p>
-      </div>
-    );
+      return (
+        <div key={videoId} onClick={() => selectVideo(videoId)} style={{ ...selectedStyle, cursor: "pointer" }}>
+          <img src={video.thumbnails.default.url} alt="video thumbnail" />
+          <p>{video.title}</p>
+          <p>{video.channelTitle}</p>
+          <p>{stats.viewCount}</p>
+        </div>
+      );
+    } else if (v['source'] == 'reddit') { 
+
+    }
   });
 
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  let video = videos[index] ? <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} /> : "Loading..."
+  let video = <div>Loading...</div>
+
+  if (videos[index]) {
+    if (videos[index]['source'] == 'youtube') {
+      video = videos[index] ? <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} /> : "Loading..."
+    } else if (videos[index]['source'] == 'reddit') { 
+      video = <p>Reddit Video</p>
+    }
+  }
+
+  useEffect(() => console.log(playlist, videos), [playlist, videos]);
 
   return (
     <div>
