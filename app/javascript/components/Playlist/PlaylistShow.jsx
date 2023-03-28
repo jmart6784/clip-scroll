@@ -40,6 +40,37 @@ const PlaylistShow = (props) => {
     .catch(() => console.log("Error getting playlist video data"));
   }, []);
 
+  // Reddit API request for current video
+  useEffect(() => {
+    if (videos[index]) {
+      if (videos[index]['source'] == 'reddit') {
+        // Single video API response
+        fetch(`https://www.reddit.com/r/${videos[index]['parent_source_id']}/${videos[index]['video_id']}.json?raw_json=1`)
+          .then((response) => {
+            if (response.ok) {
+              return response.json();
+            }
+            throw new Error("Network response was not ok.");
+          })
+          .then((response) => {
+            console.log("RESS: ", response);
+            // Skip API request if video data is already present
+            if (videos[index]['video'] === undefined) {
+              let vids = [...videos];
+              // Add API video data to playlist video object and then to vids array
+              vids[index] = {
+                ...vids[index],
+                ['video']: response[0]['data']['children'][0]['data']
+              };
+
+              setVideos(vids);
+            }
+          })
+          .catch(() => console.log("Error getting posts data"));
+      }
+    }
+  }, [videos, index]);
+
   const selectVideo = (videoId) => { 
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
@@ -81,7 +112,7 @@ const PlaylistShow = (props) => {
     }
   }
 
-  useEffect(() => console.log(playlist, videos), [playlist, videos]);
+  useEffect(() => console.log("EFFECT: ", playlist, videos), [playlist, videos]);
 
   return (
     <div>
