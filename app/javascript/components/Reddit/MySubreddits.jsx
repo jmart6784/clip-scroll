@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
 
 const MySubreddits = () => { 
@@ -22,6 +23,7 @@ const MySubreddits = () => {
 
   return (
     <div>
+      <Link to='/subreddit/index'>Subreddit Index</Link>
       <h1>My Subreddits</h1>
       {subredditsJsx}
     </div>
