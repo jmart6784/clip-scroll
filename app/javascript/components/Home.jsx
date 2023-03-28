@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 const Home = () => {
   return (
     <div>
-      <h1>Home</h1>
-      <Link to="/youtube/index">YouTube Index</Link>
-      <Link to="/reddit/index">Reddit Index</Link>
-      <Link to="/subreddit/index">Reddit Index</Link>
-      <Link to="/playlist/index">Playlist Index</Link>
+      <h1>Home</h1> <br />
+      <Link to="/youtube/index">YouTube Index</Link> <br />
+      <Link to="/reddit/index">Reddit Index</Link> <br />
+      <Link to="/subreddit/index">Subreddit Index</Link> <br />
+      <Link to="/playlist/index">Playlist Index</Link> <br />
     </div>
   );
 };
