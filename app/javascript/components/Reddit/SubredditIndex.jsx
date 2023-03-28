@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
+import MySubreddits from "./MySubreddits";
 import SubredditItem from "./SubredditItem";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
+  const [mySubreddits, setMySubreddits] = useState([]);
+  const [subredditsJsx, setSubredditsJsx] = useState(<div>Loading...</div>);
 
   useEffect(() => { 
     fetch("/api/v1/subreddit/index")
@@ -14,11 +17,27 @@ const SubredditIndex = () => {
       })
       .then((response) => setSubreddits(response))
       .catch(() => console.log("Error getting subreddit data"));
+    
+    fetch("/api/v1/addedsubreddit/mine")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setMySubreddits(response))
+      .catch(() => console.log("Error getting subreddit data"));
   }, []);
 
-  let subredditsJsx = <div>Loading...</div>;
+  useEffect(() => { 
+    setSubredditsJsx(subreddits.map(subreddit => {
+      // Set checkbox value depending if user is subscribed
+      let subbed = false;
+      mySubreddits.forEach(ms => ms.subreddit === subreddit.subreddit ? subbed = true : "")
 
-  subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} />);
+      return <SubredditItem key={subreddit.id} subreddit={subreddit} subbed={subbed} view={'index'} />;
+    }));
+  }, [subreddits, mySubreddits]);
 
   return (
     <div>
