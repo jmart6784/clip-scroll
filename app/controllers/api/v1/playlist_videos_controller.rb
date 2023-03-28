@@ -10,6 +10,8 @@ class Api::V1::PlaylistVideosController < ApplicationController
         pv = pv.as_json
         pv["video"] = JSON.parse(response.body)
         videos << pv
+      else
+        videos << pv
       end
     end
     render json: videos
