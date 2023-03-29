@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
 import YoutubeVideo from "../YouTube/YouTubeVideo";
+import RedditVideo from "../Reddit/RedditVideo";
 
 const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
@@ -15,7 +16,6 @@ const PlaylistShow = (props) => {
     user: { id: 0, email: '', first_name: '', last_name: '', username: '', bio: "", avatar: { url: "" } }
   });
   const [index, setIndex] = useState(0);
-
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
@@ -53,14 +53,13 @@ const PlaylistShow = (props) => {
             throw new Error("Network response was not ok.");
           })
           .then((response) => {
-            console.log("RESS: ", response);
             // Skip API request if video data is already present
             if (videos[index]['video'] === undefined) {
               let vids = [...videos];
               // Add API video data to playlist video object and then to vids array
               vids[index] = {
                 ...vids[index],
-                ['video']: response[0]['data']['children'][0]['data']
+                ['video']: response[0]['data']['children'][0]
               };
 
               setVideos(vids);
@@ -71,13 +70,15 @@ const PlaylistShow = (props) => {
     }
   }, [videos, index]);
 
+  // Select video by index when option is clicked on playlist menu
   const selectVideo = (videoId) => { 
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
   }
 
   let i = -1;
-
+  
+  // Render click-able playlist menu options
   let videosJsx = videos.map(v => { 
     if (v['source'] == 'youtube') {
       let video = v["video"]["items"][0]["snippet"];
@@ -103,12 +104,17 @@ const PlaylistShow = (props) => {
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   let video = <div>Loading...</div>
-
+  // Render Youtube or Reddit video depending on video source
   if (videos[index]) {
     if (videos[index]['source'] == 'youtube') {
       video = videos[index] ? <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} /> : "Loading..."
     } else if (videos[index]['source'] == 'reddit') { 
-      video = <p>Reddit Video</p>
+      // If API request has added 'video' key render Reddit video, else loading screen
+      if (videos[index]['video']) {
+        video = <RedditVideo post={videos[index]['video']} />;
+      } else {
+        video = <div>..Loading Reddit video</div>;
+      }
     }
   }
 
