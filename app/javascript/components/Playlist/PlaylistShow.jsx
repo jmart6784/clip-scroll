@@ -45,27 +45,7 @@ const PlaylistShow = (props) => {
     if (videos[index]) {
       if (videos[index]['source'] == 'reddit') {
         // Single video API response
-        fetch(`https://www.reddit.com/r/${videos[index]['parent_source_id']}/${videos[index]['video_id']}.json?raw_json=1`)
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
-            throw new Error("Network response was not ok.");
-          })
-          .then((response) => {
-            // Skip API request if video data is already present
-            if (videos[index]['video'] === undefined) {
-              let vids = [...videos];
-              // Add API video data to playlist video object and then to vids array
-              vids[index] = {
-                ...vids[index],
-                ['video']: response[0]['data']['children'][0]
-              };
-
-              setVideos(vids);
-            }
-          })
-          .catch(() => console.log("Error getting posts data"));
+        getRedditVideo(videos[index]['parent_source_id'], videos[index]['video_id'], index);
       }
     }
   }, [videos, index]);
@@ -74,6 +54,30 @@ const PlaylistShow = (props) => {
   const selectVideo = (videoId) => { 
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
+  }
+
+  const getRedditVideo = (subreddit, videoId, i) => { 
+    // Skip API request if video data is already present
+    if (videos[i]['video'] === undefined) {
+      fetch(`https://www.reddit.com/r/${subreddit}/${videoId}.json?raw_json=1`)
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          }
+          throw new Error("Network response was not ok.");
+        })
+        .then((response) => {
+          let vids = [...videos];
+          // Add API video data to playlist video object and then to vids array
+          vids[i] = {
+            ...vids[i],
+            ['video']: response[0]['data']['children'][0]
+          };
+
+          setVideos(vids);
+        })
+        .catch(() => console.log("Error getting posts data"))
+    };
   }
 
   let i = -1;
@@ -96,7 +100,11 @@ const PlaylistShow = (props) => {
         </div>
       );
     } else if (v['source'] == 'reddit') { 
-
+      return (
+        <div key={v['id']}>
+          <h1>Reddit playlist item</h1>
+        </div>
+      );
     }
   });
 
