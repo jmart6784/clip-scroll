@@ -73,7 +73,7 @@ const RedditShow = (props) => {
   let videoJsx = <h1>...Loading</h1>;
 
   if (noResults) {
-    videoJsx = <h1>No Results</h1>
+    videoJsx = <h1>No Results.</h1>
   } else { 
     posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
   }
