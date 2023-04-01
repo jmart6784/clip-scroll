@@ -41,21 +41,21 @@ const PlaylistShow = (props) => {
   }, []);
 
   // Select video by index when option is clicked on playlist menu
-  const selectVideo = (videoId) => { 
+  const selectVideo = (videoId) => {
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
   }
   
   // Render click-able playlist menu options
-  let videosJsx = videos.map((v, i) => { 
+  let videosJsx = videos.map((v, i) => {
+    let selectedStyle = index == i ? { border: "1px solid black", cursor: "pointer"  } : {};
     if (v['source'] == 'youtube') {
       let video = v["video"]["items"][0]["snippet"];
       let videoId = v["video"]["items"][0]["id"];
       let stats = v["video"]["items"][0]["statistics"];
-      let selectedStyle = index == i ? { border: "1px solid black" } : {};
 
       return (
-        <div key={videoId} onClick={() => selectVideo(videoId)} style={{ ...selectedStyle, cursor: "pointer" }}>
+        <div key={videoId} onClick={() => selectVideo(videoId)} style={selectedStyle}>
           <img src={video.thumbnails.default.url} alt="video thumbnail" />
           <p>{video.title}</p>
           <p>{video.channelTitle}</p>
@@ -63,20 +63,17 @@ const PlaylistShow = (props) => {
         </div>
       );
     } else if (v['source'] == 'reddit') { 
-      // Render Playlist item depending if video key exists and contains API data.
-      if (v['video'] === undefined) {
-        return (
-          <div key={v['id']}>
-            <p>...Loading</p>
-          </div>
-        ); 
-      } else {
-        return (
-          <div key={v['id']}>
-            <p>{v['parent_source_id']}</p>
-          </div>
-        ); 
-      }
+      console.log(v);
+      let video = v['video']['data'];
+
+      return (
+        <div key={v['id']} onClick={() => selectVideo(video['id'])} style={selectedStyle}>
+          <img src={video['thumbnail']} alt="video thumbnail" />
+          <p>{video['title']}</p>
+          <p>{video['subreddit']}</p>
+          <p>{video['score']}</p>
+        </div>
+      ); 
     }
   });
 
