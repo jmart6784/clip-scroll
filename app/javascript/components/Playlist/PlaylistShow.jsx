@@ -37,58 +37,21 @@ const PlaylistShow = (props) => {
         throw new Error("Network response was not ok.");
       })
       .then((response) => setVideos(response))
-    .catch(() => console.log("Error getting playlist video data"));
+      .catch(() => console.log("Error getting playlist video data"));
   }, []);
-
-  // Reddit API request for current video
-  useEffect(() => {
-    if (videos[index]) {
-      if (videos[index]['source'] == 'reddit') {
-        // Single video API response
-        getRedditVideo(videos[index]['parent_source_id'], videos[index]['video_id'], index);
-      }
-    }
-  }, [videos, index]);
 
   // Select video by index when option is clicked on playlist menu
   const selectVideo = (videoId) => { 
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
   }
-
-  const getRedditVideo = (subreddit, videoId, i) => { 
-    // Skip API request if video data is already present
-    if (videos[i]['video'] === undefined) {
-      fetch(`https://www.reddit.com/r/${subreddit}/${videoId}.json?raw_json=1`)
-        .then((response) => {
-          if (response.ok) {
-            return response.json();
-          }
-          throw new Error("Network response was not ok.");
-        })
-        .then((response) => {
-          let vids = [...videos];
-          // Add API video data to playlist video object and then to vids array
-          vids[i] = {
-            ...vids[i],
-            ['video']: response[0]['data']['children'][0]
-          };
-
-          setVideos(vids);
-        })
-        .catch(() => console.log("Error getting posts data"))
-    };
-  }
-
-  let i = -1;
   
   // Render click-able playlist menu options
-  let videosJsx = videos.map(v => { 
+  let videosJsx = videos.map((v, i) => { 
     if (v['source'] == 'youtube') {
       let video = v["video"]["items"][0]["snippet"];
       let videoId = v["video"]["items"][0]["id"];
       let stats = v["video"]["items"][0]["statistics"];
-      i += 1;
       let selectedStyle = index == i ? { border: "1px solid black" } : {};
 
       return (
@@ -100,33 +63,47 @@ const PlaylistShow = (props) => {
         </div>
       );
     } else if (v['source'] == 'reddit') { 
-      return (
-        <div key={v['id']}>
-          <h1>Reddit playlist item</h1>
-        </div>
-      );
+      // Render Playlist item depending if video key exists and contains API data.
+      if (v['video'] === undefined) {
+        return (
+          <div key={v['id']}>
+            <p>...Loading</p>
+          </div>
+        ); 
+      } else {
+        return (
+          <div key={v['id']}>
+            <p>{v['parent_source_id']}</p>
+          </div>
+        ); 
+      }
     }
   });
 
-  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
-  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+  let vidJsx = <div>...Loading</div>;
 
-  let video = <div>Loading...</div>
   // Render Youtube or Reddit video depending on video source
   if (videos[index]) {
     if (videos[index]['source'] == 'youtube') {
-      video = videos[index] ? <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} /> : "Loading..."
+      if (videos[index]) {
+        vidJsx = <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} />;
+      } else {
+        vidJsx = <div>..Loading YouTube video</div>;
+      }
     } else if (videos[index]['source'] == 'reddit') { 
       // If API request has added 'video' key render Reddit video, else loading screen
       if (videos[index]['video']) {
-        video = <RedditVideo post={videos[index]['video']} />;
+        vidJsx = <RedditVideo post={videos[index]['video']} />;
       } else {
-        video = <div>..Loading Reddit video</div>;
+        vidJsx = <div>..Loading Reddit video</div>;
       }
     }
   }
 
-  useEffect(() => console.log("EFFECT: ", playlist, videos), [playlist, videos]);
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
+  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+
+  useEffect(() => console.log("EFFECT: ", videos, index), [videos, index]);
 
   return (
     <div>
@@ -143,7 +120,7 @@ const PlaylistShow = (props) => {
       </Link>
       <button onClick={previousVideo}>Previous</button>
       <button onClick={nextVideo}>Next</button>
-      {video}
+      {vidJsx}
       {videosJsx}
     </div>
   );
