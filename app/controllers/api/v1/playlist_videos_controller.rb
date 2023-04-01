@@ -3,8 +3,9 @@ class Api::V1::PlaylistVideosController < ApplicationController
 
   def videos
     videos = []
+    playlist_videos = PlaylistVideo.where(playlist_id: params[:playlist_id]).offset(params[:offset]).limit(5)
 
-    PlaylistVideo.where(playlist_id: params[:playlist_id]).each do |pv|
+    playlist_videos.each do |pv|
       if pv.source === "youtube"
         response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=#{pv.video_id}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
         pv = pv.as_json
