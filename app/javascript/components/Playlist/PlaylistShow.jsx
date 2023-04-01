@@ -63,7 +63,6 @@ const PlaylistShow = (props) => {
         </div>
       );
     } else if (v['source'] == 'reddit') { 
-      console.log(v);
       let video = v['video']['data'];
 
       return (
