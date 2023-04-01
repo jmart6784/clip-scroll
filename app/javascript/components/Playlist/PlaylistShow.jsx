@@ -57,7 +57,7 @@ const PlaylistShow = (props) => {
       return (
         <div key={videoId} onClick={() => selectVideo(videoId)} style={selectedStyle}>
           <img src={video.thumbnails.default.url} alt="video thumbnail" />
-          <strong>YouTube</strong>
+          <strong>YouTube {v['video_id']}</strong>
           <p>{video.title}</p>
           <p>{video.channelTitle}</p>
           <p>{stats.viewCount}</p>
@@ -69,7 +69,7 @@ const PlaylistShow = (props) => {
       return (
         <div key={v['id']} onClick={() => selectVideo(video['id'])} style={selectedStyle}>
           <img src={video['thumbnail']} alt="video thumbnail" />
-          <strong>Reddit</strong>
+          <strong>Reddit: {v['video_id']}</strong>
           <p>{video['title']}</p>
           <p>{video['subreddit']}</p>
           <p>{video['score']}</p>
