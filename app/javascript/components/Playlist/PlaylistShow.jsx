@@ -17,6 +17,8 @@ const PlaylistShow = (props) => {
   });
   const [index, setIndex] = useState(0);
   const [videos, setVideos] = useState([]);
+  const [offset, setOffset] = useState(0);
+  const [noResults, setNoResults] = useState(false);
 
   useEffect(() => {
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
@@ -28,16 +30,8 @@ const PlaylistShow = (props) => {
       })
       .then((response) => setPlaylist(response))
       .catch(() => console.log("Error getting data"));
-    
-    fetch(`/api/v1/playlist_videos/videos/${props.match.params.id}`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setVideos(response))
-      .catch(() => console.log("Error getting playlist video data"));
+      
+    moreVideos();
   }, []);
 
   // Select video by index when option is clicked on playlist menu
@@ -98,10 +92,29 @@ const PlaylistShow = (props) => {
     }
   }
 
-  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
+  const moreVideos = () => { 
+    fetch(`/api/v1/playlist_videos/videos/${props.match.params.id}?offset=${offset}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        // Set video response and update offset
+        setVideos([...videos, ...response]);
+        setOffset(offset + 5);
+        if (response.length == 0) {
+          setNoResults(true);
+        }
+      })
+      .catch(() => console.log("Error getting playlist video data"));
+  }
+
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : moreVideos();
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  useEffect(() => console.log("EFFECT: ", videos, index), [videos, index]);
+  // useEffect(() => console.log("EFFECT: ", videos, index), [videos, index]);
 
   return (
     <div>
@@ -117,7 +130,7 @@ const PlaylistShow = (props) => {
         <span>{playlist.user.username}</span>
       </Link>
       <button onClick={previousVideo}>Previous</button>
-      <button onClick={nextVideo}>Next</button>
+      <button onClick={nextVideo} disabled={noResults}>Next</button>
       {vidJsx}
       {videosJsx}
     </div>
