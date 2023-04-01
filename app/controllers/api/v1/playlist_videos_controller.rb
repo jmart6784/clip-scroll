@@ -9,10 +9,14 @@ class Api::V1::PlaylistVideosController < ApplicationController
         response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=#{pv.video_id}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
         pv = pv.as_json
         pv["video"] = JSON.parse(response.body)
-        videos << pv
-      else
-        videos << pv
+      elsif pv.source === "reddit"
+        response = HTTParty.get("https://www.reddit.com/r/#{pv.parent_source_id}/#{pv.video_id}.json?raw_json=1")
+        pv = pv.as_json
+        # Skip if hash, this is deals with a too many requests response.
+        next if JSON.parse(response.body).class == Hash
+        pv["video"] = JSON.parse(response.body)[0]["data"]["children"][0]
       end
+      videos << pv
     end
     render json: videos
   end
