@@ -35,7 +35,7 @@ const RedditShow = (props) => {
               let height = post['data']['media']['reddit_video']['height']; 
               let width = post['data']['media']['reddit_video']['width']; 
               // Include vertical videos only
-              height > width ? tempAry.push(post) : "";
+              height >= width ? tempAry.push(post) : "";
             }
           }
         }
