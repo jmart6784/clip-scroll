@@ -1,12 +1,28 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
+import shuffle from "../../helpers/shuffle";
 
 const RedditIndex = () => {
   const [posts, setPosts] = useState({});
   const [index, setIndex] = useState(0);
   const [noResults, setNoResults] = useState(false);
+  const [subreddits, setSubreddits] = useState([]);
 
-  useEffect(() => more("initial"), []);
+  useEffect(() => { 
+    fetch("/api/v1/addedsubreddit/mine")
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => {
+        setSubreddits(shuffle(response));
+      })
+      .catch(() => console.log("Error getting subreddit data"));
+    
+    // more("initial")
+  }, []);
 
   const more = (type) => {
     let subReddit = 'interestingasfuck';
@@ -65,6 +81,7 @@ const RedditIndex = () => {
   }
 
   // useEffect(() => console.log(posts['data']), [posts]);
+  useEffect(() => console.log("SUBREDDITS: ", subreddits), [subreddits]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
   const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : more("page");
