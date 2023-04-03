@@ -80,14 +80,14 @@ const RedditIndex = () => {
               setNoResults(true);
             }
           })
-          // .catch(() => console.log("Error getting posts data"));
+          .catch(() => console.log("Error getting posts data"));
         }
       }
     }
   }
 
   // useEffect(() => console.log("POSTS: ", posts), [posts]);
-  useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
+  // useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
