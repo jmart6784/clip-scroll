@@ -20,17 +20,17 @@ const RedditIndex = () => {
       .then((response) => {
         let shuffledArray = shuffle(response);
         setSubreddits(shuffledArray);
-        getVideoData(shuffledArray);
+        getVideoData(shuffledArray, 0);
       })
       .catch(() => console.log("Error getting subreddit data"));
   }, []);
 
-  const getVideoData = (subreddits) => { 
+  const getVideoData = (subreddits, requestIndex) => { 
     if (subreddits.length > 0) {
       // Randomized subreddits user is subbed to will have an API request for three.
-      let previousEntry = subreddits[apiHistory.requestIndex - 1];
-      let currentEntry = subreddits[apiHistory.requestIndex];
-      let nextEntry = subreddits[apiHistory.requestIndex + 1];
+      let previousEntry = subreddits[requestIndex - 1];
+      let currentEntry = subreddits[requestIndex];
+      let nextEntry = subreddits[requestIndex + 1];
       let requestList = [previousEntry, currentEntry, nextEntry];
       let videos = [];
 
@@ -63,23 +63,50 @@ const RedditIndex = () => {
             }
             
             if (tempAry.length > 0) {
-              videos = shuffle([...videos, ...tempAry]);
-              // Avoid multiple renders by setting posts at the end
-              i == requestList.length - 1 ? setPosts(videos) : "";
+              shuffle([...posts, ...tempAry]).forEach(vid => videos.push(vid));
+
+              // Remove duplicates videos
+              videos = videos.filter((value, index, self) =>
+                index === self.findIndex((t) => (
+                  t['data']['id'] === value['data']['id']
+                ))
+              )
+              setPosts(videos);
             } else { 
               setNoResults(true);
             }
           })
-          .catch(() => console.log("Error getting posts data"));
+          // .catch(() => console.log("Error getting posts data"));
         }
       }
     }
   }
 
-  useEffect(() => console.log("POSTS: ", posts), [posts]);
+  // useEffect(() => console.log("POSTS: ", posts), [posts]);
+  useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
-  const nextVideo = () => index != posts.length - 1 ? setIndex(index + 1) : "";
+
+  const nextVideo = () => {
+    if (index != posts.length - 1) { 
+      // Refresh after posts index hits 5, The request index will increase by 3 to get more subreddits. Add current video to watch history
+      if (index + 1 == apiHistory.refreshAtIndex) {
+        setApiHistory({
+          watched: [...apiHistory.watched, posts[index]],
+          refreshAtIndex: apiHistory.refreshAtIndex + 5,
+          requestIndex: apiHistory.requestIndex + 3
+        });
+        getVideoData(subreddits, apiHistory.requestIndex + 3);
+      } else { 
+        // Add current video to watched history
+        if (posts[index] != undefined) {
+          setApiHistory({...apiHistory, watched: [...apiHistory.watched, posts[index]]});
+        }
+      }
+      // Increment index to trigger next video
+      setIndex(index + 1);
+    }
+  };
 
   let videoJsx = <h1>...Loading</h1>;
 
@@ -91,9 +118,10 @@ const RedditIndex = () => {
 
   return (
     <div>
-      <h1>Reddit Index</h1>
+      <h1>Reddit Index: {index}</h1>
       {videoJsx}
       <button type="button" onClick={previousVideo}>Previous</button>
+      <button onClick={() => console.log("CLICKED: ", posts, posts[index])}>POSTS</button>
       <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
     </div>
   );
