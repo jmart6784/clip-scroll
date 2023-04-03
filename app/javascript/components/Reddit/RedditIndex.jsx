@@ -20,17 +20,17 @@ const RedditIndex = () => {
       .then((response) => {
         let shuffledArray = shuffle(response);
         setSubreddits(shuffledArray);
-        getVideoData(shuffledArray, 0);
+        getVideoData(shuffledArray, apiHistory);
       })
       .catch(() => console.log("Error getting subreddit data"));
   }, []);
 
-  const getVideoData = (subreddits, requestIndex) => { 
+  const getVideoData = (subreddits, apiHist) => { 
     if (subreddits.length > 0) {
       // Randomized subreddits user is subbed to will have an API request for three.
-      let previousEntry = subreddits[requestIndex - 1];
-      let currentEntry = subreddits[requestIndex];
-      let nextEntry = subreddits[requestIndex + 1];
+      let previousEntry = subreddits[apiHist.requestIndex - 1];
+      let currentEntry = subreddits[apiHist.requestIndex];
+      let nextEntry = subreddits[apiHist.requestIndex + 1];
       let requestList = [previousEntry, currentEntry, nextEntry];
       let videos = [];
 
@@ -63,7 +63,11 @@ const RedditIndex = () => {
             }
             
             if (tempAry.length > 0) {
+              // Shuffle data order
               shuffle([...posts, ...tempAry]).forEach(vid => videos.push(vid));
+
+              // Append watch history so state is synched
+              videos = [...apiHist.watched, ...videos];
 
               // Remove duplicates videos
               videos = videos.filter((value, index, self) =>
@@ -91,12 +95,21 @@ const RedditIndex = () => {
     if (index != posts.length - 1) { 
       // Refresh after posts index hits 5, The request index will increase by 3 to get more subreddits. Add current video to watch history
       if (index + 1 == apiHistory.refreshAtIndex) {
-        setApiHistory({
+        let changes = {
           watched: [...apiHistory.watched, posts[index]],
           refreshAtIndex: apiHistory.refreshAtIndex + 5,
           requestIndex: apiHistory.requestIndex + 3
-        });
-        getVideoData(subreddits, apiHistory.requestIndex + 3);
+        };
+        // If there is another video in the array add it to the watched array.
+        if (posts[index + 1] != undefined) {
+          changes = {
+            ...changes,
+            watched: [...apiHistory.watched, posts[index], posts[index + 1]]
+          }
+        }
+
+        setApiHistory(changes);
+        getVideoData(subreddits, changes);
       } else { 
         // Add current video to watched history
         if (posts[index] != undefined) {
