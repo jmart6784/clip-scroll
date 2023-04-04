@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import ChannelItem from "./ChannelItem";
 
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
@@ -88,20 +89,13 @@ const YouTubeSearch = () => {
       } 
     }
 
-    return (
-      <div key={channel.channelId}>
-        <img src={channel.thumbnails.default.url} alt="channel avatar" />
-        <span>{channel.title}</span>
-        <p>Description: {channel.description}</p>
-        <p>Joined: {channel.publishedAt}</p>
-        {
-          addBtn ? 
-            <button onClick={(e) => addShorts(e, channel.channelId)}>Add</button>
-          : 
-            <button onClick={(e) => removeShorts(e, channel.channelId)}>Remove</button>
-        }
-      </div>
-    );
+    return <ChannelItem
+      key={channel.channelId}
+      channel={channel}
+      addBtn={addBtn}
+      addShorts={addShorts}
+      removeShorts={removeShorts}
+    />;
   });
 
   return (
