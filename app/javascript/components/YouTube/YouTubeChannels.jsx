@@ -5,17 +5,10 @@ import ChannelTile from "./ChannelTile";
 const YouTubeChannels = () => { 
   const [channels, setChannels] = useState([]);
   const [addedChannels, setAddedChannels] = useState([]);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => { 
-    fetch(`/api/v1/youtube/channels`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setChannels(response))
-      .catch(() => console.log("Error getting data"));
+    moreChannels();
     
     fetch(`/api/v1/youtube/added_channels`)
       .then((response) => {
@@ -27,6 +20,20 @@ const YouTubeChannels = () => {
       .then((response) => setAddedChannels(response))
       .catch(() => console.log("Error getting data"));
   }, []);
+
+  const moreChannels = () => {
+    fetch(`/api/v1/youtube/channels?offset=${offset}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setChannels([...channels, ...response]))
+      .catch(() => console.log("Error getting data"));
+    // Increment API request offset by 5
+    setOffset(offset + 5);
+  };
 
   const addShorts = (e, channelId) => {
     fetch(`/api/v1/youtube/add_shorts/${channelId}`, {
@@ -91,6 +98,7 @@ const YouTubeChannels = () => {
       <Link to="/youtube/my_channels">My Channels</Link>
       <h1>YouTube Channels</h1>
       {channelsJsx}
+      <button onClick={moreChannels} type="button">More...</button>
     </div>
   );
 }
