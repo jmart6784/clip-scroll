@@ -32,7 +32,7 @@ class Api::V1::YoutubeController < ApplicationController
             channel_id: params[:channel_id], 
             name: JSON.parse(response.body)["items"][0]["snippet"]["title"]
         )
-        #
+        # Create channel if it does not exist
         if YoutubeChannel.find_by(channel_id: params[:channel_id]).nil?
             YoutubeChannel.create!(
                 name: JSON.parse(response.body)["items"][0]["snippet"]["title"], 
