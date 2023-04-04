@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
-import RedditSearch from "./RedditSearch";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -43,7 +42,6 @@ const SubredditIndex = () => {
   return (
     <div>
       <Link to='/mysubreddits'>My Subreddit</Link>
-      <RedditSearch />
       <h1>Subreddit Index</h1>
       {subredditsJsx}
     </div>
