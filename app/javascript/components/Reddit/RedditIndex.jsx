@@ -77,8 +77,6 @@ const RedditIndex = () => {
                 )
               }
 
-              console.log("HISTORY: ", hist);
-
               // Append watch history so state is synched
               videos = [...hist, ...videos];
 
@@ -100,7 +98,7 @@ const RedditIndex = () => {
   }
 
   // useEffect(() => console.log("POSTS: ", posts), [posts]);
-  useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
+  // useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
@@ -147,7 +145,6 @@ const RedditIndex = () => {
       <h1>Reddit Index: {index}</h1>
       {videoJsx}
       <button type="button" onClick={previousVideo}>Previous</button>
-      <button onClick={() => console.log("CLICKED: ", posts, posts[index])}>POSTS</button>
       <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
     </div>
   );
