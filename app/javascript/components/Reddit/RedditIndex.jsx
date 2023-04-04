@@ -87,14 +87,14 @@ const RedditIndex = () => {
   }
 
   // useEffect(() => console.log("POSTS: ", posts), [posts]);
-  // useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
+  useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   const nextVideo = () => {
     if (index != posts.length - 1) { 
       // Refresh after posts index hits 5, The request index will increase by 3 to get more subreddits. Add current video to watch history
-      if (index + 1 == apiHistory.refreshAtIndex) {
+      if (index + 1 == apiHistory.refreshAtIndex || index == posts.length - 1) {
         let changes = {
           watched: [...apiHistory.watched, posts[index]],
           refreshAtIndex: apiHistory.refreshAtIndex + 5,
