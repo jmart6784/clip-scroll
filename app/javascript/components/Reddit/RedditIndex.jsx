@@ -65,9 +65,22 @@ const RedditIndex = () => {
             if (tempAry.length > 0) {
               // Shuffle data order
               shuffle([...posts, ...tempAry]).forEach(vid => videos.push(vid));
+              
+              let hist = [];
+
+              // Remove duplicates off of API history
+              if (apiHist.watched.length > 0) { 
+                hist = apiHist.watched.filter((value, index, self) =>
+                  index === self.findIndex((t) => (
+                    t['data']['id'] === value['data']['id']
+                  ))
+                )
+              }
+
+              console.log("HISTORY: ", hist);
 
               // Append watch history so state is synched
-              videos = [...apiHist.watched, ...videos];
+              videos = [...hist, ...videos];
 
               // Remove duplicates videos
               videos = videos.filter((value, index, self) =>
