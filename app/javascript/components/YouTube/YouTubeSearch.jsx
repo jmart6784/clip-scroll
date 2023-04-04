@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import ChannelItem from "./ChannelItem";
+import ChannelTile from "./ChannelTile";
 
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
@@ -89,12 +89,12 @@ const YouTubeSearch = () => {
       } 
     }
 
-    return <ChannelItem
+    return <ChannelTile
       key={channel.channelId}
       channel={channel}
-      addBtn={addBtn}
       addShorts={addShorts}
       removeShorts={removeShorts}
+      addedChannels={addedChannels} 
     />;
   });
 
