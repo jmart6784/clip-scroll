@@ -17,7 +17,17 @@ const RedditSearch = () => {
       .catch(() => console.log("Error getting subreddit data"));
   }
 
-  useEffect(() => console.log(subreddits, search), [subreddits, search]);
+  let subredditsJsx = subreddits.map(sr => { 
+    let subreddit = sr['data'];
+
+    return (
+      <div key={subreddit['id']}>
+        <p>{subreddit['display_name']}</p>
+      </div>
+    );
+  });
+
+  useEffect(() => console.log(subreddits), [subreddits]);
 
   return (
     <div>
@@ -25,6 +35,8 @@ const RedditSearch = () => {
       <h1>Reddit Search</h1>
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchSubreddits} disabled={search.trim() == ""}>Search</button>
+
+      {subredditsJsx}
     </div>
   );
 }
