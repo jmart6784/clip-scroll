@@ -16,6 +16,7 @@ import RedditIndex from "../components/Reddit/RedditIndex";
 import RedditShow from "../components/Reddit/RedditShow";
 import SubredditIndex from "../components/Reddit/SubredditIndex";
 import MySubreddits from "../components/Reddit/MySubreddits";
+import RedditSearch from "../components/Reddit/RedditSearch";
 
 import PlaylistIndex from "../components/Playlist/PlaylistIndex";
 import PlaylistShow from "../components/Playlist/PlaylistShow";
@@ -61,6 +62,7 @@ const Index = () => {
           <Route path="/reddit/show/:subreddit" exact component={RedditShow} />
           <Route path="/subreddit/index" exact component={SubredditIndex} />
           <Route path="/mysubreddits" exact component={MySubreddits} />
+          <Route path="/reddit/search" exact component={RedditSearch} />
           
           <Route path="/playlist/index" exact component={PlaylistIndex} />
           <Route path="/playlist/show/:id" exact component={PlaylistShow} />
