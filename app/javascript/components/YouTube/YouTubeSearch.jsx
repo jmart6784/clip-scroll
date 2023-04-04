@@ -44,7 +44,7 @@ const YouTubeSearch = () => {
       .catch(() => console.log("Error getting shorts data"));
   }
 
-    const removeShorts = (e, channelId) => { 
+  const removeShorts = (e, channelId) => { 
     fetch(`/api/v1/youtube/remove_shorts/${channelId}`, {
       method: "DELETE",
       headers: {
