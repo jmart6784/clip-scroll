@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const RedditSearch = () => { 
   const [search, setSearch] = useState("");
@@ -20,6 +21,7 @@ const RedditSearch = () => {
 
   return (
     <div>
+      <Link to="/subreddit/index">Back</Link>
       <h1>Reddit Search</h1>
     </div>
   );
