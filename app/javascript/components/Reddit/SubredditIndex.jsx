@@ -42,6 +42,7 @@ const SubredditIndex = () => {
   return (
     <div>
       <Link to='/mysubreddits'>My Subreddit</Link>
+      <Link to='/reddit/search'>Search for Subreddits</Link>
       <h1>Subreddit Index</h1>
       {subredditsJsx}
     </div>
