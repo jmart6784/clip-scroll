@@ -6,17 +6,10 @@ const MyChannels = () => {
   const [channels, setChannels] = useState([]);
   const [addedChannels, setAddedChannels] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [offset, setOffset] = useState(0);
 
   useEffect(() => {
-    fetch(`/api/v1/youtube/my_channels`)
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        }
-        throw new Error("Network response was not ok.");
-      })
-      .then((response) => setChannels(response), setLoading(false))
-      .catch(() => console.log("Error getting data"));
+    moreChannels();
     
     fetch(`/api/v1/youtube/added_channels`)
       .then((response) => {
@@ -28,6 +21,20 @@ const MyChannels = () => {
       .then((response) => setAddedChannels(response))
       .catch(() => console.log("Error getting data"));
   }, []);
+
+  const moreChannels = () => {
+    fetch(`/api/v1/youtube/my_channels?offset=${offset}`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setChannels([...channels, ...response]), setLoading(false))
+      .catch(() => console.log("Error getting data"));
+    // Increment API request offset by 5
+    setOffset(offset + 5);
+  };
 
   const addShorts = (e, channelId) => {
     fetch(`/api/v1/youtube/add_shorts/${channelId}`, {
@@ -94,6 +101,7 @@ const MyChannels = () => {
       <Link to="/youtube/channels">More Channels</Link>
       <h1>My Channels</h1>
       {channelsJsx}
+      <button onClick={moreChannels} type="button">More...</button>
     </div>
   } else if (loading === false && channels.length === 0) { 
     mainJsx = <div>No Channels added find more <Link to="/youtube/channels">here!</Link></div>;
