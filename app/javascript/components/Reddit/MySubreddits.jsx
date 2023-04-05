@@ -4,6 +4,7 @@ import SubredditItem from "./SubredditItem";
 
 const MySubreddits = () => { 
   const [subreddits, setSubreddits] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     fetch("/api/v1/addedsubreddit/mine")
@@ -13,7 +14,7 @@ const MySubreddits = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setSubreddits(response))
+      .then((response) => setSubreddits(response), setLoading(false))
       .catch(() => console.log("Error getting subreddit data"));
   }, []);
 
@@ -21,13 +22,23 @@ const MySubreddits = () => {
 
   subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} subbed={true} />);
 
-  return (
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && subreddits.length > 0) {
+    mainJsx = (
     <div>
       <Link to='/subreddit/index'>Subreddit Index</Link>
       <h1>My Subreddits</h1>
       {subredditsJsx}
     </div>
   );
+  } else if (loading === false && subreddits.length === 0) { 
+    mainJsx = (
+      <div>No Results</div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default MySubreddits;
