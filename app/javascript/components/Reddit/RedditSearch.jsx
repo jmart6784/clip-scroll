@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
 
 const RedditSearch = () => { 
-  const [search, setSearch] = useState("11foot8");
+  const [search, setSearch] = useState("");
   const [subreddits, setSubreddits] = useState([]);
   const [mySubreddits, setMySubreddits] = useState([]);
   const [loading, setLoading] = useState(true);
