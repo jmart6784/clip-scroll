@@ -6,6 +6,7 @@ const SubredditIndex = () => {
   const [subreddits, setSubreddits] = useState([]);
   const [mySubreddits, setMySubreddits] = useState([]);
   const [subredditsJsx, setSubredditsJsx] = useState(<div>Loading...</div>);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     fetch("/api/v1/subreddit/index")
@@ -15,7 +16,7 @@ const SubredditIndex = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setSubreddits(response))
+      .then((response) => setSubreddits(response), setLoading(false))
       .catch(() => console.log("Error getting subreddit data"));
     
     fetch("/api/v1/addedsubreddit/mine")
@@ -39,14 +40,24 @@ const SubredditIndex = () => {
     }));
   }, [subreddits, mySubreddits]);
 
-  return (
-    <div>
-      <Link to='/mysubreddits'>My Subreddit</Link>
-      <Link to='/reddit/search'>Search for Subreddits</Link>
-      <h1>Subreddit Index</h1>
-      {subredditsJsx}
-    </div>
-  )
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && subreddits.length > 0) {
+    mainJsx = (
+      <div>
+        <Link to='/mysubreddits'>My Subreddit</Link>
+        <Link to='/reddit/search'>Search for Subreddits</Link>
+        <h1>Subreddit Index</h1>
+        {subredditsJsx}
+      </div>
+    );
+  } else if (loading === false && subreddits.length === 0) { 
+    mainJsx = (
+      <div>No Results</div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default SubredditIndex;
