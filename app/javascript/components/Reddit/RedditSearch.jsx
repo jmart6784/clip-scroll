@@ -6,6 +6,8 @@ const RedditSearch = () => {
   const [search, setSearch] = useState("11foot8");
   const [subreddits, setSubreddits] = useState([]);
   const [mySubreddits, setMySubreddits] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [submited, setSubmited] = useState(false);
 
   useEffect(() => {
     fetch("/api/v1/addedsubreddit/mine")
@@ -27,7 +29,11 @@ const RedditSearch = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setSubreddits(response['data']['children']))
+      .then((response) => {
+        setLoading(false);
+        setSubmited(true);
+        setSubreddits(response['data']['children'])
+      })
       .catch(() => console.log("Error getting subreddit data"));
   }
 
@@ -43,6 +49,14 @@ const RedditSearch = () => {
     return <SubredditItem key={subreddit['id']} subreddit={srObj} subbed={subbed} view={'index'} />;
   });
 
+  let mainJsx;
+
+  if (loading && submited) {
+    mainJsx = <h1>...Loading</h1>;
+  } else if (loading === false && subreddits.length === 0) { 
+    mainJsx = <div>No Results</div>;
+  }
+  
   return (
     <div>
       <Link to="/subreddit/index">Back</Link>
@@ -50,7 +64,7 @@ const RedditSearch = () => {
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchSubreddits} disabled={search.trim() == ""}>Search</button>
 
-      {subredditsJsx}
+      {subreddits.length > 0 && submited ? subredditsJsx : mainJsx}
     </div>
   );
 }
