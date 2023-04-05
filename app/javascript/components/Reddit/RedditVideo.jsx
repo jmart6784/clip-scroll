@@ -35,9 +35,12 @@ const RedditVideo = (props) => {
       <p>Posted by {post['data']['author']}</p>
       <p>All awardings: {awards}</p>
       <p>Comments: {post['data']['num_comments']}</p>
+      
       <video id="reddit-video" src={post['data']['media']['reddit_video']['fallback_url']} onTimeUpdate={(e) => synchronize(e)} onClick={(e) => playPause(e)} width="300" height="500" autoPlay loop></video>
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
+
       <button type="button" onClick={() => setPrompt(!prompt)}>Comments</button>
+
       {prompt ? <RedditComments postId={postId} subreddit={post['data']['subreddit']} /> : ""}
     </div>
   );
