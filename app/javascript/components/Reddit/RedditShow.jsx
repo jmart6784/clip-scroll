@@ -65,8 +65,6 @@ const RedditShow = (props) => {
       .catch(() => console.log("Error getting posts data"));
   }
 
-  // useEffect(() => console.log(posts['data']), [posts]);
-
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
   const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : more("page");
 
