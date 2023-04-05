@@ -6,6 +6,7 @@ const YouTubeChannels = () => {
   const [channels, setChannels] = useState([]);
   const [addedChannels, setAddedChannels] = useState([]);
   const [offset, setOffset] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     moreChannels();
@@ -29,7 +30,7 @@ const YouTubeChannels = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setChannels([...channels, ...response]))
+      .then((response) => setChannels([...channels, ...response]), setLoading(false))
       .catch(() => console.log("Error getting data"));
     // Increment API request offset by 5
     setOffset(offset + 5);
@@ -93,14 +94,24 @@ const YouTubeChannels = () => {
     />
   );
 
-  return (
-    <div>
-      <Link to="/youtube/my_channels">My Channels</Link>
-      <h1>YouTube Channels</h1>
-      {channelsJsx}
-      <button onClick={moreChannels} type="button">More...</button>
-    </div>
-  );
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && channels.length > 0) { 
+    mainJsx = (
+      <div>
+        <Link to="/youtube/my_channels">My Channels</Link>
+        <h1>YouTube Channels</h1>
+        {channelsJsx}
+        <button onClick={moreChannels} type="button">More...</button>
+      </div>
+    );
+  } else if (loading === false && channels.length === 0) { 
+    mainJsx = (
+      <div>No Channels search more <Link to="/youtube/search">here!</Link></div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default YouTubeChannels;
