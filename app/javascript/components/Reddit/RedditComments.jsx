@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 
 const RedditComments = (props) => { 
-  const [comments, setComments] = useState([{}, { data: {children: []} }]);
+  const [comments, setComments] = useState([{}, { data: { children: [] } }]);
+  const [noResults, setNoResults] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`https://www.reddit.com/r/${props.subreddit}/comments/${props.postId}.json?raw_json=1`)
@@ -11,7 +13,12 @@ const RedditComments = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setComments(response))
+      .then((response) => {
+        // If comments array is empty set no results to true
+        response[1]['data']['children'].length == 0 ? setNoResults(true) : ""
+        setLoading(false);
+        setComments(response);
+      })
       .catch(() => console.log("Error getting data"));
   }, [props]);
 
@@ -74,12 +81,22 @@ const RedditComments = (props) => {
     }
   });
 
-  return (
-    <div>
-      <h1>Reddit Comments:</h1>
-      {commentsJsx}
-    </div>
-  );
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && comments[1]['data']['children'].length > 0) {
+    mainJsx = (
+      <div>
+        <h1>Reddit Comments:</h1>
+        {commentsJsx}
+      </div>
+    )
+  } else if (loading === false && comments[1]['data']['children'].length === 0) { 
+    mainJsx = (
+      <div>No Comments</div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default RedditComments;
