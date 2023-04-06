@@ -24,33 +24,31 @@ const YoutubeVideo = (props) => {
 
   return (
     <div>
-      {
-        <div>
-          <YouTube
-            videoId={video_id}
-            id={"youtube-video-main"}
-            className={"youtube-video"}
-            opts={{
-              height: "500",
-              width: "300",
-              playerVars: {
-                autoplay: 1,
-                mute: 1,
-                loop: 1,
-                controls: 0,
-                enablejsapi: 1,
-                playlist: `${video_id}`,
-              },
-            }}                        
-            onReady={onReady}                    
-          />
-          <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>
-          <YouTubeComments
-            id={video_id}
-            commentCount={video.items ? video.items[0].statistics.commentCount : ""} 
-          />
-        </div>
-      }
+      <div>
+        <YouTube
+          videoId={video_id}
+          id={"youtube-video-main"}
+          className={"youtube-video"}
+          opts={{
+            height: "500",
+            width: "300",
+            playerVars: {
+              autoplay: 1,
+              mute: 1,
+              loop: 1,
+              controls: 0,
+              enablejsapi: 1,
+              playlist: `${video_id}`,
+            },
+          }}                        
+          onReady={onReady}                    
+        />
+        <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>
+        <YouTubeComments
+          id={video_id}
+          commentCount={video.items ? video.items[0].statistics.commentCount : ""} 
+        />
+      </div>
     </div>
   );
 }
