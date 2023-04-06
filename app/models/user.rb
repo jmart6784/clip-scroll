@@ -6,6 +6,7 @@ class User < ApplicationRecord
 
   after_create :add_default_channels
   after_create :add_default_subreddits
+  after_create :create_default_playlist
 
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
   validates :username, uniqueness: true, presence: true, length: {minimum: 4, maximum: 16}, format: { with: VALID_USERNAME_REGEX }
@@ -289,6 +290,12 @@ class User < ApplicationRecord
       if AddedSubreddit.find_by(subreddit: subreddit, user_id: self.id).nil?
         AddedSubreddit.create!(subreddit: subreddit, user_id: self.id)
       end
+    end
+  end
+
+  def create_default_playlist
+    if Playlist.where(user_id: self.id).count == 0
+      Playlist.create!(user_id: self.id, name: "#{self.first_name}'s playlist", source: "mix", private: true)
     end
   end
 end
