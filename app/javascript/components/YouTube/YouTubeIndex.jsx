@@ -6,6 +6,7 @@ import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 const YouTubeIndex = () => { 
   const [videos, setVideos] = useState([]);
   const [index, setIndex] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     fetch("/api/v1/youtube/videos")
@@ -15,7 +16,7 @@ const YouTubeIndex = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setVideos(response))
+      .then((response) => setVideos(response), setLoading(false))
       .catch(() => console.log("Error getting data"));
   }, []);
 
@@ -24,19 +25,33 @@ const YouTubeIndex = () => {
 
   let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
 
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && videos.length > 0) {
+    mainJsx = (
+      <div>
+        <PlaylistVideoMenu
+          videoId={videos[index] ? videos[index].video_id : ""}
+          parentSourceId={videos[index] ? videos[index].channel_id : ""}
+          source="youtube"
+        />
+        <h1>YouTube Index</h1>
+        <button onClick={previousVideo}>Previous</button>
+        <button onClick={nextVideo}>Next</button>
+        {video}
+      </div>
+    );
+  } else if (loading === false && videos.length === 0) { 
+    mainJsx = (
+      <div>No Results</div>
+    );
+  }
+
   return (
     <div>
       <Link to="/youtube/search">Search</Link>
       <Link to="/youtube/channels">Channels</Link>
-      <PlaylistVideoMenu
-        videoId={videos[index] ? videos[index].video_id : ""}
-        parentSourceId={videos[index] ? videos[index].channel_id : ""}
-        source="youtube"
-      />
-      <h1>YouTube Index</h1>
-      <button onClick={previousVideo}>Previous</button>
-      <button onClick={nextVideo}>Next</button>
-      {video}
+      {mainJsx}
     </div>
   );
 }
