@@ -6,6 +6,8 @@ const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
   const [search, setSearch] = useState("");
   const [addedChannels, setAddedChannels] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [submited, setSubmited] = useState(false);
 
   useEffect(() => { 
     fetch(`/api/v1/youtube/added_channels`)
@@ -75,7 +77,11 @@ const YouTubeSearch = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setResults(response))
+      .then((response) => {
+        setLoading(false);
+        setSubmited(true);
+        setResults(response);
+      })
       .catch(() => console.log("Error getting data"));
   }
 
@@ -98,6 +104,14 @@ const YouTubeSearch = () => {
     />;
   });
 
+  let mainJsx;
+
+  if (loading && submited) {
+    mainJsx = <h1>...Loading</h1>;
+  } else if (loading === false && results.items.length === 0) { 
+    mainJsx = <div>No Results</div>;
+  }
+
   return (
     <div>
       <h1>YouTube Search</h1>
@@ -105,7 +119,7 @@ const YouTubeSearch = () => {
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchChannels} disabled={search.trim() == ""}>Search</button>
 
-      {resultsJsx}
+      {results.items.length > 0 && submited ? resultsJsx : mainJsx}
     </div>
   );
 }
