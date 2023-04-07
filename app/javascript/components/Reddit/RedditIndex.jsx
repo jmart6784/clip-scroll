@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
 import shuffle from "../../helpers/shuffle";
+import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const RedditIndex = () => {
   const [posts, setPosts] = useState([]);
@@ -97,9 +98,6 @@ const RedditIndex = () => {
     }
   }
 
-  // useEffect(() => console.log("POSTS: ", posts), [posts]);
-  // useEffect(() => console.log("apiHistory: ", apiHistory), [apiHistory]);
-
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   const nextVideo = () => {
@@ -112,7 +110,7 @@ const RedditIndex = () => {
           requestIndex: apiHistory.requestIndex + 3
         };
         // If there is another video in the array add it to the watched array.
-        if (posts[index + 1] != undefined) {
+        if (posts[index  useEffect(() => console.log(posts[index] ? posts[index] : "NONE"), [posts]); + 1] != undefined) {
           changes = {
             ...changes,
             watched: [...apiHistory.watched, posts[index], posts[index + 1]]
@@ -142,6 +140,11 @@ const RedditIndex = () => {
 
   return (
     <div>
+      <PlaylistVideoMenu
+        videoId={posts[index] ? posts[index]['data']['id'] : ""}
+        parentSourceId={posts[index] ? posts[index]['data']['subreddit'] : ""}
+        source="reddit"
+      />
       <h1>Reddit Index: {index}</h1>
       {videoJsx}
       <button type="button" onClick={previousVideo}>Previous</button>
