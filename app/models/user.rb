@@ -7,15 +7,15 @@ class User < ApplicationRecord
   after_create :add_default_channels
   after_create :add_default_subreddits
   after_create :create_default_playlist
+  after_create :set_default_avatar
 
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
   validates :username, uniqueness: true, presence: true, length: {minimum: 4, maximum: 16}, format: { with: VALID_USERNAME_REGEX }
   validates :first_name, :last_name, presence: true, length: { minimum: 1, maximum: 60 }
   validates :bio, length: { maximum: 500 }
-
-  has_one_attached :avatar, dependent: :destroy
   validate :avatar_type
-  after_create :set_default_avatar
+  
+  has_one_attached :avatar, dependent: :destroy
   has_many :added_channels, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_many :playlist_videos, dependent: :destroy
