@@ -7,6 +7,7 @@ const PlaylistEdit = (props) => {
     source: "mix",
     private: false
   });
+  const [options, setOptions] = useState(["mix", "youtube", "reddit"]);
 
   useEffect(() => { 
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
@@ -16,7 +17,12 @@ const PlaylistEdit = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setForms(response))
+      .then((response) => {
+        let optionsAry = [response['source'], ...options];
+        optionsAry = [...new Set(optionsAry)];
+        setOptions(optionsAry);
+        setForms(response);
+      })
       .catch((error) => console.log(error.message));
   }, []);
 
@@ -43,6 +49,7 @@ const PlaylistEdit = (props) => {
 
   const onChange = (event) => {
     const { name, value } = event.target;
+    console.log("ONCHANGE: ", name, value )
     setForms({ ...forms, [name]: value });
   };
 
@@ -51,10 +58,18 @@ const PlaylistEdit = (props) => {
     setForms({...forms, [name]: checked});
   }
 
+  useEffect(() => console.log("FORMS: ", forms, "OPTIONS: ", options), [forms, options]);
+
   return (
     <div>
       <h1>Playlist Edit</h1>
-      <Form forms={forms} onChange={onChange} onCheck={onCheck} onSubmit={onSubmit} />
+      <Form
+        forms={forms}
+        onChange={onChange}
+        onCheck={onCheck}
+        onSubmit={onSubmit}
+        options={options}
+        />
     </div>
   );
 }
