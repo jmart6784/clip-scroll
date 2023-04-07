@@ -110,7 +110,7 @@ const RedditIndex = () => {
           requestIndex: apiHistory.requestIndex + 3
         };
         // If there is another video in the array add it to the watched array.
-        if (posts[index  useEffect(() => console.log(posts[index] ? posts[index] : "NONE"), [posts]); + 1] != undefined) {
+        if (posts[index + 1] != undefined) {
           changes = {
             ...changes,
             watched: [...apiHistory.watched, posts[index], posts[index + 1]]
