@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 const PlaylistVideoMenu = (props) => { 
   const [playlists, setPlaylists] = useState([]);
   const [prompt, setPrompt] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     fetch(`/api/v1/playlist/mine?video_id=${props.videoId}`)
@@ -12,7 +13,7 @@ const PlaylistVideoMenu = (props) => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setPlaylists(response))
+      .then((response) => setPlaylists(response), setLoading(false))
       .catch(() => console.log("Error getting playlist data"));
   }, [props]);
 
@@ -110,10 +111,25 @@ const PlaylistVideoMenu = (props) => {
   let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
 
   if (prompt) {
+    let mainJsx = <h1>...Loading</h1>;
+
+    if (loading === false && playlists.length > 0) {
+      mainJsx = (
+        <div>
+          <h1>Playlist Index</h1>
+          {playlistJsx}
+        </div>
+      );
+    } else if (loading === false && playlists.length === 0) { 
+      mainJsx = (
+        <div>No Playlists created</div>
+      );
+    }
+
     menuJsx = (
       <div>
         <button type="button" onClick={() => setPrompt(false)}>Close</button>
-        {playlistJsx}
+        {mainJsx}
       </div>
     );
   }
