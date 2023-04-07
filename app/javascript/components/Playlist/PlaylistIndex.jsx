@@ -4,6 +4,7 @@ import PlaylistDelete from "./PlaylistDelete";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => { 
     fetch("/api/v1/playlist/index")
@@ -13,7 +14,7 @@ const PlaylistIndex = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setPlaylists(response))
+      .then((response) => setPlaylists(response), setLoading(false))
       .catch(() => console.log("Error getting data"));
   }, []);
 
@@ -32,12 +33,22 @@ const PlaylistIndex = () => {
     );
   });
 
-  return (
-    <div>
-      <h1>Playlist Index</h1>
-      {playListJsx}
-    </div>
-  );
+  let mainJsx = <h1>...Loading</h1>;
+
+  if (loading === false && playlists.length > 0) {
+    mainJsx = (
+      <div>
+        <h1>Playlist Index</h1>
+        {playListJsx}
+      </div>
+    );
+  } else if (loading === false && playlists.length === 0) { 
+    mainJsx = (
+      <div>No Results</div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default PlaylistIndex;
