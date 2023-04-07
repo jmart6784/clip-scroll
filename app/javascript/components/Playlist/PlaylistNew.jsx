@@ -7,6 +7,7 @@ const PlaylistNew = (props) => {
     source: "mix",
     private: false
   });
+  const [options, setOptions] = useState(["mix", "youtube", "reddit"]);
 
   const onSubmit = () => { 
     event.preventDefault();
@@ -42,7 +43,13 @@ const PlaylistNew = (props) => {
   return (
     <div>
       <h1>Playlist New</h1>
-      <Form forms={forms} onChange={onChange} onCheck={onCheck} onSubmit={onSubmit} />
+      <Form
+        forms={forms}
+        onChange={onChange}
+        onCheck={onCheck}
+        onSubmit={onSubmit} 
+        options={options}
+      />
     </div>
   );
 }
