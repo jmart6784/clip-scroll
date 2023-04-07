@@ -49,7 +49,6 @@ const PlaylistEdit = (props) => {
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    console.log("ONCHANGE: ", name, value )
     setForms({ ...forms, [name]: value });
   };
 
@@ -57,8 +56,6 @@ const PlaylistEdit = (props) => {
     const { name, checked } = event.target;
     setForms({...forms, [name]: checked});
   }
-
-  useEffect(() => console.log("FORMS: ", forms, "OPTIONS: ", options), [forms, options]);
 
   return (
     <div>
