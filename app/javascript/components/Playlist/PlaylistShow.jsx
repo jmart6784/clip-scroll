@@ -19,6 +19,7 @@ const PlaylistShow = (props) => {
   const [videos, setVideos] = useState([]);
   const [offset, setOffset] = useState(0);
   const [noResults, setNoResults] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
@@ -104,6 +105,7 @@ const PlaylistShow = (props) => {
         // Set video response and update offset
         setVideos([...videos, ...response]);
         setOffset(offset + 5);
+        setLoading(false);
         if (response.length == 0) {
           setNoResults(true);
         }
@@ -114,27 +116,35 @@ const PlaylistShow = (props) => {
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : moreVideos();
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  // useEffect(() => console.log("EFFECT: ", videos, index), [videos, index]);
+  let mainJsx = <h1>...Loading</h1>;
 
-  return (
-    <div>
-      <h1>Playlist Show</h1>
-      <p>name: {playlist.name}</p>
-      <p>Private: {playlist.private.toString()}</p>
-      <p>Source: {playlist.source}</p>
-      <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
-      <PlaylistDelete id={playlist.id} />
-      <p>{playlist.user.username}</p>
-      <Link to={`/users/show/${playlist.user.id}`}>
-        <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
-        <span>{playlist.user.username}</span>
-      </Link>
-      <button onClick={previousVideo}>Previous</button>
-      <button onClick={nextVideo} disabled={noResults}>Next</button>
-      {vidJsx}
-      {videosJsx}
-    </div>
-  );
+  if (loading === false && videos.length > 0) {
+    mainJsx = (
+      <div>
+        <h1>Playlist Show</h1>
+        <p>name: {playlist.name}</p>
+        <p>Private: {playlist.private.toString()}</p>
+        <p>Source: {playlist.source}</p>
+        <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
+        <PlaylistDelete id={playlist.id} />
+        <p>{playlist.user.username}</p>
+        <Link to={`/users/show/${playlist.user.id}`}>
+          <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
+          <span>{playlist.user.username}</span>
+        </Link>
+        <button onClick={previousVideo}>Previous</button>
+        <button onClick={nextVideo} disabled={noResults}>Next</button>
+        {vidJsx}
+        {videosJsx}
+      </div>
+    );
+  } else if (loading === false && videos.length === 0) { 
+    mainJsx = (
+      <div>No Results</div>
+    );
+  }
+
+  return mainJsx;
 }
 
 export default PlaylistShow;
