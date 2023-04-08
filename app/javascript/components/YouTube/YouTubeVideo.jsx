@@ -6,6 +6,7 @@ const YoutubeVideo = (props) => {
   const [video, setVideo] = useState({});
   
   useEffect(() => { 
+    // Example of deleted video /api/v1/youtube/video/xRa9SZUdk_Q
     fetch(`/api/v1/youtube/video/${props.id}`)
       .then((response) => {
         if (response.ok) {
@@ -19,14 +20,31 @@ const YoutubeVideo = (props) => {
 
   const onReady = (event) => event.target.unMute();
 
-  let video_id = video.items ? video.items[0].id : "ofqIENNSx_0"
-  let stats = video.items ? video.items[0].statistics : {viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0'};
+  let videoId;
+  let stats;
+  let statsJsx = <div>No stats available</div>;
+  let commentsJsx = <div>No comments available</div>;
 
+  if (video.items) {
+    if (video.items.length != 0) { 
+      videoId = video.items ? video.items[0].id : "ofqIENNSx_0"
+      stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
+
+      statsJsx = <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>;
+      commentsJsx = (
+        <YouTubeComments
+          id={videoId}
+          commentCount={video.items ? video.items[0].statistics.commentCount : ""}
+        />
+      );
+    }
+  }
+  
   return (
     <div>
       <div>
         <YouTube
-          videoId={video_id}
+          videoId={videoId}
           id={"youtube-video-main"}
           className={"youtube-video"}
           opts={{
@@ -38,16 +56,14 @@ const YoutubeVideo = (props) => {
               loop: 1,
               controls: 0,
               enablejsapi: 1,
-              playlist: `${video_id}`,
+              playlist: `${videoId}`,
             },
-          }}                        
-          onReady={onReady}                    
+          }}
+          onReady={onReady}
         />
-        <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>
-        <YouTubeComments
-          id={video_id}
-          commentCount={video.items ? video.items[0].statistics.commentCount : ""} 
-        />
+        
+        {statsJsx}
+        {commentsJsx}
       </div>
     </div>
   );
