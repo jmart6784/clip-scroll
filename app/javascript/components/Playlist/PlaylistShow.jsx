@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
 import YoutubeVideo from "../YouTube/YouTubeVideo";
 import RedditVideo from "../Reddit/RedditVideo";
+import PlaylistVideoDelete from "../Playlist_video/PlaylistVideoDelete";
 
 const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
@@ -40,6 +41,12 @@ const PlaylistShow = (props) => {
     let index = videos.findIndex(v => v.video_id === videoId);
     index != -1 ? setIndex(index) : ""
   }
+
+  const removeVideo = (videoId) => {
+    // If the last video is deleted, decrement the index
+    videos.length - 1 == index ? setIndex(index - 1) : '';
+    setVideos(videos.filter(vid => vid.id !== videoId));
+  }
   
   // Render click-able playlist menu options
   let videosJsx = videos.map((v, i) => {
@@ -56,6 +63,7 @@ const PlaylistShow = (props) => {
           <p>{video.title}</p>
           <p>{video.channelTitle}</p>
           <p>{stats.viewCount}</p>
+          <PlaylistVideoDelete video={v} removeVideo={removeVideo} />
         </div>
       );
     } else if (v['source'] == 'reddit') { 
@@ -68,6 +76,7 @@ const PlaylistShow = (props) => {
           <p>{video['title']}</p>
           <p>{video['subreddit']}</p>
           <p>{video['score']}</p>
+          <PlaylistVideoDelete video={v} removeVideo={removeVideo} />
         </div>
       ); 
     }
