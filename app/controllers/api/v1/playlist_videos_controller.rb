@@ -35,8 +35,11 @@ class Api::V1::PlaylistVideosController < ApplicationController
 
   def destroy_from_playlist
     playlist_video = PlaylistVideo.find_by(playlist_video_params)
-    playlist_video&.destroy
-    render json: { message: 'playlist deleted!' }
+
+    if playlist_video.user == current_user
+      playlist_video&.destroy
+      render json: { message: 'playlist deleted!' }
+    end
   end
 
   private
