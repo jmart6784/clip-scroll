@@ -145,6 +145,7 @@ const PlaylistShow = (props) => {
         <button onClick={nextVideo} disabled={noResults}>Next</button>
         {vidJsx}
         {videosJsx}
+        <button onClick={moreVideos}>Show More</button>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
