@@ -45,7 +45,7 @@ const SubredditIndex = () => {
   if (loading === false && subreddits.length > 0) {
     mainJsx = (
       <div>
-        <Link to='/mysubreddits'>My Subreddit</Link>
+        <Link to='/mysubreddits'>My Subreddits</Link>
         <Link to='/reddit/search'>Search for Subreddits</Link>
         <h1>Subreddit Index</h1>
         {subredditsJsx}
