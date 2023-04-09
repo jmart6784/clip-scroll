@@ -8,6 +8,7 @@ const RedditIndex = () => {
   const [index, setIndex] = useState(0);
   const [noResults, setNoResults] = useState(false);
   const [subreddits, setSubreddits] = useState([]);
+  const [requested, setRequested] = useState(false);
   const [apiHistory, setApiHistory] = useState({ requestIndex: 0, watched: [], refreshAtIndex: 5 });
 
   useEffect(() => { 
@@ -88,6 +89,7 @@ const RedditIndex = () => {
                 ))
               )
               setPosts(videos);
+              setRequested(false);
             } else { 
               setNoResults(true);
             }
@@ -101,7 +103,7 @@ const RedditIndex = () => {
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   const nextVideo = () => {
-    if (index != posts.length - 1) { 
+    if (index != posts.length - 1 && !requested) { 
       // Refresh after posts index hits 5, The request index will increase by 3 to get more subreddits. Add current video to watch history
       if (index + 1 == apiHistory.refreshAtIndex || index == posts.length - 1) {
         let changes = {
@@ -116,7 +118,8 @@ const RedditIndex = () => {
             watched: [...apiHistory.watched, posts[index], posts[index + 1]]
           }
         }
-
+        // Set requested to true to prevent duplicate requests
+        setRequested(true);
         setApiHistory(changes);
         getVideoData(subreddits, changes);
       } else { 
