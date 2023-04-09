@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_03_27_031902) do
+ActiveRecord::Schema.define(version: 2023_04_09_230133) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,15 @@ ActiveRecord::Schema.define(version: 2023_03_27_031902) do
 
   create_table "subreddits", force: :cascade do |t|
     t.text "subreddit", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "user_configurations", force: :cascade do |t|
+    t.integer "youtube_search_limit", default: 1, null: false
+    t.datetime "last_requested"
+    t.text "screen_fit", default: "full", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
