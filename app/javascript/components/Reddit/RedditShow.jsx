@@ -6,6 +6,7 @@ const RedditShow = (props) => {
   const [posts, setPosts] = useState({});
   const [index, setIndex] = useState(0);
   const [noResults, setNoResults] = useState(false);
+  const [requested, setRequested] = useState(false);
 
   useEffect(() => more("initial"), []);
 
@@ -55,6 +56,7 @@ const RedditShow = (props) => {
                 ]
               }
             });
+            setRequested(false);
             // If more posts exist then increase index by 1 on paginated response
             tempAry.length > 0 ? setIndex(index + 1) : "";
           } else { setPosts(res) } 
@@ -66,7 +68,17 @@ const RedditShow = (props) => {
   }
 
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
-  const nextVideo = () => index != posts['data']['children'].length - 1 ? setIndex(index + 1) : more("page");
+
+  const nextVideo = () => {
+    if (index != posts['data']['children'].length && !requested) {
+      if (index == posts['data']['children'].length - 1) {
+        setRequested(true);
+        more("page");
+      } else { 
+        setIndex(index + 1);
+      }
+    }
+  }
 
   let videoJsx = <h1>...Loading</h1>;
 
