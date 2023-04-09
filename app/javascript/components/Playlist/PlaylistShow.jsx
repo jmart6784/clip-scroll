@@ -115,7 +115,7 @@ const PlaylistShow = (props) => {
         setVideos([...videos, ...response]);
         setOffset(offset + 5);
         setLoading(false);
-        if (response.length == 0) {
+        if (response.length < 5) {
           setNoResults(true);
         }
       })
@@ -145,7 +145,7 @@ const PlaylistShow = (props) => {
         <button onClick={nextVideo} disabled={noResults}>Next</button>
         {vidJsx}
         {videosJsx}
-        <button onClick={moreVideos}>Show More</button>
+        <button onClick={moreVideos} disabled={noResults}>Show More</button>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
