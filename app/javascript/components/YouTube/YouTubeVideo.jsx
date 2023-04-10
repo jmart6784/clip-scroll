@@ -18,7 +18,8 @@ const YoutubeVideo = (props) => {
       .catch(() => console.log("Failed to get video"));
   }, [props.id]);
 
-  const onReady = (event) => event.target.unMute();
+  const onReady = (event) =>  event.target.unMute();
+  const onEnd = (event) =>  event.target.playVideo();
 
   let videoId;
   let stats;
@@ -52,14 +53,17 @@ const YoutubeVideo = (props) => {
             width: "300",
             playerVars: {
               autoplay: 1,
-              mute: 1,
+              mute: 0,
               loop: 1,
               controls: 0,
               enablejsapi: 1,
+              showinfo: 0,
+              fs: 0,
               playlist: `${videoId}`,
             },
           }}
           onReady={onReady}
+          onEnd={onEnd}
         />
         
         {statsJsx}
