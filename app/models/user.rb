@@ -16,6 +16,7 @@ class User < ApplicationRecord
   validate :avatar_type
   
   has_one_attached :avatar, dependent: :destroy
+  has_one :user_configuration, dependent: :destroy
   has_many :added_channels, dependent: :destroy
   has_many :playlists, dependent: :destroy
   has_many :playlist_videos, dependent: :destroy
