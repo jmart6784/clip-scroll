@@ -1,10 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
+import GlobalContext from "../context/GlobalContext";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [global, setGlobal] = useContext(GlobalContext);
 
   useEffect(() => { 
     fetch("/api/v1/playlist/index")
@@ -20,11 +22,25 @@ const PlaylistIndex = () => {
 
   let playListJsx = playlists.map(playlist => { 
     let user = playlist.user;
+    let ownerBtns = '';
+
+    if (global.user) {
+      if (user.id === global.user.id) {
+        ownerBtns = (
+          <div>
+            <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
+            <PlaylistDelete id={playlist.id} location="index" />
+          </div>
+        );
+      }
+    }
+
     return (
       <div id={`playlist-${playlist.id}`} key={playlist.id}>
         <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
-        <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
-        <PlaylistDelete id={playlist.id} location="index" />
+
+        {ownerBtns}
+        
         <Link to={`/users/show/${user.id}`}>
           <img src={user.avatar.url} height="50" width="50" alt="user avatar" />
           <span>{user.username}</span>
