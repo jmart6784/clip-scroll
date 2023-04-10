@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import PlaylistDelete from "./PlaylistDelete";
 import YoutubeVideo from "../YouTube/YouTubeVideo";
 import RedditVideo from "../Reddit/RedditVideo";
 import PlaylistVideoDelete from "../Playlist_video/PlaylistVideoDelete";
+import GlobalContext from "../context/GlobalContext";
 
 const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
@@ -21,6 +22,7 @@ const PlaylistShow = (props) => {
   const [offset, setOffset] = useState(0);
   const [noResults, setNoResults] = useState(false);
   const [loading, setLoading] = useState(true);
+  const [global, setGlobal] = useContext(GlobalContext);
 
   useEffect(() => {
     fetch(`/api/v1/playlist/show/${props.match.params.id}`)
@@ -128,14 +130,28 @@ const PlaylistShow = (props) => {
   let mainJsx = <h1>...Loading</h1>;
 
   if (loading === false && videos.length > 0) {
+    let ownerBtns = '';
+
+    if (global.user) {
+      if (playlist['user_id'] === global.user.id) {
+        ownerBtns = (
+          <div>
+            <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
+            <PlaylistDelete id={playlist.id} />
+          </div>
+        );
+      }
+    }
+
     mainJsx = (
       <div>
         <h1>Playlist Show</h1>
         <p>name: {playlist.name}</p>
         <p>Private: {playlist.private.toString()}</p>
         <p>Source: {playlist.source}</p>
-        <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
-        <PlaylistDelete id={playlist.id} />
+        
+        {ownerBtns}
+
         <p>{playlist.user.username}</p>
         <Link to={`/users/show/${playlist.user.id}`}>
           <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
