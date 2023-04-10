@@ -8,6 +8,7 @@ const YouTubeSearch = () => {
   const [addedChannels, setAddedChannels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [submited, setSubmited] = useState(false);
+  const [limitReached, setLimitReached] = useState(false);
 
   useEffect(() => { 
     fetch(`/api/v1/youtube/added_channels`)
@@ -80,7 +81,11 @@ const YouTubeSearch = () => {
       .then((response) => {
         setLoading(false);
         setSubmited(true);
-        setResults(response);
+        if (response.message) {
+          setLimitReached(true);
+        } else { 
+          setResults(response);
+        }
       })
       .catch(() => console.log("Error getting data"));
   }
@@ -112,6 +117,14 @@ const YouTubeSearch = () => {
     mainJsx = <div>No Results</div>;
   }
 
+  let parentJsx;
+
+  if (limitReached) {
+    parentJsx = <div><h1>Limit Reached</h1></div>
+  } else { 
+    parentJsx = results.items.length > 0 && submited ? resultsJsx : mainJsx;
+  }
+
   return (
     <div>
       <h1>YouTube Search</h1>
@@ -119,7 +132,7 @@ const YouTubeSearch = () => {
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchChannels} disabled={search.trim() == ""}>Search</button>
 
-      {results.items.length > 0 && submited ? resultsJsx : mainJsx}
+      {parentJsx}
     </div>
   );
 }
