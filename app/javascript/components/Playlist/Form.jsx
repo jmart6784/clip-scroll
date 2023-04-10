@@ -14,6 +14,7 @@ const Form = (props) => {
             required
             onChange={props.onChange}
           />
+          <div>{`${props.forms['name'].length}/50`}</div>
         </label>
 
         <label>
