@@ -7,6 +7,7 @@ class User < ApplicationRecord
   after_create :add_default_channels
   after_create :add_default_subreddits
   after_create :create_default_playlist
+  after_create :create_user_configuration
   after_create :set_default_avatar
 
   VALID_USERNAME_REGEX = /\A[a-zA-Z0-9]+\z/
@@ -297,6 +298,17 @@ class User < ApplicationRecord
   def create_default_playlist
     if Playlist.where(user_id: self.id).count == 0
       Playlist.create!(user_id: self.id, name: "#{self.first_name}'s playlist", source: "mix", private: true)
+    end
+  end
+
+  def create_user_configuration
+    if UserConfiguration.find_by(user_id: self.id).nil?
+      UserConfiguration.create!(
+        user_id: self.id, 
+        youtube_search_limit: 1,
+        screen_fit: 'full',
+        last_requested: nil
+      )
     end
   end
 end
