@@ -13,9 +13,25 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def search
-    response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=50&q=#{params[:search]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+    uc = current_user.user_configuration
+    first_request_today = false
 
-    render json: JSON.parse(response.body)  
+    # Restrict YouTube Search daily limit to 1 request per day
+    unless uc.last_requested.nil?
+      first_request_today = uc.last_requested + 1.day < DateTime.now.utc
+    else
+      first_request_today = true
+    end
+
+    if first_request_today
+      uc.update(last_requested: DateTime.now)
+
+      response = HTTParty.get("https://www.googleapis.com/youtube/v3/search?part=snippet&type=channel&maxResults=50&q=#{params[:search]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+
+      render json: JSON.parse(response.body)  
+    else
+      render json: {message: "Daily limit reached"}
+    end
   end
 
   def add_shorts
