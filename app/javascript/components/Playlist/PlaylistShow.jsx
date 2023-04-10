@@ -52,7 +52,15 @@ const PlaylistShow = (props) => {
   
   // Render click-able playlist menu options
   let videosJsx = videos.map((v, i) => {
-    let selectedStyle = index == i ? { border: "1px solid black", cursor: "pointer"  } : {};
+    let selectedStyle = index == i ? { border: "1px solid black", cursor: "pointer" } : {};
+    let ownerBtns = '';
+
+    if (global.user) {
+      if (playlist['user_id'] === global.user.id) {
+        ownerBtns = <PlaylistVideoDelete video={v} removeVideo={removeVideo} />;
+      }
+    }
+    
     if (v['source'] == 'youtube') {
       let video = v["video"]["items"][0]["snippet"];
       let videoId = v["video"]["items"][0]["id"];
@@ -65,7 +73,7 @@ const PlaylistShow = (props) => {
           <p>{video.title}</p>
           <p>{video.channelTitle}</p>
           <p>{stats.viewCount}</p>
-          <PlaylistVideoDelete video={v} removeVideo={removeVideo} />
+          {ownerBtns}
         </div>
       );
     } else if (v['source'] == 'reddit') { 
@@ -78,7 +86,7 @@ const PlaylistShow = (props) => {
           <p>{video['title']}</p>
           <p>{video['subreddit']}</p>
           <p>{video['score']}</p>
-          <PlaylistVideoDelete video={v} removeVideo={removeVideo} />
+          {ownerBtns}
         </div>
       ); 
     }
