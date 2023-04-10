@@ -9,6 +9,8 @@ Rails.application.routes.draw do
       get '/users/index', to: 'users#index'
       get '/users/show/:id', to: 'users#show'
       get '/users/user_info', to: 'users#user_info'
+
+      get '/user_configuration/mine', to: 'user_configurations#mine'
       
       get '/youtube/videos', to: 'youtube#videos'
       get '/youtube/video/:id', to: 'youtube#video'
