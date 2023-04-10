@@ -49,9 +49,10 @@ const PlaylistEdit = (props) => {
 
   const onChange = (event) => {
     const { name, value } = event.target;
-    setForms({ ...forms, [name]: value });
+    if (name == 'name' && value.length <= 50) {
+      setForms({ ...forms, [name]: value });
+    }
   };
-
   const onCheck = (event) => { 
     const { name, checked } = event.target;
     setForms({...forms, [name]: checked});
