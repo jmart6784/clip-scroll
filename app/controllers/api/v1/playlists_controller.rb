@@ -1,5 +1,5 @@
 class Api::V1::PlaylistsController < ApplicationController
-  before_action :set_playlist, only: [:update, :destroy]
+  before_action :set_playlist, only: [:show, :update, :destroy]
 
   def index
     playlist = Playlist.where(private: false).or(Playlist.where(user_id: current_user.id)).order(created_at: :desc)
