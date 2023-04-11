@@ -15,3 +15,33 @@
  */
 
  @import "./variables.scss";
+
+* {
+  font-family: "Oxygen", sans-serif;
+  box-sizing: border-box;
+  outline: none;
+  line-height: normal;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+a,
+th,
+tr,
+label,
+li,
+i,
+em,
+span,
+div {
+  color: white;
+}
+
+body {
+  background-color: #252525;
+}
