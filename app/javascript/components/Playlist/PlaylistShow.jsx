@@ -5,6 +5,7 @@ import YoutubeVideo from "../YouTube/YouTubeVideo";
 import RedditVideo from "../Reddit/RedditVideo";
 import PlaylistVideoDelete from "../Playlist_video/PlaylistVideoDelete";
 import GlobalContext from "../context/GlobalContext";
+import PlayImage from 'images/play.png'
 
 const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
@@ -81,7 +82,16 @@ const PlaylistShow = (props) => {
 
       return (
         <div key={v['id']} onClick={() => selectVideo(video['id'])} style={selectedStyle}>
-          <img src={video['thumbnail']} alt="video thumbnail" />
+          <img
+            src={video['thumbnail']}
+            alt="video thumbnail" 
+            onError={e => {
+              e.target.onerror = null;
+              e.target.src = PlayImage;
+            }}
+            height="100"
+            width="100"
+          />
           <strong>Reddit: {v['video_id']}</strong>
           <p>{video['title']}</p>
           <p>{video['subreddit']}</p>
