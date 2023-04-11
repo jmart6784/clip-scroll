@@ -2,24 +2,30 @@ class Api::V1::PlaylistVideosController < ApplicationController
   include HTTParty
 
   def videos
-    videos = []
-    playlist_videos = PlaylistVideo.where(playlist_id: params[:playlist_id]).offset(params[:offset]).limit(5)
+    playlist = Playlist.find(params[:playlist_id])
+    # Render 401 error if playlist videos do not belong to the current user and it is private
+    if playlist.user_id != current_user.id && playlist.private
+      render json: {}, status: 401
+    else
+      videos = []
+      playlist_videos = PlaylistVideo.where(playlist_id: params[:playlist_id]).offset(params[:offset]).limit(5)
 
-    playlist_videos.each do |pv|
-      if pv.source === "youtube"
-        response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=#{pv.video_id}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
-        pv = pv.as_json
-        pv["video"] = JSON.parse(response.body)
-      elsif pv.source === "reddit"
-        response = HTTParty.get("https://www.reddit.com/r/#{pv.parent_source_id}/#{pv.video_id}.json?raw_json=1")
-        # Skip if hash, this is deals with a too many requests response.
-        next if JSON.parse(response.body).class == Hash
-        pv = pv.as_json
-        pv["video"] = JSON.parse(response.body)[0]["data"]["children"][0]
+      playlist_videos.each do |pv|
+        if pv.source === "youtube"
+          response = HTTParty.get("https://www.googleapis.com/youtube/v3/videos?part=snippet,statistics&id=#{pv.video_id}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
+          pv = pv.as_json
+          pv["video"] = JSON.parse(response.body)
+        elsif pv.source === "reddit"
+          response = HTTParty.get("https://www.reddit.com/r/#{pv.parent_source_id}/#{pv.video_id}.json?raw_json=1")
+          # Skip if hash, this is deals with a too many requests response.
+          next if JSON.parse(response.body).class == Hash
+          pv = pv.as_json
+          pv["video"] = JSON.parse(response.body)[0]["data"]["children"][0]
+        end
+        videos << pv
       end
-      videos << pv
+      render json: videos
     end
-    render json: videos
   end
 
   def create
