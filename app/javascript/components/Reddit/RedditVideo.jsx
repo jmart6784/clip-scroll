@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import RedditComments from "./RedditComments";
+import SnooImage from 'images/reddit_snoo.png'
 
 const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
@@ -36,7 +37,18 @@ const RedditVideo = (props) => {
       <p>All awardings: {awards}</p>
       <p>Comments: {post['data']['num_comments']}</p>
       
-      <video id="reddit-video" src={post['data']['media']['reddit_video']['fallback_url']} onTimeUpdate={(e) => synchronize(e)} onClick={(e) => playPause(e)} width="300" height="500" autoPlay loop></video>
+      <video
+        id="reddit-video"
+        src={post['data']['media']['reddit_video']['fallback_url']}
+        onTimeUpdate={(e) => synchronize(e)}
+        onClick={(e) => playPause(e)}
+        width="300"
+        height="500"
+        autoPlay
+        loop
+        poster={SnooImage}
+      >
+      </video>
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
 
       <button type="button" onClick={() => setPrompt(!prompt)}>Comments</button>
