@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
 import { Link } from "react-router-dom";
-import PlaylistDelete from "./PlaylistDelete";
 import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
 
@@ -21,7 +20,7 @@ const PlaylistIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} />);
+  let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} location={'index'} />);
 
   let mainJsx = <h1>...Loading</h1>;
 
