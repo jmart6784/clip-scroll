@@ -46,9 +46,7 @@ const RedditVideo = (props) => {
         height="500"
         autoPlay
         loop
-        poster={SnooImage}
-      >
-      </video>
+      />
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
 
       <button type="button" onClick={() => setPrompt(!prompt)}>Comments</button>
