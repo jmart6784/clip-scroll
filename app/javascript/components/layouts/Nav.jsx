@@ -9,27 +9,27 @@ const Nav = () => {
     return (
       <div>
         <Link to="/">
-          <i class="fa-solid fa-house"></i>
+          <i className="fa-solid fa-house"></i>
           <span> Home</span>
         </Link>
 
         <button type="button">
-          <i class="fa-sharp fa-regular fa-compass"></i>
+          <i className="fa-sharp fa-regular fa-compass"></i>
           <span> Explore</span>
         </button>
 
         <button type="button">
-          <i class="fa-brands fa-reddit-alien"></i>
+          <i className="fa-brands fa-reddit-alien"></i>
           <span> Reddit</span>
         </button>
 
         <button type="button">
-          <i class="fa-brands fa-youtube"></i>
+          <i className="fa-brands fa-youtube"></i>
           <span> YouTube</span>
         </button>
 
         <button type="button">
-          <i class="fa-solid fa-user"></i>
+          <i className="fa-solid fa-user"></i>
           <span> Profile</span>
         </button>
       </div>
