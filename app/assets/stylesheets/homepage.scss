@@ -2,6 +2,11 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.home-title {
+  font-size: 45px;
+  text-align: center;
+}
+
 .home-logo-wrapper {
   height: 90vh;
   width: 100%;
@@ -21,4 +26,26 @@
   transform: scale(1.25);
   transition: 0.5s;
   background-color: rgba(0, 0, 0, 0.4);
+}
+
+@media only screen and (max-width: 500px) {
+  .home-title {
+    font-size: 35px;
+  }
+
+  .home-logo > img {
+    height: 75px;
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .home-title {
+    font-size: 25px;
+  }
+
+  .home-logo>img {
+    height: 60px;
+    width: 200px;
+  }
 }
