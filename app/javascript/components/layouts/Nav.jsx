@@ -7,31 +7,33 @@ const Nav = () => {
   
   if (global.user) {
     return (
-      <div>
-        <Link to="/">
-          <i className="fa-solid fa-house"></i>
-          <span> Home</span>
-        </Link>
+      <div className="nav-parent">
+        <div className="nav-wrapper">
+          <Link to="/" className="nav-item">
+            <i className="fa-solid fa-house"></i>
+            <span className="nav-label"> Home</span>
+          </Link>
 
-        <button type="button">
-          <i className="fa-sharp fa-regular fa-compass"></i>
-          <span> Explore</span>
-        </button>
+          <button type="button" className="nav-btn nav-item">
+            <i className="fa-brands fa-youtube"></i>
+            <span className="nav-label"> YouTube</span>
+          </button>
 
-        <button type="button">
-          <i className="fa-brands fa-reddit-alien"></i>
-          <span> Reddit</span>
-        </button>
+          <button type="button" className="nav-btn nav-item">
+            <i className="fa-sharp fa-regular fa-compass"></i>
+            <span className="nav-label"> Explore</span>
+          </button>
 
-        <button type="button">
-          <i className="fa-brands fa-youtube"></i>
-          <span> YouTube</span>
-        </button>
+          <button type="button" className="nav-btn nav-item">
+            <i className="fa-brands fa-reddit-alien"></i>
+            <span className="nav-label"> Reddit</span>
+          </button>
 
-        <button type="button">
-          <i className="fa-solid fa-user"></i>
-          <span> Profile</span>
-        </button>
+          <button type="button" className="nav-btn nav-item">
+            <i className="fa-solid fa-user"></i>
+            <span className="nav-label"> Profile</span>
+          </button>
+        </div>
       </div>
     );
   } else { 
