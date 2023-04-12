@@ -13,7 +13,7 @@ const PlaylistCard = (props) => {
       ownerBtns = (
         <div>
           <Link to={`/playlist/edit/${playlist.id}`}>Edit</Link>
-          <PlaylistDelete id={playlist.id} location={props.location} />
+          <PlaylistDelete id={playlist.id} />
         </div>
       );
     }

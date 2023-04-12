@@ -20,7 +20,7 @@ const PlaylistIndex = () => {
       .catch(() => console.log("Error getting data"));
   }, []);
 
-  let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} location={'index'} />);
+  let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} />);
 
   let mainJsx = <h1>...Loading</h1>;
 
