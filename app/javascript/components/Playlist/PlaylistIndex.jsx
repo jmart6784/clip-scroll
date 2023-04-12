@@ -54,6 +54,7 @@ const PlaylistIndex = () => {
   if (loading === false && playlists.length > 0) {
     mainJsx = (
       <div>
+        <Link to="/playlist/mine">My Playlists</Link>
         <h1>Playlist Index</h1>
         {playListJsx}
       </div>
