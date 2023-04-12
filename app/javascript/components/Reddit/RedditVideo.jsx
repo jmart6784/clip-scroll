@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import RedditComments from "./RedditComments";
-import SnooImage from 'images/reddit_snoo.png'
 
 const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
