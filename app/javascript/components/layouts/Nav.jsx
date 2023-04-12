@@ -4,11 +4,12 @@ import GlobalContext from "../context/GlobalContext";
 import YouTubeMenu from "./YouTubeMenu";
 import RedditMenu from "./RedditMenu";
 import ExploreMenu from "./ExploreMenu";
+import ProfileMenu from "./ProfileMenu";
 
 const Nav = () => {
   const [global, setGlobal] = useContext(GlobalContext);
   const [currentMenu, setCurrentMenu] = useState('');
-  const [visbility, setvisibility] = useState({ youtube: false, reddit: false, explore: false});
+  const [visbility, setvisibility] = useState({ youtube: false, reddit: false, explore: false, profile: false});
 
   const toggleMenu = (selection) => { 
     if (selection == "youtube") {
@@ -18,6 +19,8 @@ const Nav = () => {
       !visbility.reddit ? setCurrentMenu(<RedditMenu />) : setCurrentMenu('');
     } else if (selection == "explore") { 
       !visbility.explore ? setCurrentMenu(<ExploreMenu />) : setCurrentMenu('');
+    } else if (selection == "profile") { 
+      !visbility.profile ? setCurrentMenu(<ProfileMenu user={global.user} />) : setCurrentMenu('');
     }
 
     // Update nav menu visibility
@@ -25,6 +28,7 @@ const Nav = () => {
       reddit: false,
       youtube: false,
       explore: false,
+      profile: false,
       [`${selection}`]: !visbility[selection]
     });
   }
@@ -54,7 +58,7 @@ const Nav = () => {
             <span className="nav-label"> Reddit</span>
           </button>
 
-          <button type="button" className="nav-btn nav-item">
+          <button type="button" className="nav-btn nav-item" onClick={() => toggleMenu("profile")}>
             <i className="fa-solid fa-user"></i>
             <span className="nav-label"> Profile</span>
           </button>
