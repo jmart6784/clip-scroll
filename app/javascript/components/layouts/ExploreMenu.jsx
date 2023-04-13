@@ -9,16 +9,16 @@ const ExploreMenu = (props) => {
           <i className="fa-sharp fa-solid fa-xmark"></i>
         </button>
 
-        <Link to="/playlist/index" onClick={() => props.hideMenu()} className="menu-link">
-          Playlist Index
-        </Link>
-
         <Link to="/playlist/mine" onClick={() => props.hideMenu()} className="menu-link">
-          My Playlists
+          <i className="fa-solid fa-face-grin"></i> <span>My Playlists</span>
+        </Link>
+        
+        <Link to="/playlist/index" onClick={() => props.hideMenu()} className="menu-link">
+          <i className="fa-solid fa-circle-play"></i> <span>Playlists</span>
         </Link>
 
         <Link to="/users/index" onClick={() => props.hideMenu()} className="menu-link">
-          User Index
+          <i className="fa-solid fa-users"></i> <span>Community</span>
         </Link>
       </div>
     </div>

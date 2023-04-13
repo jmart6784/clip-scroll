@@ -5,6 +5,7 @@
   position: fixed;
   bottom: 0;
   left: 0;
+  z-index: 999;
 }
 
 .nav-wrapper {
@@ -48,7 +49,7 @@
   justify-content: space-evenly;
   height: 100%;
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   backdrop-filter: blur(5px);
 }
 
@@ -64,14 +65,21 @@
   font-size: 50px;
 }
 
+.close-nav-menu:hover > i {
+ color: $cs-red;
+}
+
 .menu-link {
   font-weight: 900;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: none;
-  border-bottom: 1px solid $cs-red;
+}
+
+.menu-link > span {
+  border-bottom: 2px solid $cs-red;
 }
 
 .menu-link:hover {
   transform: scale(1.25);
-  transition: 0.5;
+  transition: 0.5s;
 }
