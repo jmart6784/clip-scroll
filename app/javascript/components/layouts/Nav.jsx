@@ -9,18 +9,23 @@ import ProfileMenu from "./ProfileMenu";
 const Nav = () => {
   const [global, setGlobal] = useContext(GlobalContext);
   const [currentMenu, setCurrentMenu] = useState('');
-  const [visbility, setvisibility] = useState({ youtube: false, reddit: false, explore: false, profile: false});
+  const [visbility, setvisibility] = useState({ youtube: false, reddit: false, explore: false, profile: false });
+  
+  const hideMenu = () => {
+    setCurrentMenu('');
+    setvisibility({ youtube: false, reddit: false, explore: false, profile: false })
+  };
 
   const toggleMenu = (selection) => { 
     if (selection == "youtube") {
       // Toggle menu visibility depending on next updated value ( !visbility.youtube  )
-      !visbility.youtube ? setCurrentMenu(<YouTubeMenu />) : setCurrentMenu('');
+      !visbility.youtube ? setCurrentMenu(<YouTubeMenu hideMenu={hideMenu} />) : setCurrentMenu('');
     } else if (selection == "reddit") {
-      !visbility.reddit ? setCurrentMenu(<RedditMenu />) : setCurrentMenu('');
+      !visbility.reddit ? setCurrentMenu(<RedditMenu hideMenu={hideMenu} />) : setCurrentMenu('');
     } else if (selection == "explore") { 
-      !visbility.explore ? setCurrentMenu(<ExploreMenu />) : setCurrentMenu('');
+      !visbility.explore ? setCurrentMenu(<ExploreMenu hideMenu={hideMenu} />) : setCurrentMenu('');
     } else if (selection == "profile") { 
-      !visbility.profile ? setCurrentMenu(<ProfileMenu user={global.user} />) : setCurrentMenu('');
+      !visbility.profile ? setCurrentMenu(<ProfileMenu hideMenu={hideMenu} user={global.user} />) : setCurrentMenu('');
     }
 
     // Update nav menu visibility
