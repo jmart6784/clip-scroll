@@ -5,7 +5,7 @@ const ExploreMenu = (props) => {
   return (
     <div className="menu-div">
       <div className="menu-link-wrapper">
-        <button className="close-nav-menu" type="button">
+        <button className="close-nav-menu" type="button" onClick={() => props.hideMenu()}>
           <i className="fa-sharp fa-solid fa-xmark"></i>
         </button>
 
