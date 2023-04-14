@@ -99,7 +99,7 @@ const YouTubeChannels = () => {
   if (loading === false && channels.length > 0) { 
     mainJsx = (
       <div>
-        <Link to="/youtube/my_channels">My Channels</Link>
+        <Link to="/youtube/search">Search</Link>
         <h1>YouTube Channels</h1>
         {channelsJsx}
         <button onClick={moreChannels} type="button">More...</button>
