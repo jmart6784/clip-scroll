@@ -49,8 +49,6 @@ const YouTubeIndex = () => {
 
   return (
     <div>
-      <Link to="/youtube/search">Search</Link>
-      <Link to="/youtube/channels">Channels</Link>
       {mainJsx}
     </div>
   );
