@@ -11,6 +11,7 @@
 .nav-wrapper {
   background-color: rgba(0, 0, 0, 0.3);
   width: 50%;
+  max-width: 1000px;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -82,4 +83,44 @@
 .menu-link:hover {
   transform: scale(1.25);
   transition: 0.5s;
+}
+
+@media only screen and (max-width: 1300px) {
+  .nav-wrapper {
+    width: 60%;
+  }
+
+  .menu-link {
+    font-size: 22px;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .nav-wrapper {
+    width: 80%;
+  }
+
+  .menu-link {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 800px) {
+  .nav-wrapper {
+    width: 100%;
+  }
+
+  .menu-link {
+    font-size: 19px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .nav-label {
+    display: none;
+  }
+
+  .nav-item > i {
+    font-size: 30px;
+  }
 }
