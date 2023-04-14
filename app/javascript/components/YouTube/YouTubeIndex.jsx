@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import YoutubeVideo from "./YouTubeVideo";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
+import YouTubeLoading from "./YouTubeLoading";
 
 const YouTubeIndex = () => { 
   const [videos, setVideos] = useState([]);
@@ -25,7 +25,7 @@ const YouTubeIndex = () => {
 
   let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <YouTubeLoading />;
 
   if (loading === false && videos.length > 0) {
     mainJsx = (
