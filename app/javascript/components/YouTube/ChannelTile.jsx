@@ -35,6 +35,7 @@ const ChannelTile = (props) => {
           : 
             <button onClick={(e) => props.removeShorts(e, channelId)}>Remove</button>
         }
+        <button onClick={(e) => props.refreshVideos(e, channelId)} type="button">Refresh Videos</button>
       </div>
     );
   } else {

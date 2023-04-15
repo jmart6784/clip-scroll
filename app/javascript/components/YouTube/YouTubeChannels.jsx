@@ -74,6 +74,8 @@ const YouTubeChannels = () => {
             e.target.textContent = "Added";
           }
         }
+        // Get updated user configuration (Decrements youtube_channel_refresh_limit)
+        getUserConfig();
       })
       .catch(() => console.log("Error getting shorts data"));
   }
@@ -100,7 +102,23 @@ const YouTubeChannels = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
-  useEffect(() => console.log(userConfig), [userConfig]);
+  const refreshVideos = (e, channelId) => { 
+    e.target.disabled = true;
+    fetch(`/api/v1/youtube/add_shorts/${channelId}`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => getUserConfig())
+      .catch(() => console.log("Error getting shorts data"));
+  }
 
   let channelsJsx = channels.map(c =>
     <ChannelTile
@@ -108,7 +126,8 @@ const YouTubeChannels = () => {
       channel={c}
       addShorts={addShorts}
       removeShorts={removeShorts}
-      addedChannels={addedChannels} 
+      addedChannels={addedChannels}
+      refreshVideos={refreshVideos}
     />
   );
 
@@ -118,7 +137,7 @@ const YouTubeChannels = () => {
     mainJsx = (
       <div>
         <Link to="/youtube/search">Search</Link>
-        <p>Channel Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+        <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
         <h1>YouTube Channels</h1>
         {channelsJsx}
         <button onClick={moreChannels} type="button">More...</button>
