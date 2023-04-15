@@ -1,5 +1,6 @@
 class Api::V1::YoutubeController < ApplicationController
   include HTTParty
+  before_action :limit_api, only: [:add_shorts]
 
   def videos
     videos = YoutubeVideo.all.order(Arel.sql('RANDOM()'))
@@ -110,5 +111,35 @@ class Api::V1::YoutubeController < ApplicationController
 
   def playlist_params
     params.permit(:id, :video_id, :search, :channel_id)
+  end
+
+  def limit_api
+    uc = current_user.user_configuration
+    date_valid = false
+
+    # Restrict Shorts API call daily limit to 5 requests per day
+    unless uc.youtube_refresh_date.nil?
+      # Has a day passed?
+      date_valid = uc.youtube_refresh_date + 1.day < DateTime.now.utc
+
+      # If date is valid (a day has passed) and the refresh limit is 0, set as 5.
+      if date_valid && uc.youtube_channel_refresh_limit === 0
+        uc.update(youtube_channel_refresh_limit: 5)
+      end
+    else
+      # Update refresh date to now if refresh date is nil
+      uc.update(youtube_refresh_date: DateTime.now.utc)
+      date_valid = true
+    end
+
+    if uc.youtube_channel_refresh_limit != 0 || date_valid
+      # Decrement allowed requests that are left and update refresh date
+      uc.update(
+        youtube_channel_refresh_limit: uc.youtube_channel_refresh_limit - 1,
+        youtube_refresh_date: DateTime.now.utc
+      )
+    else
+      render json: {message: "Too many request"}, status: 429
+    end
   end
 end
