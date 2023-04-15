@@ -43,12 +43,17 @@ class Api::V1::YoutubeController < ApplicationController
     if shorts.length > 0
         response = HTTParty.get("https://www.googleapis.com/youtube/v3/channels?part=snippet&maxResults=1&id=#{params[:channel_id]}&key=#{Rails.application.credentials.dig(:youtube_api_key)}")
 
-        # current user adds a channel
-        AddedChannel.create!(
-            user_id: current_user.id, 
-            channel_id: params[:channel_id], 
-            name: JSON.parse(response.body)["items"][0]["snippet"]["title"]
-        )
+        # current user adds a channel if not added
+        if params[:refresh].nil?
+          if AddedChannel.find_by(user_id: current_user.id, channel_id: params[:channel_id]).nil?
+            AddedChannel.create!(
+              user_id: current_user.id, 
+              channel_id: params[:channel_id], 
+              name: JSON.parse(response.body)["items"][0]["snippet"]["title"]
+            )
+          end
+        end
+
         # Create channel if it does not exist
         if YoutubeChannel.find_by(channel_id: params[:channel_id]).nil?
             YoutubeChannel.create!(
