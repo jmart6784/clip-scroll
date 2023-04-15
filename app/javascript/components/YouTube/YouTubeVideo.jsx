@@ -28,7 +28,7 @@ const YoutubeVideo = (props) => {
 
   if (video.items) {
     if (video.items.length != 0) { 
-      videoId = video.items ? video.items[0].id : "ofqIENNSx_0"
+      videoId = video.items ? video.items[0].id : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       statsJsx = (
