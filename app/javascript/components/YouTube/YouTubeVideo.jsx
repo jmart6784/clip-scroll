@@ -31,7 +31,19 @@ const YoutubeVideo = (props) => {
       videoId = video.items ? video.items[0].id : "ofqIENNSx_0"
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
-      statsJsx = <p>Views: {stats.viewCount} Likes: {stats.likeCount} Comments: {stats.commentCount}</p>;
+      statsJsx = (
+        <div>
+          <div>
+            <i className="fa-solid fa-thumbs-up"></i> {stats.likeCount}
+          </div>
+
+          <div>
+            <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
+          </div>
+
+          {/* Comments: {stats.commentCount} */}
+        </div>
+      );
       commentsJsx = (
         <YouTubeComments
           id={videoId}
@@ -40,6 +52,8 @@ const YoutubeVideo = (props) => {
       );
     }
   }
+
+  useEffect(() => console.log(video), [video]);
   
   return (
     <div>
@@ -57,7 +71,6 @@ const YoutubeVideo = (props) => {
               loop: 1,
               controls: 0,
               enablejsapi: 1,
-              showinfo: 0,
               fs: 0,
               playlist: `${videoId}`,
             },
