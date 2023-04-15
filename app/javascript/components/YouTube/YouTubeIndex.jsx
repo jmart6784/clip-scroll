@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import YoutubeVideo from "./YouTubeVideo";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 import YouTubeLoading from "./YouTubeLoading";
+import YouTubeNoResults from "./YouTubeNoResults";
 
 const YouTubeIndex = () => { 
   const [videos, setVideos] = useState([]);
@@ -42,9 +43,7 @@ const YouTubeIndex = () => {
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
-    mainJsx = (
-      <div>No Results</div>
-    );
+    mainJsx = <YouTubeNoResults />;
   }
 
   return (
