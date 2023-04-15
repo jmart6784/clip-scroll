@@ -1,0 +1,13 @@
+// YouTube Loading screen styling
+.loading-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+}
+
+.loading-div > img {
+  height: 175px;
+  width: 250px;
+}
