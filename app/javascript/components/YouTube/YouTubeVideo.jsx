@@ -38,6 +38,10 @@ const YoutubeVideo = (props) => {
           </div>
 
           <div>
+            <i className="fa-solid fa-thumbs-down"></i> <span></span>
+          </div>
+
+          <div>
             <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
           </div>
 
