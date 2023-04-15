@@ -34,7 +34,7 @@ const YoutubeVideo = (props) => {
       statsJsx = (
         <div>
           <div>
-            <i className="fa-solid fa-thumbs-up"></i> {stats.likeCount}
+            <i className="fa-solid fa-thumbs-up"></i> <span>{stats.likeCount}</span>
           </div>
 
           <div>
