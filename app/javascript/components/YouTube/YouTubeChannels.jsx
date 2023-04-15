@@ -7,9 +7,25 @@ const YouTubeChannels = () => {
   const [addedChannels, setAddedChannels] = useState([]);
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(true);
+  const [userConfig, setUserConfig] = useState({
+    ["youtube_channel_refresh_limit"]: 0
+  });
+
+  const getUserConfig = () => { 
+    fetch(`/api/v1/user_configuration/mine`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setUserConfig(response))
+      .catch(() => console.log("Error getting user configuration"));
+  }
 
   useEffect(() => { 
     moreChannels();
+    getUserConfig();
     
     fetch(`/api/v1/youtube/added_channels`)
       .then((response) => {
@@ -84,6 +100,8 @@ const YouTubeChannels = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
+  useEffect(() => console.log(userConfig), [userConfig]);
+
   let channelsJsx = channels.map(c =>
     <ChannelTile
       key={c.items[0].id}
@@ -100,6 +118,7 @@ const YouTubeChannels = () => {
     mainJsx = (
       <div>
         <Link to="/youtube/search">Search</Link>
+        <p>Channel Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
         <h1>YouTube Channels</h1>
         {channelsJsx}
         <button onClick={moreChannels} type="button">More...</button>
