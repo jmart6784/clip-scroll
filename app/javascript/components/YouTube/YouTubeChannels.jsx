@@ -104,7 +104,7 @@ const YouTubeChannels = () => {
 
   const refreshVideos = (e, channelId) => { 
     e.target.disabled = true;
-    fetch(`/api/v1/youtube/add_shorts/${channelId}`, {
+    fetch(`/api/v1/youtube/add_shorts/${channelId}?refresh=true`, {
       method: "POST",
       headers: {
         "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
