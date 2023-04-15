@@ -52,8 +52,6 @@ const YoutubeVideo = (props) => {
       );
     }
   }
-
-  useEffect(() => console.log(video), [video]);
   
   return (
     <div>
