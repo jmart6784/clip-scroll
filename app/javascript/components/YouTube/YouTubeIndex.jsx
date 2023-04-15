@@ -36,7 +36,7 @@ const YouTubeIndex = () => {
           parentSourceId={videos[index] ? videos[index].channel_id : ""}
           source="youtube"
         />
-        <h1>YouTube Index</h1>
+
         <button onClick={previousVideo}>Previous</button>
         <button onClick={nextVideo}>Next</button>
         {video}
