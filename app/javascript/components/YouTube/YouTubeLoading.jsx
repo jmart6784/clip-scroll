@@ -1,9 +1,10 @@
 import React from "react";
+import YTloading from "images/yt-loading.gif";
 
 const YouTubeLoading = () => { 
   return (
-    <div>
-      <h1>...Loading</h1>
+    <div className="loading-div">
+      <img src={YTloading} alt="loading screen image" />
     </div>
   );
 }
