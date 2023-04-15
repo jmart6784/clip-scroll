@@ -1,6 +1,8 @@
 // YouTube Loading screen styling
 .loading-div {
   display: flex;
+  flex-direction: column;
+  row-gap: 20px;
   align-items: center;
   justify-content: center;
   width: 100%;
@@ -10,4 +12,9 @@
 .loading-div > img {
   height: 175px;
   width: 250px;
+}
+
+.loading-div>p {
+  font-size: 15px;
+  font-weight: 900;
 }
