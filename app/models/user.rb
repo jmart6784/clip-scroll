@@ -307,7 +307,9 @@ class User < ApplicationRecord
         user_id: self.id, 
         youtube_search_limit: 1,
         screen_fit: 'full',
-        last_requested: nil
+        last_requested: nil,
+        youtube_channel_refresh_limit: 5,
+        youtube_refresh_date: nil
       )
     end
   end
