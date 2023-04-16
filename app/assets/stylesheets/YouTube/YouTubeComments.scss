@@ -90,3 +90,25 @@
 .comment-like-count-div>span {
   font-size: 14px;
 }
+
+.yt-replies-btn {
+  background-color: rgba(0, 0, 0, 0.0);
+  border: 0;
+  font-size: 14px;
+  display: flex;
+  column-gap: 5px;
+  padding: 10px;
+  border-radius: 20px;
+  color: rgb(0, 119, 255);
+  align-items: center;
+  cursor: pointer;
+}
+
+.yt-replies-btn:hover {
+  background-color: rgba(106, 175, 255, 0.3);
+}
+
+.yt-replies-btn>span, .yt-replies-btn>i {
+  font-size: 14px;
+  color: rgb(0, 119, 255);
+}

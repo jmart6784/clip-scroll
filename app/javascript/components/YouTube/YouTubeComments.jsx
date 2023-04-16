@@ -84,7 +84,7 @@ const YouTubeComments = (props) => {
             {
               // Hide replies if clicked
               comment.replies ?
-                <button onClick={() => {
+                <button className="yt-replies-btn" onClick={() => {
                   let repliesContainer = document.getElementById(comment.snippet.topLevelComment.id)
 
                   repliesContainer.style.display == "block" ?
@@ -92,7 +92,11 @@ const YouTubeComments = (props) => {
                   :
                     repliesContainer.style.display = "block"
                 }}>
-                  {comment.replies.comments.length} replies
+                  <i className="fa-solid fa-caret-down"></i>
+                  <span>{comment.replies.comments.length}</span>
+                  <span>
+                    {comment.replies.comments.length === 1 ? "reply" : "replies"}
+                  </span>
                 </button>
               : ""
             }
