@@ -113,7 +113,8 @@ class Api::V1::YoutubeController < ApplicationController
   end
 
   def videos_by_channel
-    
+    videos = YoutubeVideo.where(channel_id: params[:channel_id])
+    render json: videos
   end
 
   private
