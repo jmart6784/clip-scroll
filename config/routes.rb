@@ -21,7 +21,7 @@ Rails.application.routes.draw do
       get '/youtube/channels', to: 'youtube#channels'
       get '/youtube/added_channels', to: 'youtube#added_channels'
       get '/youtube/my_channels', to: 'youtube#my_channels'
-      get '/youtube/videos_by_channel', to: 'youtube#videos_by_channel'
+      get '/youtube/videos_by_channel/:channel_id', to: 'youtube#videos_by_channel'
 
       get '/playlist/index', to: 'playlists#index'
       post '/playlist/create', to: 'playlists#create'
