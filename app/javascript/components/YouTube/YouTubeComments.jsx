@@ -93,12 +93,16 @@ const YouTubeComments = (props) => {
 
   if (prompt) {
     menuJsx = (
-      <div>
-        <button type="button" onClick={() => {
+      <div className="comments-wrapper">
+        <button type="button" className="hide-comments-btn" onClick={() => {
           setPrompt(false);
           props.toggleComments();
-        }}>Hide Comments</button>
-        <h1>Comments:</h1>
+        }}>
+          <i className="fa-sharp fa-solid fa-xmark"></i>
+        </button>
+
+        <p className="comments-title">Comments (limited):</p>
+
         {commentsJsx}
       </div>
     );
