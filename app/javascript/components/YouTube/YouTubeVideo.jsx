@@ -32,7 +32,7 @@ const YoutubeVideo = (props) => {
       videoId = video.items ? video.items[0].id : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
-      let margin = commentsShow ? { margin: 0 } : {};
+      let margin = commentsShow ? { margin: 0, width: '100%' } : {};
 
       statsJsx = (
         <div className="youtube-video-stats-wrapper" style={margin}>
