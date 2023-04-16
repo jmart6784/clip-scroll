@@ -142,7 +142,7 @@ const YouTubeSearch = () => {
   } else { 
     parentJsx = results.items.length > 0 && submited ?
       <div>
-        <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+        <p>Channel Additions left: {userConfig["youtube_channel_refresh_limit"]}</p>
         {resultsJsx}
       </div>
     : mainJsx;
