@@ -7,9 +7,25 @@ const MyChannels = () => {
   const [addedChannels, setAddedChannels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [offset, setOffset] = useState(0);
+  const [userConfig, setUserConfig] = useState({
+    ["youtube_channel_refresh_limit"]: 0
+  });
+
+  const getUserConfig = () => { 
+    fetch(`/api/v1/user_configuration/mine`)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => setUserConfig(response))
+      .catch(() => console.log("Error getting user configuration"));
+  }
 
   useEffect(() => {
     moreChannels();
+    getUserConfig();
     
     fetch(`/api/v1/youtube/added_channels`)
       .then((response) => {
@@ -84,6 +100,24 @@ const MyChannels = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
+  const refreshVideos = (e, channelId) => { 
+    e.target.disabled = true;
+    fetch(`/api/v1/youtube/add_shorts/${channelId}?refresh=true`, {
+      method: "POST",
+      headers: {
+        "X-CSRF-Token": document.querySelector('meta[name="csrf-token"]').content,
+      }
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        throw new Error("Network response was not ok.");
+      })
+      .then((response) => getUserConfig())
+      .catch(() => console.log("Error getting shorts data"));
+  }
+
   let channelsJsx = channels.map(c =>
     <ChannelTile
       key={c.items[0].id}
@@ -91,6 +125,7 @@ const MyChannels = () => {
       addShorts={addShorts}
       removeShorts={removeShorts}
       addedChannels={addedChannels}
+      refreshVideos={refreshVideos}
     />
   );
 
@@ -99,6 +134,7 @@ const MyChannels = () => {
   if (loading === false && channels.length > 0) {
     mainJsx = <div>
       <Link to="/youtube/channels">More Channels</Link>
+      <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
       <h1>My Channels</h1>
       {channelsJsx}
       <button onClick={moreChannels} type="button">More...</button>
