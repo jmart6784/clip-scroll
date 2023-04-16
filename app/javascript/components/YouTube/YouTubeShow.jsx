@@ -39,7 +39,7 @@ const YouTubeShow = (props) => {
           source="youtube"
         />
 
-        <h1>YouTube Show component</h1>
+        <h1>YouTube Show</h1>
 
         <button onClick={previousVideo}>Previous</button>
         <button onClick={nextVideo}>Next</button>
