@@ -35,17 +35,21 @@ const YoutubeVideo = (props) => {
 
       statsJsx = (
         <div className="youtube-video-stats-wrapper">
-          <div className="yt-stat-div">
-            <i className="fa-solid fa-thumbs-up"></i> <span>{stats.likeCount}</span>
-          </div>
+          {commentsShow ? '' : (
+            <>
+            <div className="yt-stat-div">
+              <i className="fa-solid fa-thumbs-up"></i> <span>{stats.likeCount}</span>
+            </div>
 
-          <div className="yt-stat-div">
-            <i className="fa-solid fa-thumbs-down"></i> <span></span>
-          </div>
+            <div className="yt-stat-div">
+              <i className="fa-solid fa-thumbs-down"></i> <span></span>
+            </div>
 
-          <div className="yt-stat-div">
-            <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
-          </div>
+            <div className="yt-stat-div">
+              <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
+            </div>
+            </>
+          )}
 
           <YouTubeComments
             id={videoId}
@@ -64,8 +68,6 @@ const YoutubeVideo = (props) => {
       // );
     }
   }
-
-  useEffect(() => console.log(commentsShow), [commentsShow]);
   
   return (
     <div>
