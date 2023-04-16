@@ -3,4 +3,17 @@
   outline: none;
   border: 0;
   cursor: pointer;
+  // text-align: center;
+  display: block;
+  // justify-self: center;
+  margin: auto;
+}
+
+.show-comments-btn>span {
+  text-align: center;
+  width: 100%;
+}
+
+.yt-comment-div {
+  text-align: start;
 }

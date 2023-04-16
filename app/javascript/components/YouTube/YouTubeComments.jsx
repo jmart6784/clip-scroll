@@ -51,7 +51,7 @@ const YouTubeComments = (props) => {
       });
 
       return (
-        <div key={comment.id}>
+        <div key={comment.id} className="yt-comment-div">
           <p>
             <a href={parentComment.authorChannelUrl} target="_blank">
               <img src={parentComment.authorProfileImageUrl} alt="user avatar" />
