@@ -9,8 +9,25 @@ const YouTubeSearch = () => {
   const [loading, setLoading] = useState(true);
   const [submited, setSubmited] = useState(false);
   const [limitReached, setLimitReached] = useState(false);
+  const [userConfig, setUserConfig] = useState({
+    ["youtube_channel_refresh_limit"]: 0
+  });
+
+  const getUserConfig = () => { 
+  fetch(`/api/v1/user_configuration/mine`)
+    .then((response) => {
+      if (response.ok) {
+        return response.json();
+      }
+      throw new Error("Network response was not ok.");
+    })
+    .then((response) => setUserConfig(response))
+    .catch(() => console.log("Error getting user configuration"));
+}
 
   useEffect(() => { 
+    getUserConfig();
+
     fetch(`/api/v1/youtube/added_channels`)
       .then((response) => {
         if (response.ok) {
@@ -44,6 +61,7 @@ const YouTubeSearch = () => {
             e.target.textContent = "Added";
           }
         }
+        getUserConfig();
       })
       .catch(() => console.log("Error getting shorts data"));
   }
@@ -122,7 +140,12 @@ const YouTubeSearch = () => {
   if (limitReached) {
     parentJsx = <div><h1>Limit Reached</h1></div>
   } else { 
-    parentJsx = results.items.length > 0 && submited ? resultsJsx : mainJsx;
+    parentJsx = results.items.length > 0 && submited ?
+      <div>
+        <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+        {resultsJsx}
+      </div>
+    : mainJsx;
   }
 
   return (
