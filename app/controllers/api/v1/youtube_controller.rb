@@ -112,6 +112,10 @@ class Api::V1::YoutubeController < ApplicationController
     render json: JSON.parse(response.body)
   end
 
+  def videos_by_channel
+    
+  end
+
   private
 
   def playlist_params
