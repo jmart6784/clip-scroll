@@ -1,22 +1,24 @@
 @import './variables.scss';
 
 .nav-parent {
-  width: 100%;
+  width: 50%;
+  z-index: 999;
   position: fixed;
   bottom: 0;
-  left: 0;
-  z-index: 999;
+  left: 25vw;
+  right: 25vw;
 }
 
 .nav-wrapper {
   background-color: rgba(0, 0, 0, 0.3);
-  width: 50%;
+  width: 100%;
   max-width: 1000px;
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   padding: 10px;
+  backdrop-filter: blur(5px);
 }
 
 .nav-item {
@@ -86,7 +88,7 @@
 }
 
 @media only screen and (max-width: 1300px) {
-  .nav-wrapper {
+  .nav-parent {
     width: 60%;
   }
 
@@ -96,8 +98,10 @@
 }
 
 @media only screen and (max-width: 1000px) {
-  .nav-wrapper {
+  .nav-parent {
     width: 80%;
+    left: 10vw;
+    right: 10vw;
   }
 
   .menu-link {
@@ -106,8 +110,10 @@
 }
 
 @media only screen and (max-width: 800px) {
-  .nav-wrapper {
+  .nav-parent {
     width: 100%;
+    left: 0vw;
+    right: 0vw;
   }
 
   .menu-link {
