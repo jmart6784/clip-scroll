@@ -4,6 +4,7 @@ import YouTubeComments from "./YouTubeComments";
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
+  const [commentsShow, setCommentsShow] = useState(false);
   
   useEffect(() => { 
     // Example of deleted video /api/v1/youtube/video/xRa9SZUdk_Q
@@ -19,7 +20,8 @@ const YoutubeVideo = (props) => {
   }, [props.id]);
 
   const onReady = (event) =>  event.target.unMute();
-  const onEnd = (event) =>  event.target.playVideo();
+  const onEnd = (event) => event.target.playVideo();
+  const toggleComments = () => setCommentsShow(!commentsShow);
 
   let videoId;
   let stats;
@@ -48,6 +50,7 @@ const YoutubeVideo = (props) => {
           <YouTubeComments
             id={videoId}
             commentCount={video.items ? video.items[0].statistics.commentCount : ""}
+            toggleComments={toggleComments}
           />
 
           {/* Comments: {stats.commentCount} */}
@@ -61,6 +64,8 @@ const YoutubeVideo = (props) => {
       // );
     }
   }
+
+  useEffect(() => console.log(commentsShow), [commentsShow]);
   
   return (
     <div>

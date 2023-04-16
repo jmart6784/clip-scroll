@@ -21,7 +21,10 @@ const YouTubeComments = (props) => {
   }, [props.id, prompt]);
 
   let menuJsx = (
-    <button type="button" onClick={() => setPrompt(true)} className="show-comments-btn yt-stat-div">
+    <button type="button" onClick={() => {
+      setPrompt(true);
+      props.toggleComments();
+    }} className="show-comments-btn yt-stat-div">
       <i className="fa-solid fa-message"></i> <span>{props.commentCount}</span>
     </button>
   );
@@ -91,7 +94,10 @@ const YouTubeComments = (props) => {
   if (prompt) {
     menuJsx = (
       <div>
-        <button type="button" onClick={() => setPrompt(false)}>Hide Comments</button>
+        <button type="button" onClick={() => {
+          setPrompt(false);
+          props.toggleComments();
+        }}>Hide Comments</button>
         <h1>Comments:</h1>
         {commentsJsx}
       </div>
