@@ -151,7 +151,7 @@ const YouTubeSearch = () => {
   return (
     <div>
       <h1>YouTube Search</h1>
-      <Link to="/youtube/index">Back</Link>
+      <Link to="/youtube/channels">Back</Link>
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchChannels} disabled={search.trim() == ""}>Search</button>
 
