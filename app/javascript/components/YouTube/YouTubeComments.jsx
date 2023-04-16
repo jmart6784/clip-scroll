@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import DefaultImage from 'images/default-avatar-youtube.jpg'
 
 const YouTubeComments = (props) => {
   const [comments, setComments] = useState({ items: [] });
@@ -8,6 +9,7 @@ const YouTubeComments = (props) => {
   // Get comments and reply thread
   useEffect(() => {
     if (prompt) {
+      // Long comment example zbyJggYs-Ak, 3 comments XGi3kqMlvGA, 1 comment & long N9odqUUIalE, 0 zaHi4HycUv4, short comments CosNGOuLcG4
       fetch(`/api/v1/youtube/comments/${props.id}`)
         .then((response) => {
           if (response.ok) {
@@ -55,14 +57,30 @@ const YouTubeComments = (props) => {
 
       return (
         <div key={comment.id} className="yt-comment-div">
-          <p>
+          <div className="comment-avatar-div">
             <a href={parentComment.authorChannelUrl} target="_blank">
-              <img src={parentComment.authorProfileImageUrl} alt="user avatar" />
-            </a> {parentComment.authorDisplayName}
-          </p>
-          <p>{parentComment.textDisplay}</p>
-          <p>
-            Likes: {parentComment.likeCount}
+              <img
+                src={parentComment.authorProfileImageUrl}
+                alt="user avatar" 
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = DefaultImage;
+                }}
+              />
+              <span>{parentComment.authorDisplayName}</span>
+              <span>{parentComment.publishedAt}</span>
+            </a>
+          </div>
+
+          <p className="yt-comment-body">{parentComment.textDisplay}</p>
+
+          <div className="comment-like-count-div">
+            <i className="fa-solid fa-thumbs-up"></i>
+            <span>{parentComment.likeCount}</span>
+            <i className="fa-solid fa-thumbs-down"></i>
+          </div>
+
+          <div>
             {
               // Hide replies if clicked
               comment.replies ?
@@ -78,7 +96,7 @@ const YouTubeComments = (props) => {
                 </button>
               : ""
             }
-          </p>
+          </div>
           <div id={comment.snippet.topLevelComment.id} style={{display: "none"}}>
             {replies}
           </div>
