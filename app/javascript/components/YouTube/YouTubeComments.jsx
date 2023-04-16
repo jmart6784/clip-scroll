@@ -20,7 +20,11 @@ const YouTubeComments = (props) => {
     }
   }, [props.id, prompt]);
 
-  let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Show Comments ({props.commentCount})</button>;
+  let menuJsx = (
+    <button type="button" onClick={() => setPrompt(true)} className="show-comments-btn yt-stat-div">
+      <i className="fa-solid fa-message"></i> <span>{props.commentCount}</span>
+    </button>
+  );
 
   let commentsJsx = <h1>...Loading</h1>;
 
