@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 // YouTube Loading screen styling
 .loading-div {
   display: flex;
@@ -17,4 +19,64 @@
 .loading-div>p {
   font-size: 15px;
   font-weight: 900;
+}
+
+// Youtube Index
+.video-nav-btns {
+  display: flex;
+  column-gap: 15px;
+}
+
+.video-nav-btns>button {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  color: white;
+  outline: none;
+  border: 0px;
+  font-size: 40px;
+  padding: 10px 20px 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.video-nav-btns>button>i:hover {
+  color: $cs-red;
+  transform: scale(1.25);
+  transition: 0.3s;
+}
+
+#vid-nav-face {
+  cursor: none;
+}
+
+// Youtube Video
+.youtube-video-div {
+  border: 1px solid green;
+  width: min-content;
+  position: relative;
+}
+
+.yt-video-listing-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.youtube-video-stats-wrapper {
+  // border: 1px solid blue;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  overflow-y: scroll;
+  max-height: 100%;
+}
+
+.yt-stat-div {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
 }

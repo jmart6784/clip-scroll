@@ -32,8 +32,8 @@ const YoutubeVideo = (props) => {
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       statsJsx = (
-        <div>
-          <div>
+        <div className="youtube-video-stats-wrapper">
+          <div className="yt-stat-div">
             <i className="fa-solid fa-thumbs-up"></i> <span>{stats.likeCount}</span>
           </div>
 
@@ -45,28 +45,33 @@ const YoutubeVideo = (props) => {
             <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
           </div>
 
+          <YouTubeComments
+            id={videoId}
+            commentCount={video.items ? video.items[0].statistics.commentCount : ""}
+          />
+
           {/* Comments: {stats.commentCount} */}
         </div>
       );
-      commentsJsx = (
-        <YouTubeComments
-          id={videoId}
-          commentCount={video.items ? video.items[0].statistics.commentCount : ""}
-        />
-      );
+      // commentsJsx = (
+      //   <YouTubeComments
+      //     id={videoId}
+      //     commentCount={video.items ? video.items[0].statistics.commentCount : ""}
+      //   />
+      // );
     }
   }
   
   return (
     <div>
-      <div>
+      <div className="youtube-video-div">
         <YouTube
           videoId={videoId}
           id={"youtube-video-main"}
           className={"youtube-video"}
           opts={{
-            height: "500",
-            width: "300",
+            height: "700",
+            width: "400",
             playerVars: {
               autoplay: 1,
               mute: 0,
@@ -82,7 +87,7 @@ const YoutubeVideo = (props) => {
         />
         
         {statsJsx}
-        {commentsJsx}
+        {/* {commentsJsx} */}
       </div>
     </div>
   );

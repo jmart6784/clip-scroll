@@ -30,16 +30,28 @@ const YouTubeIndex = () => {
 
   if (loading === false && videos.length > 0) {
     mainJsx = (
-      <div>
+      <div className="yt-video-listing-div">
         <PlaylistVideoMenu
           videoId={videos[index] ? videos[index].video_id : ""}
           parentSourceId={videos[index] ? videos[index].channel_id : ""}
           source="youtube"
         />
 
-        <button onClick={previousVideo}>Previous</button>
-        <button onClick={nextVideo}>Next</button>
         {video}
+
+        <div className="video-nav-btns">
+          <button onClick={previousVideo}>
+            <i className="fa-solid fa-hand-point-left"></i>
+          </button>
+
+          <button id="vid-nav-face">
+            <i className="fa-solid fa-face-laugh-beam"></i>
+          </button>
+
+          <button onClick={nextVideo}>
+            <i className="fa-solid fa-hand-point-right"></i>
+          </button>
+        </div>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
