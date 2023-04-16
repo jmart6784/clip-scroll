@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const ChannelTile = (props) => { 
   let c = props.channel;
@@ -19,10 +20,13 @@ const ChannelTile = (props) => {
 
     channelJsx = (
       <div key={channelId}>
-        <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
+        <Link to={`/youtube/show/${channelId}`}>
           <img src={channel.thumbnails.default.url} alt="channel avatar" />
           <span>{channel.title}</span>
-        </a>
+        </Link>
+
+        <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">View on YouTube</a>
+
         <p>Description: {channel.description}</p>
         <p>Subscribers count: {stats.subscriberCount}</p>
         <p>Video Count: {stats.videoCount}</p>
