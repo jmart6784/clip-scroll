@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 const PlaylistVideoMenu = (props) => { 
   const [playlists, setPlaylists] = useState([]);
@@ -134,7 +135,12 @@ const PlaylistVideoMenu = (props) => {
       );
     } else if (loading === false && playlists.length === 0) { 
       contentJsx = (
-        <div>No Playlists created</div>
+        <div>
+          <p>You have no playlists!</p>
+          <p>
+            Create one <Link to="/playlist/new">Here.</Link>
+          </p>
+        </div>
       );
     }
 
