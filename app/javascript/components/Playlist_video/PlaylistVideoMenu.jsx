@@ -154,10 +154,10 @@ const PlaylistVideoMenu = (props) => {
       contentJsx = playlistJsx;
     } else if (loading === false && playlists.length === 0) { 
       contentJsx = (
-        <div>
+        <div className="no-playlist-menu">
           <p>You have no playlists!</p>
           <p>
-            Create one <Link to="/playlist/new">Here.</Link>
+            Create one <Link to="/playlist/new">here.</Link>
           </p>
         </div>
       );
