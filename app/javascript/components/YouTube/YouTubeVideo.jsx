@@ -32,7 +32,7 @@ const YoutubeVideo = (props) => {
       videoId = video.items ? video.items[0].id : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
-      let margin = commentsShow ? { margin: 0, width: '100%' } : {};
+      let margin = commentsShow ? { margin: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' } : {};
       let commentCount = 0;
 
       if (video.items) {
