@@ -39,7 +39,15 @@ const YoutubeVideo = (props) => {
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       // Change style of parent div when comment or playlist menu is visible
-      let menuStyle = commentsShow || playlistsShow ? { margin: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' } : {};
+      let menuStyle = commentsShow || playlistsShow ? (
+        {
+          margin: 0,
+          width: '100%',
+          height: '100%',
+          backgroundColor: 'rgba(0, 0, 0, 0.5)',
+          backdropFilter: 'blur(5px)'
+        }
+      ) : {};
       let commentCount = 0;
 
       if (video.items) {
