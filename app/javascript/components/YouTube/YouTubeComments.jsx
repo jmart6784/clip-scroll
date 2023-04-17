@@ -9,7 +9,7 @@ const YouTubeComments = (props) => {
   // Get comments and reply thread
   useEffect(() => {
     if (prompt) {
-      // Long comment example zbyJggYs-Ak, 3 comments XGi3kqMlvGA, 1 comment & long N9odqUUIalE, 0 zaHi4HycUv4, short comments CosNGOuLcG4
+      // 0 comments zaHi4HycUv4
       fetch(`/api/v1/youtube/comments/${props.id}`)
         .then((response) => {
           if (response.ok) {

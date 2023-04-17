@@ -25,7 +25,7 @@ const YoutubeVideo = (props) => {
 
   let videoId;
   let stats;
-  let statsJsx = <div>No stats available</div>;
+  let statsJsx = '';
 
   if (video.items) {
     if (video.items.length != 0) { 
@@ -33,6 +33,27 @@ const YoutubeVideo = (props) => {
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       let margin = commentsShow ? { margin: 0, width: '100%' } : {};
+      let commentCount = 0;
+
+      if (video.items) {
+        commentCount = video.items[0].statistics.commentCount;
+      }
+
+      let cJsx = (
+        <button type="button" className="show-comments-btn yt-stat-div">
+          <i className="fa-solid fa-message"></i> <span>{commentCount}</span>
+        </button>
+      );
+
+      if (commentCount > 0) {
+        cJsx = (
+          <YouTubeComments
+            id={videoId}
+            commentCount={commentCount}
+            toggleComments={toggleComments}
+          />
+        );
+      }
 
       statsJsx = (
         <div className="youtube-video-stats-wrapper" style={margin}>
@@ -51,12 +72,8 @@ const YoutubeVideo = (props) => {
             </div>
             </>
           )}
-
-          <YouTubeComments
-            id={videoId}
-            commentCount={video.items ? video.items[0].statistics.commentCount : ""}
-            toggleComments={toggleComments}
-          />
+          
+          {cJsx}
         </div>
       );
     }
