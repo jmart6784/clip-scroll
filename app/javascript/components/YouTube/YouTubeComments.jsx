@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import DefaultImage from 'images/default-avatar-youtube.jpg'
+import DefaultImage from 'images/default-avatar-youtube.jpg';
+import prettyNumbers from "../../helpers/prettyNumbers";
 
 const YouTubeComments = (props) => {
   const [comments, setComments] = useState({ items: [] });
@@ -27,7 +28,8 @@ const YouTubeComments = (props) => {
       setPrompt(true);
       props.toggleComments();
     }} className="show-comments-btn yt-stat-div">
-      <i className="fa-solid fa-message"></i> <span>{props.commentCount}</span>
+      <i className="fa-solid fa-message"></i>
+      <span>{prettyNumbers(props.commentCount, 1)}</span>
     </button>
   );
 

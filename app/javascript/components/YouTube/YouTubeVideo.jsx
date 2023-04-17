@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import YouTube from 'react-youtube';
 import YouTubeComments from "./YouTubeComments";
+import prettyNumbers from "../../helpers/prettyNumbers";
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
@@ -60,7 +61,8 @@ const YoutubeVideo = (props) => {
           {commentsShow ? '' : (
             <>
             <div className="yt-stat-div">
-              <i className="fa-solid fa-thumbs-up"></i> <span>{stats.likeCount}</span>
+              <i className="fa-solid fa-thumbs-up"></i>
+              <span>{prettyNumbers(stats.likeCount, 1)}</span>
             </div>
 
             <div className="yt-stat-div">
@@ -68,7 +70,8 @@ const YoutubeVideo = (props) => {
             </div>
 
             <div className="yt-stat-div">
-              <i className="fa-solid fa-eye"></i> <span>{stats.viewCount}</span>
+              <i className="fa-solid fa-eye"></i>
+              <span>{prettyNumbers(stats.viewCount, 1)}</span>
             </div>
             </>
           )}
