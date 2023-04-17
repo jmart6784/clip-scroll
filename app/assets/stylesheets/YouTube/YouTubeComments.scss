@@ -91,6 +91,7 @@
   font-size: 14px;
 }
 
+// Reply styling
 .yt-replies-btn {
   background-color: rgba(0, 0, 0, 0.0);
   border: 0;
@@ -111,4 +112,14 @@
 .yt-replies-btn>span, .yt-replies-btn>i {
   font-size: 14px;
   color: rgb(0, 119, 255);
+}
+
+#yt-reply-div {
+  margin: 15px 0 15px 30px;
+  word-wrap: break-word;
+}
+
+#yt-reply-avatar {
+  height: 25px;
+  width: 25px;
 }

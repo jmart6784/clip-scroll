@@ -43,14 +43,30 @@ const YouTubeComments = (props) => {
         let r = reply.snippet;
 
         return (
-          <div key={reply.id}>
-            <p>
+          <div key={reply.id} className="yt-comment-div" id="yt-reply-div">
+            <div className="comment-avatar-div">
               <a href={r.authorChannelUrl} target="_blank">
-                <img src={r.authorProfileImageUrl} alt="user avatar" />
-              </a> {r.authorDisplayName}
-            </p>
-            <p>{r.textDisplay}</p>
-            <p>Likes: {r.likeCount}</p>
+                <img
+                  id="yt-reply-avatar"
+                  src={r.authorProfileImageUrl}
+                  alt="user avatar" 
+                  onError={e => {
+                    e.target.onerror = null;
+                    e.target.src = DefaultImage;
+                  }}
+                />
+                <span>{r.authorDisplayName}</span>
+                <span>{r.publishedAt}</span>
+              </a>
+            </div>
+
+            <p className="yt-comment-body">{r.textDisplay}</p>
+
+            <div className="comment-like-count-div">
+              <i className="fa-solid fa-thumbs-up"></i>
+              <span>{r.likeCount}</span>
+              <i className="fa-solid fa-thumbs-down"></i>
+            </div>
           </div>
         );
       });
