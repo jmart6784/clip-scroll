@@ -1,0 +1,43 @@
+.playlist-menu-wrapper {
+  padding: 100px 10px 50px 10px;
+  text-align: start;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+}
+
+.playlists-header-title {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+}
+
+.playlists-header-title>p {
+  font-size: 14px;
+}
+
+.playlist-menu-item {
+  display: flex;
+  column-gap: 7px;
+  align-items: center;
+}
+
+.playlist-menu-item>p {
+  font-size: 12px;
+}
+
+.playlist-menu-item>i, .playlists-header-title>p>i {
+  font-size: 18px;
+}
+
+.pl-item-name {
+  width: 250px;
+  word-wrap: break-word;
+}
+
+.pl-menu-checkbox[type=checkbox] {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+}

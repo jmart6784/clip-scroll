@@ -93,17 +93,41 @@ const PlaylistVideoMenu = (props) => {
   }
 
   let playlistJsx = playlists.map(pl => {
+    let sourceJsx = '';
+
+    if (pl.source == 'reddit') {
+      sourceJsx = <i className="fa-brands fa-reddit"></i>;
+    } else if (pl.source == 'youtube') {
+      sourceJsx = <i className="fa-brands fa-youtube"></i>;
+    } else { 
+      sourceJsx = (
+        <>
+          <i className="fa-brands fa-reddit"></i>
+          <i className="fa-brands fa-youtube"></i>
+        </>
+      );
+    }
+
     if (pl.source == props.source || pl.source == 'mix') { 
       return (
-        <div key={pl.id}>
+        <div key={pl.id} className="playlist-menu-item">
           <input
             type="checkbox"
             checked={pl.added}
             onChange={() => onCheck(pl.id)} 
+            className="pl-menu-checkbox"
           />
-          <p>{pl.name}</p>
-          <p>Private {pl.private.toString()}</p>
-          <i>source: {pl.source}</i>
+          <p className="pl-item-name">{pl.name}</p>
+
+          {
+            pl.private ? (
+              <i className="fa-solid fa-lock"></i>
+            ) : (
+              <i className="fa-solid fa-earth-americas"></i>
+            )
+          }
+          
+          {sourceJsx}
         </div>
       );
     }
@@ -127,12 +151,7 @@ const PlaylistVideoMenu = (props) => {
     let contentJsx = <h1>...Loading</h1>;
 
     if (loading === false && playlists.length > 0) {
-      contentJsx = (
-        <div>
-          <h1>Playlist Index</h1>
-          {playlistJsx}
-        </div>
-      );
+      contentJsx = playlistJsx;
     } else if (loading === false && playlists.length === 0) { 
       contentJsx = (
         <div>
@@ -145,11 +164,22 @@ const PlaylistVideoMenu = (props) => {
     }
 
     menuJsx = (
-      <div>
-        <button type="button" onClick={() => {
+      <div className="playlist-menu-wrapper">
+        <button type="button" className="hide-comments-btn" onClick={() => {
           setPrompt(false);
           props.togglePlaylists();
-        }}>Close</button>
+        }}>
+          <i className="fa-sharp fa-solid fa-xmark"></i>
+        </button>
+        <p className="comments-title playlists-header-title">
+          <p style={{textDecoration: "underline"}}>Your playlists</p>
+          <p>
+            Public/Private: <i className="fa-solid fa-earth-americas"></i>/<i className="fa-solid fa-lock"></i>
+          </p>
+          <p>
+            Playlist compatability: <i className="fa-brands fa-reddit"></i><i className="fa-brands fa-youtube"></i>
+          </p>
+        </p>
         {contentJsx}
       </div>
     );
