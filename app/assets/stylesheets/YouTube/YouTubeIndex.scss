@@ -39,14 +39,14 @@
   cursor: pointer;
 }
 
-.video-nav-btns>button>i:hover {
+.video-nav-btns>button:hover > i {
   color: $cs-red;
   transform: scale(1.25);
   transition: 0.3s;
 }
 
 #vid-nav-face {
-  cursor: none;
+  cursor: auto;
 }
 
 // Youtube Video
