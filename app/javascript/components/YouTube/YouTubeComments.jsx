@@ -66,7 +66,7 @@ const YouTubeComments = (props) => {
 
             <div className="comment-like-count-div">
               <i className="fa-solid fa-thumbs-up"></i>
-              <span>{r.likeCount}</span>
+              <span>{prettyNumbers(r.likeCount, 1)}</span>
               <i className="fa-solid fa-thumbs-down"></i>
             </div>
           </div>
@@ -94,7 +94,7 @@ const YouTubeComments = (props) => {
 
           <div className="comment-like-count-div">
             <i className="fa-solid fa-thumbs-up"></i>
-            <span>{parentComment.likeCount}</span>
+            <span>{prettyNumbers(parentComment.likeCount, 1)}</span>
             <i className="fa-solid fa-thumbs-down"></i>
           </div>
 
@@ -111,7 +111,7 @@ const YouTubeComments = (props) => {
                     repliesContainer.style.display = "block"
                 }}>
                   <i className="fa-solid fa-caret-down"></i>
-                  <span>{comment.replies.comments.length}</span>
+                  <span>{prettyNumbers(comment.replies.comments.length, 1)}</span>
                   <span>
                     {comment.replies.comments.length === 1 ? "reply" : "replies"}
                   </span>
