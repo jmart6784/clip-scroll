@@ -99,8 +99,6 @@ const YoutubeVideo = (props) => {
       );
     }
   }
-
-  useEffect(() => console.log(playlistsShow), [playlistsShow]);
   
   return (
     <div>
