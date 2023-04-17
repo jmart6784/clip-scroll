@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import YouTube from 'react-youtube';
 import YouTubeComments from "./YouTubeComments";
 import prettyNumbers from "../../helpers/prettyNumbers";
+import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
@@ -25,12 +26,14 @@ const YoutubeVideo = (props) => {
   const toggleComments = () => setCommentsShow(!commentsShow);
 
   let videoId;
+  let channelId;
   let stats;
   let statsJsx = '';
 
   if (video.items) {
     if (video.items.length != 0) { 
       videoId = video.items ? video.items[0].id : '';
+      channelId = video.items ? video.items[0].channelId : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       let margin = commentsShow ? { margin: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' } : {};
@@ -77,6 +80,8 @@ const YoutubeVideo = (props) => {
           )}
           
           {cJsx}
+
+          <PlaylistVideoMenu videoId={videoId} parentSourceId={channelId} source="youtube" />
         </div>
       );
     }

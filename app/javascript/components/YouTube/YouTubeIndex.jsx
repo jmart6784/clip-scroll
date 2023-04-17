@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import YoutubeVideo from "./YouTubeVideo";
-import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 import YouTubeLoading from "./YouTubeLoading";
 import YouTubeNoResults from "./YouTubeNoResults";
 
@@ -31,12 +30,6 @@ const YouTubeIndex = () => {
   if (loading === false && videos.length > 0) {
     mainJsx = (
       <div className="yt-video-listing-div">
-        <PlaylistVideoMenu
-          videoId={videos[index] ? videos[index].video_id : ""}
-          parentSourceId={videos[index] ? videos[index].channel_id : ""}
-          source="youtube"
-        />
-
         {video}
 
         <div className="video-nav-btns">
