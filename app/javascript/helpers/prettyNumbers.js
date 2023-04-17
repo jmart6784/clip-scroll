@@ -1,6 +1,7 @@
 // source SO
 const prettyNumbers = (number, digits) => {
   let num = parseInt(number);
+  isNaN(num) ? (num = 0) : "";
 
   const lookup = [
     { value: 1, symbol: "" },
