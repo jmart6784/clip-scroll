@@ -35,7 +35,7 @@ const YoutubeVideo = (props) => {
   if (video.items) {
     if (video.items.length != 0) { 
       videoId = video.items ? video.items[0].id : '';
-      channelId = video.items ? video.items[0].channelId : '';
+      channelId = video.items ? video.items[0].snippet.channelId : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
       // Change style of parent div when comment or playlist menu is visible
