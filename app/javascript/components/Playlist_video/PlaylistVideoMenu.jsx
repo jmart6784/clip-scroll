@@ -109,7 +109,14 @@ const PlaylistVideoMenu = (props) => {
   });
 
   let menuJsx = (
-    <button type="button" className="show-comments-btn yt-stat-div" onClick={() => setPrompt(true)}>
+    <button
+      type="button"
+      className="show-comments-btn yt-stat-div"
+      onClick={() => {
+        setPrompt(true);
+        props.togglePlaylists();
+      }}
+    >
       <i className="fa-solid fa-square-plus"></i>
       <span>Playlist</span>
     </button>
@@ -133,7 +140,10 @@ const PlaylistVideoMenu = (props) => {
 
     menuJsx = (
       <div>
-        <button type="button" onClick={() => setPrompt(false)}>Close</button>
+        <button type="button" onClick={() => {
+          setPrompt(false);
+          props.togglePlaylists();
+        }}>Close</button>
         {contentJsx}
       </div>
     );

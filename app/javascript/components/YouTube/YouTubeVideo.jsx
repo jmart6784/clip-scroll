@@ -7,6 +7,7 @@ import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
   const [commentsShow, setCommentsShow] = useState(false);
+  const [playlistsShow, setPlaylistsShow] = useState(false);
   
   useEffect(() => { 
     // Example of deleted video /api/v1/youtube/video/xRa9SZUdk_Q
@@ -24,6 +25,7 @@ const YoutubeVideo = (props) => {
   const onReady = (event) =>  event.target.unMute();
   const onEnd = (event) => event.target.playVideo();
   const toggleComments = () => setCommentsShow(!commentsShow);
+  const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
 
   let videoId;
   let channelId;
@@ -36,7 +38,8 @@ const YoutubeVideo = (props) => {
       channelId = video.items ? video.items[0].channelId : '';
       stats = video.items ? video.items[0].statistics : { viewCount: '0', likeCount: '0', favoriteCount: '0', commentCount: '0' };
 
-      let margin = commentsShow ? { margin: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' } : {};
+      // Change style of parent div when comment or playlist menu is visible
+      let menuStyle = commentsShow || playlistsShow ? { margin: 0, width: '100%', backgroundColor: 'rgba(0, 0, 0, 0.5)', backdropFilter: 'blur(5px)' } : {};
       let commentCount = 0;
 
       if (video.items) {
@@ -60,8 +63,9 @@ const YoutubeVideo = (props) => {
       }
 
       statsJsx = (
-        <div className="youtube-video-stats-wrapper" style={margin}>
-          {commentsShow ? '' : (
+        <div className="youtube-video-stats-wrapper" style={menuStyle}>
+          {/* If comment or playlist menu is visible, icons */}
+          {commentsShow || playlistsShow ? '' : (
             <>
             <div className="yt-stat-div">
               <i className="fa-solid fa-thumbs-up"></i>
@@ -78,14 +82,25 @@ const YoutubeVideo = (props) => {
             </div>
             </>
           )}
-          
-          {cJsx}
-
-          <PlaylistVideoMenu videoId={videoId} parentSourceId={channelId} source="youtube" />
+          {/* If playlist menu is visible, hide comment menu */}
+          {playlistsShow ? '' : cJsx}
+          {/* If comment menu is visible, hide playlist menu */}
+          { 
+            commentsShow ? '' : (
+            <PlaylistVideoMenu
+              videoId={videoId}
+              parentSourceId={channelId}
+              source="youtube"
+              togglePlaylists={togglePlaylists}  
+            />
+            )
+          }
         </div>
       );
     }
   }
+
+  useEffect(() => console.log(playlistsShow), [playlistsShow]);
   
   return (
     <div>
