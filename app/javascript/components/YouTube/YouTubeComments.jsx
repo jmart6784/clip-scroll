@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import DefaultImage from 'images/default-avatar-youtube.jpg';
 import prettyNumbers from "../../helpers/prettyNumbers";
+import timeSince from "../../helpers/timeSince";
 
 const YouTubeComments = (props) => {
   const [comments, setComments] = useState({ items: [] });
@@ -58,7 +59,7 @@ const YouTubeComments = (props) => {
                   }}
                 />
                 <span>{r.authorDisplayName}</span>
-                <span>{r.publishedAt}</span>
+                <span>{timeSince(r.publishedAt)}</span>
               </a>
             </div>
 
@@ -86,7 +87,7 @@ const YouTubeComments = (props) => {
                 }}
               />
               <span>{parentComment.authorDisplayName}</span>
-              <span>{parentComment.publishedAt}</span>
+              <span>{timeSince(parentComment.publishedAt)}</span>
             </a>
           </div>
 
