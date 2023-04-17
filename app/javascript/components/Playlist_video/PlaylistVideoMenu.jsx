@@ -108,20 +108,25 @@ const PlaylistVideoMenu = (props) => {
     }
   });
 
-  let menuJsx = <button type="button" onClick={() => setPrompt(true)}>Prompt</button>;
+  let menuJsx = (
+    <button type="button" className="show-comments-btn yt-stat-div" onClick={() => setPrompt(true)}>
+      <i className="fa-solid fa-square-plus"></i>
+      <span>Playlist</span>
+    </button>
+  );
 
   if (prompt) {
-    let mainJsx = <h1>...Loading</h1>;
+    let contentJsx = <h1>...Loading</h1>;
 
     if (loading === false && playlists.length > 0) {
-      mainJsx = (
+      contentJsx = (
         <div>
           <h1>Playlist Index</h1>
           {playlistJsx}
         </div>
       );
     } else if (loading === false && playlists.length === 0) { 
-      mainJsx = (
+      contentJsx = (
         <div>No Playlists created</div>
       );
     }
@@ -129,7 +134,7 @@ const PlaylistVideoMenu = (props) => {
     menuJsx = (
       <div>
         <button type="button" onClick={() => setPrompt(false)}>Close</button>
-        {mainJsx}
+        {contentJsx}
       </div>
     );
   }

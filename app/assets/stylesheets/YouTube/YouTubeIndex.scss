@@ -76,6 +76,7 @@
   flex-direction: column;
   row-gap: 20px;
   text-align: center;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .yt-stat-div {
@@ -83,7 +84,8 @@
   flex-direction: column;
   row-gap: 5px;
   text-align: center;
-  justify-self: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .yt-stat-div > i {
