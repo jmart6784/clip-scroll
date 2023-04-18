@@ -12,8 +12,7 @@ const YouTubeComments = (props) => {
   useEffect(() => {
     if (prompt) {
       // 0 comments zaHi4HycUv4, long username MgHmMymfOd4
-      // fetch(`/api/v1/youtube/comments/${props.id}`)
-      fetch(`/api/v1/youtube/comments/MgHmMymfOd4`)
+      fetch(`/api/v1/youtube/comments/${props.id}`)
         .then((response) => {
           if (response.ok) {
             return response.json();
