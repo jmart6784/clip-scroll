@@ -11,8 +11,9 @@ const YouTubeComments = (props) => {
   // Get comments and reply thread
   useEffect(() => {
     if (prompt) {
-      // 0 comments zaHi4HycUv4
-      fetch(`/api/v1/youtube/comments/${props.id}`)
+      // 0 comments zaHi4HycUv4, long username MgHmMymfOd4
+      // fetch(`/api/v1/youtube/comments/${props.id}`)
+      fetch(`/api/v1/youtube/comments/MgHmMymfOd4`)
         .then((response) => {
           if (response.ok) {
             return response.json();
@@ -58,7 +59,11 @@ const YouTubeComments = (props) => {
                     e.target.src = DefaultImage;
                   }}
                 />
-                <span>{r.authorDisplayName}</span>
+                <span>{
+                  r.authorDisplayName.length >= 30 ? (
+                    r.authorDisplayName.substring(0, 29) + ' ...'
+                  ) : r.authorDisplayName
+                }</span>
                 <span>{timeSince(r.publishedAt)}</span>
               </a>
             </div>
@@ -86,7 +91,11 @@ const YouTubeComments = (props) => {
                   e.target.src = DefaultImage;
                 }}
               />
-              <span>{parentComment.authorDisplayName}</span>
+              <span>{
+                parentComment.authorDisplayName.length >= 30 ? (
+                  parentComment.authorDisplayName.substring(0, 29) + ' ...'
+                ) : parentComment.authorDisplayName
+              }</span>
               <span>{timeSince(parentComment.publishedAt)}</span>
             </a>
           </div>
