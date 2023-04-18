@@ -177,7 +177,7 @@ const PlaylistVideoMenu = (props) => {
             Public/Private: <i className="fa-solid fa-earth-americas"></i>/<i className="fa-solid fa-lock"></i>
           </p>
           <p>
-            Playlist compatability: <i className="fa-brands fa-reddit"></i><i className="fa-brands fa-youtube"></i>
+            Playlist compatability: <i className="fa-brands fa-reddit"></i> <i className="fa-brands fa-youtube"></i>
           </p>
         </p>
         {contentJsx}
