@@ -148,7 +148,7 @@ const RedditIndex = () => {
         parentSourceId={posts[index] ? posts[index]['data']['subreddit'] : ""}
         source="reddit"
       />
-      <h1>Reddit Index: {index}</h1>
+      <h1>Reddit Index</h1>
       {videoJsx}
       <button type="button" onClick={previousVideo}>Previous</button>
       <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
