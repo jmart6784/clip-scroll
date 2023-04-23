@@ -145,7 +145,7 @@ const YouTubeChannels = () => {
     );
   } else if (loading === false && channels.length === 0) { 
     mainJsx = (
-      <div>No Channels search more <Link to="/youtube/search">here!</Link></div>
+      <div>No Channels added, search for more <Link to="/youtube/search">here!</Link></div>
     );
   }
 
