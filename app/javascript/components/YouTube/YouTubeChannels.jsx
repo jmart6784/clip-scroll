@@ -139,7 +139,7 @@ const YouTubeChannels = () => {
         <Link to="/youtube/search">Search</Link>
         <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
         <h1>YouTube Channels</h1>
-        <div>{channelsJsx}</div>
+        <div className="channels-wrapper">{channelsJsx}</div>
         <button onClick={moreChannels} type="button">More...</button>
       </div>
     );
