@@ -43,7 +43,7 @@ const Nav = () => {
       <div className="nav-parent">
         {currentMenu}
         <div className="nav-wrapper">
-          <Link to="/" className="nav-item">
+          <Link to="/" className="nav-item" onClick={() => hideMenu()}>
             <i className="fa-solid fa-house"></i>
             <span className="nav-label"> Home</span>
           </Link>
