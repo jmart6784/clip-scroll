@@ -19,7 +19,7 @@ const ChannelTile = (props) => {
     }
 
     channelJsx = (
-      <div key={channelId}>
+      <div key={channelId} className="channel-tile-div">
         <Link to={`/youtube/show/${channelId}`}>
           <img src={channel.thumbnails.default.url} alt="channel avatar" />
           <span>{channel.title}</span>
