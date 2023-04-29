@@ -25,7 +25,12 @@ const ChannelTile = (props) => {
           <span>{channel.title}</span>
         </Link>
 
-        <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">View on YouTube</a>
+        <div>
+          <Link to={`/youtube/show/${channelId}`}>View here</Link>
+          <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
+            View on YouTube
+          </a>
+        </div>
 
         <p>Description: {channel.description}</p>
         <p>Subscribers count: {stats.subscriberCount}</p>
