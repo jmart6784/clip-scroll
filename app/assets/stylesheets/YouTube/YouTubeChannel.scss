@@ -20,6 +20,19 @@
   border-radius: 5px;
 }
 
+.channel-tile-link {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.channel-tile-link>img {
+  height: 90px;
+  width: 90px;
+}
+
 .channel-avatar {
   border-radius: 100%;
 }
