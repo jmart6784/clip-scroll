@@ -25,26 +25,28 @@ const ChannelTile = (props) => {
           <span>{channel.title}</span>
         </Link>
 
-        <div>
-          <Link to={`/youtube/show/${channelId}`}>View here</Link>
-          <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
-            View on YouTube
-          </a>
-        </div>
-
         <p>Description: {channel.description}</p>
         <p>Subscribers count: {stats.subscriberCount}</p>
         <p>Video Count: {stats.videoCount}</p>
         <p>Total View Count: {stats.viewCount}</p>
         <p>Joined: {channel.publishedAt}</p>
 
-        {
-          addBtn ? 
-            <button onClick={(e) => props.addShorts(e, channelId)}>Add</button>
-          : 
-            <button onClick={(e) => props.removeShorts(e, channelId)}>Remove</button>
-        }
-        <button onClick={(e) => props.refreshVideos(e, channelId)} type="button">Refresh Videos</button>
+        <div className="channel-tile-nav-div">
+          {
+            addBtn ? 
+              <button onClick={(e) => props.addShorts(e, channelId)}>Add</button>
+            : 
+              <button onClick={(e) => props.removeShorts(e, channelId)}>Remove</button>
+          }
+
+          <button onClick={(e) => props.refreshVideos(e, channelId)} type="button">Refresh Videos</button>
+
+          <Link to={`/youtube/show/${channelId}`}>View videos here</Link>
+
+          <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
+            View on YouTube
+          </a>
+        </div>
       </div>
     );
   } else {
