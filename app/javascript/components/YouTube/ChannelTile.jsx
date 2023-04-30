@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import formatDate from "../../helpers/formatDate";
 
 const ChannelTile = (props) => { 
   let c = props.channel;
@@ -29,7 +30,7 @@ const ChannelTile = (props) => {
         <p>Subscribers count: {stats.subscriberCount}</p>
         <p>Video Count: {stats.videoCount}</p>
         <p>Total View Count: {stats.viewCount}</p>
-        <p>Joined: {channel.publishedAt}</p>
+        <p>Joined: {formatDate(channel.publishedAt)}</p>
 
         <div className="channel-tile-nav-div">
           {
