@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 .channels-wrapper {
   width: 50%;
   max-width: 920px;
@@ -26,4 +28,43 @@
   display: flex;
   align-items: center;
   column-gap: 20px;
+}
+
+.channel-tile-nav-div>a, .channel-tile-nav-div>button, .channel-tile-nav-div>a>i {
+  font-size: 18px;
+  color: white;
+  text-decoration: none;
+}
+
+.channel-tile-nav-div>a {
+  border-bottom: 3px solid white;
+}
+
+.channel-tile-nav-div>a:hover{
+  color: $cs-blue;
+  border-bottom: 3px solid rgba(0, 0, 0, 0.0);
+}
+
+.channel-tile-nav-div>button {
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+.ch-tile-add {
+  background-color: $cs-green;
+  border: 3px solid $cs-green;
+}
+
+.ch-tile-remove {
+  background-color: $cs-red;
+  border: 3px solid $cs-red;
+}
+
+.ch-tile-refresh {
+  background-color: $cs-blue;
+  border: 3px solid $cs-blue;
+}
+
+.ch-tile-add:hover, .ch-tile-remove:hover, .ch-tile-refresh:hover {
+  border: 3px solid white;
 }

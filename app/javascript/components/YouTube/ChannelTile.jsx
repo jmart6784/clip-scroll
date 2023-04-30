@@ -34,17 +34,25 @@ const ChannelTile = (props) => {
         <div className="channel-tile-nav-div">
           {
             addBtn ? 
-              <button onClick={(e) => props.addShorts(e, channelId)}>Add</button>
+              <button onClick={(e) => props.addShorts(e, channelId)} className="ch-tile-add">
+                <i className="fa-solid fa-plus"></i> Add
+              </button>
             : 
-              <button onClick={(e) => props.removeShorts(e, channelId)}>Remove</button>
+              <button onClick={(e) => props.removeShorts(e, channelId)} className="ch-tile-remove">
+                <i className="fa-solid fa-xmark"></i> Remove
+              </button>
           }
 
-          <button onClick={(e) => props.refreshVideos(e, channelId)} type="button">Refresh Videos</button>
+          <button onClick={(e) => props.refreshVideos(e, channelId)} type="button" className="ch-tile-refresh">
+            <i className="fa-solid fa-rotate"></i> Refresh Videos
+          </button>
 
-          <Link to={`/youtube/show/${channelId}`}>View videos here</Link>
+          <Link to={`/youtube/show/${channelId}`}>
+            <i className="fa-solid fa-eye"></i> View Videos
+          </Link>
 
           <a href={`https://www.youtube.com/${channel.customUrl}`} target="_blank">
-            View on YouTube
+            View on <i className="fa-brands fa-youtube"></i> YouTube
           </a>
         </div>
       </div>
