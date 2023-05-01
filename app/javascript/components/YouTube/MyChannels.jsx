@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
+import ChannelsNav from "./ChannelsNav";
 
 const MyChannels = () => {
   const [channels, setChannels] = useState([]);
@@ -133,9 +134,9 @@ const MyChannels = () => {
 
   if (loading === false && channels.length > 0) {
     mainJsx = <div>
-      <Link to="/youtube/channels">More Channels</Link>
       <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
       <h1>My Channels</h1>
+      <ChannelsNav view="my channels" />
       {channelsJsx}
       <button onClick={moreChannels} type="button">More...</button>
     </div>
