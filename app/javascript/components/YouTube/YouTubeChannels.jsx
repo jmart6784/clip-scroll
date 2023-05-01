@@ -141,7 +141,7 @@ const YouTubeChannels = () => {
       <div className="yt-channels-wrapper">
         <ChannelsNav view="channels" />
 
-        <h1>YouTube Channels</h1>
+        <h1 className="channels-view-title">YouTube Channels</h1>
         <p>Daily Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
 
         <div className="channels-wrapper">{channelsJsx}</div>
