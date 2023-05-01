@@ -37,6 +37,13 @@
   border-radius: 100%;
 }
 
+.channel-tile-stats {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  font-weight: 900;
+}
+
 .channel-tile-nav-div {
   display: flex;
   align-items: center;

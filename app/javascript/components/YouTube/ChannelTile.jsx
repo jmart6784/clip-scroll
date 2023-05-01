@@ -27,11 +27,13 @@ const ChannelTile = (props) => {
           <span>{channel.title}</span>
         </Link>
 
+        <div className="channel-tile-stats">
+          <p>Subscribers {prettyNumbers(stats.subscriberCount)} | </p>
+          <p>{prettyNumbers(stats.viewCount)} views | </p>
+          <p>Joined {formatDate(channel.publishedAt)}</p>
+        </div>
+
         <p>{channel.description}</p>
-        <p>Subscribers {prettyNumbers(stats.subscriberCount)}</p>
-        <p>Videos {stats.videoCount}</p>
-        <p>{prettyNumbers(stats.viewCount)} views</p>
-        <p>Joined {formatDate(channel.publishedAt)}</p>
 
         <div className="channel-tile-nav-div">
           {
