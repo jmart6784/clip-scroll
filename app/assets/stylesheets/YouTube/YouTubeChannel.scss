@@ -55,12 +55,14 @@
   row-gap: 50px;
   margin: auto;
   margin-bottom: 100px;
+  word-wrap: break-word;
 }
 
 .channel-tile-div {
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   display: flex;
+  flex-wrap: wrap;
   flex-direction: column;
   row-gap: 10px;
   padding: 10px;
@@ -93,8 +95,10 @@
 
 .channel-tile-nav-div {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   column-gap: 20px;
+  row-gap: 20px;
 }
 
 .channel-tile-nav-div>a, .channel-tile-nav-div>button, .channel-tile-nav-div>a>i {
@@ -153,4 +157,66 @@
 
 .no-channels-div>div {
   font-size: 18px;
+}
+
+@media only screen and (max-width: 1600px) {
+  .channels-wrapper {
+    width: 60%;
+  }
+}
+
+@media only screen and (max-width: 1300px) {
+  .channels-wrapper {
+    width: 70%;
+  }
+}
+
+@media only screen and (max-width: 1000px) {
+  .channels-wrapper {
+    width: 80%;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .channels-wrapper {
+    width: 90%;
+  }
+
+  .channel-tile-nav-div>a,
+  .channel-tile-nav-div>button,
+  .channel-tile-nav-div>a>i {
+    font-size: 16px;
+  }
+
+  .channel-tile-nav-div>button {
+    padding: 5px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .channels-wrapper {
+    width: 100%;
+  }
+
+  .channel-tile-nav-div>a,
+  .channel-tile-nav-div>button,
+  .channel-tile-nav-div>a>i {
+    font-size: 14px;
+  }
+
+  .channel-tile-nav-div {
+    column-gap: 10px;
+  }
+}
+
+@media only screen and (max-width: 530px) {
+  .channel-tile-nav-div>a,
+  .channel-tile-nav-div>button,
+  .channel-tile-nav-div>a>i {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+
 }
