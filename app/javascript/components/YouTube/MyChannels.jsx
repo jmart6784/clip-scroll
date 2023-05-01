@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
 import ChannelsNav from "./ChannelsNav";
+import YouTubeLoading from "./YouTubeLoading";
+import NoChannels from "./NoChannels";
 
 const MyChannels = () => {
   const [channels, setChannels] = useState([]);
@@ -130,7 +131,7 @@ const MyChannels = () => {
     />
   );
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <YouTubeLoading />;
 
   if (loading === false && channels.length > 0) {
     mainJsx = (
@@ -144,7 +145,7 @@ const MyChannels = () => {
       </div>
     );
   } else if (loading === false && channels.length === 0) { 
-    mainJsx = <div>No Channels added find more <Link to="/youtube/channels">here!</Link></div>;
+    mainJsx = <NoChannels />;
   }
   
   return mainJsx;
