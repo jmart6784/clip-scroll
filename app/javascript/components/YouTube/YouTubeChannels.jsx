@@ -137,12 +137,14 @@ const YouTubeChannels = () => {
 
   if (loading === false && channels.length > 0) { 
     mainJsx = (
-      <div>
+      <div className="yt-channels-wrapper">
         <Link to="/youtube/search">Search</Link>
-        <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+        
         <h1>YouTube Channels</h1>
+        <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+
         <div className="channels-wrapper">{channelsJsx}</div>
-        <button onClick={moreChannels} type="button">More...</button>
+        <button onClick={moreChannels} type="button" className="yt-channel-more">More...</button>
       </div>
     );
   } else if (loading === false && channels.length === 0) { 
