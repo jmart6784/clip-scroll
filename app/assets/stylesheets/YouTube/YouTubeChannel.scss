@@ -104,11 +104,10 @@
 }
 
 .channel-tile-nav-div>a {
-  border-bottom: 3px solid white;
+  border-bottom: 3px solid $cs-red;
 }
 
 .channel-tile-nav-div>a:hover{
-  color: $cs-blue;
   border-bottom: 3px solid rgba(0, 0, 0, 0.0);
 }
 
