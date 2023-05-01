@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
 import NoChannels from "./NoChannels";
 import YouTubeLoading from "./YouTubeLoading";
+import ChannelsNav from "./ChannelsNav";
 
 const YouTubeChannels = () => { 
   const [channels, setChannels] = useState([]);
@@ -138,8 +139,8 @@ const YouTubeChannels = () => {
   if (loading === false && channels.length > 0) { 
     mainJsx = (
       <div className="yt-channels-wrapper">
-        <Link to="/youtube/search">Search</Link>
-        
+        <ChannelsNav view="channels" />
+
         <h1>YouTube Channels</h1>
         <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
 
