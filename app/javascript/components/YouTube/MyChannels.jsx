@@ -133,13 +133,16 @@ const MyChannels = () => {
   let mainJsx = <h1>...Loading</h1>;
 
   if (loading === false && channels.length > 0) {
-    mainJsx = <div>
-      <p>Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
-      <h1>My Channels</h1>
-      <ChannelsNav view="my channels" />
-      {channelsJsx}
-      <button onClick={moreChannels} type="button">More...</button>
-    </div>
+    mainJsx = (
+      <div className="yt-channels-wrapper">
+        <ChannelsNav view="my channels" />
+        <h1 className="channels-view-title">My Channels</h1>
+        <p>Daily Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
+
+        <div className="channels-wrapper">{channelsJsx}</div>
+        <button onClick={moreChannels} type="button" className="yt-channel-more">More...</button>
+      </div>
+    );
   } else if (loading === false && channels.length === 0) { 
     mainJsx = <div>No Channels added find more <Link to="/youtube/channels">here!</Link></div>;
   }
