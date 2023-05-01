@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import ytImage from 'images/youtube-error.png'
 
 const NoChannels = () => { 
