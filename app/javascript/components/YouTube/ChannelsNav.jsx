@@ -18,7 +18,7 @@ const ChannelsNav = (props) => {
   }
 
   return (
-    <div>
+    <div className="channels-nav-wrapper">
       {channels}
       {search}
       {myChannels}

@@ -24,6 +24,28 @@
   border: 3px solid white;
 }
 
+// Channels Nav links
+.channels-nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  column-gap: 20px;
+  font-size: 20px;
+}
+
+.channels-nav-wrapper>div {
+  color: gray;
+}
+
+.channels-nav-wrapper>a {
+  text-decoration: none;
+  border-bottom: 3px solid $cs-red;
+}
+
+.channels-nav-wrapper>a:hover {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.0);
+}
+
 // Channel tile component
 .channels-wrapper {
   width: 50%;
