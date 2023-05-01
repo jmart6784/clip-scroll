@@ -7,11 +7,14 @@ const ChannelsNav = (props) => {
   let myChannels = <div>My Channels</div>;
 
   if (props.view == 'channels') {
-    channels = <Link to="/youtube/channels">Channels</Link>;
-  } else if (props.view == 'search') { 
     search = <Link to="/youtube/search">Search</Link>;
-  } else if (props.view == 'my channels') {
     myChannels = <Link to="/youtube/my_channels">My Channels</Link>;
+  } else if (props.view == 'search') { 
+    channels = <Link to="/youtube/channels">Channels</Link>;
+    myChannels = <Link to="/youtube/my_channels">My Channels</Link>;
+  } else if (props.view == 'my channels') {
+    channels = <Link to="/youtube/channels">Channels</Link>;
+    search = <Link to="/youtube/search">Search</Link>;
   }
 
   return (
