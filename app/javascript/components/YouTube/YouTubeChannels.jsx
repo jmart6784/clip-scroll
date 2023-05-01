@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
 import NoChannels from "./NoChannels";
+import YouTubeLoading from "./YouTubeLoading";
 
 const YouTubeChannels = () => { 
   const [channels, setChannels] = useState([]);
@@ -132,7 +133,7 @@ const YouTubeChannels = () => {
     />
   );
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <YouTubeLoading />;
 
   if (loading === false && channels.length > 0) { 
     mainJsx = (
