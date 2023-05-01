@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ChannelTile from "./ChannelTile";
+import ChannelsNav from "./ChannelsNav";
 
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
@@ -151,7 +152,7 @@ const YouTubeSearch = () => {
   return (
     <div>
       <h1>YouTube Search</h1>
-      <Link to="/youtube/channels">Back</Link>
+      <ChannelsNav view={'search'} />
       <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
       <button onClick={searchChannels} disabled={search.trim() == ""}>Search</button>
 
