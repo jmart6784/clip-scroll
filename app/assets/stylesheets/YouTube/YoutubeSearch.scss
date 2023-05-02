@@ -1,0 +1,35 @@
+@import "./variables.scss";
+
+.yt-search-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 40px;
+}
+
+.yt-search-div>input {
+  border: 0;
+  padding: 5px;
+  font-size: 18px;
+  outline: none;
+  border: 0;
+  border-radius: 10px 0 0 10px;
+  height: 100%;
+  width: 500px;
+}
+
+.yt-search-div>button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  padding: 5px;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+  background-color: $cs-red;
+  outline: none;
+  border: 0;
+  width: 50px;
+  height: 100%;
+}
