@@ -151,7 +151,7 @@ const YouTubeSearch = () => {
   return (
     <div className="yt-channels-wrapper">
       <ChannelsNav view={'search'} />
-      <h1 className="channels-view-title">YouTube Search</h1>
+      <h1 className="channels-view-title yt-search-title">YouTube Search</h1>
       
       <div className="yt-search-div">
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />

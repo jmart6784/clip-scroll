@@ -33,3 +33,40 @@
   width: 50px;
   height: 100%;
 }
+
+.yt-search-title {
+  margin-top: 60px;
+}
+
+@media only screen and (max-width: 700px) {
+  .yt-search-div>input {
+    width: 450px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  .yt-search-div>input {
+    width: 400px;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .yt-search-div>input {
+    font-size: 16px;
+    width: 300px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .yt-search-div>input {
+    font-size: 15px;
+    width: 250px;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .yt-search-div>input {
+    font-size: 14px;
+    width: 200px;
+  }
+}
