@@ -70,19 +70,22 @@ const ChannelTile = (props) => {
     }
     // YouTube Search data does not include stats, a differnt JSX render is needed.
     channelJsx = (
-      <div key={c.channelId}>
-        <img src={c.thumbnails.default.url} alt="channel avatar" />
-        <span>{c.title}</span>
+      <div key={c.channelId} className="channel-tile-div">
+        <Link to={`/youtube/show/${c.channelId}`} className="channel-tile-link">
+          <img src={c.thumbnails.default.url} alt="channel avatar" className="channel-avatar" />
+          <span>{c.title}</span>
+        </Link>
 
         <p>Description: {c.description}</p>
-        <p>Joined: {c.publishedAt}</p>
 
-        {
-          addBtn ? 
-            <button onClick={(e) => props.addShorts(e, c.channelId)}>Add</button>
-          : 
-            <button onClick={(e) => props.removeShorts(e, c.channelId)}>Remove</button>
-        }
+        <div className="channel-tile-nav-div">
+          {
+            addBtn ? 
+              <button onClick={(e) => props.addShorts(e, c.channelId)} className="ch-tile-add">Add</button>
+            : 
+              <button onClick={(e) => props.removeShorts(e, c.channelId)} className="ch-tile-remove">Remove</button>
+          }
+        </div>
       </div>
     );
   }

@@ -141,10 +141,10 @@ const YouTubeSearch = () => {
     parentJsx = <div><h1>Limit Reached</h1></div>
   } else { 
     parentJsx = results.items.length > 0 && submited ?
-      <div>
-        <p>Channel Additions left: {userConfig["youtube_channel_refresh_limit"]}</p>
+      <>
+        <p className="yt-search-additions">Channel Additions left: {userConfig["youtube_channel_refresh_limit"]}</p>
         {resultsJsx}
-      </div>
+      </>
     : mainJsx;
   }
 
@@ -160,7 +160,7 @@ const YouTubeSearch = () => {
         </button>
       </div>
 
-      {parentJsx}
+      <div className="channels-wrapper">{parentJsx}</div>
     </div>
   );
 }
