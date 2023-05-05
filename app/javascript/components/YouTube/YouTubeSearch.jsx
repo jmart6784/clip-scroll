@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ChannelTile from "./ChannelTile";
 import ChannelsNav from "./ChannelsNav";
+import YouTubeLoading from "./YouTubeLoading";
+import NoChannels from "./NoChannels";
 
 const YouTubeSearch = () => {
   const [results, setResults] = useState({items: []});
@@ -130,15 +132,15 @@ const YouTubeSearch = () => {
   let mainJsx;
 
   if (loading && submited) {
-    mainJsx = <h1>...Loading</h1>;
+    mainJsx = <YouTubeLoading height="20vh" />;
   } else if (loading === false && results.items.length === 0) { 
-    mainJsx = <div>No Results</div>;
+    mainJsx = <NoChannels height="20vh" />;
   }
 
   let parentJsx;
 
   if (limitReached) {
-    parentJsx = <div><h1>Limit Reached</h1></div>
+    parentJsx = <div className="yt-search-limit"><h3>Daily Search limit reached</h3></div>;
   } else { 
     parentJsx = results.items.length > 0 && submited ?
       <>
