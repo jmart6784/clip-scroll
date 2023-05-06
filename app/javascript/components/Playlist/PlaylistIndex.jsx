@@ -29,7 +29,7 @@ const PlaylistIndex = () => {
       <div>
         <Link to="/playlist/mine">My Playlists</Link>
         <h1>Playlist Index</h1>
-        {playListJsx}
+        <div className="playlists-wrapper">{playListJsx}</div>
       </div>
     );
   } else if (loading === false && playlists.length === 0) { 
