@@ -90,7 +90,8 @@ const YouTubeSearch = () => {
       .catch(() => console.log("Error deleting shorts data"));
   }
 
-  const searchChannels = () => {
+  const searchChannels = (e) => {
+    e.preventDefault();
     fetch(`/api/v1/youtube/search/${search}`)
       .then((response) => {
         if (response.ok) {
@@ -155,12 +156,12 @@ const YouTubeSearch = () => {
       <ChannelsNav view={'search'} />
       <h1 className="channels-view-title yt-search-title">YouTube Search</h1>
       
-      <div className="yt-search-div">
+      <form onSubmit={(e) => searchChannels(e)} className="yt-search-div">
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
         <button onClick={searchChannels} disabled={search.trim() == ""}>
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
-      </div>
+      </form>
 
       <div className="channels-wrapper">{parentJsx}</div>
     </div>
