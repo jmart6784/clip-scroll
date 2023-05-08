@@ -52,3 +52,49 @@
   font-weight: 900;
   border-bottom: 1px solid $cs-red;
 }
+
+// User Show
+.user-show-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  word-wrap: break-word;
+}
+
+.user-show {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 15px;
+  flex-direction: column;
+  border-radius: 5px;
+  padding: 20px 10px 20px 10px;
+  max-width: 300px;
+  width: 100%;
+  word-wrap: break-word;
+  height: fit-content;
+  font-size: 13px;
+}
+
+.user-show-avatar {
+  height: 250px;
+  width: 250px;
+  border-radius: 100%;
+}
+
+.user-show-username {
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.user-show-bio {
+  width: 100%;
+}
+
+.us-fullname {
+  width: 100%;
+  text-align: center;
+}

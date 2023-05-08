@@ -30,11 +30,17 @@ const UserShow = (props) => {
   }, [props.match.params.id]);
 
   return (
-    <div>
-      <h1>User Show</h1>
-      <img src={showUser.avatar.url} alt="user avatar" height="300" width="300" />
-      <p>{`${showUser.first_name} ${showUser.last_name}`}</p>
-      <p>{showUser.bio}</p>
+    <div className="user-show-wrapper">
+      
+      <div className="user-show">
+        <div style={{ backgroundImage: `url(${showUser.avatar.url})` }} className="background-image user-show-avatar" alt="user avatar"></div>
+
+        <div className="user-show-username">{showUser.username}</div>
+        <div className="us-fullname">{`${showUser.first_name} ${showUser.last_name}`}</div>
+
+        <div className="user-show-bio">{showUser.bio}</div>
+      </div>
+
     </div>
   );
 }
