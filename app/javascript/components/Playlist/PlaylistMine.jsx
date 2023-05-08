@@ -25,16 +25,16 @@ const PlaylistMine = () => {
 
   let mainJsx = <GeneralLoading />;
 
-  // if (loading === false && playlists.length > 0) {
-  //   mainJsx = (
-  //     <div>
-  //       <h3 className="playlists-title">My Playlists</h3>
-  //       <div className="playlists-wrapper">{playListJsx}</div>
-  //     </div>
-  //   );
-  // } else if (loading === false && playlists.length === 0) { 
+  if (loading === false && playlists.length > 0) {
+    mainJsx = (
+      <div>
+        <h3 className="playlists-title">My Playlists</h3>
+        <div className="playlists-wrapper">{playListJsx}</div>
+      </div>
+    );
+  } else if (loading === false && playlists.length === 0) { 
     mainJsx = <GeneralNoResults />;
-  // }
+  }
 
   return mainJsx;
 }
