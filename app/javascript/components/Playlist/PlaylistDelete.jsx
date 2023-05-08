@@ -26,11 +26,16 @@ const PlaylistDelete = (props) => {
   let delJsx = <button type="button" onClick={() => setPrompt(true)}>Delete</button>;
   
   if (prompt) {
-    delJsx = <div>
-      <p>Are you sure you would like to delete this playlist?</p>
-      <button onClick={deletePlaylist} type="button">Delete</button>
-      <button onClick={() => setPrompt(false)} type="button">Cancel</button>
-    </div>
+    delJsx = (
+      <div className="playlist-delete-wrapper">
+        <p>Are you sure?</p>
+
+        <div className="pl-delete-div">
+          <button onClick={deletePlaylist} type="button" className="pl-delete-btn">Delete</button>
+          <button onClick={() => setPrompt(false)} type="button" className="pl-delete-cancel">Cancel</button>
+        </div>
+      </div>
+    );
   } else { 
     delJsx = <button type="button" className="playlist-delete" onClick={() => setPrompt(true)}>Delete</button>
   }
