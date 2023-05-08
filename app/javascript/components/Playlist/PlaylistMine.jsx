@@ -2,6 +2,7 @@ import React, { useEffect, useState, useContext } from "react";
 import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
 import GeneralLoading from "../../helpers/GeneralLoading";
+import GeneralNoResults from "../../helpers/GeneralNoResults";
 
 const PlaylistMine = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -24,18 +25,16 @@ const PlaylistMine = () => {
 
   let mainJsx = <GeneralLoading />;
 
-  if (loading === false && playlists.length > 0) {
-    mainJsx = (
-      <div>
-        <h3 className="playlists-title">My Playlists</h3>
-        <div className="playlists-wrapper">{playListJsx}</div>
-      </div>
-    );
-  } else if (loading === false && playlists.length === 0) { 
-    mainJsx = (
-      <div>No Results</div>
-    );
-  }
+  // if (loading === false && playlists.length > 0) {
+  //   mainJsx = (
+  //     <div>
+  //       <h3 className="playlists-title">My Playlists</h3>
+  //       <div className="playlists-wrapper">{playListJsx}</div>
+  //     </div>
+  //   );
+  // } else if (loading === false && playlists.length === 0) { 
+    mainJsx = <GeneralNoResults />;
+  // }
 
   return mainJsx;
 }
