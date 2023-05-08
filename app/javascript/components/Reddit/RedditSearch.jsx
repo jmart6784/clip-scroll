@@ -32,7 +32,11 @@ const RedditSearch = () => {
       .then((response) => {
         setLoading(false);
         setSubmited(true);
-        setSubreddits(response['data']['children'])
+        if (response['data'] == undefined) {
+          setSubreddits([]);
+        } else { 
+          setSubreddits(response['data']['children']);
+        }
       })
       .catch(() => console.log("Error getting subreddit data"));
   }
