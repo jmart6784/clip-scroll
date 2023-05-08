@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
+import GeneralLoading from "../../helpers/GeneralLoading";
 
 const PlaylistMine = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -22,7 +22,7 @@ const PlaylistMine = () => {
 
   let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} />);
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <GeneralLoading />;
 
   if (loading === false && playlists.length > 0) {
     mainJsx = (
