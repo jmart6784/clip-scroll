@@ -21,7 +21,8 @@ const RedditSearch = () => {
       .catch(() => console.log("Error getting subreddit data"));
   }, []);
 
-  const searchSubreddits = () => { 
+  const searchSubreddits = (e) => { 
+    e.preventDefault();
     fetch(`http://www.reddit.com/search.json?q=${search}&sort=relevance&type=sr&limit=100`)
       .then((response) => {
         if (response.ok) {
@@ -65,8 +66,11 @@ const RedditSearch = () => {
     <div>
       <Link to="/subreddit/index">Back</Link>
       <h1>Reddit Search</h1>
-      <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-      <button onClick={searchSubreddits} disabled={search.trim() == ""}>Search</button>
+
+      <form onSubmit={(e) => searchSubreddits(e)}>
+        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <button onClick={searchSubreddits} disabled={search.trim() == ""}>Search</button>
+      </form>
 
       {subreddits.length > 0 && submited ? subredditsJsx : mainJsx}
     </div>
