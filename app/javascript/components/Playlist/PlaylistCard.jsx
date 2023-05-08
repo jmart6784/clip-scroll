@@ -20,15 +20,15 @@ const PlaylistCard = (props) => {
   }
 
   return (
-    <div id={`playlist-${playlist.id}`} key={playlist.id}>
-      <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
-
-      {ownerBtns}
-      
+    <div id={`playlist-${playlist.id}`} key={playlist.id} className="playlist-card">
       <Link to={`/users/show/${user.id}`}>
         <img src={user.avatar.url} height="50" width="50" alt="user avatar" />
         <span>{user.username}</span>
       </Link>
+      
+      <strong><Link to={`/playlist/show/${playlist.id}`}>{playlist.name}</Link></strong>
+
+      {ownerBtns}
     </div>
   );
 }

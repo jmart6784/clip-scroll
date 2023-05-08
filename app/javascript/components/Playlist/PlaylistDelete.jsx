@@ -32,7 +32,7 @@ const PlaylistDelete = (props) => {
       <button onClick={() => setPrompt(false)} type="button">Cancel</button>
     </div>
   } else { 
-    delJsx = <button type="button" onClick={() => setPrompt(true)}>Delete</button>
+    delJsx = <button type="button" className="playlist-delete" onClick={() => setPrompt(true)}>Delete</button>
   }
 
   return (
