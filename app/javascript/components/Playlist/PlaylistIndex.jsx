@@ -1,7 +1,8 @@
 import React, { useEffect, useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
+import GeneralLoading from "../../helpers/GeneralLoading";
+import GeneralNoResults from "../../helpers/GeneralNoResults";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -22,7 +23,7 @@ const PlaylistIndex = () => {
 
   let playListJsx = playlists.map(playlist => <PlaylistCard key={playlist.id} playlist={playlist} user={global.user} />);
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <GeneralLoading />;
 
   if (loading === false && playlists.length > 0) {
     mainJsx = (
@@ -32,9 +33,7 @@ const PlaylistIndex = () => {
       </div>
     );
   } else if (loading === false && playlists.length === 0) { 
-    mainJsx = (
-      <div>No Results</div>
-    );
+    mainJsx = <GeneralNoResults />;
   }
 
   return mainJsx;
