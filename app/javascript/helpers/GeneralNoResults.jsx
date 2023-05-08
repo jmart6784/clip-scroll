@@ -1,7 +1,7 @@
 import React from "react";
 import NoResults from "images/no-results.gif";
 
-const GeneralLoadingNoResults = () => { 
+const GeneralNoResults = () => { 
   return (
     <div className="general-loading">
       <img src={NoResults} alt="no results icon" />
@@ -10,4 +10,4 @@ const GeneralLoadingNoResults = () => {
   );
 }
 
-export default GeneralLoadingNoResults;
+export default GeneralNoResults;
