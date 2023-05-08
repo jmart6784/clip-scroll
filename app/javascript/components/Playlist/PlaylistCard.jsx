@@ -22,7 +22,8 @@ const PlaylistCard = (props) => {
   return (
     <div id={`playlist-${playlist.id}`} key={playlist.id} className="playlist-card">
       <Link to={`/users/show/${user.id}`}>
-        <img src={user.avatar.url} height="50" width="50" alt="user avatar" />
+        <div style={{ backgroundImage: `url(${user.avatar.url})` }} className="background-image playlist-user-avatar" alt="user avatar"></div>
+
         <span>{user.username}</span>
       </Link>
       
