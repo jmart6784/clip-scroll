@@ -1,0 +1,54 @@
+@import "./variables.scss";
+
+.user-index-wrapper {
+  margin: 0 0 80px 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  row-gap: 30px;
+  column-gap: 30px;
+  flex-wrap: wrap;
+}
+
+.user-card {
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+  padding: 30px 10px 30px 10px;
+  word-wrap: break-word;
+}
+
+.user-card>img {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
+.user-card>a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.user-card>a>div {
+  height: 150px;
+  width: 150px;
+  border-radius: 100%;
+}
+
+.user-card>a {
+  text-decoration: none;
+}
+
+.user-card-name {
+  display: block;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 900;
+  border-bottom: 1px solid $cs-red;
+}

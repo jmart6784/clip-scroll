@@ -17,15 +17,25 @@ const UserIndex = () => {
       .catch(() => console.log("Error getting users index"));
   }, []);
 
-  let usersJsx = users.map(user => <div key={user.id}><Link to={`/users/show/${user.id}`}>{`${user.first_name} ${user.last_name}`}</Link></div>);
+  let usersJsx = users.map(user => {
+    return (
+      <div key={user.id} className="user-card">
+        <Link to={`/users/show/${user.id}`}>
+          <div style={{ backgroundImage: `url(${user.avatar.url})` }} className="background-image" alt="user avatar"></div>
+          
+          <span className="user-card-name">{user.username}</span>
+        </Link>
+      </div>
+    );
+  });
 
   let mainJsx = <h1>...Loading</h1>;
 
   if (loading === false && users.length > 0) {
     mainJsx = (
       <div>
-        <h1>User Index</h1>
-        {usersJsx}
+        <h3 className="playlists-title">Community</h3>
+        <div className="user-index-wrapper">{usersJsx}</div>
       </div>
     );
   } else if (loading === false && users.length === 0) { 
