@@ -59,3 +59,16 @@ body {
   outline: 1px solid slategrey;
   border-radius: 10px;
 }
+
+.general-loading {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.general-loading>img {
+  height: 150px;
+  width: 150px;
+}
