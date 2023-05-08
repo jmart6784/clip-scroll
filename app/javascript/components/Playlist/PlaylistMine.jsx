@@ -27,9 +27,8 @@ const PlaylistMine = () => {
   if (loading === false && playlists.length > 0) {
     mainJsx = (
       <div>
-        <Link to="/playlist/index">Playlist Index</Link>
-        <h1>Playlist Mine</h1>
-        {playListJsx}
+        <h3 className="playlists-title">My Playlists</h3>
+        <div className="playlists-wrapper">{playListJsx}</div>
       </div>
     );
   } else if (loading === false && playlists.length === 0) { 
