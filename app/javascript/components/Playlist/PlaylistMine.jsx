@@ -3,6 +3,7 @@ import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
 import GeneralLoading from "../../helpers/GeneralLoading";
 import GeneralNoResults from "../../helpers/GeneralNoResults";
+import ExploreNav from "./ExploreNav";
 
 const PlaylistMine = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -28,6 +29,7 @@ const PlaylistMine = () => {
   if (loading === false && playlists.length > 0) {
     mainJsx = (
       <div>
+        <ExploreNav />
         <h3 className="playlists-title">My Playlists</h3>
         <div className="playlists-wrapper">{playListJsx}</div>
       </div>
