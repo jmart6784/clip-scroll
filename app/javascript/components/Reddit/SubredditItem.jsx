@@ -30,12 +30,11 @@ const SubredditItem = (props) => {
   }
 
   return (
-    <div>
-      <Link to={`/reddit/show/${subreddit.subreddit}`}>
-        <p>{subreddit.subreddit}</p>
-      </Link>
+    <div className="subreddit-item-wrapper">
       {/* switch state depending on view and if API request has occured (count) */}
-      <input type="checkbox" onChange={() => handleForm(subreddit.subreddit)} checked={props.view == 'index' && count == 0 ? props.subbed : subbed} />
+      <input type="checkbox" className="subreddit-checkbox" onChange={() => handleForm(subreddit.subreddit)} checked={props.view == 'index' && count == 0 ? props.subbed : subbed} />
+
+      <Link to={`/reddit/show/${subreddit.subreddit}`}>{subreddit.subreddit}</Link>
     </div>  
   );
 }
