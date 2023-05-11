@@ -29,7 +29,7 @@ const PlaylistMine = () => {
   if (loading === false && playlists.length > 0) {
     mainJsx = (
       <div>
-        <ExploreNav />
+        <ExploreNav view="playlist-mine" />
         <h3 className="playlists-title">My Playlists</h3>
         <div className="playlists-wrapper">{playListJsx}</div>
       </div>
