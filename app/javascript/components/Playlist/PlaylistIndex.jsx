@@ -3,6 +3,7 @@ import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
 import GeneralLoading from "../../helpers/GeneralLoading";
 import GeneralNoResults from "../../helpers/GeneralNoResults";
+import ExploreNav from "./ExploreNav";
 
 const PlaylistIndex = () => { 
   const [playlists, setPlaylists] = useState([]);
@@ -27,8 +28,8 @@ const PlaylistIndex = () => {
 
   if (loading === false && playlists.length > 0) {
     mainJsx = (
-      <div>
-        <h3 className="playlists-title">Community Playlists</h3>
+      <div className="yt-channels-wrapper">
+        <ExploreNav view="playlists" />
         <div className="playlists-wrapper">{playListJsx}</div>
       </div>
     );
