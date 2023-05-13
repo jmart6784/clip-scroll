@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import GeneralLoading from "../../helpers/GeneralLoading";
 import GeneralNoResults from "../../helpers/GeneralNoResults";
+import ExploreNav from "../Playlist/ExploreNav";
 
 const UserIndex = () => { 
   const [users, setUsers] = useState([]);
@@ -36,7 +37,7 @@ const UserIndex = () => {
   if (loading === false && users.length > 0) {
     mainJsx = (
       <div>
-        <h3 className="playlists-title">Community</h3>
+        <ExploreNav view="community" />
         <div className="user-index-wrapper">{usersJsx}</div>
       </div>
     );
