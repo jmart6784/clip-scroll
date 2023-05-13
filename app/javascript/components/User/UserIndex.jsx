@@ -36,7 +36,7 @@ const UserIndex = () => {
 
   if (loading === false && users.length > 0) {
     mainJsx = (
-      <div>
+      <div className="yt-channels-wrapper">
         <ExploreNav view="community" />
         <div className="user-index-wrapper">{usersJsx}</div>
       </div>
