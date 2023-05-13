@@ -23,9 +23,9 @@ const ExploreNav = (props) => {
         <i className="fa-solid fa-face-grin"></i> <span>My Playlists</span>
       </Link>
     );
-    playlists = (
-      <Link to="/playlist/index">
-        <i className="fa-solid fa-circle-play"></i> <span>Playlists</span>
+    community = (
+      <Link to="/users/index">
+        <i className="fa-solid fa-users"></i> <span>Community</span>
       </Link>
     );
   } else if (props.view == 'community') {
