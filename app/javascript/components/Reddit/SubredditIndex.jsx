@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
 import RedditLoading from "./RedditLoading";
 import RedditNoResults from "./RedditNoResults";
+import RedditNav from "./RedditNav";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -46,10 +46,8 @@ const SubredditIndex = () => {
 
   if (loading === false && subreddits.length > 0) {
     mainJsx = (
-      <div>
-        <Link to='/mysubreddits'>My Subreddits</Link>
-        <Link to='/reddit/search'>Search for Subreddits</Link>
-        <h3 className="subreddit-title"><i className="fa-brands fa-reddit"></i> r/Subreddits</h3>
+      <div className="yt-channels-wrapper">
+        <RedditNav view="subreddits" />
         <div className="subreddit-index">{subredditsJsx}</div>
       </div>
     );
