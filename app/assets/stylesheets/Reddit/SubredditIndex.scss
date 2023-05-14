@@ -50,6 +50,22 @@
   justify-content: center;
 }
 
+// Reddit no results
+.reddit-no-results {
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.reddit-nr-image {
+  width: 270px;
+  height: 200px;
+}
+
 @media only screen and (max-width: 1200px) {
   .subreddit-item-wrapper>a {
     max-width: 700px;
