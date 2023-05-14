@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import SubredditItem from "./SubredditItem";
 import RedditNav from "./RedditNav";
+import RedditLoading from "./RedditLoading";
+import RedditNoResults from "./RedditNoResults";
 
 const RedditSearch = () => { 
   const [search, setSearch] = useState("");
@@ -59,9 +61,9 @@ const RedditSearch = () => {
   let mainJsx;
 
   if (loading && submited) {
-    mainJsx = <h1>...Loading</h1>;
+    mainJsx = <RedditLoading />;
   } else if (loading === false && subreddits.length === 0) { 
-    mainJsx = <div>No Results</div>;
+    mainJsx = <RedditNoResults />;
   }
   
   return (
