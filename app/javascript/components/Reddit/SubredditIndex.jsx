@@ -54,9 +54,7 @@ const SubredditIndex = () => {
       </div>
     );
   } else if (loading === false && subreddits.length === 0) { 
-    mainJsx = (
-      <RedditNoResults />
-    );
+    mainJsx = <RedditNoResults />;
   }
 
   return mainJsx;
