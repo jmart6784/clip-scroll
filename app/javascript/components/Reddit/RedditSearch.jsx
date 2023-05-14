@@ -66,6 +66,7 @@ const RedditSearch = () => {
   
   return (
     <div className="yt-channels-wrapper">
+      <RedditNav view="search" />
       <h1 className="channels-view-title yt-search-title">Reddit Search</h1>
 
       <form onSubmit={(e) => searchSubreddits(e)} className="yt-search-div">
@@ -74,7 +75,7 @@ const RedditSearch = () => {
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-      
+
       {subreddits.length > 0 ? subredditsJsx : mainJsx}
     </div>
   );
