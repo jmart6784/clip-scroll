@@ -23,6 +23,9 @@ const RedditSearch = () => {
 
   const searchSubreddits = (e) => { 
     e.preventDefault();
+    setLoading(true);
+    setSubmited(true);
+    
     fetch(`http://www.reddit.com/search.json?q=${search}&sort=relevance&type=sr&limit=100`)
       .then((response) => {
         if (response.ok) {
@@ -32,7 +35,6 @@ const RedditSearch = () => {
       })
       .then((response) => {
         setLoading(false);
-        setSubmited(true);
         if (response['data'] == undefined) {
           setSubreddits([]);
         } else { 
@@ -72,8 +74,8 @@ const RedditSearch = () => {
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
       </form>
-
-      {subreddits.length > 0 && submited ? subredditsJsx : mainJsx}
+      
+      {subreddits.length > 0 ? subredditsJsx : mainJsx}
     </div>
   );
 }
