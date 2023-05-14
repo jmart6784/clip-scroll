@@ -273,6 +273,10 @@
   .channel-tile-stats {
     font-size: 10px;
   }
+
+  .channels-nav-wrapper {
+    font-size: 14.5px;
+  }
 }
 
 @media only screen and (max-width: 300px) {
@@ -283,5 +287,11 @@
   .channels-nav-wrapper {
     column-gap: 10px;
     font-size: 14px;
+  }
+}
+
+@media only screen and (max-width: 275px) {
+  .channels-nav-wrapper {
+    font-size: 12px;
   }
 }
