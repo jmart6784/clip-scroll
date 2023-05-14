@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
+import RedditLoading from "./RedditLoading";
+import RedditNoResults from "./RedditNoResults";
 
 const MySubreddits = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -22,7 +24,7 @@ const MySubreddits = () => {
 
   subredditsJsx = subreddits.map(subreddit => <SubredditItem key={subreddit.id} subreddit={subreddit} subbed={true} />);
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <RedditLoading />;
 
   if (loading === false && subreddits.length > 0) {
     mainJsx = (
@@ -33,9 +35,7 @@ const MySubreddits = () => {
     </div>
   );
   } else if (loading === false && subreddits.length === 0) { 
-    mainJsx = (
-      <div>No Results</div>
-    );
+    mainJsx = <RedditNoResults />;
   }
 
   return mainJsx;
