@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const RedditNav = (props) => { 
-  let subreddits = <div><i className="fa-brands fa-youtube"></i> Subreddits</div>;
+  let subreddits = <div><i className="fa-brands fa-reddit-alien"></i> Subreddits</div>;
   let search = <div><i className="fa-solid fa-magnifying-glass"></i> Search</div>;
   let mySubreddits = <div><i className="fa-solid fa-face-grin"></i> My Subreddits</div>;
 
