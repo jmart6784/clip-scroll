@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
+import RedditLoading from "./RedditLoading";
 
 const SubredditIndex = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -40,7 +41,7 @@ const SubredditIndex = () => {
     }));
   }, [subreddits, mySubreddits]);
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <RedditLoading />;
 
   if (loading === false && subreddits.length > 0) {
     mainJsx = (
