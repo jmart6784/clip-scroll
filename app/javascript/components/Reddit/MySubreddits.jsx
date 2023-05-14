@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
 import RedditLoading from "./RedditLoading";
 import RedditNoResults from "./RedditNoResults";
+import RedditNav from "./RedditNav";
 
 const MySubreddits = () => { 
   const [subreddits, setSubreddits] = useState([]);
@@ -28,10 +28,9 @@ const MySubreddits = () => {
 
   if (loading === false && subreddits.length > 0) {
     mainJsx = (
-    <div>
-      <Link to='/subreddit/index'>Subreddit Index</Link>
-      <h1>My Subreddits</h1>
-      {subredditsJsx}
+    <div className="yt-channels-wrapper">
+      <RedditNav view="my subreddits" />
+      <div className="subreddit-index">{subredditsJsx}</div>
     </div>
   );
   } else if (loading === false && subreddits.length === 0) { 
