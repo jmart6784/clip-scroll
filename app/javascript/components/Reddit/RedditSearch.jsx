@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import SubredditItem from "./SubredditItem";
+import RedditNav from "./RedditNav";
 
 const RedditSearch = () => { 
   const [search, setSearch] = useState("");
@@ -63,13 +63,14 @@ const RedditSearch = () => {
   }
   
   return (
-    <div>
-      <Link to="/subreddit/index">Back</Link>
-      <h1>Reddit Search</h1>
+    <div className="yt-channels-wrapper">
+      <h1 className="channels-view-title yt-search-title">Reddit Search</h1>
 
-      <form onSubmit={(e) => searchSubreddits(e)}>
+      <form onSubmit={(e) => searchSubreddits(e)} className="yt-search-div">
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
-        <button onClick={searchSubreddits} disabled={search.trim() == ""}>Search</button>
+        <button onClick={searchSubreddits} disabled={search.trim() == ""}>
+          <i className="fa-solid fa-magnifying-glass"></i>
+        </button>
       </form>
 
       {subreddits.length > 0 && submited ? subredditsJsx : mainJsx}
