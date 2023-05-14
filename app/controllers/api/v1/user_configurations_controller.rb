@@ -6,7 +6,6 @@ class Api::V1::UserConfigurationsController < ApplicationController
   end
 end
 
-# UserConfiguration.first.update(youtube_channel_refresh_limit: 5, youtube_refresh_date: DateTime.now - 10.days)
 private
 
 def check_api_limit
