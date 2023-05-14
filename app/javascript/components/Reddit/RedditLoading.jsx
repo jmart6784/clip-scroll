@@ -3,8 +3,8 @@ import loading from "images/reddit-loading.gif";
 
 const RedditLoading = () => { 
   return (
-    <div>
-      
+    <div className="loading-gif-wrapper">
+      <img src={loading} alt="Reddit loading image" />
     </div>
   );
 }
