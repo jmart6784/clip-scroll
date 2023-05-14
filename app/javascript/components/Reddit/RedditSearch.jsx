@@ -61,9 +61,9 @@ const RedditSearch = () => {
   let mainJsx;
 
   if (loading && submited) {
-    mainJsx = <RedditLoading />;
+    mainJsx = <RedditLoading height="20vh" />;
   } else if (loading === false && subreddits.length === 0) { 
-    mainJsx = <RedditNoResults />;
+    mainJsx = <RedditNoResults height="20vh" />;
   }
   
   return (
