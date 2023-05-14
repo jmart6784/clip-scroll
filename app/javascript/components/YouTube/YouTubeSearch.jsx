@@ -157,7 +157,7 @@ const YouTubeSearch = () => {
       <h1 className="channels-view-title yt-search-title">YouTube Search</h1>
       
       <form onSubmit={(e) => searchChannels(e)} className="yt-search-div">
-        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} />
+        <input type="text" value={search} onChange={(e) => setSearch(e.target.value)} placeholder="Limit 1 search per day" />
         <button onClick={searchChannels} disabled={search.trim() == ""}>
           <i className="fa-solid fa-magnifying-glass"></i>
         </button>
