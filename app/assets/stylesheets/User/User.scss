@@ -19,30 +19,18 @@
   max-width: 200px;
   padding: 30px 10px 30px 10px;
   word-wrap: break-word;
-}
-
-.user-card>img {
-  height: 150px;
-  width: 150px;
-  border-radius: 100%;
-}
-
-.user-card>a {
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   row-gap: 20px;
+  text-decoration: none;
 }
 
-.user-card>a>div {
+.user-avatar-index {
   height: 150px;
   width: 150px;
   border-radius: 100%;
-}
-
-.user-card>a {
-  text-decoration: none;
 }
 
 .user-card-name {
@@ -51,6 +39,12 @@
   font-size: 18px;
   font-weight: 900;
   border-bottom: 1px solid $cs-red;
+}
+
+.user-index-bio {
+  font-size: 12px;
+  width: 100%;
+  word-wrap: break-word;
 }
 
 // User Show

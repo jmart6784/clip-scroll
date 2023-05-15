@@ -23,11 +23,11 @@ const UserIndex = () => {
   let usersJsx = users.map(user => {
     return (
       <div key={user.id} className="user-card">
-        <Link to={`/users/show/${user.id}`}>
-          <div style={{ backgroundImage: `url(${user.avatar.url})` }} className="background-image" alt="user avatar"></div>
-          
-          <span className="user-card-name">{user.username}</span>
-        </Link>
+        <div style={{ backgroundImage: `url(${user.avatar.url})` }} className="background-image user-avatar-index" alt="user avatar"></div>
+        
+        <span className="user-card-name">{user.username}</span>
+
+        <p className="user-index-bio">{user.bio}</p>
       </div>
     );
   });
