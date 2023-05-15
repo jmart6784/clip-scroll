@@ -137,6 +137,7 @@ const PlaylistShow = (props) => {
         setLoading(false);
         if (response.length < 5) {
           setNoResults(true);
+          document.getElementById("more-btn").style.display = "none";
         }
       })
       .catch(() => console.log("Error getting playlist video data"));
@@ -175,7 +176,7 @@ const PlaylistShow = (props) => {
           <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
           <span>{playlist.user.username}</span>
         </Link>
-        
+
         <button onClick={previousVideo}>Previous</button>
         <button onClick={nextVideo} disabled={
           (noResults && videos.length == 0) || index == videos.length - 1
@@ -183,7 +184,9 @@ const PlaylistShow = (props) => {
 
         {vidJsx}
         {videosJsx}
-        <button onClick={moreVideos} disabled={noResults}>Show More</button>
+
+        { }
+        <button onClick={moreVideos} disabled={noResults} id="more-btn">Show More</button>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
