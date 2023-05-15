@@ -47,6 +47,11 @@
   word-wrap: break-word;
 }
 
+.readmore {
+  color: $cs-blue;
+  cursor: pointer;
+}
+
 // User Show
 .user-show-wrapper {
   display: flex;

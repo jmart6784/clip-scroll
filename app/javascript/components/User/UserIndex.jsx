@@ -40,7 +40,7 @@ const UserIndex = () => {
               e.target.textContent = "Read more";
               span1.textContent = `${user.bio.slice(0, 100)}...`;
             }
-          }}>Read more</span>
+          }} className="readmore">Read more</span>
         </>
       );
 
