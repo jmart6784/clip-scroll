@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useContext } from "react";
+import { Link } from "react-router-dom";
 import GlobalContext from "../context/GlobalContext";
 import PlaylistCard from "./PlaylistCard";
 import GeneralLoading from "../../helpers/GeneralLoading";
@@ -30,6 +31,7 @@ const PlaylistMine = () => {
     mainJsx = (
       <div className="yt-channels-wrapper">
         <ExploreNav view="playlist-mine" />
+        <Link to="/playlist/new" className="new-playlist"><i className="fa-solid fa-plus"></i> New Playlist</Link>
         <div className="playlists-wrapper">{playListJsx}</div>
       </div>
     );
