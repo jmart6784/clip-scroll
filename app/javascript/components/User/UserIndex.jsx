@@ -21,13 +21,39 @@ const UserIndex = () => {
   }, []);
 
   let usersJsx = users.map(user => {
+    let bio = user.bio;
+    
+    if (user.bio != null) {
+      let truncated = '';
+
+      truncated = (
+        <>
+          <span id={`user-read-more-${user.id}`}>{`${user.bio.slice(0, 100)}...`}</span>
+
+          <span onClick={(e) => {
+            let span1 = document.getElementById(`user-read-more-${user.id}`);
+
+            if (e.target.textContent === "Read more") {
+              e.target.textContent = "Read less";
+              span1.textContent = `${user.bio}...`;
+            } else { 
+              e.target.textContent = "Read more";
+              span1.textContent = `${user.bio.slice(0, 100)}...`;
+            }
+          }}>Read more</span>
+        </>
+      );
+
+      bio = user.bio.length >= 100 ? truncated : user.bio;
+    }
+
     return (
       <div key={user.id} className="user-card">
         <div style={{ backgroundImage: `url(${user.avatar.url})` }} className="background-image user-avatar-index" alt="user avatar"></div>
         
         <span className="user-card-name">{user.username}</span>
 
-        <p className="user-index-bio">{user.bio}</p>
+        <p className="user-index-bio">{bio}</p>
       </div>
     );
   });
