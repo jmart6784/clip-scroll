@@ -175,8 +175,12 @@ const PlaylistShow = (props) => {
           <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
           <span>{playlist.user.username}</span>
         </Link>
+        
         <button onClick={previousVideo}>Previous</button>
-        <button onClick={nextVideo} disabled={noResults}>Next</button>
+        <button onClick={nextVideo} disabled={
+          (noResults && videos.length == 0) || index == videos.length - 1
+        }>Next</button>
+
         {vidJsx}
         {videosJsx}
         <button onClick={moreVideos} disabled={noResults}>Show More</button>
