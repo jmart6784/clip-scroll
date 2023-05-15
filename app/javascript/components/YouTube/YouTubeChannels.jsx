@@ -49,7 +49,12 @@ const YouTubeChannels = () => {
         }
         throw new Error("Network response was not ok.");
       })
-      .then((response) => setChannels([...channels, ...response]), setLoading(false))
+      .then((response) => {
+        if (response.length <= 4) {
+          document.getElementById("more-btn").style.display = 'none';
+        }
+        setChannels([...channels, ...response]), setLoading(false)
+      })
       .catch(() => console.log("Error getting data"));
     // Increment API request offset by 5
     setOffset(offset + 5);
@@ -145,7 +150,7 @@ const YouTubeChannels = () => {
         <p>Daily Channel Add/Refreshes left: {userConfig["youtube_channel_refresh_limit"]}</p>
 
         <div className="channels-wrapper">{channelsJsx}</div>
-        <button onClick={moreChannels} type="button" className="yt-channel-more">More...</button>
+        <button onClick={moreChannels} type="button" id="more-btn" className="yt-channel-more">More...</button>
       </div>
     );
   } else if (loading === false && channels.length === 0) { 
