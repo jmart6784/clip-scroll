@@ -28,19 +28,19 @@ const UserIndex = () => {
 
       truncated = (
         <>
-          <span id={`user-read-more-${user.id}`}>{`${user.bio.slice(0, 100)}...`}</span>
+          <span id={`user-read-more-${user.id}`}>{user.bio.slice(0, 100)}</span>
 
           <span onClick={(e) => {
             let span1 = document.getElementById(`user-read-more-${user.id}`);
 
-            if (e.target.textContent === "Read more") {
-              e.target.textContent = "Read less";
-              span1.textContent = `${user.bio}...`;
+            if (e.target.textContent === "...Read more") {
+              e.target.textContent = "...Read less";
+              span1.textContent = user.bio;
             } else { 
-              e.target.textContent = "Read more";
-              span1.textContent = `${user.bio.slice(0, 100)}...`;
+              e.target.textContent = "...Read more";
+              span1.textContent = user.bio.slice(0, 100);
             }
-          }} className="readmore">Read more</span>
+          }} className="readmore">...Read more</span>
         </>
       );
 
