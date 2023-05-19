@@ -5,36 +5,36 @@
     <%= render "devise/shared/error_messages", resource: resource %>
 
     <div class="field">
-      <%= f.label :avatar %><br />
+      <%= f.label :avatar %>
       <%= f.file_field :avatar %>
       <label class="forms-notes">jpeg, jpg or png only</label>
     </div>
 
     <div class="field">
-      <%= f.label :email %><br />
+      <%= f.label :email %>
       <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
     </div>
 
     <div class="field">
-      <%= f.label :username %><br />
+      <%= f.label :username %>
       <%= f.text_field :username, autofocus: true %>
       <label class="forms-notes">4-16 characters long</label>
     </div>
 
     <div class="field">
-      <%= f.label :first_name %><br />
+      <%= f.label :first_name %>
       <%= f.text_field :first_name %>
       <label class="forms-notes">1-60 characters long</label>
     </div>
 
     <div class="field">
-      <%= f.label :last_name %><br />
+      <%= f.label :last_name %>
       <%= f.text_field :last_name %>
       <label class="forms-notes">1-60 characters long</label>
     </div>
 
-    <div class="edit-bio">
-      <%= f.label :bio %><br />
+    <div class="edit-bio field">
+      <%= f.label :bio %>
       <%= f.text_area :bio %>
       <label class="forms-notes">0-500 characters long</label>
     </div>
@@ -44,21 +44,21 @@
     <% end %>
 
     <div class="field">
-      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
+      <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
       <%= f.password_field :password, autocomplete: "new-password" %>
       <% if @minimum_password_length %>
-        <br />
+        
         <em><%= @minimum_password_length %> characters minimum</em>
       <% end %>
     </div>
 
     <div class="field">
-      <%= f.label :password_confirmation %><br />
+      <%= f.label :password_confirmation %>
       <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
     </div>
 
     <div class="field">
-      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+      <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i>
       <%= f.password_field :current_password, autocomplete: "current-password" %>
     </div>
 
