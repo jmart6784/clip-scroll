@@ -47,3 +47,46 @@
   resize: vertical;
   height: 100px;
 }
+
+.devise-edit-user-subsection {
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  font-size: 15px;
+  margin-bottom: 70px;
+  align-items: center;
+  justify-content: center;
+}
+
+.devise-edit-user-subsection>h3 {
+  font-size: 25px;
+}
+
+.devise-edit-user-subsection>a {
+  font-size: 20px;
+  font-weight: 900;
+  text-decoration: none;
+  background-color: $cs-blue;
+  padding: 5px 10px 5px 10px;
+  border-radius: 5px;
+}
+
+.devise-edit-user-subsection>div {
+  font-size: 18px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+}
+
+.devise-delete-btn {
+  background-color: $cs-red;
+  font-size: 15px;
+  font-weight: 900;
+  border: 0;
+  border-radius: 5px;
+  color: white;
+  padding: 10px;
+  cursor: pointer;
+}
