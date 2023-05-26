@@ -1,7 +1,6 @@
 @import "./variables.scss";
 
 .devise-form-parent-wrapper {
-  border: 1px solid red;
   width: 100%;
   display: flex;
   align-items: center;
@@ -17,12 +16,12 @@
 }
 
 .devise-form {
-  width: 25%;
+  width: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(5px);
   border-radius: 10px;
   padding: 10px;
-  max-width: 550px;
+  max-width: 500px;
   display: flex;
   row-gap: 15px;
   flex-direction: column;
