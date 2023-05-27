@@ -105,3 +105,17 @@
 .devise-100vh {
   height: 100vh;
 }
+
+.devise-shared-links {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  row-gap: 10px;
+  flex-direction: column;
+}
+
+.devise-shared-links > a {
+  text-decoration: none;
+  border-bottom: 1px solid $cs-red;
+  font-size: 15px;
+}
