@@ -43,8 +43,8 @@ const PlaylistNew = (props) => {
   }
 
   return (
-    <div>
-      <h1>Playlist New</h1>
+    <div className="devise-form-parent-wrapper devise-100vh">
+      <h2 className="devise-title">New Playlist</h2>
       <Form
         forms={forms}
         onChange={onChange}
