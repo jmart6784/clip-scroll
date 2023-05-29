@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import RedditComments from "./RedditComments";
 
 const RedditVideo = (props) => {
@@ -28,7 +29,9 @@ const RedditVideo = (props) => {
 
   return (
     <div key={postId} className="reddit-video-wrapper">
-      <p className="reddit-video-title">{post['data']['subreddit_name_prefixed']}</p>
+      <p className="reddit-video-title">
+        <Link to={`/reddit/show/${post['data']['subreddit']}`}>{post['data']['subreddit_name_prefixed']}</Link>
+      </p>
 
       <div className="reddit-stats">
         <p>{post['data']['title']}</p>

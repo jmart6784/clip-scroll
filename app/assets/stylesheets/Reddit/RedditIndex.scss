@@ -9,7 +9,21 @@
   position: absolute;
   top: 0;
   left: 0;
-  border: 1px solid greenyellow;
+  right: 0;
+  width: min-content;
+  text-align: center;
+  font-weight: 900;
+  text-decoration: none;
+  z-index: 2;
+  font-size: 15px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.reddit-video-title>a {
+  text-decoration: none;
+  display: block;
+  text-shadow: rgb(0, 0, 0) 1px 0 5px;
 }
 
 .reddit-stats {
@@ -17,6 +31,8 @@
   position: absolute;
   bottom: 0;
   right: 0;
+  z-index: 2;
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .reddit-score {
