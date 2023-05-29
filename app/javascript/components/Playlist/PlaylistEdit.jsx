@@ -59,8 +59,8 @@ const PlaylistEdit = (props) => {
   }
 
   return (
-    <div>
-      <h1>Playlist Edit</h1>
+    <div className="devise-form-parent-wrapper devise-100vh">
+      <h1 className="devise-title">Edit Playlist</h1>
       <Form
         forms={forms}
         onChange={onChange}
