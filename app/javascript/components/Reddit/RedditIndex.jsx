@@ -317,7 +317,7 @@ const RedditIndex = () => {
   }
 
   return (
-    <div>
+    <div className="yt-video-listing-div">
       <PlaylistVideoMenu
         videoId={posts[index] ? posts[index]['data']['id'] : ""}
         parentSourceId={posts[index] ? posts[index]['data']['subreddit'] : ""}

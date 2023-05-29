@@ -1,0 +1,28 @@
+
+// Reddit Video
+.reddit-video-wrapper {
+  border: 1px solid blue;
+  position: relative;
+}
+
+.reddit-video-title {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid greenyellow;
+}
+
+.reddit-stats {
+  border: 1px solid yellow;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.reddit-score {
+  border: 1px solid red;
+}
+
+#reddit-audio {
+  display: none;
+}

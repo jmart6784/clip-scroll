@@ -27,14 +27,31 @@ const RedditVideo = (props) => {
   }
 
   return (
-    <div key={postId}>
-      <p>{postId}</p>
-      <p>{post['data']['subreddit_name_prefixed']}</p>
-      <p>{post['data']['title']}</p>
-      <p>Upvotes {post['data']['score']}</p>
-      <p>Posted by {post['data']['author']}</p>
-      <p>All awardings: {awards}</p>
-      <p>Comments: {post['data']['num_comments']}</p>
+    <div key={postId} className="reddit-video-wrapper">
+      <p className="reddit-video-title">{post['data']['subreddit_name_prefixed']}</p>
+
+      <div className="reddit-stats">
+        <p>{post['data']['title']}</p>
+
+        <div className="reddit-score">
+          <i className="fa-solid fa-up-long"></i>
+          <p>{post['data']['score']}</p>
+          <i className="fa-solid fa-down-long"></i>
+        </div>
+
+        <p>Upvotes {post['data']['score']}</p>
+        <p>Posted by {post['data']['author']}</p>
+        <p>All awardings: {awards}</p>
+
+        <button
+          type="button"
+          disabled={parseInt(post['data']['num_comments']) === 0}
+          onClick={() => setPrompt(!prompt)}
+        >
+          <i className="fa-regular fa-message"></i>
+          {post['data']['num_comments']}
+        </button>
+      </div>
       
       <video
         id="reddit-video"
@@ -47,8 +64,6 @@ const RedditVideo = (props) => {
         loop
       />
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
-
-      <button type="button" onClick={() => setPrompt(!prompt)}>Comments</button>
 
       {prompt ? <RedditComments postId={postId} subreddit={post['data']['subreddit']} /> : ""}
     </div>
