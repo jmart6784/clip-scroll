@@ -33,25 +33,27 @@ const RedditVideo = (props) => {
         <Link to={`/reddit/show/${post['data']['subreddit']}`}>{post['data']['subreddit_name_prefixed']}</Link>
       </p>
 
-      <div className="reddit-stats">
-        <p>{post['data']['title']}</p>
+      <div className="reddit-video-author-title">
+        <p className="reddit-video-author">u/{post['data']['author']}</p>
+        <p className="rv-title">{post['data']['title']}</p>
+      </div>
 
-        <div className="reddit-score">
-          <i className="fa-solid fa-up-long"></i>
+      <div className="reddit-stats">
+        <div className="reddit-stat">
+          <i className="fa-solid fa-up-long reddit-stat-icon"></i>
           <p>{post['data']['score']}</p>
-          <i className="fa-solid fa-down-long"></i>
+          <i className="fa-solid fa-down-long reddit-stat-icon"></i>
         </div>
 
-        <p>Upvotes {post['data']['score']}</p>
-        <p>Posted by {post['data']['author']}</p>
-        <p>All awardings: {awards}</p>
+        <p className="reddit-stat"><i className="fa-solid fa-gift reddit-stat-icon"></i> {awards}</p>
 
         <button
           type="button"
+          className="reddit-stat reddit-comment-btn"
           disabled={parseInt(post['data']['num_comments']) === 0}
           onClick={() => setPrompt(!prompt)}
         >
-          <i className="fa-regular fa-message"></i>
+          <i className="fa-regular fa-message reddit-stat-icon"></i>
           {post['data']['num_comments']}
         </button>
       </div>
