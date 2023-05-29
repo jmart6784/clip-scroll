@@ -4,7 +4,7 @@ import React from "react";
 const Form = (props) => {
   return (
     <form onSubmit={props.onSubmit} className="devise-form">
-      <div class="field">
+      <div className="field">
         <label>Playlist name</label>
 
         <input
