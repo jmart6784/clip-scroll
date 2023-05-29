@@ -18,7 +18,7 @@ const Form = (props) => {
       </div>
 
       <div className="field">
-        <label>Type</label>
+        <label>Playlist type</label>
 
         <select onChange={props.onChange} name="source">
           {props.options.map((option, index) =>
