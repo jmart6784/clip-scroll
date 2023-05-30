@@ -320,8 +320,10 @@ const RedditIndex = () => {
 
       {videoJsx}
       
-      <button type="button" onClick={previousVideo}>Previous</button>
-      <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
+      <div>
+        <button type="button" onClick={previousVideo}>Previous</button>
+        <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
+      </div>
     </div>
   );
 }
