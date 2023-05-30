@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
 import shuffle from "../../helpers/shuffle";
-import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const RedditIndex = () => {
   const [posts, setPosts] = useState([]);
@@ -318,11 +317,6 @@ const RedditIndex = () => {
 
   return (
     <div className="yt-video-listing-div">
-      <PlaylistVideoMenu
-        videoId={posts[index] ? posts[index]['data']['id'] : ""}
-        parentSourceId={posts[index] ? posts[index]['data']['subreddit'] : ""}
-        source="reddit"
-      />
 
       {videoJsx}
       

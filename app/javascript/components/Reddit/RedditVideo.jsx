@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import RedditComments from "./RedditComments";
+import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 
 const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
+  const [playlistsShow, setPlaylistsShow] = useState(false);
+  const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
 
   let post = props.post;
   let postId = post['data']['id']
@@ -56,6 +59,13 @@ const RedditVideo = (props) => {
           <i className="fa-regular fa-message reddit-stat-icon"></i>
           {post['data']['num_comments']}
         </button>
+
+        <PlaylistVideoMenu
+          videoId={post['data']['id']}
+          parentSourceId={post['data']['subreddit']}
+          source="reddit"
+          togglePlaylists={togglePlaylists}  
+        />
       </div>
       
       <video
