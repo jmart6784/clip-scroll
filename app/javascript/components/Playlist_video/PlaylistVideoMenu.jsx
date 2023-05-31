@@ -117,7 +117,7 @@ const PlaylistVideoMenu = (props) => {
             onChange={() => onCheck(pl.id)} 
             className="pl-menu-checkbox"
           />
-          <p className="pl-item-name">{pl.name}</p>
+          <p className="pl-item-name">{pl.name.slice(0, 20)}...</p>
 
           {
             pl.private ? (
