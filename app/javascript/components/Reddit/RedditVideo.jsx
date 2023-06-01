@@ -30,35 +30,59 @@ const RedditVideo = (props) => {
     video.paused ? video.play() : video.pause(); 
   }
 
+  let menuStyling = {};
+  let statStyling = {};
+
+  if (playlistsShow) {
+    menuStyling = {
+      width: "100%",
+      height: "100%",
+      backgroundColor: "rgba(0, 0, 0, 0.5)",
+      backdropFilter: "blur(5px)",
+      margin: "0",
+      overflowY: "auto"
+    }
+    statStyling = {display: "none"};
+  } else {
+    menuStyling = {
+      width: "15%",
+      backgroundColor: "rgba(0, 0, 0, 0.0)"
+    }
+    statStyling = {display: "block"};
+  }
+
   return (
     <div key={postId} className="reddit-video-wrapper">
-      <p className="reddit-video-title">
+      <p className="reddit-video-title" style={statStyling}>
         <Link to={`/reddit/show/${post['data']['subreddit']}`}>{post['data']['subreddit_name_prefixed']}</Link>
       </p>
 
-      <div className="reddit-video-author-title">
+      <div className="reddit-video-author-title" style={statStyling}>
         <p className="reddit-video-author">u/{post['data']['author']}</p>
         <p className="rv-title">{post['data']['title']}</p>
       </div>
 
-      <div className="reddit-stats">
-        <div className="reddit-stat">
+      <div className="reddit-stats" style={menuStyling}>
+        <div className="reddit-stat" style={statStyling}>
           <i className="fa-solid fa-up-long reddit-stat-icon"></i>
           <p>{post['data']['score']}</p>
           <i className="fa-solid fa-down-long reddit-stat-icon"></i>
         </div>
 
-        <p className="reddit-stat"><i className="fa-solid fa-gift reddit-stat-icon"></i> {awards}</p>
-
         <button
           type="button"
           className="reddit-stat reddit-comment-btn"
+          style={statStyling}
           disabled={parseInt(post['data']['num_comments']) === 0}
           onClick={() => setPrompt(!prompt)}
         >
           <i className="fa-regular fa-message reddit-stat-icon"></i>
           {post['data']['num_comments']}
         </button>
+
+        <p className="reddit-stat" style={statStyling}>
+          <i className="fa-solid fa-gift reddit-stat-icon"></i> {awards}
+        </p>
 
         <PlaylistVideoMenu
           videoId={post['data']['id']}
@@ -73,8 +97,8 @@ const RedditVideo = (props) => {
         src={post['data']['media']['reddit_video']['fallback_url']}
         onTimeUpdate={(e) => synchronize(e)}
         onClick={(e) => playPause(e)}
-        width="300"
-        height="500"
+        width="400"
+        height="700"
         autoPlay
         loop
       />
