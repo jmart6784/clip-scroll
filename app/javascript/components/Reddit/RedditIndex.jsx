@@ -319,10 +319,19 @@ const RedditIndex = () => {
     <div className="yt-video-listing-div">
 
       {videoJsx}
-      
-      <div>
-        <button type="button" onClick={previousVideo}>Previous</button>
-        <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
+
+      <div className="video-nav-btns">
+        <button onClick={previousVideo}>
+          <i className="fa-solid fa-hand-point-left"></i>
+        </button>
+
+        <button id="vid-nav-face">
+          <i className="fa-solid fa-face-laugh-beam"></i>
+        </button>
+
+        <button onClick={nextVideo} disabled={noResults}>
+          <i className="fa-solid fa-hand-point-right"></i>
+        </button>
       </div>
     </div>
   );
