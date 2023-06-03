@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RedditComments from "./RedditComments";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
@@ -6,7 +6,10 @@ import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
 const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
   const [playlistsShow, setPlaylistsShow] = useState(false);
+  const [commentsShow, setCommentsShow] = useState(false);
+  const toggleComments = () => setCommentsShow(!commentsShow);
   const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
+  const togglePrompt = () => setPrompt(!prompt);
 
   let post = props.post;
   let postId = post['data']['id']
@@ -31,9 +34,10 @@ const RedditVideo = (props) => {
   }
 
   let menuStyling = {};
+  let commentStyling = {};
   let statStyling = {};
-
-  if (playlistsShow) {
+  // Change styling on reddit stats items if comments or playlist menu is showing
+  if (playlistsShow || prompt) {
     menuStyling = {
       width: "100%",
       height: "100%",
@@ -74,7 +78,7 @@ const RedditVideo = (props) => {
           className="reddit-stat reddit-comment-btn"
           style={statStyling}
           disabled={parseInt(post['data']['num_comments']) === 0}
-          onClick={() => setPrompt(!prompt)}
+          onClick={() => { setPrompt(!prompt) }}
         >
           <i className="fa-regular fa-message reddit-stat-icon"></i>
           {post['data']['num_comments']}
@@ -83,13 +87,25 @@ const RedditVideo = (props) => {
         <p className="reddit-stat" style={statStyling}>
           <i className="fa-solid fa-gift reddit-stat-icon"></i> {awards}
         </p>
+        
+        { 
+          prompt ? "" : 
+            <PlaylistVideoMenu
+              videoId={post['data']['id']}
+              parentSourceId={post['data']['subreddit']}
+              source="reddit"
+              togglePlaylists={togglePlaylists}  
+            />
+        }
 
-        <PlaylistVideoMenu
-          videoId={post['data']['id']}
-          parentSourceId={post['data']['subreddit']}
-          source="reddit"
-          togglePlaylists={togglePlaylists}  
-        />
+        {
+          prompt ?
+            <RedditComments
+              postId={postId}
+              subreddit={post['data']['subreddit']}
+              togglePrompt={togglePrompt}
+            /> : ""
+        }
       </div>
       
       <video
@@ -103,8 +119,6 @@ const RedditVideo = (props) => {
         loop
       />
       <audio id="reddit-audio" src={audioUrl} controls autoPlay />
-
-      {prompt ? <RedditComments postId={postId} subreddit={post['data']['subreddit']} /> : ""}
     </div>
   );
 }
