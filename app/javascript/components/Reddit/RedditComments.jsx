@@ -86,8 +86,12 @@ const RedditComments = (props) => {
   if (loading === false && comments[1]['data']['children'].length > 0) {
     mainJsx = (
       <div className="reddit-comment-wrapper">
-        <h1>Reddit Comments:</h1>
-        <button type="button" onClick={() => props.togglePrompt() }>X</button>
+        <div className="reddit-comment-close-wrapper">
+          <button type="button" onClick={() => props.togglePrompt()}>
+            <i className="fa-sharp fa-solid fa-xmark"></i>
+          </button>
+        </div>
+        <h3>Reddit Comments:</h3>
         {commentsJsx}
       </div>
     )
