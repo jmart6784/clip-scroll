@@ -91,8 +91,8 @@ const RedditComments = (props) => {
             <i className="fa-sharp fa-solid fa-xmark"></i>
           </button>
         </div>
-        <h3>Reddit Comments:</h3>
-        {commentsJsx}
+
+        <div className="reddit-inner-comments">{commentsJsx}</div>
       </div>
     )
   } else if (loading === false && comments[1]['data']['children'].length === 0) { 
