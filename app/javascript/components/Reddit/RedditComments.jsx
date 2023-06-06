@@ -35,7 +35,7 @@ const RedditComments = (props) => {
 
           if (reply['body']) {
             return (
-              <div key={reply['id']} style={{backgroundColor: "grey"}}>
+              <div key={reply['id']} className="reddit-reply">
                 <p>{reply['author']}</p>
                 <p><strong>BODY: </strong> {reply['body']}</p>
                 <p>{reply['score']}</p>
