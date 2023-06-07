@@ -22,8 +22,6 @@ const RedditComments = (props) => {
       .catch(() => console.log("Error getting data"));
   }, [props]);
 
-  // useEffect(() => console.log(comments), [comments]);
-
   let commentsJsx = comments[1]['data']['children'].map(comment => { 
     if (comment['kind'] != 'more') {
       comment = comment['data'];
