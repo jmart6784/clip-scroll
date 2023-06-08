@@ -141,3 +141,10 @@
 .reddit-reply {
   margin: 10px 0 0 20px;
 }
+
+.comment-div {
+  border: 1px solid red;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}

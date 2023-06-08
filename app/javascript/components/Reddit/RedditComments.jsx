@@ -63,7 +63,7 @@ const RedditComments = (props) => {
       }
 
       return (
-        <div key={comment['id']}>
+        <div key={comment['id']} className="comment-div">
           <p>{comment['author']}</p>
           <p><strong>BODY: </strong> {comment['body']}</p>
           <p>{comment['score']}</p>
