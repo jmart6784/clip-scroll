@@ -142,9 +142,18 @@
   margin: 10px 0 0 20px;
 }
 
-.comment-div {
+.reddit-comment-div {
   border: 1px solid red;
   display: flex;
   flex-direction: column;
   row-gap: 10px;
+}
+
+.reddit-comment-author {
+  font-weight: 900;
+  font-size: 12px;
+}
+
+.reddit-comment-body {
+  font-size: 14px;
 }

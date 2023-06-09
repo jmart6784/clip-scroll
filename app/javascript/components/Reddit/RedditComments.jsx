@@ -64,9 +64,12 @@ const RedditComments = (props) => {
       }
 
       return (
-        <div key={comment['id']} className="comment-div">
-          <p>{comment['author']}</p>
-          <p><strong>BODY: </strong> {comment['body']}</p>
+        <div key={comment['id']} className="reddit-comment-div">
+          <p className="reddit-comment-author">
+            {comment['author']} · {timeSince(comment['created_utc'], 'epoch')}
+          </p>
+
+          <p className="reddit-comment-body">{comment['body']}</p>
           <p>{comment['score']}</p>
           <p>{timeSince(comment['created_utc'], 'epoch')}</p>
 
