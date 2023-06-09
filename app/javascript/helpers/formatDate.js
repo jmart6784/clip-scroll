@@ -1,5 +1,6 @@
-const formatDate = (d) => {
-  let date = new Date(d);
+const formatDate = (d, format = "pretty") => {
+  let date = new Date();
+  format == "epoch" ? (date = new Date(d * 1000)) : (date = new Date(d));
 
   var monthNames = [
     "January",
