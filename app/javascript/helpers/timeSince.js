@@ -1,6 +1,7 @@
 // Source SO
-const timeSince = (t) => {
+const timeSince = (t, format = "pretty") => {
   let time = new Date(t);
+  format == "epoch" ? (time = new Date(t * 1000)) : (time = new Date(t));
   time = time.toString();
 
   switch (typeof time) {
