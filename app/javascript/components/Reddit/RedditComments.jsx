@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import timeSince from "../../helpers/timeSince";
 
 const RedditComments = (props) => { 
   const [comments, setComments] = useState([{}, { data: { children: [] } }]);
@@ -37,7 +38,7 @@ const RedditComments = (props) => {
                 <p>{reply['author']}</p>
                 <p><strong>BODY: </strong> {reply['body']}</p>
                 <p>{reply['score']}</p>
-                <p>Created UTC: {reply['created_utc']}</p>
+                <p>{timeSince(reply['created_utc'], 'epoch')}</p>
               </div>
             ); 
           }
@@ -67,7 +68,7 @@ const RedditComments = (props) => {
           <p>{comment['author']}</p>
           <p><strong>BODY: </strong> {comment['body']}</p>
           <p>{comment['score']}</p>
-          <p>Created UTC: {comment['created_utc']}</p>
+          <p>{timeSince(comment['created_utc'], 'epoch')}</p>
 
           {repliesBtn}
 
