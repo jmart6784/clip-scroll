@@ -70,10 +70,16 @@ const RedditComments = (props) => {
           </p>
 
           <p className="reddit-comment-body">{comment['body']}</p>
-          <p>{comment['score']}</p>
-          <p>{timeSince(comment['created_utc'], 'epoch')}</p>
+          
+          <div className="reddit-comment-sub-menu">
+            <p className="reddit-comment-score">
+              <i className="fa-solid fa-up-long"></i>
+              {comment['score']}
+              <i className="fa-solid fa-down-long"></i>
+            </p>
 
-          {repliesBtn}
+            {repliesBtn}
+          </div>
 
           <div id={comment['id']} style={{ display: "none" }}>
             {replies}

@@ -156,3 +156,18 @@
 .reddit-comment-body {
   font-size: 14px;
 }
+
+.reddit-comment-sub-menu {
+  display: flex;
+  column-gap: 20px;
+}
+
+.reddit-comment-score {
+  display: flex;
+  column-gap: 5px;
+  font-size: 16px;
+}
+
+.reddit-comment-score>i {
+  font-size: 20px;
+}
