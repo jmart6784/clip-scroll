@@ -34,11 +34,20 @@ const RedditComments = (props) => {
 
           if (reply['body']) {
             return (
-              <div key={reply['id']} className="reddit-reply">
-                <p>{reply['author']}</p>
-                <p><strong>BODY: </strong> {reply['body']}</p>
-                <p>{reply['score']}</p>
-                <p>{timeSince(reply['created_utc'], 'epoch')}</p>
+              <div key={reply['id']} className="reddit-comment-div reddit-reply">
+                <p className="reddit-comment-author">
+                  {reply['author']} · {timeSince(reply['created_utc'], 'epoch')}
+                </p>
+
+                <p className="reddit-comment-body">{reply['body']}</p>
+                
+                <div className="reddit-comment-sub-menu">
+                  <p className="reddit-comment-score">
+                    <i className="fa-solid fa-up-long"></i>
+                    {reply['score']}
+                    <i className="fa-solid fa-down-long"></i>
+                  </p>
+                </div>
               </div>
             ); 
           }
