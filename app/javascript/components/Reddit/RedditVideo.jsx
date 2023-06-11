@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import RedditComments from "./RedditComments";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
+import prettyNumbers from "../../helpers/prettyNumbers";
 
 const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
@@ -69,7 +70,7 @@ const RedditVideo = (props) => {
       <div className="reddit-stats" style={menuStyling}>
         <div className="reddit-stat" style={statStyling}>
           <i className="fa-solid fa-up-long reddit-stat-icon"></i>
-          <p>{post['data']['score']}</p>
+          <p>{prettyNumbers(post['data']['score'], 1)}</p>
           <i className="fa-solid fa-down-long reddit-stat-icon"></i>
         </div>
 
@@ -81,11 +82,11 @@ const RedditVideo = (props) => {
           onClick={() => { setPrompt(!prompt) }}
         >
           <i className="fa-regular fa-message reddit-stat-icon"></i>
-          {post['data']['num_comments']}
+          {prettyNumbers(post['data']['num_comments'], 1)}
         </button>
 
         <p className="reddit-stat" style={statStyling}>
-          <i className="fa-solid fa-gift reddit-stat-icon"></i> {awards}
+          <i className="fa-solid fa-gift reddit-stat-icon"></i> {prettyNumbers(awards, 1)}
         </p>
         
         { 
