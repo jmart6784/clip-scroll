@@ -49,7 +49,7 @@ const RedditComments = (props) => {
       if (comment['replies'] != "" && comment['replies']['data']) { 
         if (comment['replies']['data']['children'][0]['kind'] != 'more') {
           repliesBtn = (
-            <button onClick={() => {
+            <button className="comment-replies-btn" onClick={() => {
               let repliesContainer = document.getElementById(comment['id']);
 
               repliesContainer.style.display == "block" ?
@@ -57,7 +57,7 @@ const RedditComments = (props) => {
                 :
                 repliesContainer.style.display = "block"
             }}>
-              {comment['replies']['data']['children'].length} replies
+              {comment['replies']['data']['children'].length} {comment['replies']['data']['children'].length > 1 ? 'replies' : 'reply'}
             </button>
           ); 
         }

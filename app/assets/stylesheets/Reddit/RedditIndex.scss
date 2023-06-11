@@ -1,3 +1,4 @@
+@import "./variables.scss";
 
 // Reddit Video
 .reddit-video-wrapper {
@@ -159,15 +160,30 @@
 
 .reddit-comment-sub-menu {
   display: flex;
-  column-gap: 20px;
+  column-gap: 15px;
 }
 
 .reddit-comment-score {
   display: flex;
   column-gap: 5px;
-  font-size: 16px;
+  font-size: 15px;
 }
 
 .reddit-comment-score>i {
-  font-size: 20px;
+  font-size: 19px;
+}
+
+.comment-replies-btn {
+  background-color: rgba(0, 0, 0, 0.0);
+  color: $cs-blue;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  width: fit-content;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.0);
+}
+
+.comment-replies-btn:hover {
+  border-bottom: 1px solid $cs-blue;
 }
