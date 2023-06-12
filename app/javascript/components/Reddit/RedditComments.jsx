@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import timeSince from "../../helpers/timeSince";
+import prettyNumbers from "../../helpers/prettyNumbers";
 
 const RedditComments = (props) => { 
   const [comments, setComments] = useState([{}, { data: { children: [] } }]);
@@ -44,7 +45,7 @@ const RedditComments = (props) => {
                 <div className="reddit-comment-sub-menu">
                   <p className="reddit-comment-score">
                     <i className="fa-solid fa-up-long"></i>
-                    {reply['score']}
+                    {prettyNumbers(reply['score'], 1)}
                     <i className="fa-solid fa-down-long"></i>
                   </p>
                 </div>
@@ -83,7 +84,7 @@ const RedditComments = (props) => {
           <div className="reddit-comment-sub-menu">
             <p className="reddit-comment-score">
               <i className="fa-solid fa-up-long"></i>
-              {comment['score']}
+              {prettyNumbers(comment['score'], 1)}
               <i className="fa-solid fa-down-long"></i>
             </p>
 
