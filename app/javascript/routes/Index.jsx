@@ -25,6 +25,8 @@ import PlaylistNew from "../components/Playlist/PlaylistNew";
 import PlaylistEdit from "../components/Playlist/PlaylistEdit";
 import PlaylistMine from "../components/Playlist/PlaylistMine";
 
+import About from "../components/Static/About";
+
 const Index = () => { 
   const [global, setGlobal] = useState({});
 
@@ -72,6 +74,8 @@ const Index = () => {
           <Route path="/playlist/new" exact component={PlaylistNew} />
           <Route path="/playlist/edit/:id" exact component={PlaylistEdit} />
           <Route path="/playlist/mine" exact component={PlaylistMine} />
+
+          <Route path="/about" exact component={About} />
         </Switch>
       </Router>
     </GlobalContext.Provider>
