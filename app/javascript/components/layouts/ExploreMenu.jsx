@@ -20,6 +20,10 @@ const ExploreMenu = (props) => {
         <Link to="/users/index" onClick={() => props.hideMenu()} className="menu-link">
           <i className="fa-solid fa-users"></i> <span>Community</span>
         </Link>
+
+        <Link to="/about" onClick={() => props.hideMenu()} className="menu-link">
+          <i className="fa-solid fa-circle-info"></i> <span>About</span>
+        </Link>
       </div>
     </div>
   );
