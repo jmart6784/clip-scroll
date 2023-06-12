@@ -138,29 +138,28 @@ const RedditIndex = () => {
   if (noResults && posts.length == 0) {
     videoJsx = <h1>No Results</h1>
   } else { 
-    posts[index] ? videoJsx = <RedditVideo post={posts[index]} /> : "";
+    posts[index] ? videoJsx = (
+      <>
+        <RedditVideo post={posts[index]} />
+        
+        <div className="video-nav-btns">
+          <button onClick={previousVideo}>
+            <i className="fa-solid fa-hand-point-left"></i>
+          </button>
+
+          <button id="vid-nav-face">
+            <i className="fa-solid fa-face-laugh-beam"></i>
+          </button>
+
+          <button onClick={nextVideo} disabled={noResults}>
+            <i className="fa-solid fa-hand-point-right"></i>
+          </button>
+        </div>
+      </>
+    ) : "";
   }
 
-  return (
-    <div className="yt-video-listing-div">
-
-      {videoJsx}
-
-      <div className="video-nav-btns">
-        <button onClick={previousVideo}>
-          <i className="fa-solid fa-hand-point-left"></i>
-        </button>
-
-        <button id="vid-nav-face">
-          <i className="fa-solid fa-face-laugh-beam"></i>
-        </button>
-
-        <button onClick={nextVideo} disabled={noResults}>
-          <i className="fa-solid fa-hand-point-right"></i>
-        </button>
-      </div>
-    </div>
-  );
+  return <div className="yt-video-listing-div">{videoJsx}</div>;
 }
 
 export default RedditIndex;
