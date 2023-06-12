@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import timeSince from "../../helpers/timeSince";
 import prettyNumbers from "../../helpers/prettyNumbers";
+import RedditLoading from "./RedditLoading";
 
 const RedditComments = (props) => { 
   const [comments, setComments] = useState([{}, { data: { children: [] } }]);
@@ -99,7 +100,7 @@ const RedditComments = (props) => {
     }
   });
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <RedditLoading />;
 
   if (loading === false && comments[1]['data']['children'].length > 0) {
     mainJsx = (
