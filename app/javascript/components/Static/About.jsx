@@ -2,7 +2,13 @@ import React from "react";
 
 const About = () => { 
   return (
-    <div>About</div>
+    <div>
+      <h1>About</h1>
+
+      <div>
+        <p>This web application utilizes both the Reddit and Youtube API to display and serve vertical videos.</p>
+      </div>
+    </div>
   );
 }
 
