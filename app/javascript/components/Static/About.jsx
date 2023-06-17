@@ -1,4 +1,5 @@
 import React from "react";
+import youtubelogo from "images/youtube-logo.png";
 
 const About = () => { 
   return (
