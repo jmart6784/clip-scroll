@@ -10,6 +10,8 @@ const About = () => {
         <p>
           This web application utilizes both the Reddit and Youtube API to display and serve vertical videos. You can create custom playlists that support both platforms or organize them by platform.
         </p>
+
+        <img src={youtubelogo} alt="youtube logo" className="ab-yt-logo" />
       </div>
     </div>
   );
