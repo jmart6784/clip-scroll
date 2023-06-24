@@ -23,7 +23,7 @@ const About = () => {
         <img src={redditlogo} alt="youtube logo" className="ab-reddit-logo" />
 
         <p className="about-text">
-          The Reddit video content that is served is based on the Reddit API, it does not utilize an OAuth client ID. When I began creating this project the free tier query limit was 60 per minute. As of July 1, 2023 the limit will be decreased down to 10 queries per minute. This change significantly limits the functionality of the application. As for unsupported features it is similar to the YouTube content. Upvoting, commenting and awarding are currently unsupported.
+          The Reddit video content that is served is based on the Reddit API, it does not utilize an OAuth client ID. When I began creating this project the free tier query limit was 60 per minute. As of July 1, 2023 the limit will be decreased down to 10 queries per minute. This change significantly limits the functionality of the application. As for unsupported features it is similar to the YouTube content. Upvoting, commenting and awarding are currently not implemented.
         </p>
       </div>
     </div>
