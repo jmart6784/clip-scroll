@@ -140,6 +140,7 @@ const PlaylistVideoMenu = (props) => {
       onClick={() => {
         setPrompt(true);
         props.togglePlaylists();
+        props.toggleDrag();
       }}
     >
       <i className="fa-solid fa-square-plus"></i>
@@ -168,6 +169,7 @@ const PlaylistVideoMenu = (props) => {
         <button type="button" className="hide-comments-btn" onClick={() => {
           setPrompt(false);
           props.togglePlaylists();
+          props.toggleDrag();
         }}>
           <i className="fa-sharp fa-solid fa-xmark"></i>
         </button>

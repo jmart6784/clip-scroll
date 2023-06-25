@@ -111,6 +111,7 @@ const RedditVideo = (props) => {
                 parentSourceId={post['data']['subreddit']}
                 source="reddit"
                 togglePlaylists={togglePlaylists}  
+                toggleDrag={toggleDrag}
               />
           }
 
