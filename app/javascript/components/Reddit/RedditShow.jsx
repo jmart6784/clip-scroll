@@ -91,9 +91,6 @@ const RedditShow = (props) => {
   return (
     <div className="yt-video-listing-div">
       {videoJsx}
-      {/* <button onClick={() => more("page")}>More</button>
-      <button type="button" onClick={previousVideo}>Previous</button>
-      <button type="button" onClick={nextVideo} disabled={noResults}>Next</button> */}
     </div>
   );
 }
