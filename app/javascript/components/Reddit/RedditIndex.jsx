@@ -137,11 +137,15 @@ const RedditIndex = () => {
   let videoJsx = <RedditLoading />;
 
   if (noResults && posts.length == 0) {
-    videoJsx = <RedditNoResults />
+    videoJsx = <RedditNoResults />;
   } else { 
     posts[index] ? videoJsx = (
       <>
-        <RedditVideo post={posts[index]} previousVideo={previousVideo} nextVideo={nextVideo} />
+        <RedditVideo
+          post={posts[index]}
+          previousVideo={previousVideo}
+          nextVideo={nextVideo} 
+        />
         
         {/* <div className="video-nav-btns">
           <button onClick={previousVideo}>
