@@ -142,7 +142,7 @@ const RedditIndex = () => {
       <>
         <RedditVideo post={posts[index]} previousVideo={previousVideo} nextVideo={nextVideo} />
         
-        <div className="video-nav-btns">
+        {/* <div className="video-nav-btns">
           <button onClick={previousVideo}>
             <i className="fa-solid fa-hand-point-left"></i>
           </button>
@@ -154,7 +154,7 @@ const RedditIndex = () => {
           <button onClick={nextVideo} disabled={noResults}>
             <i className="fa-solid fa-hand-point-right"></i>
           </button>
-        </div>
+        </div> */}
       </>
     ) : "";
   }
