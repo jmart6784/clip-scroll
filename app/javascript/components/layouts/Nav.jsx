@@ -71,13 +71,7 @@ const Nav = () => {
       </div>
     );
   } else { 
-    return (
-      <div>
-        <Link to="/">Home</Link>
-        <a href="/users/sign_in">Sign In</a>
-        <a href="/users/sign_up">Sign Up</a>
-      </div>
-    );
+    return <></>;
   }
 };
 
