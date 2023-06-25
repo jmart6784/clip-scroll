@@ -106,7 +106,10 @@ const RedditComments = (props) => {
     mainJsx = (
       <div className="reddit-comment-wrapper">
         <div className="reddit-comment-close-wrapper">
-          <button type="button" onClick={() => props.togglePrompt()}>
+          <button type="button" onClick={() => {
+            props.togglePrompt();
+            props.toggleDrag();
+          }}>
             <i className="fa-sharp fa-solid fa-xmark"></i>
           </button>
         </div>

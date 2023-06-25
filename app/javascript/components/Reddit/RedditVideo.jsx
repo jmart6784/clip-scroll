@@ -9,6 +9,7 @@ const RedditVideo = (props) => {
   const [prompt, setPrompt] = useState(false);
   const [playlistsShow, setPlaylistsShow] = useState(false);
   const [commentsShow, setCommentsShow] = useState(false);
+  const [videoDrag, setVideoDrag] = useState(false);
   const toggleComments = () => setCommentsShow(!commentsShow);
   const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
   const togglePrompt = () => setPrompt(!prompt);
@@ -63,8 +64,11 @@ const RedditVideo = (props) => {
     }
   };
 
+  // Toggle draggability of video component
+  const toggleDrag = () => setVideoDrag(!videoDrag);
+
   return (
-    <Draggable axis="y" position={{ x: 0, y: 0 }} onStop={handleStop}>
+    <Draggable axis="y" position={{ x: 0, y: 0 }} disabled={videoDrag} onStop={handleStop}>
       <div key={postId} className="reddit-video-wrapper">
         <p className="reddit-video-title" style={statStyling}>
           <Link to={`/reddit/show/${post['data']['subreddit']}`}>{post['data']['subreddit_name_prefixed']}</Link>
@@ -87,7 +91,10 @@ const RedditVideo = (props) => {
             className="reddit-stat reddit-comment-btn"
             style={statStyling}
             disabled={parseInt(post['data']['num_comments']) === 0}
-            onClick={() => { setPrompt(!prompt) }}
+            onClick={() => {
+              setPrompt(!prompt);
+              toggleDrag();
+            }}
           >
             <i className="fa-regular fa-message reddit-stat-icon"></i>
             {prettyNumbers(post['data']['num_comments'], 1)}
@@ -113,6 +120,7 @@ const RedditVideo = (props) => {
                 postId={postId}
                 subreddit={post['data']['subreddit']}
                 togglePrompt={togglePrompt}
+                toggleDrag={toggleDrag}
               /> : ""
           }
         </div>
