@@ -125,3 +125,20 @@
   border-bottom: 1px solid $cs-red;
   font-size: 15px;
 }
+
+#error_explanation {
+  border: 2px solid $cs-red;
+  padding: 5px;
+  background-color: rgb(199, 139, 139);
+}
+
+#error_explanation>h2 {
+  font-size: 15px;
+}
+
+.devise-error-list {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  font-size: 12px;
+}
