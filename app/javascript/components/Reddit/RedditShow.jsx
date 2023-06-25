@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
 import RedditLoading from "./RedditLoading";
+import RedditNoResults from "./RedditNoResults";
 
 const RedditShow = (props) => {
   const [posts, setPosts] = useState({});
@@ -83,7 +84,7 @@ const RedditShow = (props) => {
   let videoJsx = <RedditLoading />;
 
   if (noResults) {
-    videoJsx = <h1>No Results.</h1>
+    videoJsx = <RedditNoResults />;
   } else { 
     posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
   }
