@@ -86,7 +86,13 @@ const RedditShow = (props) => {
   if (noResults) {
     videoJsx = <RedditNoResults />;
   } else { 
-    posts['data'] ? videoJsx = <RedditVideo post={posts['data']['children'][index]} /> : "";
+    posts['data'] ? videoJsx = (
+      <RedditVideo
+        post={posts['data']['children'][index]}
+        previousVideo={previousVideo}
+        nextVideo={nextVideo} 
+      />
+    ) : "";
   }
 
   return (
