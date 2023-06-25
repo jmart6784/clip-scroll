@@ -27,19 +27,25 @@
   flex-direction: column;
 }
 
-.field {
+.field, .field_with_errors {
   display: flex;
   flex-direction: column;
   row-gap: 5px;
   font-size: 12px;
 }
 
-.field>input {
+.field>input,
+.field_with_errors>input {
   font-size: 14px;
   padding: 5px 0 5px 5px;
   outline: none;
   border-radius: 10px;
   border: 0;
+}
+
+.field_with_errors>input {
+  background-color: rgb(199, 139, 139);
+  border: 2px solid $cs-red;
 }
 
 .devise-text-area {
