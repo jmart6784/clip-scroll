@@ -95,11 +95,7 @@ const RedditShow = (props) => {
     ) : "";
   }
 
-  return (
-    <div className="yt-video-listing-div">
-      {videoJsx}
-    </div>
-  );
+  return <div className="yt-video-listing-div">{videoJsx}</div>;
 }
 
 export default RedditShow;
