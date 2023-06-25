@@ -132,8 +132,6 @@ const RedditVideo = (props) => {
           src={post['data']['media']['reddit_video']['fallback_url']}
           onTimeUpdate={(e) => synchronize(e)}
           onClick={(e) => playPause(e)}
-          width="400"
-          height="700"
           autoPlay
           loop
         />
