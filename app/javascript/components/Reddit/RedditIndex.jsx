@@ -140,7 +140,7 @@ const RedditIndex = () => {
   } else { 
     posts[index] ? videoJsx = (
       <>
-        <RedditVideo post={posts[index]} />
+        <RedditVideo post={posts[index]} previousVideo={previousVideo} nextVideo={nextVideo} />
         
         <div className="video-nav-btns">
           <button onClick={previousVideo}>
