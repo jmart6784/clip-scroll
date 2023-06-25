@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
 import shuffle from "../../helpers/shuffle";
 import RedditLoading from "./RedditLoading";
+import RedditNoResults from "./RedditNoResults";
 
 const RedditIndex = () => {
   const [posts, setPosts] = useState([]);
@@ -136,7 +137,7 @@ const RedditIndex = () => {
   let videoJsx = <RedditLoading />;
 
   if (noResults && posts.length == 0) {
-    videoJsx = <h1>No Results</h1>
+    videoJsx = <RedditNoResults />
   } else { 
     posts[index] ? videoJsx = (
       <>
