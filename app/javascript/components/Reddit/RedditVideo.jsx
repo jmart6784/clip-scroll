@@ -64,7 +64,7 @@ const RedditVideo = (props) => {
     }
   };
 
-  // Toggle draggability of video component
+  // Toggle draggability of video component, disabled when playlist or comments menu is displayed
   const toggleDrag = () => setVideoDrag(!videoDrag);
 
   return (
