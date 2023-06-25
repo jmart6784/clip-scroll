@@ -89,17 +89,11 @@ const RedditShow = (props) => {
   }
 
   return (
-    <div>
-      <PlaylistVideoMenu
-        videoId={posts['data'] ? posts['data']['children'][index]['data']['id'] : ""}
-        parentSourceId={posts['data'] ? posts['data']['children'][index]['data']['subreddit'] : ""}
-        source="reddit"
-      />
-      <h1>Reddit Show</h1>
+    <div className="yt-video-listing-div">
       {videoJsx}
-      <button onClick={() => more("page")}>More</button>
+      {/* <button onClick={() => more("page")}>More</button>
       <button type="button" onClick={previousVideo}>Previous</button>
-      <button type="button" onClick={nextVideo} disabled={noResults}>Next</button>
+      <button type="button" onClick={nextVideo} disabled={noResults}>Next</button> */}
     </div>
   );
 }
