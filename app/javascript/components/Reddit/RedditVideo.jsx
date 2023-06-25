@@ -58,6 +58,7 @@ const RedditVideo = (props) => {
     statStyling = {display: "block"};
   }
 
+  // Dragging element an element inside the deadzone will not trigger next or previous video
   const handleStop = (event, dragElement) => {
     if (dragElement.y >= 120 || dragElement.y <= -120) {
       dragElement.y > 0 ? props.previousVideo() : props.nextVideo();
