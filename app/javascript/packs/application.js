@@ -12,27 +12,27 @@ Rails.start();
 ActiveStorage.start();
 
 // Hide flash messages after 3 seconds
-// let generalInterval = setInterval(() => {
-//   console.log("test interval");
+let generalInterval = setInterval(() => {
+  console.log("test interval");
 
-//   let notice = document.getElementsByClassName("notice")[0];
-//   let alert = document.getElementsByClassName("alert")[0];
+  let notice = document.getElementsByClassName("notice")[0];
+  let alert = document.getElementsByClassName("alert")[0];
 
-//   if (notice) {
-//     setTimeout(() => {
-//       notice.textContent === "" ? (notice.style.display = "none") : "";
+  if (notice) {
+    setTimeout(() => {
+      // notice.textContent === "" ? (notice.style.display = "none") : "";
 
-//       notice.style.display = "none";
-//     }, 3000);
-//   }
+      notice.style.display = "none";
+    }, 3000);
+  }
 
-//   if (alert) {
-//     alert.textContent === "" ? (alert.style.display = "none") : "";
+  if (alert) {
+    // alert.textContent === "" ? (alert.style.display = "none") : "";
 
-//     setTimeout(() => {
-//       alert.style.display = "none";
-//     }, 3000);
-//   }
-// }, 1000);
+    setTimeout(() => {
+      alert.style.display = "none";
+    }, 3000);
+  }
+}, 1000);
 
 // clearInterval(generalInterval);
