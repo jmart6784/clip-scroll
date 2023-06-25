@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import RedditVideo from "./RedditVideo";
-
+import RedditLoading from "./RedditLoading";
 
 const RedditShow = (props) => {
   const [posts, setPosts] = useState({});
@@ -80,7 +80,7 @@ const RedditShow = (props) => {
     }
   }
 
-  let videoJsx = <h1>...Loading</h1>;
+  let videoJsx = <RedditLoading />;
 
   if (noResults) {
     videoJsx = <h1>No Results.</h1>
