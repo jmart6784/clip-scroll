@@ -11,24 +11,32 @@ import "@fortawesome/fontawesome-free/css/all.css";
 Rails.start();
 ActiveStorage.start();
 
+// Hide notice and alert elements if they do not contain text content
+document.addEventListener("DOMContentLoaded", () => {
+  let notice = document.getElementsByClassName("notice")[0];
+  let alert = document.getElementsByClassName("alert")[0];
+
+  notice.textContent === ""
+    ? (notice.style.display = "none")
+    : (notice.style.display = "block");
+
+  alert.textContent === ""
+    ? (alert.style.display = "none")
+    : (alert.style.display = "block");
+});
+
 // Hide flash messages after 3 seconds
 let generalInterval = setInterval(() => {
-  console.log("test interval");
-
   let notice = document.getElementsByClassName("notice")[0];
   let alert = document.getElementsByClassName("alert")[0];
 
   if (notice) {
     setTimeout(() => {
-      // notice.textContent === "" ? (notice.style.display = "none") : "";
-
       notice.style.display = "none";
     }, 3000);
   }
 
   if (alert) {
-    // alert.textContent === "" ? (alert.style.display = "none") : "";
-
     setTimeout(() => {
       alert.style.display = "none";
     }, 3000);
