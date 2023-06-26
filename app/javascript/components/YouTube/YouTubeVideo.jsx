@@ -105,6 +105,7 @@ const YoutubeVideo = (props) => {
               parentSourceId={channelId}
               source="youtube"
               togglePlaylists={togglePlaylists}  
+              toggleDrag={toggleDrag}
             />
             )
           }
