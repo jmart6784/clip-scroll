@@ -34,34 +34,12 @@ const YouTubeIndex = () => {
   let mainJsx = <YouTubeLoading />;
 
   if (loading === false && videos.length > 0) {
-    mainJsx = (
-      <div className="yt-video-listing-div">
-        {video}
-
-        {/* <div className="video-nav-btns">
-          <button onClick={previousVideo}>
-            <i className="fa-solid fa-hand-point-left"></i>
-          </button>
-
-          <button id="vid-nav-face">
-            <i className="fa-solid fa-face-laugh-beam"></i>
-          </button>
-
-          <button onClick={nextVideo}>
-            <i className="fa-solid fa-hand-point-right"></i>
-          </button>
-        </div> */}
-      </div>
-    );
+    mainJsx = <div className="yt-video-listing-div">{video}</div>;
   } else if (loading === false && videos.length === 0) { 
     mainJsx = <YouTubeNoResults />;
   }
 
-  return (
-    <div>
-      {mainJsx}
-    </div>
-  );
+  return mainJsx;
 }
 
 export default YouTubeIndex;
