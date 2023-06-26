@@ -38,7 +38,7 @@ const YouTubeIndex = () => {
       <div className="yt-video-listing-div">
         {video}
 
-        <div className="video-nav-btns">
+        {/* <div className="video-nav-btns">
           <button onClick={previousVideo}>
             <i className="fa-solid fa-hand-point-left"></i>
           </button>
@@ -50,7 +50,7 @@ const YouTubeIndex = () => {
           <button onClick={nextVideo}>
             <i className="fa-solid fa-hand-point-right"></i>
           </button>
-        </div>
+        </div> */}
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
