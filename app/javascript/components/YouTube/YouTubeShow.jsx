@@ -39,12 +39,6 @@ const YouTubeShow = (props) => {
   if (loading === false && videos.length > 0) {
     mainJsx = (
       <div>
-        <PlaylistVideoMenu
-          videoId={videos[index] ? videos[index].video_id : ""}
-          parentSourceId={videos[index] ? videos[index].channel_id : ""}
-          source="youtube"
-        />
-
         {video}
       </div>
     );
