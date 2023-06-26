@@ -9,6 +9,7 @@ const YoutubeVideo = (props) => {
   const [video, setVideo] = useState({});
   const [commentsShow, setCommentsShow] = useState(false);
   const [playlistsShow, setPlaylistsShow] = useState(false);
+  const [videoDrag, setVideoDrag] = useState(false);
   
   useEffect(() => { 
     // Example of deleted video /api/v1/youtube/video/xRa9SZUdk_Q
@@ -27,6 +28,8 @@ const YoutubeVideo = (props) => {
   const onEnd = (event) => event.target.playVideo();
   const toggleComments = () => setCommentsShow(!commentsShow);
   const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
+  // Toggle draggability of video component, disabled when playlist or comments menu is displayed
+  const toggleDrag = () => setVideoDrag(!videoDrag);
 
   let videoId;
   let channelId;
@@ -67,6 +70,7 @@ const YoutubeVideo = (props) => {
             id={videoId}
             commentCount={commentCount}
             toggleComments={toggleComments}
+            toggleDrag={toggleDrag}
           />
         );
       }
@@ -115,12 +119,14 @@ const YoutubeVideo = (props) => {
       dragElement.y > 0 ? props.previousVideo() : props.nextVideo();
     }
   };
+
   
   return (
     <Draggable
       axis="y" position={{ x: 0, y: 0 }}
-      allowAnyClick={true}
+      disabled={videoDrag}
       onStop={handleStop}
+      allowAnyClick={true}
     >
       <div className="youtube-video-div">
         <div className="drag-bypass"></div>

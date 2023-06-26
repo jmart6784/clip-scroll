@@ -28,6 +28,7 @@ const YouTubeComments = (props) => {
     <button type="button" onClick={() => {
       setPrompt(true);
       props.toggleComments();
+      props.toggleDrag();
     }} className="show-comments-btn yt-stat-div">
       <i className="fa-solid fa-message"></i>
       <span>{prettyNumbers(props.commentCount, 1)}</span>
@@ -146,6 +147,7 @@ const YouTubeComments = (props) => {
         <button type="button" className="hide-comments-btn" onClick={() => {
           setPrompt(false);
           props.toggleComments();
+          props.toggleDrag();
         }}>
           <i className="fa-sharp fa-solid fa-xmark"></i>
         </button>
