@@ -26,7 +26,13 @@ const YouTubeShow = (props) => {
 
   useEffect(() => console.log(videos), [videos]);
 
-  let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
+  let video = videos[index] ? (
+    <YoutubeVideo
+      id={videos[index].video_id} 
+      previousVideo={previousVideo}
+      nextVideo={nextVideo} 
+    />
+  ) : "Loading..."
 
   let mainJsx = <YouTubeLoading />;
 
