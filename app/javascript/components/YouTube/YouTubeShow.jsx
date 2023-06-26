@@ -24,8 +24,6 @@ const YouTubeShow = (props) => {
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  useEffect(() => console.log(videos), [videos]);
-
   let video = videos[index] ? (
     <YoutubeVideo
       id={videos[index].video_id} 
