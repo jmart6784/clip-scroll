@@ -69,7 +69,13 @@ const RedditVideo = (props) => {
   const toggleDrag = () => setVideoDrag(!videoDrag);
 
   return (
-    <Draggable axis="y" position={{ x: 0, y: 0 }} disabled={videoDrag} onStop={handleStop} allowAnyClick={true}>
+    <Draggable
+      axis="y"
+      position={{ x: 0, y: 0 }}
+      disabled={videoDrag}
+      onStop={handleStop}
+      allowAnyClick={true}
+    >
       <div key={postId} className="reddit-video-wrapper">
         <p className="reddit-video-title" style={statStyling}>
           <Link to={`/reddit/show/${post['data']['subreddit']}`}>{post['data']['subreddit_name_prefixed']}</Link>
