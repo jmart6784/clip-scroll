@@ -37,20 +37,12 @@ const YouTubeShow = (props) => {
   let mainJsx = <YouTubeLoading />;
 
   if (loading === false && videos.length > 0) {
-    mainJsx = (
-      <div>
-        {video}
-      </div>
-    );
+    mainJsx = <div className="yt-video-listing-div">{video}</div>;
   } else if (loading === false && videos.length === 0) { 
     mainJsx = <YouTubeNoResults />;
   }
 
-  return (
-    <div>
-      {mainJsx}
-    </div>
-  );
+  return mainJsx;
 }
 
 export default YouTubeShow;
