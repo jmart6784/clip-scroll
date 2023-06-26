@@ -66,3 +66,39 @@
 .no-playlist-menu>p>a:hover {
   border-bottom: 1px solid $cs-red;
 }
+
+@media only screen and (max-width: 390px) {
+  .pl-item-name {
+    width: 230px;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  .pl-item-name {
+    width: 210px;
+  }
+}
+
+@media only screen and (max-width: 346px) {
+  .pl-item-name {
+    width: 190px;
+  }
+}
+
+@media only screen and (max-width: 326px) {
+  .pl-item-name {
+    width: 170px;
+  }
+}
+
+@media only screen and (max-width: 306px) {
+  .pl-item-name {
+    width: 150px;
+  }
+}
+
+@media only screen and (max-width: 286px) {
+  .pl-item-name {
+    width: 140px;
+  }
+}
