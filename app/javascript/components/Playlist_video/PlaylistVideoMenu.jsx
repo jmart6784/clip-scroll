@@ -144,7 +144,7 @@ const PlaylistVideoMenu = (props) => {
       }}
     >
       <i className="fa-solid fa-square-plus"></i>
-      <span>Playlist</span>
+      <span id="playlist-video-text">Playlist</span>
     </button>
   );
 

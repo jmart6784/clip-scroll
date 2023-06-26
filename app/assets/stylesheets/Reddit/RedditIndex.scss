@@ -5,6 +5,9 @@
   position: relative;
   width: min-content;
   background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 #reddit-video {
@@ -188,4 +191,32 @@
 
 .comment-replies-btn:hover {
   border-bottom: 1px solid $cs-blue;
+}
+
+@media only screen and (max-width: 768px) {
+  .reddit-video-wrapper {
+    // width: 100wh;
+    width: 100%;
+    height: 90vh;
+  }
+
+  #reddit-video {
+    width: 100%;
+    height: 100%;
+  }
+
+  .yt-video-listing-div {
+    row-gap: 0px;
+    height: min-content;
+  }
+}
+
+@media only screen and (max-width: 370px) {
+  #playlist-video-text {
+    font-size: 11px;
+  }
+  
+  .show-comments-btn {
+    padding: 0;
+  }
 }
