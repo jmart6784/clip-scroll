@@ -3,6 +3,7 @@ import YouTube from 'react-youtube';
 import YouTubeComments from "./YouTubeComments";
 import prettyNumbers from "../../helpers/prettyNumbers";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
+import Draggable from "react-draggable";
 
 const YoutubeVideo = (props) => { 
   const [video, setVideo] = useState({});
@@ -109,8 +110,12 @@ const YoutubeVideo = (props) => {
   }
   
   return (
-    <div>
+    <Draggable
+      axis="y" position={{ x: 0, y: 0 }}
+      allowAnyClick={true}
+    >
       <div className="youtube-video-div">
+        <div className="drag-bypass"></div>
         <YouTube
           videoId={videoId}
           id={"youtube-video-main"}
@@ -134,7 +139,7 @@ const YoutubeVideo = (props) => {
         
         {statsJsx}
       </div>
-    </div>
+    </Draggable>
   );
 }
 
