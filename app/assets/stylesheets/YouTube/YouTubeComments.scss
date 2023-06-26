@@ -123,3 +123,9 @@
   height: 25px;
   width: 25px;
 }
+
+@media only screen and (max-width: 320px) {
+  #yt-comment-age {
+    font-size: 12px;
+  }
+}

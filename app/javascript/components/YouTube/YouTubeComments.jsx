@@ -64,7 +64,7 @@ const YouTubeComments = (props) => {
                     r.authorDisplayName.substring(0, 29) + ' ...'
                   ) : r.authorDisplayName
                 }</span>
-                <span>{timeSince(r.publishedAt)}</span>
+                <span id="yt-comment-age">{timeSince(r.publishedAt)}</span>
               </a>
             </div>
 
@@ -96,7 +96,7 @@ const YouTubeComments = (props) => {
                   parentComment.authorDisplayName.substring(0, 29) + ' ...'
                 ) : parentComment.authorDisplayName
               }</span>
-              <span>{timeSince(parentComment.publishedAt)}</span>
+              <span id="yt-comment-age">{timeSince(parentComment.publishedAt)}</span>
             </a>
           </div>
 
