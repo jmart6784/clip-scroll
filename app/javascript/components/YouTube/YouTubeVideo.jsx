@@ -108,11 +108,19 @@ const YoutubeVideo = (props) => {
       );
     }
   }
+
+  // Dragging element an element inside the deadzone will not trigger next or previous video
+  const handleStop = (event, dragElement) => {
+    if (dragElement.y >= 120 || dragElement.y <= -120) {
+      dragElement.y > 0 ? props.previousVideo() : props.nextVideo();
+    }
+  };
   
   return (
     <Draggable
       axis="y" position={{ x: 0, y: 0 }}
       allowAnyClick={true}
+      onStop={handleStop}
     >
       <div className="youtube-video-div">
         <div className="drag-bypass"></div>

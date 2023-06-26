@@ -23,7 +23,13 @@ const YouTubeIndex = () => {
   const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : "";
   const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
-  let video = videos[index] ? <YoutubeVideo id={videos[index].video_id} /> : "Loading..."
+  let video = videos[index] ? (
+    <YoutubeVideo
+      id={videos[index].video_id} 
+      previousVideo={previousVideo}
+      nextVideo={nextVideo} 
+    />
+  ) : "Loading..."
 
   let mainJsx = <YouTubeLoading />;
 
