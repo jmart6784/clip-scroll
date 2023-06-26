@@ -100,10 +100,27 @@
   font-size: 25px;
 }
 
+iframe {
+  // display: block;
+  width: 385px;
+  height: 685px;
+}
+
 @media only screen and (max-width: 768px) {
   .yt-video-listing-div {
     row-gap: 0px;
     height: min-content;
     width: 100%;
+  }
+
+  .youtube-video-div {
+    width: 100%;
+    height: 100%;
+  }
+
+  iframe {
+    // width: 100wh;
+    width: 100%;
+    height: 90vh;
   }
 }
