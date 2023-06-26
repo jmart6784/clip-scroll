@@ -45,10 +45,6 @@ const YouTubeShow = (props) => {
           source="youtube"
         />
 
-        <h1>YouTube Show</h1>
-
-        <button onClick={previousVideo}>Previous</button>
-        <button onClick={nextVideo}>Next</button>
         {video}
       </div>
     );
