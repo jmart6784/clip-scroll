@@ -178,15 +178,14 @@ const PlaylistShow = (props) => {
           <span>{playlist.user.username}</span>
         </Link>
 
-        <button onClick={previousVideo}>Previous</button>
+        {/* <button onClick={previousVideo}>Previous</button>
         <button onClick={nextVideo} disabled={
           (noResults && videos.length == 0) || index == videos.length - 1
-        }>Next</button>
+        }>Next</button> */}
 
         {vidJsx}
         {videosJsx}
 
-        { }
         <button onClick={moreVideos} disabled={noResults} id="more-btn">Show More</button>
       </div>
     );
