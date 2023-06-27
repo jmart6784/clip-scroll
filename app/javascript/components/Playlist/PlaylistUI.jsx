@@ -90,7 +90,7 @@ const PlaylistUI = (props) => {
 
     menuJsx = (
       <div>
-        <button type="button" onClick={() => setPrompt(false)}>Hide</button>
+        <i class="fa-solid fa-xmark"></i>
         <div>
           <p>name: {props.playlist.name}</p>
           <p>Private: {props.playlist.private.toString()}</p>
