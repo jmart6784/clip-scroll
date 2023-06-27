@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { Link } from "react-router-dom";
 import PlayImage from 'images/play.png'
 import PlaylistVideoDelete from "../Playlist_video/PlaylistVideoDelete";
@@ -7,6 +7,7 @@ import PlaylistDelete from "./PlaylistDelete";
 
 const PlaylistUI = (props) => { 
   const [global, setGlobal] = useContext(GlobalContext);
+  const [prompt, setPrompt] = useState(false);
 
   // Select video by index when option is clicked on playlist menu
   const selectVideo = (videoId) => {
@@ -71,42 +72,51 @@ const PlaylistUI = (props) => {
     }
   });
 
-  let ownerBtns = '';
+  let menuJsx = (
+    <button type="button" onClick={() => setPrompt(true)}>Show</button>
+  );
 
-  if (global.user) {
-    if (props.playlist['user_id'] === global.user.id) {
-      ownerBtns = (
-        <div>
-          <Link to={`/playlist/edit/${props.playlist.id}`}>Edit</Link>
-          <PlaylistDelete id={props.playlist.id} />
-        </div>
-      );
+  if (prompt) {
+    let ownerBtns = '';
+
+    if (global.user) {
+      if (props.playlist['user_id'] === global.user.id) {
+        ownerBtns = (
+          <div>
+            <Link to={`/playlist/edit/${props.playlist.id}`}>Edit</Link>
+            <PlaylistDelete id={props.playlist.id} />
+          </div>
+        );
+      }
     }
+
+    menuJsx = (
+      <div>
+        <button type="button" onClick={() => setPrompt(false)}>Hide</button>
+        <div>
+          <p>name: {props.playlist.name}</p>
+          <p>Private: {props.playlist.private.toString()}</p>
+          <p>Source: {props.playlist.source}</p>
+        </div>
+        
+        <div>
+            <p>{props.playlist.user.username}</p>
+            <Link to={`/users/show/${props.playlist.user.id}`}>
+              <img src={props.playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
+              <span>{props.playlist.user.username}</span>
+            </Link>
+        </div>
+
+        {ownerBtns}
+        
+        {videosJsx}
+
+        <button onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
+      </div>
+    );
   }
 
-  return (
-    <div>
-      <div>
-        <p>name: {props.playlist.name}</p>
-        <p>Private: {props.playlist.private.toString()}</p>
-        <p>Source: {props.playlist.source}</p>
-      </div>
-      
-      <div>
-          <p>{props.playlist.user.username}</p>
-          <Link to={`/users/show/${props.playlist.user.id}`}>
-            <img src={props.playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
-            <span>{props.playlist.user.username}</span>
-          </Link>
-      </div>
-
-      {ownerBtns}
-      
-      {videosJsx}
-
-      <button onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
-    </div>
-  );
+  return menuJsx;
 }
 
 export default PlaylistUI;
