@@ -165,12 +165,11 @@ const PlaylistShow = (props) => {
 
     mainJsx = (
       <div>
-        <h1>Playlist Show</h1>
-        <p>name: {playlist.name}</p>
+        {/* <p>name: {playlist.name}</p>
         <p>Private: {playlist.private.toString()}</p>
-        <p>Source: {playlist.source}</p>
+        <p>Source: {playlist.source}</p> */}
         
-        {ownerBtns}
+        {/* {ownerBtns} */}
 
         {/* <div>
           <p>{playlist.user.username}</p>
@@ -184,11 +183,9 @@ const PlaylistShow = (props) => {
         <button onClick={nextVideo} disabled={
           (noResults && videos.length == 0) || index == videos.length - 1
         }>Next</button> */}
-
+        {/* {videosJsx} */}
+        {/* <button onClick={moreVideos} disabled={noResults} id="more-btn">Show More</button> */}
         {vidJsx}
-        {videosJsx}
-
-        <button onClick={moreVideos} disabled={noResults} id="more-btn">Show More</button>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
