@@ -103,20 +103,35 @@ const PlaylistShow = (props) => {
     }
   });
 
+  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : moreVideos();
+  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
+
   let vidJsx = <div>...Loading</div>;
 
   // Render Youtube or Reddit video depending on video source
   if (videos[index]) {
     if (videos[index]['source'] == 'youtube') {
       if (videos[index]) {
-        vidJsx = <YoutubeVideo id={videos[index]["video"]["items"][0]["id"]} />;
+        vidJsx = (
+          <YoutubeVideo
+            id={videos[index]["video"]["items"][0]["id"]} 
+            previousVideo={previousVideo}
+            nextVideo={nextVideo} 
+          />
+        );
       } else {
         vidJsx = <div>..Loading YouTube video</div>;
       }
     } else if (videos[index]['source'] == 'reddit') { 
       // If API request has added 'video' key render Reddit video, else loading screen
       if (videos[index]['video']) {
-        vidJsx = <RedditVideo post={videos[index]['video']} />;
+        vidJsx = (
+          <RedditVideo
+            post={videos[index]['video']} 
+            previousVideo={previousVideo}
+            nextVideo={nextVideo} 
+          />
+        );
       } else {
         vidJsx = <div>..Loading Reddit video</div>;
       }
@@ -143,9 +158,6 @@ const PlaylistShow = (props) => {
       })
       .catch(() => console.log("Error getting playlist video data"));
   }
-
-  const nextVideo = () => index != videos.length - 1 ? setIndex(index + 1) : moreVideos();
-  const previousVideo = () => index > 0 ? setIndex(index - 1) : "";
 
   let mainJsx = <h1>...Loading</h1>;
 
@@ -185,7 +197,7 @@ const PlaylistShow = (props) => {
         }>Next</button> */}
         {/* {videosJsx} */}
         {/* <button onClick={moreVideos} disabled={noResults} id="more-btn">Show More</button> */}
-        {vidJsx}
+        <div className="yt-video-listing-div">{vidJsx}</div>;
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
