@@ -98,10 +98,6 @@ const PlaylistShow = (props) => {
   if (loading === false && videos.length > 0) {
     mainJsx = (
       <div>
-        {/* <button onClick={previousVideo}>Previous</button>
-        <button onClick={nextVideo} disabled={
-          (noResults && videos.length == 0) || index == videos.length - 1
-        }>Next</button> */}
         <PlaylistUI
           playlist={playlist}
           videos={videos}
