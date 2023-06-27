@@ -1,7 +1,9 @@
-#plui-show {
-  border: 1px solid springgreen;  
+#plui-show { 
   position: fixed;
   top: 0;
   right: 0;
-  margin: 20px 20px 0 0;
+  margin: 30px 30px 0 0;
+  cursor: pointer;
+  font-size: 45px;
+  font-weight: 900;
 }
