@@ -72,9 +72,7 @@ const PlaylistUI = (props) => {
     }
   });
 
-  let menuJsx = (
-    <button type="button" onClick={() => setPrompt(true)}>Show</button>
-  );
+  let menuJsx = <button id="plui-show" type="button" onClick={() => setPrompt(true)}>Show UI</button>;
 
   if (prompt) {
     let ownerBtns = '';
