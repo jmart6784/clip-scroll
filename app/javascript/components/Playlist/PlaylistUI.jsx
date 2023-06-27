@@ -7,7 +7,7 @@ import PlaylistDelete from "./PlaylistDelete";
 
 const PlaylistUI = (props) => { 
   const [global, setGlobal] = useContext(GlobalContext);
-  const [prompt, setPrompt] = useState(false);
+  const [prompt, setPrompt] = useState(true);
 
   // Select video by index when option is clicked on playlist menu
   const selectVideo = (videoId) => {
