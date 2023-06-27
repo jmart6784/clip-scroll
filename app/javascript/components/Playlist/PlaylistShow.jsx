@@ -172,11 +172,13 @@ const PlaylistShow = (props) => {
         
         {ownerBtns}
 
-        <p>{playlist.user.username}</p>
-        <Link to={`/users/show/${playlist.user.id}`}>
-          <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
-          <span>{playlist.user.username}</span>
-        </Link>
+        {/* <div>
+          <p>{playlist.user.username}</p>
+          <Link to={`/users/show/${playlist.user.id}`}>
+            <img src={playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
+            <span>{playlist.user.username}</span>
+          </Link>
+        </div> */}
 
         {/* <button onClick={previousVideo}>Previous</button>
         <button onClick={nextVideo} disabled={
