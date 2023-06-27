@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import RedditComments from "./RedditComments";
 import PlaylistVideoMenu from "../Playlist_video/PlaylistVideoMenu";
@@ -13,6 +13,8 @@ const RedditVideo = (props) => {
   const toggleComments = () => setCommentsShow(!commentsShow);
   const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
   const togglePrompt = () => setPrompt(!prompt);
+  const [lastUp, setLastUp] = useState(0);
+  const [lastDown, setLastDown] = useState(0);
 
   let post = props.post;
   let postId = post['data']['id']
@@ -67,6 +69,30 @@ const RedditVideo = (props) => {
 
   // Toggle draggability of video component, disabled when playlist or comments menu is displayed
   const toggleDrag = () => setVideoDrag(!videoDrag);
+
+  // Detect arrow up and down key presses
+  useEffect(() => {
+    const downHandler = ({ key }) => {
+      // Delay key press by 1 second then fire next/previous video
+      if (Date.now() - lastDown < 1000) return;
+      key === "ArrowDown" || key == "s" ? props.nextVideo() : ''; 
+      setLastDown(Date.now());
+    }
+  
+    const upHandler = ({ key }) => {
+      if (Date.now() - lastUp < 1000) return;
+      key === "ArrowUp" || key == "w" ? props.previousVideo() : ''; 
+      setLastUp(Date.now());
+    };
+
+    window.addEventListener("keydown", downHandler);
+    window.addEventListener("keyup", upHandler);
+
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+      window.removeEventListener("keyup", upHandler);
+    };
+  }, [lastUp, lastDown]);
 
   return (
     <Draggable
