@@ -10,6 +10,8 @@ const YoutubeVideo = (props) => {
   const [commentsShow, setCommentsShow] = useState(false);
   const [playlistsShow, setPlaylistsShow] = useState(false);
   const [videoDrag, setVideoDrag] = useState(false);
+  const [lastUp, setLastUp] = useState(0);
+  const [lastDown, setLastDown] = useState(0);
   
   useEffect(() => {
     // Example of deleted video /api/v1/youtube/video/xRa9SZUdk_Q
@@ -30,6 +32,30 @@ const YoutubeVideo = (props) => {
   const togglePlaylists = () => setPlaylistsShow(!playlistsShow);
   // Toggle draggability of video component, disabled when playlist or comments menu is displayed
   const toggleDrag = () => setVideoDrag(!videoDrag);
+
+  // Detect arrow up and down key presses
+  useEffect(() => {
+    const downHandler = ({ key }) => {
+      // Delay key press by 1 second then fire next/previous video
+      if (Date.now() - lastDown < 1000) return;
+      key === "ArrowDown" || key == "s" ? props.nextVideo() : ''; 
+      setLastDown(Date.now());
+    }
+  
+    const upHandler = ({ key }) => {
+      if (Date.now() - lastUp < 1000) return;
+      key === "ArrowUp" || key == "w" ? props.previousVideo() : ''; 
+      setLastUp(Date.now());
+    };
+
+    window.addEventListener("keydown", downHandler);
+    window.addEventListener("keyup", upHandler);
+
+    return () => {
+      window.removeEventListener("keydown", downHandler);
+      window.removeEventListener("keyup", upHandler);
+    };
+  }, [lastUp, lastDown]);
 
   let videoId;
   let channelId;
