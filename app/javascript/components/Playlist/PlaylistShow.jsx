@@ -6,6 +6,7 @@ import RedditVideo from "../Reddit/RedditVideo";
 import PlaylistVideoDelete from "../Playlist_video/PlaylistVideoDelete";
 import GlobalContext from "../context/GlobalContext";
 import PlayImage from 'images/play.png'
+import GeneralNoResults from "../../helpers/GeneralNoResults";
 
 const PlaylistShow = (props) => {
   const [playlist, setPlaylist] = useState({
@@ -190,9 +191,7 @@ const PlaylistShow = (props) => {
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
-    mainJsx = (
-      <div>No Results</div>
-    );
+    mainJsx = <GeneralNoResults />;
   }
 
   return mainJsx;
