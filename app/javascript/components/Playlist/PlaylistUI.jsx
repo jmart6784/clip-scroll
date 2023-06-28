@@ -92,17 +92,20 @@ const PlaylistUI = (props) => {
       <div>
         <i id="pui-close" onClick={() => setPrompt(false)} class="fa-solid fa-xmark"></i>
         <div>
-          <p>name: {props.playlist.name}</p>
-          <p>Private: {props.playlist.private.toString()}</p>
-          <p>Source: {props.playlist.source}</p>
+          <p>name: {props.playlist.name} {
+            props.playlist.private ? (
+              <i className="fa-solid fa-lock pui-pub-icon"></i>
+            ) : <i className="fa-solid fa-earth-americas pui-pub-icon"></i>
+          } {props.playlist.source == 'youtube' ? (
+            <i className="fa-brands fa-youtube pui-pub-icon"></i>
+          ) :<i className="fa-brands fa-reddit pui-pub-icon"></i> }</p>
         </div>
         
         <div>
-            <p>{props.playlist.user.username}</p>
-            <Link to={`/users/show/${props.playlist.user.id}`}>
-              <img src={props.playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
-              <span>{props.playlist.user.username}</span>
-            </Link>
+          <Link to={`/users/show/${props.playlist.user.id}`}>
+            <img src={props.playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
+            <span>{props.playlist.user.username}</span>
+          </Link>
         </div>
 
         {ownerBtns}
