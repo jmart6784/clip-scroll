@@ -88,17 +88,28 @@ const PlaylistUI = (props) => {
       }
     }
 
+    let sourceIcons = (
+      <>
+        <i className="fa-brands fa-reddit pui-pub-icon"></i>
+        <i className="fa-brands fa-youtube pui-pub-icon"></i>
+      </>
+    );
+    
+    if (props.playlist.source == 'reddit') {
+      sourceIcons = <i className="fa-brands fa-reddit pui-pub-icon"></i>;
+    } else if (props.playlist.source == 'youtube') {
+      sourceIcons = <i className="fa-brands fa-youtube pui-pub-icon"></i>;
+    }
+
     menuJsx = (
       <div>
         <i id="pui-close" onClick={() => setPrompt(false)} class="fa-solid fa-xmark"></i>
         <div>
-          <p>name: {props.playlist.name} {
+          <p className="pui-playlist-title">{props.playlist.name} {
             props.playlist.private ? (
               <i className="fa-solid fa-lock pui-pub-icon"></i>
             ) : <i className="fa-solid fa-earth-americas pui-pub-icon"></i>
-          } {props.playlist.source == 'youtube' ? (
-            <i className="fa-brands fa-youtube pui-pub-icon"></i>
-          ) :<i className="fa-brands fa-reddit pui-pub-icon"></i> }</p>
+          } {sourceIcons}</p>
         </div>
         
         <div>
