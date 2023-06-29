@@ -90,15 +90,15 @@ const PlaylistUI = (props) => {
 
     let sourceIcons = (
       <>
-        <i className="fa-brands fa-reddit pui-pub-icon"></i>
-        <i className="fa-brands fa-youtube pui-pub-icon"></i>
+        <i className="fa-brands fa-reddit"></i>
+        <i className="fa-brands fa-youtube"></i>
       </>
     );
     
     if (props.playlist.source == 'reddit') {
-      sourceIcons = <i className="fa-brands fa-reddit pui-pub-icon"></i>;
+      sourceIcons = <i className="fa-brands fa-reddit"></i>;
     } else if (props.playlist.source == 'youtube') {
-      sourceIcons = <i className="fa-brands fa-youtube pui-pub-icon"></i>;
+      sourceIcons = <i className="fa-brands fa-youtube"></i>;
     }
 
     menuJsx = (
@@ -107,8 +107,8 @@ const PlaylistUI = (props) => {
         <div>
           <p className="pui-playlist-title">{props.playlist.name} {
             props.playlist.private ? (
-              <i className="fa-solid fa-lock pui-pub-icon"></i>
-            ) : <i className="fa-solid fa-earth-americas pui-pub-icon"></i>
+              <i className="fa-solid fa-lock"></i>
+            ) : <i className="fa-solid fa-earth-americas"></i>
           } {sourceIcons}</p>
         </div>
         
