@@ -3,6 +3,7 @@ import YoutubeVideo from "../YouTube/YouTubeVideo";
 import RedditVideo from "../Reddit/RedditVideo";
 import GlobalContext from "../context/GlobalContext";
 import GeneralNoResults from "../../helpers/GeneralNoResults";
+import GeneralLoading from "../../helpers/GeneralLoading";
 import PlaylistUI from "./PlaylistUI";
 
 const PlaylistShow = (props) => {
@@ -93,7 +94,7 @@ const PlaylistShow = (props) => {
       .catch(() => console.log("Error getting playlist video data"));
   }
 
-  let mainJsx = <h1>...Loading</h1>;
+  let mainJsx = <GeneralLoading />;
 
   if (loading === false && videos.length > 0) {
     mainJsx = (
