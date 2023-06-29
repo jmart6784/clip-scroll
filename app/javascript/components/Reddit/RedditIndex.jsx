@@ -41,11 +41,14 @@ const RedditIndex = () => {
         const sr = requestList[i];
         
         if (sr != undefined) {
+          // fetch(`http://httpstat.us/429`)
           fetch(`https://www.reddit.com/r/${sr.subreddit}.json?limit=100&raw_json=1`)
-          .then((response) => {
-            if (response.ok) {
-              return response.json();
-            }
+            .then((response) => {
+              if (response.ok) {
+                return response.json();
+              } else if (response.status === 429) { 
+                alert("API Limit Reached, please try again later");
+              }
             throw new Error("Network response was not ok.");
           })
           .then((response) => {
