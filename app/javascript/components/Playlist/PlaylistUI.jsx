@@ -80,7 +80,7 @@ const PlaylistUI = (props) => {
     if (global.user) {
       if (props.playlist['user_id'] === global.user.id) {
         ownerBtns = (
-          <div>
+          <div className="pui-owner-buttons">
             <Link to={`/playlist/edit/${props.playlist.id}`}>Edit</Link>
             <PlaylistDelete id={props.playlist.id} />
           </div>

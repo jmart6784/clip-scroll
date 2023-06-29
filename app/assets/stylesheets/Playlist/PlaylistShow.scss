@@ -28,7 +28,15 @@
   text-decoration: none;
 }
 
-.pui-au-div>span {
+.pui-au-div>span, .pui-owner-buttons>a {
   font-weight: 900;
   border-bottom: 2px solid $cs-red;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.pui-owner-buttons {
+  display: flex;
+  column-gap: 10px;
+  font-size: 16px;
 }
