@@ -13,6 +13,9 @@
   overflow-y: auto;
   -ms-overflow-style: none;
   scrollbar-width: none;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
 }
 
 /* Hide scrollbar for Chrome, Safari and Opera */
@@ -24,7 +27,7 @@
   position: fixed;
   top: 0;
   right: 0;
-  margin: 30px 30px 0 0;
+  margin: 15px 15px 0 0;
   cursor: pointer;
   font-size: 45px;
   font-weight: 900;
@@ -57,6 +60,36 @@
 
 .pui-owner-buttons {
   display: flex;
+  column-gap: 10px;
+  font-size: 16px;
+}
+
+.pui-videos {
+  display: flex;
+  flex-direction: column;
+  row-gap: 30px;
+  margin-bottom: 80px;
+}
+
+.pui-show-more {
+  background-color: $cs-blue;
+  padding: 5px 20px 5px 20px;
+  font-size: 20px;
+  font-weight: 900;
+  border: 0;
+  cursor: pointer;
+  border-radius: 5px;
+  color: white;
+  width: fit-content;
+  align-self: center;
+}
+
+.pui-video-item {
+  padding: 5px;
+  border-radius: 5px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
   column-gap: 10px;
   font-size: 16px;
 }

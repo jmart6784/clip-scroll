@@ -23,7 +23,7 @@ const PlaylistUI = (props) => {
 
   // Render click-able playlist menu options
   let videosJsx = props.videos.map((v, i) => {
-    let selectedStyle = props.index == i ? { border: "1px solid black", cursor: "pointer" } : {};
+    let selectedStyle = props.index == i ? { backgroundColor: "rgba(255, 255, 255, 0.1)" } : {};
     let ownerBtns = '';
 
     if (global.user) {
@@ -35,15 +35,19 @@ const PlaylistUI = (props) => {
     if (v['source'] == 'youtube') {
       let video = v["video"]["items"][0]["snippet"];
       let videoId = v["video"]["items"][0]["id"];
-      let stats = v["video"]["items"][0]["statistics"];
+      // let stats = v["video"]["items"][0]["statistics"];
 
       return (
-        <div key={videoId} onClick={() => selectVideo(videoId)} style={selectedStyle}>
+        <div
+          key={videoId}
+          onClick={() => selectVideo(videoId)}
+          style={selectedStyle}
+          className="pui-video-item"
+        >
           <img src={video.thumbnails.default.url} alt="video thumbnail" />
-          <strong>YouTube {v['video_id']}</strong>
-          <p>{video.title}</p>
-          <p>{video.channelTitle}</p>
-          <p>{stats.viewCount}</p>
+          <p><i className="fa-brands fa-youtube"></i> {video.title}</p>
+          {/* <p>{video.channelTitle}</p> */}
+          {/* <p>{stats.viewCount}</p> */}
           {ownerBtns}
         </div>
       );
@@ -51,7 +55,12 @@ const PlaylistUI = (props) => {
       let video = v['video']['data'];
 
       return (
-        <div key={v['id']} onClick={() => selectVideo(video['id'])} style={selectedStyle}>
+        <div
+          key={v['id']}
+          onClick={() => selectVideo(video['id'])}
+          style={selectedStyle}
+          className="pui-video-item"
+        >
           <img
             src={video['thumbnail']}
             alt="video thumbnail" 
@@ -62,10 +71,9 @@ const PlaylistUI = (props) => {
             height="100"
             width="100"
           />
-          <strong>Reddit: {v['video_id']}</strong>
-          <p>{video['title']}</p>
-          <p>{video['subreddit']}</p>
-          <p>{video['score']}</p>
+          <p><i className="fa-brands fa-reddit"></i> {video['title']}</p>
+          {/* <p>{video['subreddit']}</p> */}
+          {/* <p>{video['score']}</p> */}
           {ownerBtns}
         </div>
       ); 
@@ -103,7 +111,7 @@ const PlaylistUI = (props) => {
 
     menuJsx = (
       <div className="playlist-ui-wrapper">
-        <i id="pui-close" onClick={() => setPrompt(false)} class="fa-solid fa-xmark"></i>
+        <i id="pui-close" onClick={() => setPrompt(false)} className="fa-solid fa-xmark"></i>
         <div>
           <p className="pui-playlist-title">{props.playlist.name} {
             props.playlist.private ? (
@@ -119,9 +127,11 @@ const PlaylistUI = (props) => {
 
         {ownerBtns}
         
-        <div className="pui-videos">{videosJsx}</div>
+        <div className="pui-videos">
+          {videosJsx}
 
-        <button onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
+          <button className="pui-show-more" onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
+        </div>
       </div>
     );
   }
