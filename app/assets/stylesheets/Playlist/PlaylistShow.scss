@@ -1,3 +1,5 @@
+@import "./variables.scss";
+
 #plui-show, #pui-close { 
   position: fixed;
   top: 0;
@@ -11,4 +13,22 @@
 .pui-playlist-title {
   font-size: 20px;
   font-weight: 900;
+}
+
+.pui-avatar {
+  height: 30px;
+  width: 30px;
+  border-radius: 100%;
+}
+
+.pui-au-div {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  text-decoration: none;
+}
+
+.pui-au-div>span {
+  font-weight: 900;
+  border-bottom: 2px solid $cs-red;
 }

@@ -112,12 +112,10 @@ const PlaylistUI = (props) => {
           } {sourceIcons}</p>
         </div>
         
-        <div>
-          <Link to={`/users/show/${props.playlist.user.id}`}>
-            <img src={props.playlist.user.avatar.url} height="50" width="50" alt="user avatar" />
-            <span>{props.playlist.user.username}</span>
-          </Link>
-        </div>
+        <Link to={`/users/show/${props.playlist.user.id}`} className="pui-au-div">
+          <img src={props.playlist.user.avatar.url} className="pui-avatar" height="30" width="30" alt="user avatar" />
+          <span>{props.playlist.user.username}</span>
+        </Link>
 
         {ownerBtns}
         
