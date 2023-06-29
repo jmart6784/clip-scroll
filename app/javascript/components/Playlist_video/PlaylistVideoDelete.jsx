@@ -30,14 +30,19 @@ const PlaylistVideoDelete = (props) => {
       .catch((error) => console.log(error.message));
   }
 
-  let delJsx = <button type="button" onClick={() => setPrompt(true)}>Delete</button>;
+  let delJsx = <button type="button" onClick={() => setPrompt(true)} className="playlist-delete">Remove</button>;
 
   if (prompt) {
-    delJsx = <div>
-      <p>Are you sure you would like to delete this playlist?</p>
-      <button onClick={deletePlaylistVideo} type="button">Delete</button>
-      <button onClick={() => setPrompt(false)} type="button">Cancel</button>
-    </div>
+    delJsx = (
+      <div className="playlist-delete-wrapper">
+        <p>Are you sure?</p>
+
+        <div className="pl-delete-div">
+          <button onClick={deletePlaylistVideo} type="button" className="pl-delete-btn">Remove</button>
+          <button onClick={() => setPrompt(false)} type="button" className="pl-delete-cancel">Cancel</button>
+        </div>
+      </div>
+    );
   }
 
   return (
