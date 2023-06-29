@@ -44,7 +44,8 @@ const PlaylistUI = (props) => {
           style={selectedStyle}
           className="pui-video-item"
         >
-          <img src={video.thumbnails.default.url} alt="video thumbnail" />
+          <div style={{ backgroundImage: `url(${video.thumbnails.default.url})` }} className="background-image pui-v-image"></div>
+          {/* <img src={video.thumbnails.default.url} alt="video thumbnail" /> */}
           <p><i className="fa-brands fa-youtube"></i> {video.title}</p>
           {/* <p>{video.channelTitle}</p> */}
           {/* <p>{stats.viewCount}</p> */}
@@ -61,7 +62,8 @@ const PlaylistUI = (props) => {
           style={selectedStyle}
           className="pui-video-item"
         >
-          <img
+          <div style={{ backgroundImage: `url(${video['thumbnail']})` }} className="background-image pui-v-image"></div>
+          {/* <img
             src={video['thumbnail']}
             alt="video thumbnail" 
             onError={e => {
@@ -70,7 +72,7 @@ const PlaylistUI = (props) => {
             }}
             height="100"
             width="100"
-          />
+          /> */}
           <p><i className="fa-brands fa-reddit"></i> {video['title']}</p>
           {/* <p>{video['subreddit']}</p> */}
           {/* <p>{video['score']}</p> */}
@@ -98,7 +100,7 @@ const PlaylistUI = (props) => {
 
     let sourceIcons = (
       <>
-        <i className="fa-brands fa-reddit"></i>
+        <i className="fa-brands fa-reddit"></i>{' '}
         <i className="fa-brands fa-youtube"></i>
       </>
     );
@@ -112,7 +114,7 @@ const PlaylistUI = (props) => {
     menuJsx = (
       <div className="playlist-ui-wrapper">
         <i id="pui-close" onClick={() => setPrompt(false)} className="fa-solid fa-xmark"></i>
-        <div>
+        <div className="pui-header">
           <p className="pui-playlist-title">{props.playlist.name} {
             props.playlist.private ? (
               <i className="fa-solid fa-lock"></i>

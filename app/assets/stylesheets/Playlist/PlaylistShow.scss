@@ -33,8 +33,14 @@
   font-weight: 900;
 }
 
+.pui-header {
+  width: 90%;
+  word-wrap: break-word;
+}
+
 .pui-playlist-title {
   font-size: 20px;
+  word-wrap: break-word;
   font-weight: 900;
 }
 
@@ -62,6 +68,7 @@
   display: flex;
   column-gap: 10px;
   font-size: 16px;
+  align-items: center;
 }
 
 .pui-videos {
@@ -85,11 +92,70 @@
 }
 
 .pui-video-item {
-  padding: 5px;
+  padding: 10px;
   border-radius: 5px;
   cursor: pointer;
   display: flex;
   align-items: center;
   column-gap: 10px;
   font-size: 16px;
+}
+
+.pui-v-image {
+  height: 120px;
+  width: 120px;
+}
+
+@media only screen and (max-width: 700px) {
+  .pui-playlist-title {
+    font-size: 18px;
+  }
+
+  .pui-video-item, .playlist-delete {
+    font-size: 14px;
+  }
+
+  .playlist-delete {
+    padding: 10px 5px 10px 5px;
+  }
+
+  .pui-v-image {
+    height: 75px;
+    width: 75px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .pui-header {
+    width: 85%;
+  }
+
+  .pui-playlist-title {
+    font-size: 16px;
+  }
+
+  .pui-video-item, .playlist-delete {
+    font-size: 12px;
+  }
+
+  .pui-v-image {
+    height: 50px;
+    width: 50px;
+  }
+}
+
+@media only screen and (max-width: 350px) {
+  .pui-playlist-title {
+    font-size: 14px;
+  }
+
+  .pui-video-item,
+  .playlist-delete {
+    font-size: 11px;
+  }
+
+  .pui-v-image {
+    height: 45px;
+    width: 45px;
+  }
 }
