@@ -108,7 +108,7 @@ const PlaylistShow = (props) => {
           noResults={noResults}
           index={index}
         />
-        <div className="yt-video-listing-div">{vidJsx}</div>;
+        <div className="yt-video-listing-div">{vidJsx}</div>
       </div>
     );
   } else if (loading === false && videos.length === 0) { 
