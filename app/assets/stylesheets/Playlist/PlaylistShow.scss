@@ -1,5 +1,25 @@
 @import "./variables.scss";
 
+.playlist-ui-wrapper {
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(5px);
+  padding: 10px;
+  overflow-y: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.playlist-ui-wrapper::-webkit-scrollbar {
+  display: none;
+}
+
 #plui-show, #pui-close { 
   position: fixed;
   top: 0;

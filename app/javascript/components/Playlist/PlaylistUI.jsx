@@ -102,7 +102,7 @@ const PlaylistUI = (props) => {
     }
 
     menuJsx = (
-      <div>
+      <div className="playlist-ui-wrapper">
         <i id="pui-close" onClick={() => setPrompt(false)} class="fa-solid fa-xmark"></i>
         <div>
           <p className="pui-playlist-title">{props.playlist.name} {
@@ -119,7 +119,7 @@ const PlaylistUI = (props) => {
 
         {ownerBtns}
         
-        {videosJsx}
+        <div className="pui-videos">{videosJsx}</div>
 
         <button onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
       </div>
