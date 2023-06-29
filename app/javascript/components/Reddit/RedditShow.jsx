@@ -22,6 +22,8 @@ const RedditShow = (props) => {
       .then((response) => {
         if (response.ok) {
           return response.json();
+        } else if (response.status === 429) { 
+          alert("API Limit Reached, please try again later");
         }
         throw new Error("Network response was not ok.");
       })
