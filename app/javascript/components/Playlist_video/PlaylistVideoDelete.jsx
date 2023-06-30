@@ -32,7 +32,7 @@ const PlaylistVideoDelete = (props) => {
 
   let delJsx = <button type="button" onClick={() => setPrompt(true)} className="playlist-delete">Remove</button>;
 
-  if (prompt) {
+  if (prompt && props.showPrompt) {
     delJsx = (
       <div className="playlist-delete-wrapper">
         <p>Are you sure?</p>
@@ -43,13 +43,11 @@ const PlaylistVideoDelete = (props) => {
         </div>
       </div>
     );
+  } else {
+    delJsx = <button onClick={deletePlaylistVideo} type="button" className="playlist-delete">Remove</button>;
   }
 
-  return (
-    <div>
-      {delJsx}
-    </div>
-  );
+  return delJsx;
 }
 
 export default PlaylistVideoDelete;

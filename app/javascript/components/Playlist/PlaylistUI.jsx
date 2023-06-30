@@ -28,7 +28,7 @@ const PlaylistUI = (props) => {
 
     if (global.user) {
       if (props.playlist['user_id'] === global.user.id) {
-        ownerBtns = <PlaylistVideoDelete video={v} removeVideo={removeVideo} />;
+        ownerBtns = <PlaylistVideoDelete video={v} removeVideo={removeVideo} showPrompt={false}  />;
       }
     }
     
@@ -132,7 +132,7 @@ const PlaylistUI = (props) => {
         <div className="pui-videos">
           {videosJsx}
 
-          <button className="pui-show-more" onClick={props.moreVideos} disabled={props.noResults} id="more-btn">Show More</button>
+          <button className="pui-show-more" onClick={props.moreVideos} style={props.noResults ? { display: "none" } : {}} id="more-btn">Show More</button>
         </div>
       </div>
     );
