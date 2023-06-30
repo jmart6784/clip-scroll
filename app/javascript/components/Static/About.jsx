@@ -1,8 +1,12 @@
 import React from "react";
 import youtubelogo from "images/youtube-logo.png";
 import redditlogo from "images/reddit-logo.png";
+import YouTube from "react-youtube";
 
 const About = () => { 
+  const onReady = (event) => event.target.unMute();
+  const onEnd = (event) => event.target.playVideo();
+
   return (
     <div className="about-wrapper">
       <div className="about-content">
@@ -25,6 +29,21 @@ const About = () => {
         <p className="about-text">
           The Reddit video content that is served is based on the Reddit API, it does not utilize an OAuth client ID. When I began creating this project the free tier query limit was 60 per minute. <a href="https://support.reddithelp.com/hc/en-us/articles/16160319875092-Reddit-Data-API-Wiki" target="_blank">As of July 1, 2023 the limit will be decreased down to 10 queries per minute</a>. This change significantly limits the functionality of the application. As for unsupported features it is similar to the YouTube content. Upvoting, commenting and awarding are currently not implemented.
         </p>
+
+        <YouTube
+          videoId={"3YAuA9ulbVg"}
+          id={"about-video"}
+          opts={{
+            playerVars: {
+              autoplay: 1,
+              mute: 0,
+              loop: 1,
+              playlist: "3YAuA9ulbVg",
+            },
+          }}
+          onReady={onReady}
+          onEnd={onEnd}
+        />
       </div>
     </div>
   );
