@@ -1,39 +1,18 @@
-# fly.toml app configuration file generated for clip-scroll on 2023-06-19T19:24:08-07:00
+# fly.toml app configuration file generated for clip-scroll on 2023-06-29T23:51:43-07:00
 #
 # See https://fly.io/docs/reference/configuration/ for information about how to use this file.
 #
 
 app = "clip-scroll"
 primary_region = "lax"
-kill_signal = "SIGINT"
-kill_timeout = "5s"
+console_command = "/rails/bin/rails console"
 
-[experimental]
-  auto_rollback = true
-
-[[services]]
-  protocol = "tcp"
+[http_service]
   internal_port = 3000
-  processes = ["app"]
-
-  [[services.ports]]
-    port = 80
-    handlers = ["http"]
-    force_https = true
-
-  [[services.ports]]
-    port = 443
-    handlers = ["tls", "http"]
-  [services.concurrency]
-    type = "connections"
-    hard_limit = 25
-    soft_limit = 20
-
-  [[services.tcp_checks]]
-    interval = "15s"
-    timeout = "2s"
-    grace_period = "1s"
-    restart_limit = 0
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
 
 [[statics]]
   guest_path = "/rails/public"
