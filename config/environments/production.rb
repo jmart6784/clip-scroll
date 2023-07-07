@@ -2,7 +2,6 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.action_mailer.default_url_options = { host: 'clip-scroll.fly.dev' }
   # Code is not reloaded between requests.
   config.cache_classes = true
 
@@ -63,6 +62,22 @@ Rails.application.configure do
   # config.active_job.queue_name_prefix = "clip_scroll_production"
 
   config.action_mailer.perform_caching = false
+  config.action_mailer.default_url_options = { host: 'odinbook.fly.dev' }
+  config.force_ssl = true
+
+  config.action_mailer.default_url_options = { :host => 'odinbook.fly.dev' }
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true 
+  config.raise_delivery_errors = true
+  config.action_mailer.smtp_settings = {
+    :user_name => Rails.application.credentials.dig(:sendgrid_username),
+    :password => Rails.application.credentials.dig(:sendgrid_password),
+    :domain => "fly.io",
+    :address => 'smtp.sendgrid.net',
+    :port => 587,
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

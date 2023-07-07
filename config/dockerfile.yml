@@ -16,7 +16,7 @@ options:
   platform:
   postgresql: true
   precompile:
-  prepare: true
+  prepare: false
   redis: false
   root: false
   sqlite3: false
