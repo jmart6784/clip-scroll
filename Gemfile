@@ -28,6 +28,7 @@ gem 'httparty'
 # gem 'image_processing', '~> 1.2'
 gem "image_processing"
 gem "mini_magick"
+gem 'aws-sdk-s3', require: false
 gem 'sendgrid-ruby'
 
 # Reduces boot times through caching; required in config/boot.rb

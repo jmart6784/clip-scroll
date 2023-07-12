@@ -25,13 +25,6 @@ development:
   <<: *default
   database: clip_scroll_development
 
-amazon:
-  service: S3
-  access_key_id: <%= Rails.application.credentials.dig(:aws_access_key_id) %>
-  secret_access_key: <%= Rails.application.credentials.dig(:aws_secret_access_key) %>
-  region: us-west-1
-  bucket: quiz-me-aws
-
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
   # When left blank, postgres will use the default role. This is
