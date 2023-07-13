@@ -45,3 +45,15 @@ let generalInterval = setInterval(() => {
 }, 1000);
 
 // clearInterval(generalInterval);
+
+let hidePlaylistUIInterval = setInterval(() => {
+  let hamburger = document.getElementById("plui-show");
+  let videoSelect = document.getElementById("pl-menu-wrapper");
+
+  if (videoSelect) {
+    hamburger ? hamburger.style.display = "none" : '';
+  } else {
+    hamburger ? hamburger.style.display = "block" : '';
+    // videoSelect.style.display = "block";
+  }
+}, 100);

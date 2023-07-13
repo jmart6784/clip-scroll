@@ -165,7 +165,7 @@ const PlaylistVideoMenu = (props) => {
     }
 
     menuJsx = (
-      <div className="playlist-menu-wrapper">
+      <div id="pl-menu-wrapper" className="playlist-menu-wrapper">
         <button type="button" className="hide-comments-btn" onClick={() => {
           setPrompt(false);
           props.togglePlaylists();
