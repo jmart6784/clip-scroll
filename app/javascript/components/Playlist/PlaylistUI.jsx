@@ -82,7 +82,11 @@ const PlaylistUI = (props) => {
     }
   });
 
-  let menuJsx = <i id="plui-show" className="fa-solid fa-bars" onClick={() => setPrompt(true)}></i>;
+  let menuJsx = (
+    <button id="plui-show"  onClick={() => setPrompt(true)}>
+      <i className="fa-solid fa-bars"></i>
+    </button>
+  );
 
   if (prompt) {
     let ownerBtns = '';
@@ -113,7 +117,9 @@ const PlaylistUI = (props) => {
 
     menuJsx = (
       <div className="playlist-ui-wrapper">
-        <i id="pui-close" onClick={() => setPrompt(false)} className="fa-solid fa-xmark"></i>
+        <button id="pui-close" onClick={() => setPrompt(false)}>
+          <i className="fa-solid fa-xmark"></i>
+        </button>
         <div className="pui-header">
           <p className="pui-playlist-title">{props.playlist.name} {
             props.playlist.private ? (
