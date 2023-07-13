@@ -6,7 +6,8 @@
 import Rails from "@rails/ujs";
 import * as ActiveStorage from "@rails/activestorage";
 import "channels";
-import "@fortawesome/fontawesome-free/css/all.css";
+// import "@fortawesome/fontawesome-free/css/all.css";
+require("@fortawesome/fontawesome-free/js/all");
 
 Rails.start();
 ActiveStorage.start();
