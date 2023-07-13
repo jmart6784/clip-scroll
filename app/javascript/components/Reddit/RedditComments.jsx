@@ -110,7 +110,7 @@ const RedditComments = (props) => {
             props.togglePrompt();
             props.toggleDrag();
           }}>
-            <i className="fa-sharp fa-solid fa-xmark"></i>
+            <i className="fa-solid fa-xmark"></i>
           </button>
         </div>
 

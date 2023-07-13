@@ -54,7 +54,7 @@ const Nav = () => {
           </button>
 
           <button type="button" className="nav-btn nav-item" onClick={() => toggleMenu("explore")}>
-            <i className="fa-sharp fa-regular fa-compass"></i>
+            <i className="fa-regular fa-compass"></i>
             <span className="nav-label"> Explore</span>
           </button>
 

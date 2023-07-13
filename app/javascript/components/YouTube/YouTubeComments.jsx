@@ -149,7 +149,7 @@ const YouTubeComments = (props) => {
           props.toggleComments();
           props.toggleDrag();
         }}>
-          <i className="fa-sharp fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </button>
 
         <p className="comments-title">Comments (limited):</p>

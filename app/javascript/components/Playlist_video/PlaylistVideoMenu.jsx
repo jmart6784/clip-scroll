@@ -171,7 +171,7 @@ const PlaylistVideoMenu = (props) => {
           props.togglePlaylists();
           props.toggleDrag();
         }}>
-          <i className="fa-sharp fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </button>
         <p className="comments-title playlists-header-title">
           <p style={{textDecoration: "underline"}}>Your playlists</p>

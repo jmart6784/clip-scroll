@@ -8,7 +8,7 @@ const ProfileMenu = (props) => {
     <div className="menu-div">
       <div className="menu-link-wrapper">
         <button className="close-nav-menu" type="button" onClick={() => props.hideMenu()}>
-          <i className="fa-sharp fa-solid fa-xmark"></i>
+          <i className="fa-solid fa-xmark"></i>
         </button>
 
         <Link to={`/users/show/${userId}`} onClick={() => props.hideMenu()} className="menu-link">
