@@ -10,9 +10,9 @@ class UserSerializer < ActiveModel::Serializer
       }
 
       # Production
-      # {
-      #   url: object.avatar.url
-      # }
+      {
+        url: object.avatar.url
+      }
     end
   end
 end
